@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagus Men's Wear | Premium Textile Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-black: #1a1a1a;
+            --color-dark: #2d2d2d;
+            --color-gray: #666666;
+            --color-light-gray: #f5f5f5;
+            --color-border: #e0e0e0;
+            --color-white: #ffffff;
+            --color-accent: #8b7355;
+            --color-gold: #c9a962;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--color-black); line-height: 1.6; background: var(--color-white); }
+
+        /* Top Bar */
+        .top-bar { background: var(--color-black); color: var(--color-white); padding: 0.6rem 2rem; font-size: 0.75rem; text-align: center; letter-spacing: 0.1em; }
+        .top-bar a { color: var(--color-gold); text-decoration: none; }
+
+        /* Header */
+        .header { background: var(--color-white); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 1000; }
+        .header-main { display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; max-width: 1600px; margin: 0 auto; }
+        .logo { font-family: var(--font-display); font-size: 1.8rem; font-weight: 500; letter-spacing: 0.15em; color: var(--color-black); text-decoration: none; }
+        
+        .header-actions { display: flex; align-items: center; gap: 1.5rem; }
+        .header-actions a { color: var(--color-black); text-decoration: none; display: flex; align-items: center; }
+        .header-actions svg { width: 20px; height: 20px; }
+        .header-socials { display: flex; gap: 1rem; margin-right: 1rem; border-right: 1px solid var(--color-border); padding-right: 1.5rem; }
+
+        /* Navigation */
+        .main-nav { border-top: 1px solid var(--color-border); padding: 0 3rem; }
+        .nav-list { display: flex; justify-content: center; gap: 3rem; list-style: none; max-width: 1600px; margin: 0 auto; }
+        .nav-list > li { position: relative; }
+        .nav-list > li > a { display: block; padding: 1rem 0; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-black); text-decoration: none; }
+        
+        /* Dropdown */
+        .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: var(--color-white); min-width: 200px; padding: 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: var(--transition); z-index: 100; }
+        .nav-list > li:hover .dropdown { opacity: 1; visibility: visible; }
+        .dropdown a { display: block; padding: 0.5rem 0; font-size: 0.85rem; color: var(--color-gray); text-decoration: none; }
+
+        /* Hero */
+        .hero { position: relative; height: 85vh; background: var(--color-light-gray); display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; }
+
+        /* Section & Category */
+        .section { padding: 5rem 3rem; max-width: 1600px; margin: 0 auto; }
+        .category-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2rem; }
+        .category-card { text-align: center; }
+        .category-image { width: 100%; aspect-ratio: 1; border-radius: 50%; background: #eee; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; }
+
+        /* Footer */
+        .footer { background: var(--color-black); color: #999; padding: 4rem 3rem 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 3rem; }
+        .footer-brand .logo { color: var(--color-white); }
+        .footer-col h4 { color: var(--color-white); margin-bottom: 1.5rem; font-size: 0.8rem; text-transform: uppercase; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col a { color: #999; text-decoration: none; }
+
+        /* Mobile */
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+        .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--color-black); margin: 5px 0; }
+
+        @media (max-width: 992px) {
+            .category-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; }
+            .header-socials { display: none; }
+        }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .main-nav { position: fixed; top: 0; left: -100%; width: 80%; height: 100vh; background: var(--color-white); z-index: 2000; transition: 0.3s; padding: 2rem; }
+            .main-nav.open { left: 0; }
+            .nav-list { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        PREMIUM CLASSICAL & FORMAL WEAR COLLECTION | <a href="https://wa.me/905511748907" target="_blank">CONTACT US VIA WHATSAPP</a>
+    </div>
+
+    <header class="header">
+        <div class="header-main">
+            <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+            <a href="#" class="logo">PAGUS</a>
+
+            <div class="header-actions">
+                <div class="header-socials">
+                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1"/></svg></a>
+                    <a href="https://wa.me/905511748907" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+                </div>
+                <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg></a>
+                <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z"/></svg></a>
+            </div>
+        </div>
+
+        <nav class="main-nav" id="mainNav">
+            <ul class="nav-list">
+                <li><a href="#">Groom's Wear</a><div class="dropdown"><a href="#">Wedding Suits</a><a href="#">Tuxedos</a></div></li>
+                <li><a href="#">Classical Wear</a><div class="dropdown"><a href="#">Formal Suits</a><a href="#">Two Pieces</a></div></li>
+                <li><a href="#">Shirts</a></li>
+                <li><a href="#">Jackets</a></li>
+                <li><a href="#">Shoes</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">Children</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Elegance for<br>Every Occasion</h1>
+            <p>Premium groom's wear and formal collection crafted with excellence.</p>
+        </div>
+    </section>
+
+    <section class="section" id="categories">
+        <div class="category-grid">
+            <div class="category-card"><div class="category-image">Groom</div><h3 class="category-name">Groom's Wear</h3></div>
+            <div class="category-card"><div class="category-image">Class</div><h3 class="category-name">Classical</h3></div>
+            <div class="category-card"><div class="category-image">Shirts</div><h3 class="category-name">Shirts</h3></div>
+            <div class="category-card"><div class="category-image">Jack</div><h3 class="category-name">Jackets</h3></div>
+            <div class="category-card"><div class="category-image">Shoes</div><h3 class="category-name">Shoes</h3></div>
+            <div class="category-card"><div class="category-image">Acc</div><h3 class="category-name">Accessories</h3></div>
+            <div class="category-card"><div class="category-image">Child</div><h3 class="category-name">Children</h3></div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">PAGUS</a>
+                <p>Premium textile manufacturer specializing in groom's wear. Trusted by retailers worldwide.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Groom's Wear</a></li>
+                    <li><a href="#">Classical Wear</a></li>
+                    <li><a href="#">Shirts</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@pagusmenswear.com">info@pagusmenswear.com</a></li>
+                    <li><a href="https://wa.me/905511748907" target="_blank">+90 551 174 8907</a></li>
+                    <li>İzmir, Turkey</li>
+                    <li><a href="https://wa.me/905511748907" target="_blank" style="color:var(--color-gold)">WhatsApp Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center; padding-top:2rem; font-size:0.75rem;">© 2026 Pagus Men's Wear. All rights reserved.</div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        menuToggle.addEventListener('click', () => { mainNav.classList.toggle('open'); });
+    </script>
+</body>
+</html>
