@@ -1,15 +1,18 @@
 backend:
   name: git-gateway
-  repo: kaynarkerem-ai/pagus-website
-  branch: main
-media_folder: "images"
-public_folder: "/images"
+  branch: main # Burası senin ana dalın, genellikle main veya master olur.
+
+media_folder: "images" # Resimlerin yükleneceği klasör
+public_folder: "/images" # Sitenin resimleri okuyacağı yol
+
 collections:
   - name: "pages"
     label: "Sayfalar"
     files:
-      - file: "index.html"
-        label: "Ana Sayfa"
-        name: "index"
+      - file: "_data/site_info.json" # DİKKAT: Burayı değiştirdik, veriyi JSON olarak saklayacağız.
+        label: "Ana Sayfa Ayarları"
+        name: "home_settings"
         fields:
-          - {label: "WhatsApp No", name: "whatsapp", widget: "string"}
+          - {label: "Ana Manşet Arka Plan Resmi", name: "hero_bg_image", widget: "image"} # İŞTE YENİ EKLEDİĞİMİZ SATIR!
+          - {label: "WhatsApp Numarası", name: "whatsapp", widget: "string"}
+          - {label: "E-posta Adresi", name: "email", widget: "string"}
