@@ -1,0 +1,15 @@
+backend:
+  name: git-gateway
+  repo: kaynarkerem-ai/pagus-website
+  branch: main
+media_folder: "images"
+public_folder: "/images"
+collections:
+  - name: "pages"
+    label: "Sayfalar"
+    files:
+      - file: "index.html"
+        label: "Ana Sayfa"
+        name: "index"
+        fields:
+          - {label: "WhatsApp No", name: "whatsapp", widget: "string"}
