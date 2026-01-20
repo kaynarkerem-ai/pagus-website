@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: kaynarkerem-ai/pagus-website
   branch: main
 
 media_library:
