@@ -1,4 +1,10 @@
 backend:
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: df7brjesy
+    api_key: 183959444393441
+    api_secret: w-eNB9C2UVxUYT8St2HNMoyX46s
   name: git-gateway
   branch: main # Burası senin ana dalın, genellikle main veya master olur.
 
@@ -16,3 +22,4 @@ collections:
           - {label: "Ana Manşet Arka Plan Resmi", name: "hero_bg_image", widget: "image"} # İŞTE YENİ EKLEDİĞİMİZ SATIR!
           - {label: "WhatsApp Numarası", name: "whatsapp", widget: "string"}
           - {label: "E-posta Adresi", name: "email", widget: "string"}
+
