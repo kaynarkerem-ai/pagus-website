@@ -1,25 +1,25 @@
 backend:
+  name: git-gateway
+  branch: main
+
 media_library:
   name: cloudinary
   config:
     cloud_name: df7brjesy
     api_key: 183959444393441
     api_secret: w-eNB9C2UVxUYT8St2HNMoyX46s
-  name: git-gateway
-  branch: main # Burası senin ana dalın, genellikle main veya master olur.
 
-media_folder: "images" # Resimlerin yükleneceği klasör
-public_folder: "/images" # Sitenin resimleri okuyacağı yol
+media_folder: "images"
+public_folder: "/images"
 
 collections:
   - name: "pages"
     label: "Sayfalar"
     files:
-      - file: "_data/site_info.json" # DİKKAT: Burayı değiştirdik, veriyi JSON olarak saklayacağız.
+      - file: "_data/site_info.json"
         label: "Ana Sayfa Ayarları"
         name: "home_settings"
         fields:
-          - {label: "Ana Manşet Arka Plan Resmi", name: "hero_bg_image", widget: "image"} # İŞTE YENİ EKLEDİĞİMİZ SATIR!
+          - {label: "Ana Manşet Arka Plan Resmi", name: "hero_bg_image", widget: "image"}
           - {label: "WhatsApp Numarası", name: "whatsapp", widget: "string"}
           - {label: "E-posta Adresi", name: "email", widget: "string"}
-
