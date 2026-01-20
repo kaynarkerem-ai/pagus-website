@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/.netlify/:path*",
+      "destination": "https://pagusmenswear.netlify.app/.netlify/:path*"
+    }
+  ]
+}
