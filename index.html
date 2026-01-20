@@ -122,7 +122,7 @@ whatsapp: "+905511748907"
         </nav>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="hero-section">
         <div class="hero-content">
             <h1 class="hero-title">Elegance for<br>Every Occasion</h1>
             <p>Premium groom's wear and formal collection crafted with excellence.</p>
@@ -174,21 +174,23 @@ whatsapp: "+905511748907"
         const mainNav = document.getElementById('mainNav');
         menuToggle.addEventListener('click', () => { mainNav.classList.toggle('open'); });
     </script>
-    <script>
-  // Panelden yüklediğin verileri çeken kod
-  fetch('/site_data.json') 
+   <script>
+  // Panelden yüklediğin verileri çeken kod (DÜZELTİLDİ)
+  fetch('/_data/site_info.json') 
     .then(response => response.json())
     .then(data => {
-      // Arka plan resmini "hero-section" id'li alana yapıştırır
-      if (data.hero_image) {
+      // Config.yml'da verdiğimiz isim 'hero_bg_image' idi, onu kullanıyoruz
+      if (data.hero_bg_image) {
         const hero = document.getElementById('hero-section');
         if (hero) {
-          hero.style.backgroundImage = `url(${data.hero_image})`;
+          hero.style.backgroundImage = `url(${data.hero_bg_image})`;
           hero.style.backgroundSize = 'cover';
           hero.style.backgroundPosition = 'center';
         }
       }
-    });
+    })
+    .catch(error => console.error('Veri yüklenirken hata:', error));
+</script>
 </script>    
 </body>
 </html>
