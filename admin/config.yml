@@ -14,7 +14,7 @@ public_folder: "/images"
 
 collections:
   - name: "pages"
-    label: "Sayfalar"
+    label: "Site Ayarları"
     files:
       - file: "_data/site_info.json"
         label: "Ana Sayfa Ayarları"
@@ -23,3 +23,26 @@ collections:
           - {label: "Ana Manşet Arka Plan Resmi", name: "hero_bg_image", widget: "image"}
           - {label: "WhatsApp Numarası", name: "whatsapp", widget: "string"}
           - {label: "E-posta Adresi", name: "email", widget: "string"}
+
+  - name: "inventory"
+    label: "MAĞAZA YÖNETİMİ"
+    files:
+      - file: "_data/products.json"
+        label: "TÜM ÜRÜNLER"
+        name: "product_list"
+        fields:
+          - label: "Ürünler"
+            name: "items"
+            widget: "list"
+            collapsed: false
+            summary: "{{title}} ({{category}})"
+            fields:
+              - {label: "Ürün Başlığı", name: "title", widget: "string"}
+              - {label: "Kategori (Menüden Seç)", name: "category", widget: "select", options: ["Wedding Suits", "Tuxedos", "Formal Suits", "Two Pieces", "Shirts", "Jackets", "Shoes", "Accessories", "Children"]}
+              - {label: "Kapak Fotoğrafı (Listede Görünecek)", name: "thumbnail", widget: "image"}
+              - {label: "Fiyat veya Kısa Bilgi", name: "price", widget: "string", required: false}
+              - {label: "Detay Fotoğraf 1", name: "img1", widget: "image"}
+              - {label: "Detay Fotoğraf 2", name: "img2", widget: "image"}
+              - {label: "Detay Fotoğraf 3", name: "img3", widget: "image"}
+              - {label: "Detay Fotoğraf 4", name: "img4", widget: "image"}
+              - {label: "Ürün Açıklaması", name: "description", widget: "text"}
