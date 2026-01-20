@@ -174,5 +174,21 @@ whatsapp: "+905511748907"
         const mainNav = document.getElementById('mainNav');
         menuToggle.addEventListener('click', () => { mainNav.classList.toggle('open'); });
     </script>
+    <script>
+  // Panelden yüklediğin verileri çeken kod
+  fetch('/site_data.json') 
+    .then(response => response.json())
+    .then(data => {
+      // Arka plan resmini "hero-section" id'li alana yapıştırır
+      if (data.hero_image) {
+        const hero = document.getElementById('hero-section');
+        if (hero) {
+          hero.style.backgroundImage = `url(${data.hero_image})`;
+          hero.style.backgroundSize = 'cover';
+          hero.style.backgroundPosition = 'center';
+        }
+      }
+    });
+</script>    
 </body>
 </html>
