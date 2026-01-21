@@ -18,58 +18,62 @@
         body { font-family: var(--font-body); color: var(--color-black); background: var(--color-white); line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* HEADER & NAVIGATION */
-        .header { position: sticky; top: 0; width: 100%; z-index: 1000; background: var(--color-noble); box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 1rem 0; }
-        .header-inner { max-width: var(--site-max-width); margin: 0 auto; padding: 0 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        /* --- HEADER & NAVIGATION (TAM LİSTE) --- */
+        .header { position: sticky; top: 0; width: 100%; z-index: 1000; background: var(--color-noble); box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 1.5rem 0 0 0; }
+        .header-inner { max-width: var(--site-max-width); margin: 0 auto; padding: 0 2rem; display: flex; flex-direction: column; align-items: center; }
         
-        .logo-area { width: 100%; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-display); font-size: 1.5rem; color: #fff; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .logo-area { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .logo { font-family: var(--font-display); font-size: 1.8rem; color: #fff; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
         
-        /* Sosyal Medya İkonları Geri Geldi */
-        .header-socials { display: flex; gap: 1.2rem; }
-        .header-socials svg { width: 20px; height: 20px; stroke: #fff; fill: none; transition: 0.3s; }
+        /* Sosyal Medya İkonları (Üçlü Paket) */
+        .header-socials { display: flex; gap: 1.5rem; }
+        .header-socials svg { width: 22px; height: 22px; stroke: #fff; fill: none; transition: 0.3s; }
         .header-socials a:hover svg { stroke: var(--color-gold); transform: translateY(-2px); }
 
-        .nav-list { display: flex; gap: 2rem; list-style: none; padding: 0.5rem 0; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; justify-content: center; }
-        .nav-list a { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 1px; }
+        .nav-list { display: flex; gap: 2rem; list-style: none; padding: 1rem 0; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; justify-content: center; flex-wrap: wrap; }
+        .nav-list a { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 1px; }
         .nav-list a:hover { color: var(--color-gold); }
 
-        /* BREADCRUMB & TITLE */
-        .page-header { background: var(--color-light-gray); padding: 3rem 2rem; text-align: center; border-bottom: 1px solid #ddd; }
+        /* --- BAŞLIK ALANI --- */
+        .page-header { background: var(--color-light-gray); padding: 4rem 2rem; text-align: center; border-bottom: 1px solid #ddd; }
         .cat-title { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-noble); text-transform: uppercase; margin-bottom: 0.5rem; }
-        .back-btn { color: var(--color-gold); font-size: 0.8rem; font-weight: 700; cursor: pointer; text-transform: uppercase; display: none; margin-bottom: 1rem; }
+        .back-btn { color: var(--color-gold); font-size: 0.85rem; font-weight: 700; cursor: pointer; text-transform: uppercase; display: none; margin-bottom: 1rem; border: 1px solid var(--color-gold); padding: 0.5rem 1rem; display: inline-block; }
 
-        /* GRID */
-        .grid-container { max-width: var(--site-max-width); margin: 0 auto; padding: 4rem 2rem; display: grid; gap: 3rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        /* --- GRID KONTEYNER --- */
+        .grid-container { max-width: var(--site-max-width); margin: 0 auto; padding: 4rem 2rem; display: grid; gap: 3rem; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
         
         .card { cursor: pointer; transition: 0.3s; text-align: center; }
-        .img-box { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 1rem; border: 1px solid #eee; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .img-box { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 1.2rem; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; }
         .card:hover .img-box img { transform: scale(1.05); }
-        .info-title { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.3rem; }
-        .info-sub { color: var(--color-gold); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .info-title { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.4rem; color: var(--color-dark); }
+        .info-sub { color: var(--color-gold); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* MODAL SLIDER */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); }
+        /* --- MODAL SLIDER (GELİŞMİŞ) --- */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); }
         .modal-content { height: 100vh; display: grid; grid-template-columns: 3fr 1fr; }
         .slider-area { position: relative; background: #000; display: flex; align-items: center; justify-content: center; }
-        .main-slide { max-height: 90vh; max-width: 95%; object-fit: contain; }
-        .arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 3rem; cursor: pointer; padding: 2rem; user-select: none; }
+        .main-slide { max-height: 92vh; max-width: 95%; object-fit: contain; }
+        .arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 4rem; cursor: pointer; padding: 2rem; user-select: none; opacity: 0.5; transition: 0.3s; }
+        .arrow:hover { opacity: 1; color: var(--color-gold); }
         .prev { left: 0; } .next { right: 0; }
-        .details-area { background: #fff; padding: 4rem; display: flex; flex-direction: column; justify-content: center; position: relative; }
-        .close-btn { position: absolute; top: 20px; right: 30px; font-size: 40px; color: #fff; cursor: pointer; z-index: 2001; }
         
-        /* FOOTER DUZELTME */
-        .footer { background: #111; color: #999; padding: 5rem 3rem; margin-top: 5rem; }
-        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; max-width: var(--site-max-width); margin: 0 auto; }
-        .footer h4 { color: #fff; margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
-        .footer p { font-size: 0.85rem; line-height: 1.8; }
+        .details-area { background: #fff; padding: 5rem 3rem; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .close-btn { position: absolute; top: 30px; right: 40px; font-size: 50px; color: #fff; cursor: pointer; z-index: 2001; line-height: 1; }
+        
+        /* --- FOOTER (ABOUT US DÜZELTME) --- */
+        .footer { background: #0a0a0a; color: #bbb; padding: 6rem 3rem; margin-top: 5rem; border-top: 3px solid var(--color-gold); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 6rem; max-width: var(--site-max-width); margin: 0 auto; }
+        .footer h4 { color: #fff; margin-bottom: 2rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; border-bottom: 1px solid #333; padding-bottom: 1rem; }
+        .footer p { font-size: 0.95rem; line-height: 2; margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 1rem; font-size: 0.9rem; }
 
         @media (max-width: 992px) {
             .modal-content { grid-template-columns: 1fr; }
             .details-area { display: none; }
-            .nav-list { flex-wrap: wrap; gap: 1rem; }
-            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .nav-list { gap: 1rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 4rem; }
         }
     </style>
 </head>
@@ -80,9 +84,9 @@
             <div class="logo-area">
                 <a href="index.html" class="logo">PAGUS</a>
                 <div class="header-socials">
-                    <a href="https://www.instagram.com/pagus_menswear/" target="_blank"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1"/></svg></a>
-                    <a href="https://www.facebook.com/pagusmenswear/" target="_blank"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                    <a href="https://wa.me/905511748907" target="_blank"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+                    <a href="https://www.instagram.com/pagus_menswear/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1"/></svg></a>
+                    <a href="https://www.facebook.com/pagusmenswear/" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="https://wa.me/905511748907" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
                 </div>
             </div>
             <nav>
@@ -99,8 +103,8 @@
     </header>
 
     <section class="page-header">
-        <div id="backBtn" class="back-btn" onclick="goBack()">← Back to Styles</div>
-        <h1 class="cat-title" id="pageTitle">Loading...</h1>
+        <div id="backBtn" class="back-btn" onclick="goBack()" style="display:none;">← BACK TO CATEGORIES</div>
+        <h1 class="cat-title" id="pageTitle">COLLECTION</h1>
     </section>
 
     <div class="grid-container" id="mainGrid"></div>
@@ -114,9 +118,10 @@
                 <span class="arrow next" onclick="changeSlide(1)">&#10095;</span>
             </div>
             <div class="details-area">
-                <h2 id="modalCode" style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:1rem;">CODE</h2>
-                <p style="color:#666; margin-bottom:2rem;">Premium Wholesale Collection. Made in Turkey.</p>
-                <a id="wpLink" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:1.2rem; text-align:center; font-weight:600;">WHATSAPP INQUIRY</a>
+                <span style="color:var(--color-gold); font-weight:700; letter-spacing:2px; font-size:0.8rem;">WHOLESALE MANUFACTURER</span>
+                <h2 id="modalCode" style="font-family:var(--font-display); font-size:3rem; margin:1.5rem 0;">CODE</h2>
+                <p style="color:#555; margin-bottom:3rem; font-size:1rem;">Premium quality fabric and meticulous Turkish craftsmanship. Available for global wholesale orders.</p>
+                <a id="wpLink" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:1.5rem; text-align:center; font-weight:700; letter-spacing:1px; border-radius:4px; box-shadow: 0 10px 20px rgba(201,169,98,0.3);">ASK PRICE VIA WHATSAPP</a>
             </div>
         </div>
     </div>
@@ -125,17 +130,24 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <h4>ABOUT PAGUS MEN'S WEAR</h4>
-                <p>PAGUS Menswear provides world-class textile solutions for global retailers. Located in Turkey, we bridge the gap between premium manufacturing and high-end retail. Punctuality, consistency, and quality are our core principles.</p>
+                <p>PAGUS Menswear is established with a single mission: to provide world-class textile solutions for global retailers. Located in Turkey, a global hub for textile production, we bridge the gap between premium manufacturing and high-end retail.</p>
+                <p>We specialize in groom’s wear and formal suits, offering not just products, but a partnership built on trust. With our robust production capacity and strict quality control standards, we ensure that every garment leaving our facility meets the highest expectations.</p>
+                <p><strong>PAGUS. Global Standards, Local Expertise.</strong></p>
             </div>
             <div class="footer-col">
-                <h4>CONTACT FOR B2B</h4>
-                <p>info@pagusmenswear.com<br>+90 551 174 89 07<br>İzmir, Turkey</p>
+                <h4>B2B CONTACT</h4>
+                <ul>
+                    <li><strong>Email:</strong> info@pagusmenswear.com</li>
+                    <li><strong>WhatsApp:</strong> +90 551 174 89 07</li>
+                    <li><strong>Location:</strong> İzmir, Turkey</li>
+                </ul>
             </div>
         </div>
+        <div style="text-align:center; padding-top:4rem; font-size:0.8rem; color:#444; border-top:1px solid #111; margin-top:4rem;">© 2026 Pagus Men's Wear. All Rights Reserved.</div>
     </footer>
 
     <script>
-        // ÜRÜN LİSTESİ (Buraya Python scriptinin verdiği listeyi yapıştır)
+        // ÜRÜN VERİTABANI (Python Scriptinden buraya yapıştır)
         const productsDB = [
             { "code": "Mandarin-1023D170", "mainCat": "Wedding Suits", "subCat": "Mandarin Collar Suits", "realCode": "1023D170" }
         ];
@@ -153,6 +165,12 @@
             document.getElementById('pageTitle').innerText = mainCat;
             const grid = document.getElementById('mainGrid');
             const subCats = [...new Set(productsDB.filter(p => p.mainCat === mainCat).map(p => p.subCat))];
+            
+            if (subCats.length === 0) {
+                grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:5rem; color:#999;">Updating ${mainCat} collection...</div>`;
+                return;
+            }
+
             grid.innerHTML = subCats.map(sub => {
                 const cover = productsDB.find(p => p.subCat === sub);
                 return `
@@ -160,7 +178,7 @@
                     <div class="img-box"><img src="images/${cover.code} (1).jpg" onerror="this.src='placeholder.jpg'"></div>
                     <div class="info-box">
                         <h3 class="info-title">${sub}</h3>
-                        <span class="info-sub">View Styles</span>
+                        <span class="info-sub">EXPLORE COLLECTION</span>
                     </div>
                 </div>`;
             }).join('');
@@ -176,6 +194,7 @@
                     <div class="img-box"><img src="images/${prod.code} (1).jpg"></div>
                     <div class="info-box">
                         <h3 class="info-title">${prod.realCode}</h3>
+                        <span class="info-sub">VIEW DETAILS</span>
                     </div>
                 </div>`).join('');
         }
