@@ -38,7 +38,6 @@
             border-bottom: none;
         }
         
-        /* 1. Logo ve İkon Alanı */
         .brand-header-area {
             background-color: transparent; 
             color: var(--color-white); 
@@ -57,7 +56,7 @@
             flex-direction: column; 
         }
 
-        /* Ana Logo */
+        /* Ana Logo - GÖLGELİ */
         .main-brand-logo {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 6vw, 4rem); 
@@ -67,10 +66,11 @@
             text-transform: uppercase;
             display: inline-block;
             text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+            /* YENİ: Daha belirgin gölge */
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4); 
         }
         
-        /* Slogan */
+        /* Slogan - GÖLGELİ */
         .brand-tagline {
             font-family: var(--font-display);
             font-size: clamp(1rem, 2vw, 1.4rem);
@@ -78,7 +78,8 @@
             color: var(--color-white);
             margin-top: 0.5rem;
             letter-spacing: 0.05em;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            /* YENİ: Okunurluk gölgesi */
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         /* İkonlar */
@@ -91,7 +92,7 @@
         }
         .top-socials a { color: var(--color-white); display: flex; align-items: center; transition: 0.3s; }
         .top-socials a:hover { color: var(--color-gold); transform: translateY(-3px); }
-        .top-socials svg { width: 24px; height: 24px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5)); }
+        .top-socials svg { width: 24px; height: 24px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
 
         /* 2. Menü Alanı */
         .header-main { 
@@ -106,7 +107,7 @@
             position: relative;
         }
         
-        /* Navigasyon Linkleri */
+        /* Navigasyon Linkleri - GÖLGELİ */
         .nav-list { display: flex; gap: 3rem; list-style: none; margin: 0; padding: 0; }
         .nav-list > li { position: relative; }
         
@@ -118,100 +119,86 @@
             letter-spacing: 0.15em; 
             text-transform: uppercase; 
             color: var(--color-white); 
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5); 
+            /* YENİ: Linkler patlasın diye gölge */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.6); 
         }
         .nav-list > li > a:hover { color: var(--color-gold); }
 
-        /* --- PREMIUM DROPDOWN MENÜ --- */
+        /* --- PREMIUM DROPDOWN MENÜ (BUZLU CAM) --- */
         .dropdown { 
             position: absolute; 
             top: 100%; 
             left: 50%; 
-            /* Başlangıçta biraz aşağıda ve görünmez */
             transform: translateX(-50%) translateY(20px); 
-            background: var(--color-white); 
-            min-width: 240px; /* Biraz daha geniş */
-            padding: 0.8rem 0; /* İç boşluklar */
-            /* Yumuşak ve derin gölge */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            
+            /* YENİ: Buzlu Cam Efekti (Apple Style) */
+            background: rgba(255, 255, 255, 0.92); /* %92 Opak Beyaz */
+            backdrop-filter: blur(10px); /* Arkadaki resmi flulaştırır */
+            
+            min-width: 240px; 
+            padding: 0.8rem 0; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* Daha derin gölge */
             opacity: 0; 
             visibility: hidden; 
-            /* Çok daha yumuşak geçiş efekti */
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
             z-index: 100; 
-            /* Köşeleri yuvarlat */
             border-radius: 8px;
-            /* İnce, şık altın çerçeve */
-            border: 1px solid rgba(201, 169, 98, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Hafif beyaz çerçeve */
         }
 
-        /* Hover olunca menü açılışı */
         .nav-list > li:hover .dropdown { 
             opacity: 1; 
             visibility: visible; 
-            /* Yukarı doğru süzülerek yerine gelsin */
             transform: translateX(-50%) translateY(0); 
         }
 
-        /* Dropdown içindeki linkler */
         .dropdown a { 
             display: block; 
-            padding: 0.8rem 1.5rem; /* Daha ferah iç yapı */
+            padding: 0.8rem 1.5rem; 
             font-size: 0.85rem; 
-            color: var(--color-dark); 
+            color: #333; /* İçerideki yazı koyu gri */
             letter-spacing: 0.5px; 
-            text-shadow: none; 
-            border-bottom: 1px solid #f5f5f5; /* Linkler arası ince çizgi */
+            text-shadow: none; /* Dropdown içinde gölge yok, net olsun */
+            border-bottom: 1px solid rgba(0,0,0,0.05); 
             transition: all 0.3s ease;
         }
-        /* Son linkin altındaki çizgiyi kaldır */
-        .dropdown a:last-child {
-            border-bottom: none;
-        }
+        .dropdown a:last-child { border-bottom: none; }
         
-        /* Dropdown link hover efekti */
         .dropdown a:hover { 
             color: var(--color-gold); 
-            background-color: #fbfbfb; /* Çok hafif arka plan değişimi */
-            padding-left: 2rem; /* Sağa doğru hafif kayma */
+            background-color: rgba(255,255,255, 0.8); 
+            padding-left: 2rem; 
         }
 
         /* --- HERO SECTION (RESİM) --- */
         .hero { 
             position: relative; 
-            height: 100vh; 
+            height: 100vh; /* Tam Ekran */
             background-color: var(--color-noble);
             background-image: url('hero-final.png'); 
             background-size: cover;
-            /* REVİZYON: Resmi aşağı itiyoruz. 
-               'center 30%' demek: Resmin dikeyde %30'luk noktasını merkeze al.
-               Bu da kafaların üstünde boşluk yaratır. */
+            /* Kafa kurtarma operasyonu: %30 */
             background-position: center 30%; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
         }
         
-        /* Üst kısma hafif karartma (yazılar için) */
+        /* Hafif üst degrade (yazılar okunsun diye) */
         .hero::after {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 50%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
             z-index: 1;
             pointer-events: none;
         }
 
-        .hero-content { display: none; }
+        /* --- KATEGORİ BÖLÜMÜ SİLİNDİ --- */
+        /* categories section removed */
 
-        /* KATEGORİLER VE FOOTER (Değişiklik Yok) */
-        .section { padding: 5rem 3rem; max-width: var(--site-max-width); margin: 0 auto; }
-        .category-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2rem; }
-        .category-card { text-align: center; display: block; }
-        .category-card:hover { transform: translateY(-5px); color: var(--color-gold); }
-        .category-image { width: 100%; aspect-ratio: 1; border-radius: 50%; background: #eee; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: #555; transition: var(--transition); border: 1px solid transparent; }
-        .category-card:hover .category-image { background: var(--color-noble); color: white; border-color: var(--color-noble); }
-
+        /* Footer */
+        /* Arka plan resminden sonra footer hemen yapışmasın diye biraz margin-top ekleyebiliriz ama full height olduğu için gerek yok */
         .footer { background: var(--color-black); color: #999; padding: 4rem 3rem 2rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: var(--site-max-width); margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 3rem; }
         .footer-brand .logo { color: var(--color-white); font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.1em; display: block; margin-bottom: 1rem;}
@@ -225,7 +212,6 @@
         .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--color-white); margin: 5px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 
         @media (max-width: 992px) {
-            .category-grid { grid-template-columns: repeat(3, 1fr); }
             .footer-grid { grid-template-columns: 1fr; }
             .main-nav { display: none; }
             
@@ -239,7 +225,6 @@
                 margin-top: 1rem;
                 justify-content: center;
             }
-            /* Mobilde resim pozisyonunu biraz daha ayarlayabiliriz gerekirse */
              .hero { background-position: center 20%; }
         }
 
@@ -255,11 +240,10 @@
             .nav-list { flex-direction: column; gap: 0; }
             .nav-list > li > a { 
                 border-bottom: 1px solid #eee; padding: 1rem 0; 
-                color: var(--color-black); 
+                color: var(--color-black); /* Mobil menü içi siyah yazı */
                 text-shadow: none; 
             }
-            /* Mobil dropdown ayarları */
-            .dropdown { position: static; transform: none; box-shadow: none; padding: 0; opacity: 1; visibility: visible; background: transparent; border: none; min-width: auto; border-radius: 0; }
+            .dropdown { position: static; transform: none; box-shadow: none; padding: 0; opacity: 1; visibility: visible; background: transparent; border: none; min-width: auto; border-radius: 0; backdrop-filter: none; }
             .dropdown a { padding: 0.8rem 0 0.8rem 1rem; border-bottom: none; background-color: #f9f9f9; }
             .dropdown a:hover { padding-left: 1.5rem; background-color: #f0f0f0; }
         }
@@ -318,18 +302,6 @@
     <section class="hero" id="hero-section">
         </section>
 
-    <section class="section" id="categories">
-        <div class="category-grid">
-            <a href="products.html?category=Wedding Suits" class="category-card"><div class="category-image">Groom</div><h3 class="category-name">Groom's Wear</h3></a>
-            <a href="products.html?category=Formal Suits" class="category-card"><div class="category-image">Class</div><h3 class="category-name">Classical</h3></a>
-            <a href="products.html?category=Shirts" class="category-card"><div class="category-image">Shirts</div><h3 class="category-name">Shirts</h3></a>
-            <a href="products.html?category=Jackets" class="category-card"><div class="category-image">Jack</div><h3 class="category-name">Jackets</h3></a>
-            <a href="products.html?category=Shoes" class="category-card"><div class="category-image">Shoes</div><h3 class="category-name">Shoes</h3></a>
-            <a href="products.html?category=Accessories" class="category-card"><div class="category-image">Acc</div><h3 class="category-name">Accessories</h3></a>
-            <a href="products.html?category=Children" class="category-card"><div class="category-image">Child</div><h3 class="category-name">Children</h3></a>
-        </div>
-    </section>
-
     <footer class="footer" id="contact">
         <div class="footer-grid">
             <div class="footer-brand">
@@ -367,7 +339,7 @@
     fetch('/_data/site_info.json') 
         .then(response => response.json())
         .then(data => {
-        // Panelden gelen veriyi şimdilik kullanmıyoruz
+        // ...
         })
         .catch(error => console.error('Veri yüklenirken hata:', error));
     </script>    
