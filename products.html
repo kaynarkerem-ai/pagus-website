@@ -27,19 +27,26 @@
         .category-title { font-family: var(--font-display); font-size: 3rem; color: var(--color-noble); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
         .breadcrumb { font-size: 0.8rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 1px; }
         
-        /* ÜRÜN IZGARASI */
+        /* ÜRÜN IZGARASI (GÜNCELLENDİ: DAHA BÜYÜK FOTOLAR) */
         .products-section { padding: 4rem 3rem; max-width: var(--site-max-width); margin: 0 auto; min-height: 50vh; }
-        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+        .product-grid { 
+            display: grid; 
+            /* BURAYI DEĞİŞTİRDİM: 4 yerine 3 sütun = Daha büyük fotolar */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 3rem; 
+        }
+        
         .product-card { group: relative; background: #fff; transition: var(--transition); cursor: pointer; }
         .product-card:hover { transform: translateY(-5px); }
-        .product-image-box { position: relative; width: 100%; aspect-ratio: 3 / 4; background-color: #fff; overflow: hidden; margin-bottom: 1rem; }
+        .product-image-box { position: relative; width: 100%; aspect-ratio: 3 / 4; background-color: #f0f0f0; overflow: hidden; margin-bottom: 1rem; }
+        /* Placeholder rengini gri yaptım ki yüklenirken şık dursun */
         .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .product-card:hover .product-image { transform: scale(1.05); }
-        .badge { position: absolute; top: 10px; left: 10px; background: var(--color-noble); color: #fff; font-size: 0.6rem; padding: 4px 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .badge { position: absolute; top: 10px; left: 10px; background: var(--color-noble); color: #fff; font-size: 0.7rem; padding: 5px 10px; text-transform: uppercase; letter-spacing: 1px; }
         .product-info { text-align: center; }
-        .product-sku { font-size: 0.7rem; color: var(--color-gray); letter-spacing: 1px; margin-bottom: 0.3rem; display: block; }
-        .product-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-dark); margin-bottom: 0.5rem; font-weight: 600; }
-        .btn-view { font-size: 0.75rem; text-transform: uppercase; color: var(--color-noble); font-weight: 600; border-bottom: 1px solid var(--color-gold); }
+        .product-sku { font-size: 0.8rem; color: var(--color-gray); letter-spacing: 1px; margin-bottom: 0.3rem; display: block; }
+        .product-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-dark); margin-bottom: 0.5rem; font-weight: 600; }
+        .btn-view { font-size: 0.8rem; text-transform: uppercase; color: var(--color-noble); font-weight: 600; border-bottom: 1px solid var(--color-gold); }
         
         /* FOOTER */
         .footer { background: var(--color-black); color: #999; padding: 4rem 3rem 2rem; margin-top: 4rem;}
@@ -106,7 +113,6 @@
             .header-main { padding: 0 1.5rem; } 
             .nav-list { display: none; } 
             .menu-toggle { display: block; } 
-            /* Mobilde Modal Ayarı */
             .modal-content { grid-template-columns: 1fr; height: 100vh; margin: 0; width: 100%; border-radius: 0; overflow-y: auto; } 
             .modal-gallery { height: 60vh; }
             .modal-details { height: auto; padding: 2rem; }
@@ -134,7 +140,7 @@
 
     <section class="page-header">
         <div class="breadcrumb">Collection / <span id="bread-cat">All</span></div>
-        <h1 class="category-title" id="page-title">Loading...</h1>
+        <h1 class="category-title" id="page-title">...</h1>
     </section>
 
     <section class="products-section">
@@ -173,9 +179,23 @@
         </div>
     </footer>
 
-    <script src="inventory.js"></script>
-
     <script>
+        // ==========================================
+        // MÜDÜRÜN ÜRÜN LİSTESİ (BURAYA EKLEME YAP)
+        // ==========================================
+        const productsDB = [
+            // { code: "DOSYA-ADI", cat: "KATEGORİ" },
+            // Kategoriler: Wedding, Classic, Shirt, Jacket, Shoes
+            
+            { code: "formalsuit-1023D170", cat: "Classic" },
+            { code: "formalsuit-50055-6",  cat: "Classic" },
+            { code: "wedding-50111-9",     cat: "Wedding" },
+            
+            // Yeni ürünlerini bu satırın altına ekle...
+        ];
+        // ==========================================
+
+        
         // --- ADIM 1: LİNK TERCÜMANI ---
         const urlParams = new URLSearchParams(window.location.search);
         let rawCat = urlParams.get('category') || "Wedding";
@@ -199,16 +219,10 @@
         // --- ADIM 2: ÜRÜNLERİ LİSTELE ---
         const productContainer = document.getElementById('product-container');
         
-        // inventory.js yüklenmediyse hata vermesin diye boş dizi ata
-        if (typeof productsDB === 'undefined') {
-            var productsDB = [];
-            productContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 3rem; color:red;'>Error: inventory.js file is missing!</p>";
-        }
-
         const filteredProducts = productsDB.filter(p => p.cat === currentCat);
 
-        if (filteredProducts.length === 0 && typeof productsDB !== 'undefined') {
-            productContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 3rem; color:#999;'>No products found in this category yet.</p>";
+        if (filteredProducts.length === 0) {
+            productContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 3rem; color:#999; font-size:1.2rem;'>No products found in this category yet.</p>";
         }
 
         filteredProducts.forEach((product) => {
