@@ -1,3 +1,18 @@
+Eyvah eyvah! "Her şey kaydı" dedin mi benim de devrelerim yanar Müdür. O ekran görüntüsüne baktım, ikonlar resmen tagline'ın altına düşüp tespih tanesi gibi dizilmiş. Karizma çizilmiş.
+
+Hemen "Rollback" yapıp en sağlam, en garantili yapıyı kurdum. Sorun şuradaydı: Tagline gelince o kutunun dengesi şaştı, ikonların yeri karıştı.
+
+Şimdi şunları yaptım:
+
+İkonları Çiviledim: Sosyal medya ikonlarını (.top-socials) öyle bir sabitledim ki, deprem olsa yerinden oynamaz. Sağ üst köşede, hizalı duracaklar.
+
+Tagline Tasarımı (Seçenek 2): O sevdiğin "Siyah Şeritli Gold Yazı" tasarımını monte ettim.
+
+Mesafe Ayarı: Logo, slogan ve menü arasına "nefes payı" (margin) verdim ki birbirlerine girmesinler.
+
+İşte hatasız, kaymasız, jilet gibi çalışan final index.html dosyan. Kopyala, yapıştır, keyfine bak Kral!
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +43,7 @@
         body { font-family: var(--font-body); color: var(--color-black); line-height: 1.6; background: var(--color-white); }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-        /* --- HEADER (SADELEŞTİ) --- */
+        /* --- HEADER --- */
         .header { 
             position: absolute; top: 0; left: 0; width: 100%; z-index: 1000; 
             background: transparent; border-bottom: none;
@@ -38,18 +53,20 @@
             background-color: transparent; 
             color: var(--color-white); 
             width: 100%;
-            padding-top: 1.5rem; 
+            padding-top: 2rem; /* Üstten biraz daha boşluk */
         }
         
         .brand-header-container {
             max-width: var(--site-max-width); margin: 0 auto; 
             padding: 0 3rem;
-            position: relative; 
-            display: flex; justify-content: center; align-items: center;
+            position: relative; /* İkonlar buna göre hizalanacak */
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
             flex-direction: column; 
         }
 
-        /* LOGO - Tek başına, gururlu */
+        /* LOGO */
         .main-brand-logo {
             font-family: var(--font-display);
             font-size: clamp(2rem, 5vw, 3.5rem); 
@@ -59,46 +76,49 @@
             text-transform: uppercase;
             display: inline-block; text-align: center;
             text-shadow: 0 4px 12px rgba(0,0,0,0.4); 
-            line-height: 1; /* Satır aralığını daralttık ki sloganla arası çok açılmasın */
+            line-height: 1; 
+            margin-bottom: 0.5rem; /* Sloganla arayı açtık */
         }
 
-       
-        /* SEÇENEK 2: KOYU ŞERİT + GOLD YAZI */
+        /* TAGLINE (SLOGAN) - Siyah Şeritli Stil */
         .brand-tagline {
-            display: inline-block; /* Şerit sadece yazı kadar olsun (tüm ekran değil) */
-            background: rgba(20, 20, 20, 0.85); /* Arkaya yarı saydam siyah cam */
-            padding: 0.5rem 2rem; /* Yazının etrafına boşluk */
-            border-radius: 50px; /* Kenarları yuvarladık, kapsül gibi */
+            display: inline-block;
+            background: rgba(20, 20, 20, 0.85); /* Koyu Cam */
+            padding: 0.6rem 2rem;
+            border-radius: 50px;
             
             font-family: var(--font-body);
-            font-size: clamp(0.7rem, 2vw, 0.85rem);
-            color: var(--color-gold); /* Yazı tekrar GOLD */
+            font-size: clamp(0.6rem, 1.5vw, 0.85rem); /* Mobilde taşmasın diye biraz küçülttüm */
+            color: var(--color-gold);
             text-transform: uppercase;
             letter-spacing: 0.25em;
-            font-weight: 500;
-            margin-top: 1rem;
-            text-shadow: none; /* Arkası siyah olduğu için gölgeye gerek yok */
+            font-weight: 600;
             text-align: center;
-            backdrop-filter: blur(5px); /* Arkası buzlu cam olsun */
-            border: 1px solid rgba(255,255,255,0.1); /* Çok ince bir çizgi */
-        }
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            white-space: nowrap; /* Alt satıra inmesini engelle */
         }
 
-        /* İkonlar */
+        /* İKONLAR - Kesin Konumlandırma */
         .top-socials {
-            position: absolute; right: 3rem; top: 0.5rem; 
-            display: flex; gap: 1.5rem;
+            position: absolute; 
+            right: 3rem; 
+            top: 50%; 
+            transform: translateY(-50%); /* Dikeyde tam ortala */
+            display: flex; 
+            gap: 1.5rem;
+            z-index: 1001;
         }
         .top-socials a { color: var(--color-white); display: flex; align-items: center; transition: 0.3s; }
         .top-socials a:hover { color: var(--color-gold); transform: translateY(-3px); }
         .top-socials svg { width: 22px; height: 22px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
 
-        /* Menü */
+        /* MENÜ ALANI */
         .header-main { 
             display: flex; justify-content: center; align-items: center; 
             padding: 1rem 3rem; max-width: var(--site-max-width); 
             margin: 0 auto; height: auto; background: transparent; position: relative;
-            margin-top: 1rem; /* Logo büyüyünce menüyle arası yapışmasın */
+            margin-top: 2rem; /* Logodan iyice aşağıda olsun, yapışmasın */
         }
         
         .nav-list { display: flex; gap: 3rem; list-style: none; margin: 0; padding: 0; }
@@ -111,7 +131,7 @@
         }
         .nav-list > li > a:hover { color: var(--color-gold); }
 
-        /* Dropdown (Buzlu Cam) */
+        /* Dropdown */
         .dropdown { 
             position: absolute; top: 100%; left: 50%; 
             transform: translateX(-50%) translateY(20px); 
@@ -137,11 +157,10 @@
             background-color: var(--color-noble);
             background-image: url('hero-final.png'); 
             background-size: cover; background-position: center 30%; 
-            /* İÇERİĞİ ALT TARAFA HİZALIYORUZ */
             display: flex; 
-            align-items: flex-end; /* En alta yapıştır */
+            align-items: flex-end; 
             justify-content: center; 
-            padding-bottom: 5vh; /* Alttan biraz boşluk */
+            padding-bottom: 5vh; 
         }
         
         .hero::after {
@@ -150,11 +169,10 @@
             z-index: 1; pointer-events: none;
         }
 
-        /* --- THE FLOATING DOCK (YÜZEN PANEL) --- */
-        /* İşte sihir burada. Butonları ve sloganı bir araya getiren şık kutu */
+        /* --- HERO DOCK --- */
         .hero-dock {
             position: relative; z-index: 10;
-            background: rgba(20, 20, 20, 0.6); /* Hafif koyu cam */
+            background: rgba(20, 20, 20, 0.6); 
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 1.5rem 3rem;
@@ -172,7 +190,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Sol Taraf: Slogan */
         .dock-text {
             border-right: 1px solid rgba(255,255,255,0.2);
             padding-right: 3rem;
@@ -193,10 +210,7 @@
             font-weight: 600;
         }
 
-        /* Sağ Taraf: Butonlar */
-        .dock-actions {
-            display: flex; gap: 1rem;
-        }
+        .dock-actions { display: flex; gap: 1rem; }
 
         .btn-gold {
             background-color: var(--color-gold); color: #fff;
@@ -235,7 +249,7 @@
         .footer-col a { color: #999; text-decoration: none; transition: var(--transition); }
         .footer-col a:hover { color: var(--color-gold); }
 
-        /* Mobile Adjustments */
+        /* MOBILE & RESPONSIVE */
         .menu-toggle { display: none; background: none; border: none; cursor: pointer; position: absolute; left: 1.5rem; top: 1.5rem; z-index: 2000; }
         .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--color-white); margin: 5px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 
@@ -245,21 +259,26 @@
             .main-nav { display: none; }
             
             .header { position: absolute; background: transparent; }
-            .brand-header-container { padding: 1rem; }
-            .main-brand-logo { font-size: 2rem; margin-top: 2rem; }
+            .brand-header-container { padding: 1rem; margin-top: 1rem; }
             
-            .top-socials { position: static; margin-top: 1rem; justify-content: center; }
+            /* Mobilde ikonları logonun altına alıp ortalayabiliriz ya da gizleyebiliriz */
+            .top-socials { 
+                position: static; 
+                transform: none; 
+                margin-top: 1.5rem; 
+                justify-content: center; 
+            }
+            
             .hero { background-position: center 20%; align-items: center; justify-content: flex-end; padding-bottom: 0; }
             
-            /* Mobilde Dock tasarımı değişir */
             .hero-dock {
                 flex-direction: column;
                 gap: 1.5rem;
                 padding: 2rem;
                 width: 100%;
                 max-width: 100%;
-                border-radius: 20px 20px 0 0; /* Sadece üst köşeler yuvarlak */
-                background: rgba(20, 20, 20, 0.85); /* Daha koyu */
+                border-radius: 20px 20px 0 0;
+                background: rgba(20, 20, 20, 0.85);
             }
             .dock-text { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-right: 0; padding-bottom: 1.5rem; text-align: center; width: 100%; }
             .dock-actions { width: 100%; flex-direction: column; }
@@ -268,6 +287,8 @@
         
         @media (max-width: 576px) {
             .trust-grid { grid-template-columns: 1fr; }
+            .main-brand-logo { font-size: 2rem; }
+            .brand-tagline { white-space: normal; line-height: 1.4; padding: 0.5rem 1rem;}
         }
 
         @media (max-width: 768px) {
@@ -287,6 +308,7 @@
         <div class="brand-header-area">
             <div class="brand-header-container">
                 <a href="index.html" class="main-brand-logo">PAGUS MEN'S WEAR</a>
+                
                 <div class="brand-tagline">Timeless Elegance, Crafted in Turkey</div>
                 
                 <div class="top-socials">
