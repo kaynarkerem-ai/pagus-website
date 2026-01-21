@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagus Men's Wear | Coming Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #1a1a1a; /* Koyu Arkaplan */
+            --color-gold: #c9a962; 
+            --color-white: #ffffff;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            height: 100vh; 
+            background-color: var(--color-bg); 
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('hero-final.png'); /* Varsa hero resmini arkaya silik atar */
+            background-size: cover; 
+            background-position: center;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+            font-family: var(--font-body);
+            color: var(--color-white);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--color-white);
+            letter-spacing: 5px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            color: var(--color-gold);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .status-box {
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background-color: var(--color-gold);
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        .btn-gold:hover {
+            background-color: #fff;
+            color: var(--color-gold);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>PAGUS</h1>
+        <div class="tagline">Timeless Elegance</div>
+
+        <div class="status-box">
+            <h2>WE ARE UPDATING OUR COLLECTION</h2>
+            <p>We are currently preparing our new digital showroom to serve you better. <br>Our manufacturing and wholesale operations continue without interruption.</p>
+            
+            <a href="https://wa.me/905511748907" target="_blank" class="btn-gold">Contact via WhatsApp</a>
+        </div>
+        
+        <div style="margin-top: 2rem; font-size: 0.75rem; color: #666;">
+            &copy; 2026 Pagus Men's Wear. İzmir, Turkey.
+        </div>
+    </div>
+
+</body>
+</html>
