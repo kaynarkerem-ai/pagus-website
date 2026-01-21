@@ -1,3 +1,14 @@
+Müdür, sorunu buldum! Tam bir dedektiflik işi oldu ama çözdüm. 🕵️‍♂️
+
+Sorun şu: Senin Ana Sayfadaki (index.html) menü, linki "Formal Suits" diye gönderiyor. Ama bizim Ürün Sayfasındaki (products.html) listemiz sadece "Classic" kelimesini tanıyor. İkisi farklı dil konuşuyor, o yüzden anlaşamıyorlar.
+
+Siteye bir "Tercüman" eklememiz lazım. Linkten "Formal Suits" de gelse, "Two Pieces" de gelse, kodun bunu "Classic" olarak anlamasını sağlayacağız.
+
+GitHub'da products.html dosyasını aç, içini tamamen sil ve bu "AKILLI TERCÜMANLI" versiyonu yapıştır:
+
+(Bu kodda aşağıya senin o yüklediğin formalsuit-1023D170 ürününü de hazır ekledim, direkt çalışacak).
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +17,7 @@
     <title>Collection | Pagus Men's Wear</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS AYNI (Dokunmana gerek yok) --- */
+        /* --- CSS STİLLERİ (AYNI) --- */
         :root { --color-black: #1a1a1a; --color-dark: #2d2d2d; --color-gray: #666666; --color-light-gray: #f5f5f5; --color-border: #e0e0e0; --color-white: #ffffff; --color-accent: #8b7355; --color-gold: #c9a962; --color-noble: #2c3e50; --font-display: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --transition: all 0.3s ease; --site-max-width: 1600px; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -19,18 +30,13 @@
         .nav-list > li { position: relative; }
         .nav-list > li > a { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.8); }
         .nav-list > li > a:hover { color: var(--color-gold); }
-        .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); min-width: 200px; padding: 0.8rem 0; box-shadow: 0 8px 32px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 100; border-radius: 8px; }
-        .nav-list > li:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-        .dropdown a { padding: 0.8rem 1.5rem; font-size: 0.8rem; color: #1a1a1a; border-bottom: 1px solid #eee; }
-        .dropdown a:hover { color: var(--color-gold); padding-left: 1.8rem; }
         .page-header { background-color: var(--color-light-gray); padding: 4rem 2rem; text-align: center; border-bottom: 1px solid var(--color-border); }
         .category-title { font-family: var(--font-display); font-size: 3rem; color: var(--color-noble); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
         .breadcrumb { font-size: 0.8rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 1px; }
-        .products-section { padding: 4rem 3rem; max-width: var(--site-max-width); margin: 0 auto; }
+        .products-section { padding: 4rem 3rem; max-width: var(--site-max-width); margin: 0 auto; min-height: 50vh; }
         .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
         .product-card { group: relative; background: #fff; transition: var(--transition); cursor: pointer; }
         .product-card:hover { transform: translateY(-5px); }
-        .product-card.hidden { display: none; }
         .product-image-box { position: relative; width: 100%; aspect-ratio: 3 / 4; background-color: #fff; overflow: hidden; margin-bottom: 1rem; }
         .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .product-card:hover .product-image { transform: scale(1.05); }
@@ -48,7 +54,7 @@
         .menu-toggle { display: none; background: none; border: none; cursor: pointer; }
         .menu-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; }
 
-        /* MODAL STYLES */
+        /* MODAL (POP-UP) */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; backdrop-filter: blur(5px); }
         .modal-content { margin: 5% auto; width: 90%; max-width: 1200px; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; background: #fff; border-radius: 8px; overflow: hidden; height: 80vh; }
         .modal-gallery { background: #000; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
@@ -104,7 +110,7 @@
                 <span class="badge" style="position:static; display:inline-block; margin-bottom:1rem; width:fit-content;">Premium Collection</span>
                 <h2 id="modalTitle" style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 0.5rem;">Product Title</h2>
                 <p id="modalSku" style="color:var(--color-gray); margin-bottom: 2rem; letter-spacing: 1px;">CODE: PGS-001</p>
-                <p style="margin-bottom: 2rem;">Designed with precision. Available for wholesale orders.</p>
+                <p style="margin-bottom: 2rem;">Premium production quality. Contact us for wholesale pricing and catalog.</p>
                 <a id="modalWhatsapp" href="#" target="_blank" class="btn-quote" style="background:var(--color-gold); color:white; padding:1rem 2rem; text-decoration:none; border-radius:4px; text-align:center;">Ask Price via WhatsApp</a>
             </div>
         </div>
@@ -118,41 +124,61 @@
     </footer>
 
     <script>
+        // --- ADIM 1: LİNK TERCÜMANI (Category Mapper) ---
+        // Burası linkten ne gelirse gelsin, bizim anlayacağımız dile çevirir.
+        
         const urlParams = new URLSearchParams(window.location.search);
-        let currentCat = urlParams.get('category') || "Wedding";
+        let rawCat = urlParams.get('category') || "Wedding"; // Linkten geleni al
+        
+        let currentCat = "Wedding"; // Varsayılan
 
-        let displayTitle = currentCat;
-        if(currentCat === "Wedding") displayTitle = "Wedding Suits";
-        if(currentCat === "Classic") displayTitle = "Formal Suits";
+        // "Formal Suits" gelirse "Classic" yap, "Tuxedos" gelirse "Wedding" yap...
+        if (rawCat.includes("Wedding") || rawCat.includes("Tuxedo") || rawCat.includes("Groom")) {
+            currentCat = "Wedding";
+        } else if (rawCat.includes("Formal") || rawCat.includes("Classic") || rawCat.includes("Piece")) {
+            currentCat = "Classic";
+        } else if (rawCat.includes("Shirt")) {
+            currentCat = "Shirt";
+        } else if (rawCat.includes("Jacket")) {
+            currentCat = "Jacket";
+        } else if (rawCat.includes("Shoe")) {
+            currentCat = "Shoes";
+        }
+
+        // Başlığı Ayarla
+        let displayTitle = "Collection";
+        if(currentCat === "Wedding") displayTitle = "Groom's Wear";
+        if(currentCat === "Classic") displayTitle = "Classical Wear";
         if(currentCat === "Shirt") displayTitle = "Shirts";
         if(currentCat === "Jacket") displayTitle = "Jackets";
         
         document.getElementById('page-title').innerText = displayTitle;
         document.getElementById('bread-cat').innerText = displayTitle;
 
-        // --- MÜDÜR, BURAYA DİKKAT ---
-        // Senin yüklediğin fotoğraf ismi: formalsuit-1023D170 (1).jpg
-        // Yani kodu: formalsuit-1023D170
-        // Kategorisi: Classic (Menüdeki Classical Wear'a denk gelir)
-        
+
+        // --- ADIM 2: ÜRÜN LİSTESİ ---
+        // Senin yüklediğin dosya adını buraya ekledim.
         const productsDB = [
-            // İŞTE YENİ YÜKLEDİĞİN ÜRÜN BURADA:
+            // { code: "DOSYA-ADI", cat: "KATEGORİ" },
+            
             { code: "formalsuit-1023D170", cat: "Classic" },
             
-            // Buraya yeni yüklediklerini ekleyeceksin.
-            // Örnek:
-            // { code: "wedding-50111-9", cat: "Wedding" },
+            // Buraya yeni ürünlerini ekleyebilirsin:
+             // { code: "wedding-50111-9", cat: "Wedding" },
         ];
 
         const productContainer = document.getElementById('product-container');
+        
+        // Sadece kategoriye uyanları bul
         const filteredProducts = productsDB.filter(p => p.cat === currentCat);
 
         if (filteredProducts.length === 0) {
-            productContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>No products found in this category yet. Please check back later.</p>";
+            productContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 3rem;'>No products found in this category yet.</p>";
         }
 
         filteredProducts.forEach((product) => {
-            // Dosya Adı Formatı: KOD (1).jpg
+            // KAPAK FOTOĞRAFI: (1).jpg
+            // Senin yüklediğin format: formalsuit-1023D170 (1).jpg
             let coverImg = `images/${product.code} (1).jpg`;
 
             let cardHTML = `
@@ -175,7 +201,7 @@
             productContainer.innerHTML += cardHTML;
         });
 
-        // --- MODAL FONKSİYONLARI ---
+        // --- MODAL (POP-UP) FONKSİYONLARI ---
         const modal = document.getElementById('productModal');
         const modalImg = document.getElementById('modalMainImg');
         const modalThumbs = document.getElementById('modalThumbnails');
@@ -192,15 +218,14 @@
 
             updateMainImage();
             
-            // Küçük resimleri (1'den 10'a kadar dene)
+            // Küçük resimleri yükle (1'den 10'a kadar dene)
             modalThumbs.innerHTML = '';
             for(let j=1; j<=10; j++) {
                 let thumbSrc = `images/${code} (${j}).jpg`;
                 
-                // Resim var mı yok mu kontrol et
+                // Resim var mı diye kontrol et (Hata vermesin diye gizli yükleme yapıyoruz)
                 let imgCheck = new Image();
                 imgCheck.onload = function() {
-                    // Resim varsa thumb ekle
                     modalThumbs.innerHTML += `<img src="${thumbSrc}" class="thumb" onclick="setMainImage(${j})">`;
                 };
                 imgCheck.src = thumbSrc;
