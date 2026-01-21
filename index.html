@@ -19,7 +19,7 @@
             --font-display: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
             --transition: all 0.3s ease;
-            --site-max-width: 1600px; /* Sitenin max genişliği */
+            --site-max-width: 1600px; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,21 +30,20 @@
         /* Header Styles */
         .header { background: var(--color-white); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 1000; }
         
-        /* 1. Logo ve İkon Alanı (Gece Mavisi Zemin) */
+        /* 1. Logo ve İkon Alanı */
         .brand-header-area {
             background-color: var(--color-noble); 
             color: var(--color-white);
             width: 100%;
         }
         
-        /* YENİ: İçerik Hizalayıcı Kutu */
         .brand-header-container {
-            max-width: var(--site-max-width); /* İçeriği sınırlar */
-            margin: 0 auto; /* Ortalar */
+            max-width: var(--site-max-width); 
+            margin: 0 auto; 
             padding: 3rem 3rem;
-            position: relative; /* İkonlar buna göre hizalanacak */
+            position: relative; 
             display: flex;
-            justify-content: center; /* Logoyu ortalar */
+            justify-content: center; 
             align-items: center;
         }
 
@@ -60,10 +59,10 @@
         }
         .main-brand-logo:hover { color: var(--color-gold); transform: scale(1.02); }
 
-        /* İkonlar Sağ Üstte (Hizalı) */
+        /* İkonlar */
         .top-socials {
             position: absolute;
-            right: 3rem; /* Artık ekranın değil, içerik kutusunun sağından 3rem */
+            right: 3rem; 
             top: 50%;
             transform: translateY(-50%);
             display: flex;
@@ -90,6 +89,8 @@
         .main-nav { display: flex; justify-content: center; } 
         .nav-list { display: flex; gap: 3rem; list-style: none; margin: 0; padding: 0; }
         .nav-list > li { position: relative; }
+        
+        /* Link Stilleri */
         .nav-list > li > a { 
             display: block; 
             padding: 1.2rem 0; 
@@ -137,13 +138,12 @@
             .footer-grid { grid-template-columns: 1fr; }
             .main-nav { display: none; }
             
-            /* Tablet/Mobile düzeni */
             .brand-header-container {
                 flex-direction: column;
                 padding: 2rem 1rem;
             }
             .top-socials { 
-                position: static; /* Sabitlemeyi kaldır */
+                position: static; 
                 right: auto; top: auto; transform: none;
                 margin-top: 1.5rem; 
                 justify-content: center;
@@ -188,13 +188,13 @@
             
             <nav class="main-nav" id="mainNav">
                 <ul class="nav-list">
-                    <li><a href="products.html?category=Wedding Suits">Groom's Wear</a>
+                    <li><a href="javascript:void(0)" style="cursor: default;">Groom's Wear</a>
                         <div class="dropdown">
                             <a href="products.html?category=Wedding Suits">Wedding Suits</a>
                             <a href="products.html?category=Tuxedos">Tuxedos</a>
                         </div>
                     </li>
-                    <li><a href="products.html?category=Formal Suits">Classical Wear</a>
+                    <li><a href="javascript:void(0)" style="cursor: default;">Classical Wear</a>
                         <div class="dropdown">
                             <a href="products.html?category=Formal Suits">Formal Suits</a>
                             <a href="products.html?category=Two Pieces">Two Pieces</a>
