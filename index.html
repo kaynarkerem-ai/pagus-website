@@ -1,6 +1,3 @@
----
-whatsapp: "+905511748907"
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +15,7 @@ whatsapp: "+905511748907"
             --color-white: #ffffff;
             --color-accent: #8b7355;
             --color-gold: #c9a962;
-            /* YENİ ASİL RENK: Midnight Blue (Gece Mavisi) */
+            /* ASİL RENK: Midnight Blue (Gece Mavisi) */
             --color-noble: #2c3e50; 
             --font-display: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
@@ -29,24 +26,22 @@ whatsapp: "+905511748907"
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); color: var(--color-black); line-height: 1.6; background: var(--color-white); }
 
-        /* TEPE BAR (WHATSAPP) TAMAMEN KALDIRILDI */
-
         /* Header Container */
         .header { background: var(--color-white); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 1000; }
         
         /* 1. KATMAN: KOCAMAN LOGO ALANI (RENKLİ FON BURADA) */
         .brand-header-area {
             text-align: center;
-            padding: 3.5rem 1rem; /* Yüksekliği artırdım, heybetli dursun */
-            background-color: var(--color-noble); /* İşte o asil renk */
+            padding: 3.5rem 1rem; 
+            background-color: var(--color-noble); 
             color: var(--color-white);
         }
         
         .main-brand-logo {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 4rem); /* Daha da büyüttüm */
+            font-size: clamp(2.5rem, 6vw, 4rem); 
             font-weight: 500;
-            letter-spacing: 0.25em; /* Harf aralarını açtım, premium hava verir */
+            letter-spacing: 0.25em; 
             color: var(--color-white);
             text-decoration: none;
             text-transform: uppercase;
@@ -55,7 +50,7 @@ whatsapp: "+905511748907"
         }
         
         .main-brand-logo:hover {
-            color: var(--color-gold); /* Üstüne gelince altın sarısı yanar */
+            color: var(--color-gold); 
             transform: scale(1.02);
         }
 
@@ -65,43 +60,4 @@ whatsapp: "+905511748907"
             justify-content: space-between; 
             align-items: center; 
             padding: 0 3rem; 
-            max-width: 1600px; 
-            margin: 0 auto; 
-            height: 60px; /* İnce, kibar bir menü çubuğu */
-            background: var(--color-white);
-        }
-        
-        .header-main .logo { display: none; } /* Küçük logo gizli */
-        
-        .header-actions { display: flex; align-items: center; gap: 1.5rem; }
-        .header-actions a { color: var(--color-noble); text-decoration: none; display: flex; align-items: center; transition: var(--transition); }
-        .header-actions a:hover { color: var(--color-gold); }
-        .header-actions svg { width: 20px; height: 20px; }
-        .header-socials { display: flex; gap: 1.5rem; margin-right: 1rem; border-right: 1px solid var(--color-border); padding-right: 1.5rem; }
-
-        /* Navigation */
-        .main-nav { flex-grow: 1; display: flex; justify-content: center; } /* Menüyü ortalar */
-        .nav-list { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; }
-        .nav-list > li { position: relative; }
-        .nav-list > li > a { 
-            display: block; 
-            padding: 1.2rem 0; 
-            font-size: 0.75rem; 
-            font-weight: 600; 
-            letter-spacing: 0.15em; 
-            text-transform: uppercase; 
-            color: var(--color-noble); 
-            text-decoration: none; 
-            transition: var(--transition); 
-        }
-        .nav-list > li > a:hover { color: var(--color-gold); }
-
-        /* Dropdown */
-        .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: var(--color-white); min-width: 220px; padding: 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: var(--transition); z-index: 100; border-top: 3px solid var(--color-gold); }
-        .nav-list > li:hover .dropdown { opacity: 1; visibility: visible; }
-        .dropdown a { display: block; padding: 0.6rem 0; font-size: 0.8rem; color: var(--color-gray); text-decoration: none; transition: var(--transition); letter-spacing: 1px; }
-        .dropdown a:hover { color: var(--color-gold); padding-left: 5px; }
-
-        /* Hero */
-        .hero { position: relative; height: 80vh; background: var(--color-light-gray); display: flex; align-items: center; justify-content: center; text-align: center; }
-        .hero-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; color: var(--color-
+            max-width: 1600px;
