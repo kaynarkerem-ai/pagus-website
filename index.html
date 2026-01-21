@@ -126,25 +126,18 @@
             top: 100%; 
             left: 50%; 
             transform: translateX(-50%) translateY(20px); 
-            
-            /* İŞTE BURASI: Gerçek Glassmorphism */
-            background: rgba(255, 255, 255, 0.60); /* %60 Şeffaflık (Daha saydam) */
-            backdrop-filter: blur(20px); /* Bayağı flu */
-            -webkit-backdrop-filter: blur(20px); /* Safari/iPhone Desteği */
-            
+            background: rgba(255, 255, 255, 0.60); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
             min-width: 240px; 
             padding: 0.8rem 0; 
-            
-            /* Modern, yumuşak gölge */
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            
             opacity: 0; 
             visibility: hidden; 
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
             z-index: 100; 
-            
-            border-radius: 12px; /* Biraz daha yuvarlak */
-            border: 1px solid rgba(255, 255, 255, 0.4); /* İncecik beyaz çerçeve */
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.4); 
         }
 
         .nav-list > li:hover .dropdown { 
@@ -157,8 +150,8 @@
             display: block; 
             padding: 0.8rem 1.5rem; 
             font-size: 0.85rem; 
-            font-weight: 500; /* Yazıyı bir tık kalınlaştırdım ki camda okunsun */
-            color: #1a1a1a; /* Koyu renk yazı */
+            font-weight: 500; 
+            color: #1a1a1a; 
             letter-spacing: 0.5px; 
             text-shadow: none; 
             border-bottom: 1px solid rgba(0,0,0,0.05); 
@@ -168,7 +161,7 @@
         
         .dropdown a:hover { 
             color: var(--color-gold); 
-            background-color: rgba(255,255,255, 0.5); /* Hover olunca daha beyazlaşsın */
+            background-color: rgba(255,255,255, 0.5); 
             padding-left: 1.8rem; 
         }
 
@@ -194,13 +187,33 @@
             pointer-events: none;
         }
 
-        /* --- FOOTER --- */
-        .footer { background: var(--color-black); color: #999; padding: 4rem 3rem 2rem; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: var(--site-max-width); margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 3rem; }
-        .footer-brand .logo { color: var(--color-white); font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.1em; display: block; margin-bottom: 1rem;}
-        .footer-col h4 { color: var(--color-white); margin-bottom: 1.5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
+        /* --- FOOTER (REVİZE EDİLDİ) --- */
+        .footer { background: var(--color-black); color: #999; padding: 5rem 3rem; }
+        
+        /* 2 Sütunlu Grid: Sol (Hakkında) - Sağ (İletişim) */
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; /* Eşit iki parça */
+            gap: 5rem; 
+            max-width: var(--site-max-width); 
+            margin: 0 auto; 
+            border-bottom: 1px solid #333; 
+            padding-bottom: 3rem; 
+        }
+        
+        /* Footer Başlık Stilleri */
+        .footer h4 { 
+            color: var(--color-white); 
+            margin-bottom: 1.5rem; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
         .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col li { margin-bottom: 1rem; }
+        .footer-col a { color: #999; text-decoration: none; transition: var(--transition); }
         .footer-col a:hover { color: var(--color-gold); }
 
         /* Mobile Adjustments */
@@ -208,7 +221,7 @@
         .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--color-white); margin: 5px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 
         @media (max-width: 992px) {
-            .footer-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; } /* Mobilde tek sütun */
             .main-nav { display: none; }
             
             .header { position: absolute; background: transparent; }
@@ -239,7 +252,6 @@
                 color: var(--color-black); 
                 text-shadow: none; 
             }
-            /* Mobil menüde cam efekti olmaz, düz beyaz daha iyidir */
             .dropdown { position: static; transform: none; box-shadow: none; padding: 0; opacity: 1; visibility: visible; background: transparent; border: none; min-width: auto; border-radius: 0; backdrop-filter: none; }
             .dropdown a { padding: 0.8rem 0 0.8rem 1rem; border-bottom: none; background-color: #f9f9f9; }
             .dropdown a:hover { padding-left: 1.5rem; background-color: #f0f0f0; }
@@ -302,26 +314,17 @@
     <footer class="footer" id="contact">
         <div class="footer-grid">
             <div class="footer-brand">
-                <a href="#" class="logo">PAGUS</a>
+                <h4>ABOUT PAGUS MEN'S WEAR</h4>
                 <p>Premium textile manufacturer specializing in groom's wear. Trusted by retailers worldwide.</p>
             </div>
+            
             <div class="footer-col">
-                <h4>Categories</h4>
-                <ul>
-                    <li><a href="products.html?category=Wedding Suits">Groom's Wear</a></li>
-                    <li><a href="products.html?category=Formal Suits">Classical Wear</a></li>
-                    <li><a href="products.html?category=Shirts">Shirts</a></li>
-                    <li><a href="products.html?category=Accessories">Accessories</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
+                <h4>CONTACT</h4>
                 <ul>
                     <li><a href="mailto:info@pagusmenswear.com">info@pagusmenswear.com</a></li>
-                    <li><a href="https://wa.me/905511748907" target="_blank">+90 551 174 8907</a></li>
+                    <li><a href="https://wa.me/905511748907" target="_blank">+90 551 174 89 07</a></li>
                     <li>İzmir, Turkey</li>
-                    <li><a href="https://wa.me/905511748907" target="_blank" style="color:var(--color-gold)">WhatsApp Us</a></li>
-                </ul>
+                    </ul>
             </div>
         </div>
         <div style="text-align:center; padding-top:2rem; font-size:0.75rem;">© 2026 Pagus Men's Wear. All rights reserved.</div>
