@@ -15,7 +15,6 @@
             --color-white: #ffffff;
             --color-accent: #8b7355;
             --color-gold: #c9a962;
-            /* ASİL RENK: Midnight Blue (Gece Mavisi) */
             --color-noble: #2c3e50; 
             --font-display: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
@@ -25,39 +24,49 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); color: var(--color-black); line-height: 1.6; background: var(--color-white); }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-        /* Header Container */
+        /* Header Styles */
         .header { background: var(--color-white); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 1000; }
         
-        /* 1. KATMAN: KOCAMAN LOGO ALANI (RENKLİ FON BURADA) */
+        /* 1. Logo Alanı */
         .brand-header-area {
             text-align: center;
-            padding: 3.5rem 1rem; 
+            padding: 3rem 1rem; 
             background-color: var(--color-noble); 
             color: var(--color-white);
         }
-        
         .main-brand-logo {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 6vw, 4rem); 
             font-weight: 500;
             letter-spacing: 0.25em; 
             color: var(--color-white);
-            text-decoration: none;
             text-transform: uppercase;
             display: inline-block;
-            transition: var(--transition);
         }
-        
-        .main-brand-logo:hover {
-            color: var(--color-gold); 
-            transform: scale(1.02);
-        }
+        .main-brand-logo:hover { color: var(--color-gold); transform: scale(1.02); }
 
-        /* 2. KATMAN: MENÜ VE İKONLAR (BEYAZ ŞERİT) */
+        /* 2. Menü Alanı */
         .header-main { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             padding: 0 3rem; 
-            max-width: 1600px;
+            max-width: 1600px; 
+            margin: 0 auto; 
+            height: 60px; 
+            background: var(--color-white);
+        }
+        .header-main .logo { display: none; } 
+        
+        .header-actions { display: flex; align-items: center; gap: 1.5rem; }
+        .header-actions a { color: var(--color-noble); display: flex; align-items: center; }
+        .header-actions a:hover { color: var(--color-gold); }
+        .header-actions svg { width: 20px; height: 20px; }
+        .header-socials { display: flex; gap: 1.5rem; margin-right: 1rem; border-right: 1px solid var(--color-border); padding-right: 1.5rem; }
+
+        /* Navigasyon */
+        .main-nav { flex-grow: 1; display: flex; justify-content: center; } 
+        .nav-list { display: flex; gap: 2.5rem; list-style: none; }
+        .nav
