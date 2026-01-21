@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagus Mens Wear | Premium Textile Collection</title>
+    <title>Pagus Men's Wear | Premium Textile Collection</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -29,13 +29,19 @@
         /* Header Styles */
         .header { background: var(--color-white); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 1000; }
         
-        /* 1. Logo Alanı */
+        /* 1. Logo ve İkon Alanı (Gece Mavisi) */
         .brand-header-area {
+            position: relative; /* İkonları sabitlemek için referans */
             text-align: center;
             padding: 3rem 1rem; 
             background-color: var(--color-noble); 
             color: var(--color-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
+
         .main-brand-logo {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 6vw, 4rem); 
@@ -47,28 +53,35 @@
         }
         .main-brand-logo:hover { color: var(--color-gold); transform: scale(1.02); }
 
-        /* 2. Menü Alanı */
+        /* YENİ: İkonlar Sağ Üstte */
+        .top-socials {
+            position: absolute;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 1.5rem;
+        }
+        .top-socials a { color: rgba(255,255,255,0.9); display: flex; align-items: center; transition: 0.3s; }
+        .top-socials a:hover { color: var(--color-gold); transform: translateY(-3px); }
+        .top-socials svg { width: 24px; height: 24px; } /* İkonları bir tık büyüttüm */
+
+        /* 2. Menü Alanı (Sadece Menü Kaldı) */
         .header-main { 
             display: flex; 
-            justify-content: space-between; 
+            justify-content: center; /* Menüyü tam ortalar */
             align-items: center; 
             padding: 0 3rem; 
             max-width: 1600px; 
             margin: 0 auto; 
             height: 60px; 
             background: var(--color-white);
+            position: relative;
         }
-        .header-main .logo { display: none; } 
         
-        .header-actions { display: flex; align-items: center; gap: 1.5rem; }
-        .header-actions a { color: var(--color-noble); display: flex; align-items: center; }
-        .header-actions a:hover { color: var(--color-gold); }
-        .header-actions svg { width: 20px; height: 20px; }
-        .header-socials { display: flex; gap: 1.5rem; margin-right: 1rem; border-right: 1px solid var(--color-border); padding-right: 1.5rem; }
-
         /* Navigasyon */
-        .main-nav { flex-grow: 1; display: flex; justify-content: center; } 
-        .nav-list { display: flex; gap: 2.5rem; list-style: none; }
+        .main-nav { display: flex; justify-content: center; } 
+        .nav-list { display: flex; gap: 3rem; list-style: none; margin: 0; padding: 0; }
         .nav-list > li { position: relative; }
         .nav-list > li > a { 
             display: block; 
@@ -108,25 +121,34 @@
         .footer-col li { margin-bottom: 0.75rem; }
         .footer-col a:hover { color: var(--color-gold); }
 
-        /* Mobile */
-        .menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+        /* Mobile Adjustments */
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; position: absolute; left: 1.5rem; }
         .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--color-noble); margin: 5px 0; }
 
         @media (max-width: 992px) {
             .category-grid { grid-template-columns: repeat(3, 1fr); }
             .footer-grid { grid-template-columns: 1fr; }
-            .header-socials { display: none; }
-            .main-nav { display: none; } 
-        }
-        @media (max-width: 768px) {
+            .main-nav { display: none; }
+            
+            /* Tablet/Mobile'da ikonları ortalayalım, sağda sıkışmasın */
+            .top-socials { 
+                position: static; 
+                transform: none; 
+                margin-top: 1.5rem; 
+                justify-content: center;
+            }
             .brand-header-area { padding: 2rem 1rem; }
+        }
+
+        @media (max-width: 768px) {
             .menu-toggle { display: block; }
+            .header-main { justify-content: flex-start; } /* Mobilde butonu sola yasla */
+            
             .main-nav { display: block; position: fixed; top: 0; left: -100%; width: 85%; height: 100vh; background: var(--color-white); z-index: 2000; transition: 0.3s; padding: 3rem 2rem; box-shadow: 10px 0 30px rgba(0,0,0,0.2); }
             .main-nav.open { left: 0; }
             .nav-list { flex-direction: column; gap: 0; }
             .nav-list > li > a { border-bottom: 1px solid #eee; padding: 1rem 0; color: var(--color-black); }
             .dropdown { position: static; transform: none; box-shadow: none; padding: 0 0 1rem 1rem; opacity: 1; visibility: visible; background: transparent; border: none; min-width: auto; }
-            .dropdown a { color: var(--color-gray); font-size: 0.8rem; padding: 0.5rem 0; }
         }
     </style>
 </head>
@@ -134,7 +156,19 @@
 
     <header class="header">
         <div class="brand-header-area">
-            <a href="index.html" class="main-brand-logo">PAGUS MENS WEAR</a>
+            <a href="index.html" class="main-brand-logo">PAGUS MEN'S WEAR</a>
+            
+            <div class="top-socials">
+                <a href="https://www.instagram.com/pagus_menswear/?hl=en" target="_blank" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1"/></svg>
+                </a>
+                <a href="https://www.facebook.com/pagusmenswear/?locale=tr_TR" target="_blank" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="https://wa.me/905511748907" target="_blank" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                </a>
+            </div>
         </div>
 
         <div class="header-main">
@@ -162,20 +196,6 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-
-            <div class="header-actions">
-                <div class="header-socials">
-                    <a href="https://www.instagram.com/pagus_menswear/?hl=en" target="_blank" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1"/></svg>
-                    </a>
-                    <a href="https://www.facebook.com/pagusmenswear/?locale=tr_TR" target="_blank" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                    </a>
-                    <a href="https://wa.me/905511748907" target="_blank" aria-label="WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                    </a>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -223,7 +243,7 @@
                 </ul>
             </div>
         </div>
-        <div style="text-align:center; padding-top:2rem; font-size:0.75rem;">© 2026 Pagus Mens Wear. All rights reserved.</div>
+        <div style="text-align:center; padding-top:2rem; font-size:0.75rem;">© 2026 Pagus Men's Wear. All rights reserved.</div>
     </footer>
 
     <script>
