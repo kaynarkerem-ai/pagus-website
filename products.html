@@ -10,40 +10,45 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: var(--font-body); color: var(--color-black); background: #fff; overflow-x: hidden; }
 
-        /* FIXED STABLE HEADER */
+        /* --- STABLE HEADER --- */
         .header { position: sticky; top: 0; width: 100%; z-index: 1000; background: var(--color-noble); padding: 15px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .header-inner { max-width: var(--site-max-width); margin: 0 auto; padding: 0 40px; }
-        .logo-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .logo { font-family: var(--font-display); font-size: 1.5rem; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .logo-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .logo { font-family: var(--font-display); font-size: 1.6rem; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
         
         .soc-icons { display: flex; gap: 15px; }
         .soc-icons svg { width: 20px; height: 20px; stroke: #fff; fill: none; }
 
-        .nav-list { display: flex; gap: 20px; list-style: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; width: 100%; justify-content: center; flex-wrap: wrap; }
-        .nav-list a { color: #fff; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-list { 
+            display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(255,255,255,0.1); 
+            padding-top: 12px; width: 100%; justify-content: center; flex-wrap: wrap; 
+        }
+        .nav-list a { color: #fff; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-list a:hover { color: var(--color-gold); }
 
-        /* GRID AREA */
-        .page-title-area { background: #f9f9f9; padding: 40px 0; text-align: center; border-bottom: 1px solid #eee; }
-        .cat-title { font-family: var(--font-display); font-size: 2.2rem; text-transform: uppercase; color: var(--color-noble); }
-        .back-btn { display: inline-block; color: var(--color-gold); font-weight: 700; margin-bottom: 10px; cursor: pointer; border: 1px solid var(--color-gold); padding: 5px 15px; font-size: 0.8rem; }
+        /* --- CONTENT AREA --- */
+        .page-title-area { background: #f9f9f9; padding: 50px 0; text-align: center; border-bottom: 1px solid #eee; }
+        .cat-title { font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; color: var(--color-noble); }
+        .back-btn { display: inline-block; color: var(--color-gold); font-weight: 700; margin-bottom: 15px; cursor: pointer; border: 1px solid var(--color-gold); padding: 6px 18px; font-size: 0.8rem; }
 
-        .grid { max-width: var(--site-max-width); margin: 0 auto; padding: 50px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; }
-        .card { cursor: pointer; text-align: center; background: #fff; padding-bottom: 15px; transition: 0.3s; }
-        .img-box { aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 15px; }
+        .grid { max-width: var(--site-max-width); margin: 0 auto; padding: 60px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; }
+        .card { cursor: pointer; text-align: center; transition: 0.3s; }
+        .img-box { aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .card:hover img { transform: scale(1.05); }
 
-        /* MODAL */
+        /* MODAL SLIDER */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); }
         .modal-content { height: 100vh; display: grid; grid-template-columns: 3fr 1fr; }
         .slider { position: relative; background: #000; display: flex; align-items: center; justify-content: center; }
         .main-img { max-height: 90vh; max-width: 95%; object-fit: contain; }
-        .arrow { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 3rem; cursor: pointer; padding: 20px; }
+        .arrow { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 4rem; cursor: pointer; padding: 25px; opacity: 0.6; }
         .prev { left: 0; } .next { right: 0; }
-        
-        .side-info { background: #fff; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
-        .close { position: absolute; top: 20px; right: 30px; font-size: 40px; color: #fff; cursor: pointer; }
+        .side-info { background: #fff; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .close { position: absolute; top: 25px; right: 35px; font-size: 45px; color: #fff; cursor: pointer; }
 
-        .footer { background: #000; color: #999; padding: 60px 40px; border-top: 4px solid var(--color-gold); }
+        .footer { background: #000; color: #999; padding: 70px 40px; border-top: 4px solid var(--color-gold); }
     </style>
 </head>
 <body>
@@ -58,12 +63,12 @@
                 </div>
             </div>
             <nav><ul class="nav-list">
-                <li><a href="products.html?category=Wedding Suits">Wedding Suits</a></li>
-                <li><a href="products.html?category=Formal Suits">Formal Suits</a></li>
-                <li><a href="products.html?category=Shirts">Shirts</a></li>
-                <li><a href="products.html?category=Shoes">Shoes</a></li>
-                <li><a href="products.html?category=Accessories">Accessories</a></li>
-                <li><a href="products.html?category=Children">Children</a></li>
+                <li><a href="?category=Wedding Suits">Wedding Suits</a></li>
+                <li><a href="?category=Formal Suits">Formal Suits</a></li>
+                <li><a href="?category=Shirts">Shirts</a></li>
+                <li><a href="?category=Shoes">Shoes</a></li>
+                <li><a href="?category=Accessories">Accessories</a></li>
+                <li><a href="?category=Children">Children</a></li>
             </ul></nav>
         </div>
     </header>
@@ -84,8 +89,8 @@
                 <span class="arrow next" onclick="move(1)">&#10095;</span>
             </div>
             <div class="side-info">
-                <h2 id="mCode" style="font-family:var(--font-display); font-size:2rem; margin-bottom:10px;">CODE</h2>
-                <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:15px; text-align:center; font-weight:700;">WHATSAPP INQUIRY</a>
+                <h2 id="mCode" style="font-family:var(--font-display); font-size:2.2rem; margin-bottom:15px;">CODE</h2>
+                <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700;">WHATSAPP INQUIRY</a>
             </div>
         </div>
     </div>
@@ -108,7 +113,7 @@
             document.getElementById('pGrid').innerHTML = subs.map(s => `
                 <div class="card" onclick="window.location.href='?category=${curCat}&subcategory=${encodeURIComponent(s)}'">
                     <div class="img-box"><img src="images/${productsDB.find(p => p.subCat === s).code} (1).jpg" onerror="this.src='placeholder.jpg'"></div>
-                    <h3>${s}</h3>
+                    <h3 style="font-family:var(--font-display); font-size:1.3rem;">${s}</h3>
                 </div>`).join('');
         }
 
