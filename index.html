@@ -6,52 +6,59 @@
     <title>Pagus Men's Wear | Premium Wholesale</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* ESKİ BEĞENDİĞİN RENKLER VE AYARLAR */
-        :root { --color-black: #1a1a1a; --color-dark: #2d2d2d; --color-gray: #666666; --color-light-gray: #f5f5f5; --color-border: #e0e0e0; --color-white: #ffffff; --color-accent: #8b7355; --color-gold: #c9a962; --color-noble: #2c3e50; --font-display: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --transition: all 0.3s ease; --site-max-width: 1600px; }
+        /* --- ORİJİNAL PREMIUM CSS (GERİ GELDİ) --- */
+        :root { 
+            --color-black: #1a1a1a; 
+            --color-dark: #2d2d2d; 
+            --color-gray: #666666; 
+            --color-light-gray: #f5f5f5; 
+            --color-border: #e0e0e0; 
+            --color-white: #ffffff; 
+            --color-accent: #8b7355; 
+            --color-gold: #c9a962; 
+            --color-noble: #2c3e50; /* O sevdiğin koyu lacivert/siyah ton */
+            --font-display: 'Playfair Display', serif; 
+            --font-body: 'Montserrat', sans-serif; 
+            --transition: all 0.3s ease; 
+            --site-max-width: 1600px; 
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); color: var(--color-black); line-height: 1.6; background: var(--color-white); }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         
-        /* HEADER */
+        /* HEADER (Orijinal Koyu Tasarım) */
         .header { position: sticky; top: 0; width: 100%; z-index: 1000; background: var(--color-noble); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .header-main { display: flex; justify-content: space-between; align-items: center; padding: 0 3rem; max-width: var(--site-max-width); margin: 0 auto; height: 70px; }
-        .header-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-        .nav-list { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
-        .nav-list > li > a { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.8); white-space: nowrap; }
-        .nav-list > li > a:hover { color: var(--color-gold); }
-        .menu-toggle { display: none; background: none; border: none; cursor: pointer; }
-        .menu-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; }
-
-        /* HERO SECTION (Senin Orijinal Resminle) */
-        .hero { 
-            height: 90vh; 
-            /* BURASI ÖNEMLİ: Senin yüklediğin hero resmi neyse onu kullan */
-            background-image: url('hero-final.png'); 
-            background-size: cover; 
-            background-position: center; 
-            display: flex; align-items: center; justify-content: center; text-align: center; position: relative; 
-        }
-        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); }
+        .header-main { display: flex; justify-content: space-between; align-items: center; padding: 0 3rem; max-width: var(--site-max-width); margin: 0 auto; height: 80px; }
+        .header-logo { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-white); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+        
+        /* MENÜ LİNKLERİ (Orijinal) */
+        .nav-list { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+        .nav-list > li > a { display: block; font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.9); transition: color 0.3s; }
+        .nav-list > li > a:hover { color: var(--color-gold); } /* Üzerine gelince Altın Rengi */
+        
+        /* HERO */
+        .hero { height: 100vh; background-image: url('hero-final.png'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.2); }
         .hero-content { position: relative; z-index: 1; color: var(--color-white); padding: 2rem; }
-        .hero-subtitle { font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1rem; opacity: 0.9; }
-        .hero-title { font-family: var(--font-display); font-size: 4rem; line-height: 1.1; margin-bottom: 2rem; }
-        .btn-primary { display: inline-block; padding: 1rem 2.5rem; background: var(--color-white); color: var(--color-black); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; font-size: 0.8rem; border: 1px solid var(--color-white); }
-        .btn-primary:hover { background: transparent; color: var(--color-white); }
+        .hero-subtitle { font-size: 1.2rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0.9; }
+        .hero-title { font-family: var(--font-display); font-size: 4.5rem; line-height: 1.1; margin-bottom: 2.5rem; }
+        .btn-primary { display: inline-block; padding: 1.2rem 3rem; background: var(--color-white); color: var(--color-noble); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; font-size: 0.9rem; border: none; transition: all 0.3s; }
+        .btn-primary:hover { background: var(--color-gold); color: var(--color-white); }
 
         /* FOOTER */
-        .footer { background: var(--color-black); color: #999; padding: 4rem 3rem 2rem; margin-top: 4rem;}
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; max-width: var(--site-max-width); margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 3rem; }
-        .footer h4 { color: var(--color-white); margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 0.75rem; }
+        .footer { background: #111; color: #aaa; padding: 5rem 3rem 2rem; margin-top: 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; max-width: var(--site-max-width); margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 4rem; }
+        .footer h4 { color: var(--color-white); margin-bottom: 2rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; }
         .footer-col a:hover { color: var(--color-gold); }
-
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+        .menu-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; }
+        
         @media (max-width: 992px) { 
             .header-main { padding: 0 1.5rem; } 
             .nav-list { display: none; } 
             .menu-toggle { display: block; }
-            .hero-title { font-size: 2.5rem; }
+            .hero-title { font-size: 3rem; }
         }
     </style>
 </head>
@@ -69,7 +76,6 @@
                     <li><a href="products.html?category=Shirts">Shirts</a></li>
                     <li><a href="products.html?category=Jackets">Jackets</a></li>
                     <li><a href="products.html?category=Shoes">Shoes</a></li>
-                    
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
