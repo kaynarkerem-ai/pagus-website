@@ -17,9 +17,12 @@
         .header { position: sticky; top: 0; width: 100%; z-index: 1000; background: var(--color-noble); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .header-main { display: flex; justify-content: space-between; align-items: center; padding: 0 3rem; max-width: var(--site-max-width); margin: 0 auto; height: 70px; }
         .header-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-        .nav-list { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; }
+        
+        /* MENÜ AYARLARI (GÜNCELLENDİ) */
+        .nav-list { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
         .nav-list > li { position: relative; }
-        .nav-list > li > a { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+        /* Linklerin altı çizili olsun ki nereye gittiği belli olsun */
+        .nav-list > li > a { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.8); white-space: nowrap; }
         .nav-list > li > a:hover { color: var(--color-gold); }
         
         /* SAYFA BAŞLIĞI */
@@ -27,19 +30,17 @@
         .category-title { font-family: var(--font-display); font-size: 3rem; color: var(--color-noble); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
         .breadcrumb { font-size: 0.8rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 1px; }
         
-        /* ÜRÜN IZGARASI (GÜNCELLENDİ: DAHA BÜYÜK FOTOLAR) */
+        /* ÜRÜN IZGARASI (3 SÜTUN - BÜYÜK FOTO) */
         .products-section { padding: 4rem 3rem; max-width: var(--site-max-width); margin: 0 auto; min-height: 50vh; }
         .product-grid { 
             display: grid; 
-            /* BURAYI DEĞİŞTİRDİM: 4 yerine 3 sütun = Daha büyük fotolar */
-            grid-template-columns: repeat(3, 1fr); 
+            grid-template-columns: repeat(3, 1fr); /* Fotoğraflar büyük kalsın */
             gap: 3rem; 
         }
         
         .product-card { group: relative; background: #fff; transition: var(--transition); cursor: pointer; }
         .product-card:hover { transform: translateY(-5px); }
         .product-image-box { position: relative; width: 100%; aspect-ratio: 3 / 4; background-color: #f0f0f0; overflow: hidden; margin-bottom: 1rem; }
-        /* Placeholder rengini gri yaptım ki yüklenirken şık dursun */
         .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .product-card:hover .product-image { transform: scale(1.05); }
         .badge { position: absolute; top: 10px; left: 10px; background: var(--color-noble); color: #fff; font-size: 0.7rem; padding: 5px 10px; text-transform: uppercase; letter-spacing: 1px; }
@@ -60,49 +61,18 @@
 
         /* --- DEV POP-UP (IMAX MODU) --- */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); overflow: hidden; backdrop-filter: blur(8px); }
-        
         .modal-content {
             margin: 2vh auto;
-            width: 95%; /* EKranın %95'i */
-            max-width: 1800px;
-            display: grid;
-            grid-template-columns: 3fr 1fr; /* Resim devasa, yazı dar */
-            gap: 0;
-            background: #fff;
-            border-radius: 4px;
-            overflow: hidden;
-            height: 96vh;
+            width: 95%; max-width: 1800px;
+            display: grid; grid-template-columns: 3fr 1fr; gap: 0;
+            background: #fff; border-radius: 4px; overflow: hidden; height: 96vh;
         }
-
-        .modal-gallery {
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            height: 100%;
-        }
-
-        .modal-main-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Resmi kesmeden sığdır */
-        }
-
+        .modal-gallery { background: #000; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; height: 100%; }
+        .modal-main-img { width: 100%; height: 100%; object-fit: contain; }
         .modal-thumbnails { position: absolute; bottom: 20px; left: 0; width: 100%; display: flex; justify-content: center; gap: 10px; padding: 10px; background: rgba(0,0,0,0.6); overflow-x: auto; }
         .thumb { width: 60px; height: 80px; object-fit: cover; cursor: pointer; border: 2px solid transparent; opacity: 0.7; }
         .thumb.active { border-color: var(--color-gold); opacity: 1; }
-        
-        .modal-details { 
-            padding: 3rem; 
-            overflow-y: auto; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            background: #fff;
-        }
-
+        .modal-details { padding: 3rem; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; background: #fff; }
         .modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 2001; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
         .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: none; padding: 1.5rem; cursor: pointer; font-size: 2rem; transition: 0.3s; }
         .gallery-arrow:hover { background: rgba(255,255,255,0.3); }
@@ -126,10 +96,12 @@
             <a href="index.html" class="header-logo">PAGUS</a>
             <nav class="main-nav">
                 <ul class="nav-list">
-                    <li><a href="?category=Wedding">Groom's Wear</a></li>
-                    <li><a href="?category=Classic">Classical Wear</a></li>
-                    <li><a href="?category=Shirt">Shirts</a></li>
-                    <li><a href="?category=Jacket">Jackets</a></li>
+                    <li><a href="?category=Wedding Suits">Wedding Suits</a></li>
+                    <li><a href="?category=Tuxedos">Tuxedos</a></li>
+                    <li><a href="?category=Formal Suits">Formal Suits</a></li>
+                    <li><a href="?category=Two Pieces">Two Pieces</a></li>
+                    <li><a href="?category=Shirts">Shirts</a></li>
+                    <li><a href="?category=Jackets">Jackets</a></li>
                     <li><a href="?category=Shoes">Shoes</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -180,56 +152,64 @@
     </footer>
 
     <script>
-        // ==========================================
-        // MÜDÜRÜN ÜRÜN LİSTESİ (BURAYA EKLEME YAP)
-        // ==========================================
+        // =========================================================
+        // MÜDÜRÜN DEPO LİSTESİ (BURAYI KATEGORİLERE GÖRE DOLDUR)
+        // =========================================================
+        // KATEGORİ İSİMLERİ (Birebir Aynı Yazılmalı):
+        // 1. "Wedding Suits"
+        // 2. "Tuxedos"
+        // 3. "Formal Suits"
+        // 4. "Two Pieces"
+        // 5. "Shirts"
+        // 6. "Jackets"
+        
         const productsDB = [
-            // { code: "DOSYA-ADI", cat: "KATEGORİ" },
-            // Kategoriler: Wedding, Classic, Shirt, Jacket, Shoes
+            // ÖRNEK: Formal Suit (Yelekli Takım)
+            { code: "formalsuit-1023D170", cat: "Formal Suits" },
             
-            { code: "formalsuit-1023D170", cat: "Classic" },
-            { code: "formalsuit-50055-6",  cat: "Classic" },
-            { code: "wedding-50111-9",     cat: "Wedding" },
-            
-            // Yeni ürünlerini bu satırın altına ekle...
+            // ÖRNEK: Wedding Suit (Damatlık) - Yüklediysen yorumu kaldır
+            // { code: "wedding-50111-9", cat: "Wedding Suits" },
+
+            // ÖRNEK: Two Pieces (Ceket Pantolon)
+            // { code: "urun-kodu-buraya", cat: "Two Pieces" },
         ];
-        // ==========================================
+        // =========================================================
 
-        
-        // --- ADIM 1: LİNK TERCÜMANI ---
+        // LİNK TERCÜMANI (Artık Tahmin Yok, Lazer Kesim Var)
         const urlParams = new URLSearchParams(window.location.search);
-        let rawCat = urlParams.get('category') || "Wedding";
-        let currentCat = "Wedding";
-
-        if (rawCat.includes("Wedding") || rawCat.includes("Tuxedo") || rawCat.includes("Groom")) { currentCat = "Wedding"; }
-        else if (rawCat.includes("Formal") || rawCat.includes("Classic") || rawCat.includes("Piece")) { currentCat = "Classic"; }
-        else if (rawCat.includes("Shirt")) { currentCat = "Shirt"; }
-        else if (rawCat.includes("Jacket")) { currentCat = "Jacket"; }
-        else if (rawCat.includes("Shoe")) { currentCat = "Shoes"; }
-
-        let displayTitle = "Collection";
-        if(currentCat === "Wedding") displayTitle = "Groom's Wear";
-        if(currentCat === "Classic") displayTitle = "Classical Wear";
-        if(currentCat === "Shirt") displayTitle = "Shirts";
-        if(currentCat === "Jacket") displayTitle = "Jackets";
+        let linkCat = urlParams.get('category'); // Linkten ne gelirse o.
         
-        document.getElementById('page-title').innerText = displayTitle;
-        document.getElementById('bread-cat').innerText = displayTitle;
+        // Eğer link boşsa varsayılan olarak Formal Suits aç
+        if (!linkCat) linkCat = "Formal Suits";
+        
+        // %20 gibi boşluk karakterlerini düzelt
+        let currentCat = decodeURIComponent(linkCat);
 
-        // --- ADIM 2: ÜRÜNLERİ LİSTELE ---
+        // Başlıkları Güncelle
+        document.getElementById('page-title').innerText = currentCat;
+        document.getElementById('bread-cat').innerText = currentCat;
+
+        // Ürünleri Filtrele
         const productContainer = document.getElementById('product-container');
         
+        // Listeyi filtrele: Ürünün kategorisi == Linkteki kategori olmalı.
         const filteredProducts = productsDB.filter(p => p.cat === currentCat);
 
+        // Ürün Yoksa Mesaj Göster
         if (filteredProducts.length === 0) {
-            productContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 3rem; color:#999; font-size:1.2rem;'>No products found in this category yet.</p>";
+            productContainer.innerHTML = `
+                <div style="grid-column: 1/-1; text-align:center; padding: 5rem 1rem;">
+                    <h3 style="color:#ccc; font-size:2rem; margin-bottom:1rem;">Collection Loading...</h3>
+                    <p style="color:#999;">We are currently adding new models to the <strong>${currentCat}</strong> collection.</p>
+                </div>`;
         }
 
+        // Ürünleri Ekrana Bas
         filteredProducts.forEach((product) => {
             let coverImg = `images/${product.code} (1).jpg`;
 
             let cardHTML = `
-                <div class="product-card" onclick="openModal('${product.code}', '${displayTitle}')">
+                <div class="product-card" onclick="openModal('${product.code}', '${currentCat}')">
                     <div class="product-image-box">
                         <span class="badge">New</span>
                         <img src="${coverImg}" 
@@ -240,7 +220,7 @@
                     </div>
                     <div class="product-info">
                         <span class="product-sku">${product.code}</span>
-                        <h3 class="product-title">${displayTitle}</h3>
+                        <h3 class="product-title">${currentCat}</h3>
                         <span class="btn-view">View Photos</span>
                     </div>
                 </div>
@@ -248,7 +228,7 @@
             productContainer.innerHTML += cardHTML;
         });
 
-        // --- MODAL FONKSİYONLARI ---
+        // MODAL FONKSİYONLARI
         const modal = document.getElementById('productModal');
         const modalImg = document.getElementById('modalMainImg');
         const modalThumbs = document.getElementById('modalThumbnails');
