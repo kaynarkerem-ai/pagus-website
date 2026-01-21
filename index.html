@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagus Menswear | Manufacturer & Wholesaler</title>
+    <title>Pagus Men's Wear | Manufacturer & Wholesaler</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -59,6 +59,20 @@
             text-transform: uppercase;
             display: inline-block; text-align: center;
             text-shadow: 0 4px 12px rgba(0,0,0,0.4); 
+            line-height: 1; /* Satır aralığını daralttık ki sloganla arası çok açılmasın */
+        }
+
+        /* YENİ EKLENEN TAGLINE (SLOGAN) STİLİ */
+        .brand-tagline {
+            font-family: var(--font-body);
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.3em; /* Harfleri yaydık, elit dursun */
+            font-weight: 500;
+            margin-top: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            text-align: center;
         }
 
         /* İkonlar */
@@ -75,6 +89,7 @@
             display: flex; justify-content: center; align-items: center; 
             padding: 1rem 3rem; max-width: var(--site-max-width); 
             margin: 0 auto; height: auto; background: transparent; position: relative;
+            margin-top: 1rem; /* Logo büyüyünce menüyle arası yapışmasın */
         }
         
         .nav-list { display: flex; gap: 3rem; list-style: none; margin: 0; padding: 0; }
@@ -262,7 +277,8 @@
     <header class="header">
         <div class="brand-header-area">
             <div class="brand-header-container">
-                <a href="index.html" class="main-brand-logo">PAGUS MENSWEAR</a>
+                <a href="index.html" class="main-brand-logo">PAGUS MEN'S WEAR</a>
+                <div class="brand-tagline">Timeless Elegance, Crafted in Turkey</div>
                 
                 <div class="top-socials">
                     <a href="https://www.instagram.com/pagus_menswear/?hl=en" target="_blank" aria-label="Instagram">
@@ -296,7 +312,7 @@
                     <li><a href="products.html?category=Shoes">Shoes</a></li>
                     <li><a href="products.html?category=Accessories">Accessories</a></li>
                     <li><a href="products.html?category=Children">Children</a></li>
-                    </ul>
+                </ul>
             </nav>
         </div>
     </header>
@@ -352,8 +368,14 @@
     <footer class="footer" id="contact">
         <div class="footer-grid">
             <div class="footer-brand" id="about">
-                <h4>ABOUT PAGUS MENSWEAR</h4>
-                <p>Premium manufacturer specializing in groom's wear and suits. We provide high-quality "Made in Turkey" textile solutions to international retailers.</p>
+                <h4>ABOUT PAGUS MEN'S WEAR</h4>
+                <p style="margin-bottom: 1rem;">PAGUS Menswear is established with a single mission: to provide world-class textile solutions for global retailers. Located in Turkey, a global hub for textile production, we bridge the gap between premium manufacturing and high-end retail.</p>
+                
+                <p style="margin-bottom: 1rem;">We specialize in groom’s wear and formal suits, offering not just products, but a partnership built on trust. With our robust production capacity and strict quality control standards, we ensure that every garment leaving our facility meets the highest expectations of the Italian and European markets.</p>
+                
+                <p style="margin-bottom: 1rem;">Punctuality, consistency, and quality are our core principles. When you partner with PAGUS, you are partnering with reliability.</p>
+                
+                <p><strong>PAGUS. Global Standards, Local Expertise.</strong></p>
             </div>
             
             <div class="footer-col">
@@ -365,7 +387,7 @@
                 </ul>
             </div>
         </div>
-        <div style="text-align:center; padding-top:2rem; font-size:0.75rem;">© 2026 Pagus Menswear. All rights reserved.</div>
+        <div style="text-align:center; padding-top:2rem; font-size:0.75rem;">© 2026 Pagus Men's Wear. All rights reserved.</div>
     </footer>
 
     <script>
