@@ -1,14 +1,3 @@
-Müdür, sorunu buldum! Tam bir dedektiflik işi oldu ama çözdüm. 🕵️‍♂️
-
-Sorun şu: Senin Ana Sayfadaki (index.html) menü, linki "Formal Suits" diye gönderiyor. Ama bizim Ürün Sayfasındaki (products.html) listemiz sadece "Classic" kelimesini tanıyor. İkisi farklı dil konuşuyor, o yüzden anlaşamıyorlar.
-
-Siteye bir "Tercüman" eklememiz lazım. Linkten "Formal Suits" de gelse, "Two Pieces" de gelse, kodun bunu "Classic" olarak anlamasını sağlayacağız.
-
-GitHub'da products.html dosyasını aç, içini tamamen sil ve bu "AKILLI TERCÜMANLI" versiyonu yapıştır:
-
-(Bu kodda aşağıya senin o yüklediğin formalsuit-1023D170 ürününü de hazır ekledim, direkt çalışacak).
-
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +6,14 @@ HTML
     <title>Collection | Pagus Men's Wear</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS STİLLERİ (AYNI) --- */
+        /* --- GENEL AYARLAR --- */
         :root { --color-black: #1a1a1a; --color-dark: #2d2d2d; --color-gray: #666666; --color-light-gray: #f5f5f5; --color-border: #e0e0e0; --color-white: #ffffff; --color-accent: #8b7355; --color-gold: #c9a962; --color-noble: #2c3e50; --font-display: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --transition: all 0.3s ease; --site-max-width: 1600px; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); color: var(--color-black); line-height: 1.6; background: var(--color-white); }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
+        
+        /* HEADER */
         .header { position: sticky; top: 0; width: 100%; z-index: 1000; background: var(--color-noble); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .header-main { display: flex; justify-content: space-between; align-items: center; padding: 0 3rem; max-width: var(--site-max-width); margin: 0 auto; height: 70px; }
         .header-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
@@ -30,9 +21,13 @@ HTML
         .nav-list > li { position: relative; }
         .nav-list > li > a { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.8); }
         .nav-list > li > a:hover { color: var(--color-gold); }
+        
+        /* SAYFA BAŞLIĞI */
         .page-header { background-color: var(--color-light-gray); padding: 4rem 2rem; text-align: center; border-bottom: 1px solid var(--color-border); }
         .category-title { font-family: var(--font-display); font-size: 3rem; color: var(--color-noble); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
         .breadcrumb { font-size: 0.8rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* ÜRÜN IZGARASI */
         .products-section { padding: 4rem 3rem; max-width: var(--site-max-width); margin: 0 auto; min-height: 50vh; }
         .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
         .product-card { group: relative; background: #fff; transition: var(--transition); cursor: pointer; }
@@ -45,6 +40,8 @@ HTML
         .product-sku { font-size: 0.7rem; color: var(--color-gray); letter-spacing: 1px; margin-bottom: 0.3rem; display: block; }
         .product-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-dark); margin-bottom: 0.5rem; font-weight: 600; }
         .btn-view { font-size: 0.75rem; text-transform: uppercase; color: var(--color-noble); font-weight: 600; border-bottom: 1px solid var(--color-gold); }
+        
+        /* FOOTER */
         .footer { background: var(--color-black); color: #999; padding: 4rem 3rem 2rem; margin-top: 4rem;}
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; max-width: var(--site-max-width); margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 3rem; }
         .footer h4 { color: var(--color-white); margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
@@ -54,19 +51,66 @@ HTML
         .menu-toggle { display: none; background: none; border: none; cursor: pointer; }
         .menu-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; }
 
-        /* MODAL (POP-UP) */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; backdrop-filter: blur(5px); }
-        .modal-content { margin: 5% auto; width: 90%; max-width: 1200px; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; background: #fff; border-radius: 8px; overflow: hidden; height: 80vh; }
-        .modal-gallery { background: #000; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .modal-main-img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .modal-thumbnails { position: absolute; bottom: 20px; left: 0; width: 100%; display: flex; justify-content: center; gap: 10px; padding: 10px; background: rgba(0,0,0,0.5); overflow-x: auto; }
+        /* --- DEV POP-UP (IMAX MODU) --- */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); overflow: hidden; backdrop-filter: blur(8px); }
+        
+        .modal-content {
+            margin: 2vh auto;
+            width: 95%; /* EKranın %95'i */
+            max-width: 1800px;
+            display: grid;
+            grid-template-columns: 3fr 1fr; /* Resim devasa, yazı dar */
+            gap: 0;
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 96vh;
+        }
+
+        .modal-gallery {
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .modal-main-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Resmi kesmeden sığdır */
+        }
+
+        .modal-thumbnails { position: absolute; bottom: 20px; left: 0; width: 100%; display: flex; justify-content: center; gap: 10px; padding: 10px; background: rgba(0,0,0,0.6); overflow-x: auto; }
         .thumb { width: 60px; height: 80px; object-fit: cover; cursor: pointer; border: 2px solid transparent; opacity: 0.7; }
         .thumb.active { border-color: var(--color-gold); opacity: 1; }
-        .modal-details { padding: 3rem; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; }
-        .modal-close { position: absolute; top: 15px; right: 25px; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer; z-index: 2001; }
-        .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; padding: 1rem; cursor: pointer; font-size: 1.5rem; }
-        .prev { left: 10px; } .next { right: 10px; }
-        @media (max-width: 992px) { .product-grid { grid-template-columns: repeat(2, 1fr); } .header-main { padding: 0 1.5rem; } .nav-list { display: none; } .menu-toggle { display: block; } .modal-content { grid-template-columns: 1fr; height: auto; min-height: 90vh; } .modal-gallery { height: 50vh; } }
+        
+        .modal-details { 
+            padding: 3rem; 
+            overflow-y: auto; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            background: #fff;
+        }
+
+        .modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 2001; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: none; padding: 1.5rem; cursor: pointer; font-size: 2rem; transition: 0.3s; }
+        .gallery-arrow:hover { background: rgba(255,255,255,0.3); }
+        .prev { left: 0; } .next { right: 0; }
+        
+        @media (max-width: 992px) { 
+            .product-grid { grid-template-columns: repeat(2, 1fr); } 
+            .header-main { padding: 0 1.5rem; } 
+            .nav-list { display: none; } 
+            .menu-toggle { display: block; } 
+            /* Mobilde Modal Ayarı */
+            .modal-content { grid-template-columns: 1fr; height: 100vh; margin: 0; width: 100%; border-radius: 0; overflow-y: auto; } 
+            .modal-gallery { height: 60vh; }
+            .modal-details { height: auto; padding: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -108,10 +152,16 @@ HTML
             </div>
             <div class="modal-details">
                 <span class="badge" style="position:static; display:inline-block; margin-bottom:1rem; width:fit-content;">Premium Collection</span>
-                <h2 id="modalTitle" style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 0.5rem;">Product Title</h2>
-                <p id="modalSku" style="color:var(--color-gray); margin-bottom: 2rem; letter-spacing: 1px;">CODE: PGS-001</p>
-                <p style="margin-bottom: 2rem;">Premium production quality. Contact us for wholesale pricing and catalog.</p>
-                <a id="modalWhatsapp" href="#" target="_blank" class="btn-quote" style="background:var(--color-gold); color:white; padding:1rem 2rem; text-decoration:none; border-radius:4px; text-align:center;">Ask Price via WhatsApp</a>
+                <h2 id="modalTitle" style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 0.5rem; line-height:1.2;">Product Title</h2>
+                <p id="modalSku" style="color:var(--color-gold); font-weight:600; margin-bottom: 2rem; letter-spacing: 1px; font-size: 1.1rem;">CODE: PGS-001</p>
+                <p style="margin-bottom: 2rem; color: #555;">
+                    Designed with precision and crafted from the finest fabrics. This piece represents the pinnacle of Pagus Men's Wear quality. 
+                    <br><br>
+                    <strong>Available for wholesale orders.</strong>
+                </p>
+                <a id="modalWhatsapp" href="#" target="_blank" class="btn-quote" style="background:var(--color-gold); color:white; padding:1.2rem 2rem; text-decoration:none; border-radius:4px; text-align:center; font-weight:600; letter-spacing:1px; display:block;">
+                    ASK PRICE VIA WHATSAPP
+                </a>
             </div>
         </div>
     </div>
@@ -123,29 +173,20 @@ HTML
         </div>
     </footer>
 
+    <script src="inventory.js"></script>
+
     <script>
-        // --- ADIM 1: LİNK TERCÜMANI (Category Mapper) ---
-        // Burası linkten ne gelirse gelsin, bizim anlayacağımız dile çevirir.
-        
+        // --- ADIM 1: LİNK TERCÜMANI ---
         const urlParams = new URLSearchParams(window.location.search);
-        let rawCat = urlParams.get('category') || "Wedding"; // Linkten geleni al
-        
-        let currentCat = "Wedding"; // Varsayılan
+        let rawCat = urlParams.get('category') || "Wedding";
+        let currentCat = "Wedding";
 
-        // "Formal Suits" gelirse "Classic" yap, "Tuxedos" gelirse "Wedding" yap...
-        if (rawCat.includes("Wedding") || rawCat.includes("Tuxedo") || rawCat.includes("Groom")) {
-            currentCat = "Wedding";
-        } else if (rawCat.includes("Formal") || rawCat.includes("Classic") || rawCat.includes("Piece")) {
-            currentCat = "Classic";
-        } else if (rawCat.includes("Shirt")) {
-            currentCat = "Shirt";
-        } else if (rawCat.includes("Jacket")) {
-            currentCat = "Jacket";
-        } else if (rawCat.includes("Shoe")) {
-            currentCat = "Shoes";
-        }
+        if (rawCat.includes("Wedding") || rawCat.includes("Tuxedo") || rawCat.includes("Groom")) { currentCat = "Wedding"; }
+        else if (rawCat.includes("Formal") || rawCat.includes("Classic") || rawCat.includes("Piece")) { currentCat = "Classic"; }
+        else if (rawCat.includes("Shirt")) { currentCat = "Shirt"; }
+        else if (rawCat.includes("Jacket")) { currentCat = "Jacket"; }
+        else if (rawCat.includes("Shoe")) { currentCat = "Shoes"; }
 
-        // Başlığı Ayarla
         let displayTitle = "Collection";
         if(currentCat === "Wedding") displayTitle = "Groom's Wear";
         if(currentCat === "Classic") displayTitle = "Classical Wear";
@@ -155,30 +196,22 @@ HTML
         document.getElementById('page-title').innerText = displayTitle;
         document.getElementById('bread-cat').innerText = displayTitle;
 
-
-        // --- ADIM 2: ÜRÜN LİSTESİ ---
-        // Senin yüklediğin dosya adını buraya ekledim.
-        const productsDB = [
-            // { code: "DOSYA-ADI", cat: "KATEGORİ" },
-            
-            { code: "formalsuit-1023D170", cat: "Classic" },
-            
-            // Buraya yeni ürünlerini ekleyebilirsin:
-             // { code: "wedding-50111-9", cat: "Wedding" },
-        ];
-
+        // --- ADIM 2: ÜRÜNLERİ LİSTELE ---
         const productContainer = document.getElementById('product-container');
         
-        // Sadece kategoriye uyanları bul
+        // inventory.js yüklenmediyse hata vermesin diye boş dizi ata
+        if (typeof productsDB === 'undefined') {
+            var productsDB = [];
+            productContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 3rem; color:red;'>Error: inventory.js file is missing!</p>";
+        }
+
         const filteredProducts = productsDB.filter(p => p.cat === currentCat);
 
-        if (filteredProducts.length === 0) {
-            productContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 3rem;'>No products found in this category yet.</p>";
+        if (filteredProducts.length === 0 && typeof productsDB !== 'undefined') {
+            productContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 3rem; color:#999;'>No products found in this category yet.</p>";
         }
 
         filteredProducts.forEach((product) => {
-            // KAPAK FOTOĞRAFI: (1).jpg
-            // Senin yüklediğin format: formalsuit-1023D170 (1).jpg
             let coverImg = `images/${product.code} (1).jpg`;
 
             let cardHTML = `
@@ -201,7 +234,7 @@ HTML
             productContainer.innerHTML += cardHTML;
         });
 
-        // --- MODAL (POP-UP) FONKSİYONLARI ---
+        // --- MODAL FONKSİYONLARI ---
         const modal = document.getElementById('productModal');
         const modalImg = document.getElementById('modalMainImg');
         const modalThumbs = document.getElementById('modalThumbnails');
@@ -211,51 +244,30 @@ HTML
         function openModal(code, category) {
             activeCode = code;
             activeImgIndex = 1;
-            
             document.getElementById('modalTitle').innerText = category;
             document.getElementById('modalSku').innerText = "CODE: " + code;
             document.getElementById('modalWhatsapp').href = `https://wa.me/905511748907?text=Hi, inquiring about: ${code}`;
-
             updateMainImage();
             
-            // Küçük resimleri yükle (1'den 10'a kadar dene)
             modalThumbs.innerHTML = '';
             for(let j=1; j<=10; j++) {
                 let thumbSrc = `images/${code} (${j}).jpg`;
-                
-                // Resim var mı diye kontrol et (Hata vermesin diye gizli yükleme yapıyoruz)
                 let imgCheck = new Image();
-                imgCheck.onload = function() {
-                    modalThumbs.innerHTML += `<img src="${thumbSrc}" class="thumb" onclick="setMainImage(${j})">`;
-                };
+                imgCheck.onload = function() { modalThumbs.innerHTML += `<img src="${thumbSrc}" class="thumb" onclick="setMainImage(${j})">`; };
                 imgCheck.src = thumbSrc;
             }
             modal.style.display = "block";
         }
-
         function closeModal() { modal.style.display = "none"; }
-        
-        function updateMainImage() {
-            modalImg.src = `images/${activeCode} (${activeImgIndex}).jpg`;
-        }
-        
-        function setMainImage(idx) {
-            activeImgIndex = idx;
-            updateMainImage();
-        }
-
+        function updateMainImage() { modalImg.src = `images/${activeCode} (${activeImgIndex}).jpg`; }
+        function setMainImage(idx) { activeImgIndex = idx; updateMainImage(); }
         function changeSlide(dir) {
             let nextIndex = activeImgIndex + dir;
             if(nextIndex < 1) nextIndex = 1;
-            
             let tempImg = new Image();
             tempImg.src = `images/${activeCode} (${nextIndex}).jpg`;
-            tempImg.onload = function() {
-                activeImgIndex = nextIndex;
-                updateMainImage();
-            };
+            tempImg.onload = function() { activeImgIndex = nextIndex; updateMainImage(); };
         }
-
         window.onclick = function(event) { if (event.target == modal) closeModal(); }
     </script>
 </body>
