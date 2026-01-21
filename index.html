@@ -27,7 +27,7 @@
         body { font-family: var(--font-body); color: var(--color-black); line-height: 1.6; background: var(--color-white); }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-        /* --- HEADER YAPISI (ŞEFFAF/TRANSPARAN) --- */
+        /* --- HEADER YAPISI --- */
         .header { 
             position: absolute; 
             top: 0; 
@@ -56,7 +56,7 @@
             flex-direction: column; 
         }
 
-        /* Ana Logo - GÖLGELİ */
+        /* Ana Logo */
         .main-brand-logo {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 6vw, 4rem); 
@@ -66,11 +66,10 @@
             text-transform: uppercase;
             display: inline-block;
             text-align: center;
-            /* YENİ: Daha belirgin gölge */
             text-shadow: 0 4px 12px rgba(0,0,0,0.4); 
         }
         
-        /* Slogan - GÖLGELİ */
+        /* Slogan */
         .brand-tagline {
             font-family: var(--font-display);
             font-size: clamp(1rem, 2vw, 1.4rem);
@@ -78,7 +77,6 @@
             color: var(--color-white);
             margin-top: 0.5rem;
             letter-spacing: 0.05em;
-            /* YENİ: Okunurluk gölgesi */
             text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
@@ -94,7 +92,7 @@
         .top-socials a:hover { color: var(--color-gold); transform: translateY(-3px); }
         .top-socials svg { width: 24px; height: 24px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
 
-        /* 2. Menü Alanı */
+        /* Menü Alanı */
         .header-main { 
             display: flex; 
             justify-content: center; 
@@ -107,7 +105,6 @@
             position: relative;
         }
         
-        /* Navigasyon Linkleri - GÖLGELİ */
         .nav-list { display: flex; gap: 3rem; list-style: none; margin: 0; padding: 0; }
         .nav-list > li { position: relative; }
         
@@ -119,31 +116,35 @@
             letter-spacing: 0.15em; 
             text-transform: uppercase; 
             color: var(--color-white); 
-            /* YENİ: Linkler patlasın diye gölge */
             text-shadow: 0 2px 5px rgba(0,0,0,0.6); 
         }
         .nav-list > li > a:hover { color: var(--color-gold); }
 
-        /* --- PREMIUM DROPDOWN MENÜ (BUZLU CAM) --- */
+        /* --- GERÇEK BUZLU CAM DROPDOWN --- */
         .dropdown { 
             position: absolute; 
             top: 100%; 
             left: 50%; 
             transform: translateX(-50%) translateY(20px); 
             
-            /* YENİ: Buzlu Cam Efekti (Apple Style) */
-            background: rgba(255, 255, 255, 0.92); /* %92 Opak Beyaz */
-            backdrop-filter: blur(10px); /* Arkadaki resmi flulaştırır */
+            /* İŞTE BURASI: Gerçek Glassmorphism */
+            background: rgba(255, 255, 255, 0.60); /* %60 Şeffaflık (Daha saydam) */
+            backdrop-filter: blur(20px); /* Bayağı flu */
+            -webkit-backdrop-filter: blur(20px); /* Safari/iPhone Desteği */
             
             min-width: 240px; 
             padding: 0.8rem 0; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* Daha derin gölge */
+            
+            /* Modern, yumuşak gölge */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            
             opacity: 0; 
             visibility: hidden; 
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
             z-index: 100; 
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.5); /* Hafif beyaz çerçeve */
+            
+            border-radius: 12px; /* Biraz daha yuvarlak */
+            border: 1px solid rgba(255, 255, 255, 0.4); /* İncecik beyaz çerçeve */
         }
 
         .nav-list > li:hover .dropdown { 
@@ -156,35 +157,34 @@
             display: block; 
             padding: 0.8rem 1.5rem; 
             font-size: 0.85rem; 
-            color: #333; /* İçerideki yazı koyu gri */
+            font-weight: 500; /* Yazıyı bir tık kalınlaştırdım ki camda okunsun */
+            color: #1a1a1a; /* Koyu renk yazı */
             letter-spacing: 0.5px; 
-            text-shadow: none; /* Dropdown içinde gölge yok, net olsun */
+            text-shadow: none; 
             border-bottom: 1px solid rgba(0,0,0,0.05); 
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
         .dropdown a:last-child { border-bottom: none; }
         
         .dropdown a:hover { 
             color: var(--color-gold); 
-            background-color: rgba(255,255,255, 0.8); 
-            padding-left: 2rem; 
+            background-color: rgba(255,255,255, 0.5); /* Hover olunca daha beyazlaşsın */
+            padding-left: 1.8rem; 
         }
 
-        /* --- HERO SECTION (RESİM) --- */
+        /* --- HERO SECTION --- */
         .hero { 
             position: relative; 
-            height: 100vh; /* Tam Ekran */
+            height: 100vh; 
             background-color: var(--color-noble);
             background-image: url('hero-final.png'); 
             background-size: cover;
-            /* Kafa kurtarma operasyonu: %30 */
             background-position: center 30%; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
         }
         
-        /* Hafif üst degrade (yazılar okunsun diye) */
         .hero::after {
             content: '';
             position: absolute;
@@ -194,11 +194,7 @@
             pointer-events: none;
         }
 
-        /* --- KATEGORİ BÖLÜMÜ SİLİNDİ --- */
-        /* categories section removed */
-
-        /* Footer */
-        /* Arka plan resminden sonra footer hemen yapışmasın diye biraz margin-top ekleyebiliriz ama full height olduğu için gerek yok */
+        /* --- FOOTER --- */
         .footer { background: var(--color-black); color: #999; padding: 4rem 3rem 2rem; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: var(--site-max-width); margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 3rem; }
         .footer-brand .logo { color: var(--color-white); font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.1em; display: block; margin-bottom: 1rem;}
@@ -240,9 +236,10 @@
             .nav-list { flex-direction: column; gap: 0; }
             .nav-list > li > a { 
                 border-bottom: 1px solid #eee; padding: 1rem 0; 
-                color: var(--color-black); /* Mobil menü içi siyah yazı */
+                color: var(--color-black); 
                 text-shadow: none; 
             }
+            /* Mobil menüde cam efekti olmaz, düz beyaz daha iyidir */
             .dropdown { position: static; transform: none; box-shadow: none; padding: 0; opacity: 1; visibility: visible; background: transparent; border: none; min-width: auto; border-radius: 0; backdrop-filter: none; }
             .dropdown a { padding: 0.8rem 0 0.8rem 1rem; border-bottom: none; background-color: #f9f9f9; }
             .dropdown a:hover { padding-left: 1.5rem; background-color: #f0f0f0; }
@@ -300,7 +297,7 @@
     </header>
 
     <section class="hero" id="hero-section">
-        </section>
+    </section>
 
     <footer class="footer" id="contact">
         <div class="footer-grid">
@@ -338,9 +335,7 @@
     <script>
     fetch('/_data/site_info.json') 
         .then(response => response.json())
-        .then(data => {
-        // ...
-        })
+        .then(data => {})
         .catch(error => console.error('Veri yüklenirken hata:', error));
     </script>    
 </body>
