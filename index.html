@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-bg: #1a1a1a; /* Koyu Arkaplan */
+            --color-bg: #1a1a1a;
             --color-gold: #c9a962; 
             --color-white: #ffffff;
             --font-display: 'Playfair Display', serif;
@@ -19,7 +19,8 @@
         body { 
             height: 100vh; 
             background-color: var(--color-bg); 
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('hero-final.png'); /* Varsa hero resmini arkaya silik atar */
+            /* Arka plana hero resmini koyuyoruz, yoksa düz siyah kalır */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('hero-final.png');
             background-size: cover; 
             background-position: center;
             display: flex; 
