@@ -62,17 +62,26 @@
             line-height: 1; /* Satır aralığını daralttık ki sloganla arası çok açılmasın */
         }
 
-        /* YENİ EKLENEN TAGLINE (SLOGAN) STİLİ */
+       
+        /* SEÇENEK 2: KOYU ŞERİT + GOLD YAZI */
         .brand-tagline {
+            display: inline-block; /* Şerit sadece yazı kadar olsun (tüm ekran değil) */
+            background: rgba(20, 20, 20, 0.85); /* Arkaya yarı saydam siyah cam */
+            padding: 0.5rem 2rem; /* Yazının etrafına boşluk */
+            border-radius: 50px; /* Kenarları yuvarladık, kapsül gibi */
+            
             font-family: var(--font-body);
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
-            color: var(--color-gold);
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            color: var(--color-gold); /* Yazı tekrar GOLD */
             text-transform: uppercase;
-            letter-spacing: 0.3em; /* Harfleri yaydık, elit dursun */
+            letter-spacing: 0.25em;
             font-weight: 500;
-            margin-top: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            margin-top: 1rem;
+            text-shadow: none; /* Arkası siyah olduğu için gölgeye gerek yok */
             text-align: center;
+            backdrop-filter: blur(5px); /* Arkası buzlu cam olsun */
+            border: 1px solid rgba(255,255,255,0.1); /* Çok ince bir çizgi */
+        }
         }
 
         /* İkonlar */
