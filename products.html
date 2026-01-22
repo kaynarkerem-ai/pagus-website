@@ -11,7 +11,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: var(--font-body); color: var(--color-black); background: #fff; overflow-x: hidden; }
 
-        /* --- STABLE HEADER (ZOOM PROOF) --- */
+        /* --- STABLE HEADER --- */
         .header { position: sticky; top: 0; width: 100%; z-index: 1000; background: var(--color-noble); padding: 15px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .header-inner { max-width: var(--site-max-width); margin: 0 auto; padding: 0 40px; }
         
@@ -144,9 +144,9 @@
         const curCat = urlParams.get('category') || "Wedding Suits";
         const curSub = urlParams.get('subcategory');
 
-        // inventory.js yüklenemezse kullanıcıyı uyar
+        // inventory.js kontrolü
         if (typeof productsDB === 'undefined') {
-            document.getElementById('pGrid').innerHTML = "<div style='text-align:center; width:100%; padding:50px; color:red;'>Error: 'inventory.js' file is missing. Please upload it via GitHub Desktop.</div>";
+            document.getElementById('pGrid').innerHTML = "<div style='text-align:center; width:100%; padding:50px; color:red;'>Error: 'inventory.js' not found. Please upload it via GitHub Desktop.</div>";
         } else {
             init();
         }
@@ -154,18 +154,16 @@
         function init() { if (curSub) showProducts(); else showSubs(); }
 
         function showSubs() {
-            // Kategori adını veritabanından bul (Büyük/Küçük harf düzeltmesi)
             const catData = productsDB.find(p => p.mainCat.toLowerCase() === curCat.toLowerCase());
             const displayCat = catData ? catData.mainCat : curCat;
             
             document.getElementById('pTitle').innerText = displayCat;
             document.getElementById('back').style.display = "none";
             
-            // Alt kategorileri bul ve tekilleştir
             const subs = [...new Set(productsDB.filter(p => p.mainCat.toLowerCase() === curCat.toLowerCase()).map(p => p.subCat))];
             
             if (subs.length === 0) {
-                 document.getElementById('pGrid').innerHTML = `<div style="grid-column:1/-1; text-align:center; color:#999; padding:50px;">Collection coming soon...</div>`;
+                 document.getElementById('pGrid').innerHTML = `<div style="grid-column:1/-1; text-align:center; color:#999; padding:50px;">Collection is being updated...</div>`;
                  return;
             }
 
@@ -212,10 +210,29 @@
         let activeCode = ""; let activePath = ""; let idx = 1;
 
         function openModal(code, realCode, folderPath) {
-            activeCode = code; activePath = folderPath; idx = 1;
+            activeCode = code; 
+            activePath = folderPath; 
+            idx = 1;
+            
             document.getElementById('pModal').style.display = "block";
             document.getElementById('mCode').innerText = realCode;
-            document.getElementById('wp').href = `https://wa.me/905511748907?text=Hi, inquiring about: ${realCode}`;
+
+            // --- AKILLI DİL DEDEKTÖRÜ (ITALYANCA & INGILIZCE) ---
+            let userLang = navigator.language || navigator.userLanguage; 
+            let message = "";
+
+            // Eğer dil 'it' ile başlıyorsa (İtalyanca ise)
+            if (userLang && userLang.startsWith("it")) {
+                message = `Salve, vorrei ricevere informazioni sul modello: ${realCode}`;
+            } else {
+                // Diğerleri için İngilizce
+                message = `Hi, inquiring about: ${realCode}`;
+            }
+
+            // WhatsApp linkini oluştur
+            document.getElementById('wp').href = `https://wa.me/905511748907?text=${encodeURIComponent(message)}`;
+            // -----------------------------------------------------
+
             update();
         }
 
