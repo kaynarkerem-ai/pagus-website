@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wholesale Men's Wear Collection | Pagus Manufacturer Turkey</title>
+    <meta name="description" content="Explore our premium wholesale collection of wedding suits, tuxedos, and formal wear. Direct from manufacturer in Turkey.">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --color-black: #1a1a1a; --color-gold: #c9a962; --color-noble: #2c3e50; --font-display: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --site-max-width: 1400px; }
@@ -18,37 +19,55 @@
         .logo { font-family: var(--font-display); font-size: 1.6rem; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
         
         .soc-icons { display: flex; gap: 15px; }
-        .soc-icons svg { width: 20px; height: 20px; stroke: #fff; fill: none; }
+        .soc-icons svg { width: 20px; height: 20px; stroke: #fff; fill: none; transition: 0.3s; }
+        .soc-icons a:hover svg { stroke: var(--color-gold); transform: translateY(-2px); }
 
         .nav-list { 
             display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(255,255,255,0.1); 
             padding-top: 12px; width: 100%; justify-content: center; flex-wrap: wrap; 
         }
-        .nav-list a { color: #fff; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-list a { color: #fff; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-list a:hover { color: var(--color-gold); }
 
         /* --- CONTENT AREA --- */
         .page-title-area { background: #f9f9f9; padding: 50px 0; text-align: center; border-bottom: 1px solid #eee; }
         .cat-title { font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; color: var(--color-noble); }
-        .back-btn { display: inline-block; color: var(--color-gold); font-weight: 700; margin-bottom: 15px; cursor: pointer; border: 1px solid var(--color-gold); padding: 6px 18px; font-size: 0.8rem; }
+        .back-btn { display: inline-block; color: var(--color-gold); font-weight: 700; margin-bottom: 15px; cursor: pointer; border: 1px solid var(--color-gold); padding: 6px 18px; font-size: 0.8rem; transition: 0.3s; }
+        .back-btn:hover { background: var(--color-gold); color: #fff; }
 
         .grid { max-width: var(--site-max-width); margin: 0 auto; padding: 60px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; }
         .card { cursor: pointer; text-align: center; transition: 0.3s; }
-        .img-box { aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .img-box { aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .card:hover img { transform: scale(1.05); }
+        .info-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px; color: var(--color-dark); }
+        .info-sub { font-size: 0.8rem; color: var(--color-gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
         /* MODAL SLIDER */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); }
         .modal-content { height: 100vh; display: grid; grid-template-columns: 3fr 1fr; }
         .slider { position: relative; background: #000; display: flex; align-items: center; justify-content: center; }
         .main-img { max-height: 90vh; max-width: 95%; object-fit: contain; }
-        .arrow { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 4rem; cursor: pointer; padding: 25px; opacity: 0.6; }
+        .arrow { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 4rem; cursor: pointer; padding: 25px; opacity: 0.6; transition: 0.3s; }
+        .arrow:hover { opacity: 1; color: var(--color-gold); }
         .prev { left: 0; } .next { right: 0; }
-        .side-info { background: #fff; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-        .close { position: absolute; top: 25px; right: 35px; font-size: 45px; color: #fff; cursor: pointer; }
+        
+        .side-info { background: #fff; padding: 60px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .close { position: absolute; top: 25px; right: 35px; font-size: 45px; color: #fff; cursor: pointer; line-height: 1; }
 
-        .footer { background: #000; color: #999; padding: 70px 40px; border-top: 4px solid var(--color-gold); }
+        /* FOOTER */
+        .footer { background: #000; color: #999; padding: 70px 40px; border-top: 4px solid var(--color-gold); margin-top: 5rem; }
+        .footer-grid { max-width: var(--site-max-width); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 6rem; }
+        .footer h4 { color: #fff; margin-bottom: 20px; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .footer p { line-height: 1.8; margin-bottom: 15px; font-size: 0.9rem; }
+        .footer ul { list-style: none; } .footer li { margin-bottom: 10px; font-size: 0.9rem; }
+
+        @media (max-width: 992px) {
+            .modal-content { grid-template-columns: 1fr; }
+            .side-info { display: none; } /* Mobilde sadece resim */
+            .nav-list { gap: 15px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
     </style>
 </head>
 <body>
@@ -78,7 +97,9 @@
         <h1 class="cat-title" id="pTitle">COLLECTION</h1>
     </section>
 
-    <div class="grid" id="pGrid"></div>
+    <div class="grid" id="pGrid">
+        <div style="grid-column:1/-1; text-align:center; padding:50px; color:#999;">Loading Collection...</div>
+    </div>
 
     <div id="pModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
@@ -89,60 +110,127 @@
                 <span class="arrow next" onclick="move(1)">&#10095;</span>
             </div>
             <div class="side-info">
-                <h2 id="mCode" style="font-family:var(--font-display); font-size:2.2rem; margin-bottom:15px;">CODE</h2>
-                <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700;">WHATSAPP INQUIRY</a>
+                <span style="color:var(--color-gold); font-weight:700; font-size:0.8rem; letter-spacing:2px;">WHOLESALE MANUFACTURER</span>
+                <h2 id="mCode" style="font-family:var(--font-display); font-size:2.5rem; margin:15px 0 25px;">CODE</h2>
+                <p style="color:#555; margin-bottom:40px; font-size:1rem;">Premium quality fabric and meticulous Turkish craftsmanship. Available for global wholesale orders.</p>
+                <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700; letter-spacing:1px; border-radius:4px; box-shadow: 0 10px 20px rgba(201,169,98,0.3);">ASK PRICE VIA WHATSAPP</a>
             </div>
         </div>
     </div>
 
-    <script>
-        // ÜRÜN LİSTESİ (Buraya scriptin verdiği listeyi yapıştır)
-        const productsDB = [
-            { "code": "Mandarin-1023D170", "mainCat": "Wedding Suits", "subCat": "Mandarin Collar Suits", "realCode": "1023D170" }
-        ];
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>ABOUT PAGUS MEN'S WEAR</h4>
+                <p>PAGUS Menswear is established with a single mission: to provide world-class textile solutions for global retailers. Located in Turkey, a global hub for textile production, we bridge the gap between premium manufacturing and high-end retail.</p>
+                <p><strong>PAGUS. Global Standards, Local Expertise.</strong></p>
+            </div>
+            <div>
+                <h4>B2B CONTACT</h4>
+                <ul>
+                    <li><strong>Email:</strong> info@pagusmenswear.com</li>
+                    <li><strong>WhatsApp:</strong> +90 551 174 89 07</li>
+                    <li><strong>Location:</strong> İzmir, Turkey</li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">© 2026 Pagus Men's Wear. All Rights Reserved.</div>
+    </footer>
 
+    <script src="inventory.js"></script>
+
+    <script>
+        // SCRIPT BAŞLANGICI
         const urlParams = new URLSearchParams(window.location.search);
         const curCat = urlParams.get('category') || "Wedding Suits";
         const curSub = urlParams.get('subcategory');
 
+        // inventory.js yüklenmezse hata vermesin diye koruma
+        if (typeof productsDB === 'undefined') {
+            document.getElementById('pGrid').innerHTML = "<div style='text-align:center; width:100%; padding:50px;'>Error: Inventory file not loaded. Please upload 'inventory.js'.</div>";
+        } else {
+            init();
+        }
+
         function init() { if (curSub) showProducts(); else showSubs(); }
 
         function showSubs() {
-            document.getElementById('pTitle').innerText = curCat;
-            const subs = [...new Set(productsDB.filter(p => p.mainCat === curCat).map(p => p.subCat))];
-            document.getElementById('pGrid').innerHTML = subs.map(s => `
-                <div class="card" onclick="window.location.href='?category=${curCat}&subcategory=${encodeURIComponent(s)}'">
-                    <div class="img-box"><img src="images/${productsDB.find(p => p.subCat === s).code} (1).jpg" onerror="this.src='placeholder.jpg'"></div>
-                    <h3 style="font-family:var(--font-display); font-size:1.3rem;">${s}</h3>
-                </div>`).join('');
+            // Büyük/küçük harf duyarlılığı olmadan kategoriyi bul
+            const catData = productsDB.find(p => p.mainCat.toLowerCase() === curCat.toLowerCase());
+            const displayCat = catData ? catData.mainCat : curCat;
+            
+            document.getElementById('pTitle').innerText = displayCat;
+            document.getElementById('back').style.display = "none";
+            
+            // Alt kategorileri filtrele
+            const subs = [...new Set(productsDB.filter(p => p.mainCat.toLowerCase() === curCat.toLowerCase()).map(p => p.subCat))];
+            
+            if (subs.length === 0) {
+                 document.getElementById('pGrid').innerHTML = `<div style="grid-column:1/-1; text-align:center; color:#999; padding:50px;">Collection is being updated...</div>`;
+                 return;
+            }
+
+            document.getElementById('pGrid').innerHTML = subs.map(s => {
+                const cover = productsDB.find(p => p.subCat === s);
+                // RESİM YOLU: images / KlasörYolu / DosyaAdı
+                const imgPath = `images/${cover.folderPath}/${cover.code} (1).webp`; 
+                
+                return `
+                <div class="card" onclick="window.location.href='?category=${encodeURIComponent(curCat)}&subcategory=${encodeURIComponent(s)}'">
+                    <div class="img-box"><img src="${imgPath}" onerror="this.src='placeholder.jpg'"></div>
+                    <div class="info-box">
+                        <h3 class="info-title">${s}</h3>
+                        <span class="info-sub">VIEW COLLECTION</span>
+                    </div>
+                </div>`;
+            }).join('');
         }
 
         function showProducts() {
             document.getElementById('pTitle').innerText = curSub;
             document.getElementById('back').style.display = "inline-block";
-            const prods = productsDB.filter(p => p.mainCat === curCat && p.subCat === curSub);
-            document.getElementById('pGrid').innerHTML = prods.map(p => `
-                <div class="card" onclick="openModal('${p.code}', '${p.realCode}')">
-                    <div class="img-box"><img src="images/${p.code} (1).jpg"></div>
-                    <h3>${p.realCode}</h3>
-                </div>`).join('');
+            
+            const prods = productsDB.filter(p => p.mainCat.toLowerCase() === curCat.toLowerCase() && p.subCat === curSub);
+            
+            if (prods.length === 0) {
+                document.getElementById('pGrid').innerHTML = `<div style="text-align:center;">No products found.</div>`;
+                return;
+            }
+
+            document.getElementById('pGrid').innerHTML = prods.map(p => {
+                const imgPath = `images/${p.folderPath}/${p.code} (1).webp`;
+                return `
+                <div class="card" onclick="openModal('${p.code}', '${p.realCode}', '${p.folderPath}')">
+                    <div class="img-box"><img src="${imgPath}"></div>
+                    <h3 class="info-title">${p.realCode}</h3>
+                </div>`;
+            }).join('');
         }
 
         function goBack() { window.location.href = `?category=${curCat}`; }
 
-        let activeCode = ""; let idx = 1;
-        function openModal(c, r) {
-            activeCode = c; idx = 1;
+        // --- MODAL MANTIĞI ---
+        let activeCode = ""; let activePath = ""; let idx = 1;
+
+        function openModal(code, realCode, folderPath) {
+            activeCode = code; activePath = folderPath; idx = 1;
             document.getElementById('pModal').style.display = "block";
-            document.getElementById('mCode').innerText = r;
-            document.getElementById('wp').href = `https://wa.me/905511748907?text=Inquiring: ${r}`;
+            document.getElementById('mCode').innerText = realCode;
+            document.getElementById('wp').href = `https://wa.me/905511748907?text=Hi, inquiring about: ${realCode}`;
             update();
         }
-        function closeModal() { document.getElementById('pModal').style.display = "none"; }
-        function move(d) { idx += d; if(idx<1) idx=4; if(idx>4) idx=1; update(); }
-        function update() { document.getElementById('mImg').src = `images/${activeCode} (${idx}).jpg`; }
 
-        init();
+        function closeModal() { document.getElementById('pModal').style.display = "none"; }
+        
+        // Modal dışına tıklayınca kapatma özelliği
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('pModal')) {
+                closeModal();
+            }
+        }
+
+        function move(d) { idx += d; if(idx<1) idx=4; if(idx>4) idx=1; update(); }
+        function update() { document.getElementById('mImg').src = `images/${activePath}/${activeCode} (${idx}).webp`; }
     </script>
 </body>
 </html>
