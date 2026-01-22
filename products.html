@@ -11,7 +11,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: var(--font-body); color: var(--color-black); background: #fff; overflow-x: hidden; }
 
-        /* --- STABLE HEADER --- */
+        /* HEADER */
         .header { position: sticky; top: 0; width: 100%; z-index: 900; background: var(--color-noble); padding: 15px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .header-inner { max-width: var(--site-max-width); margin: 0 auto; padding: 0 40px; }
         .logo-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
@@ -23,13 +23,22 @@
         .nav-list a { color: #fff; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; text-decoration: none;}
         .nav-list a:hover { color: var(--color-gold); }
 
-        /* --- CONTENT AREA --- */
-        .page-title-area { background: #f9f9f9; padding: 50px 0; text-align: center; border-bottom: 1px solid #eee; }
-        .cat-title { font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; color: var(--color-noble); }
+        /* PAGE TITLE & INFO BAR */
+        .page-title-area { background: #f9f9f9; padding: 40px 0 20px; text-align: center; border-bottom: 1px solid #eee; }
+        .cat-title { font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; color: var(--color-noble); margin-bottom: 20px; }
         .back-btn { display: inline-block; color: var(--color-gold); font-weight: 700; margin-bottom: 15px; cursor: pointer; border: 1px solid var(--color-gold); padding: 6px 18px; font-size: 0.8rem; transition: 0.3s; }
         .back-btn:hover { background: var(--color-gold); color: #fff; }
 
-        .grid { max-width: var(--site-max-width); margin: 0 auto; padding: 60px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; }
+        /* --- HOW TO USE (INFO BOX) --- */
+        .info-guide {
+            background: #fff3cd; border: 1px solid #ffeeba; color: #856404;
+            max-width: 600px; margin: 0 auto 20px; padding: 15px; border-radius: 8px;
+            font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .info-guide span { font-size: 1.2rem; }
+
+        /* GRID */
+        .grid { max-width: var(--site-max-width); margin: 0 auto; padding: 40px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; min-height: 400px; }
         .card { cursor: pointer; text-align: center; transition: 0.3s; position: relative; }
         .img-box { aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
@@ -37,18 +46,18 @@
         .info-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px; color: var(--color-dark); }
         .info-sub { font-size: 0.8rem; color: var(--color-gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- HEART BUTTON (FAVORITE) --- */
+        /* HEART BUTTON */
         .heart-btn {
             position: absolute; top: 15px; right: 15px; width: 40px; height: 40px;
-            background: rgba(255,255,255,0.9); border-radius: 50%;
+            background: rgba(255,255,255,0.95); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.5rem; color: #ccc; cursor: pointer; z-index: 10;
-            transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-        .heart-btn:hover { transform: scale(1.1); }
+        .heart-btn:hover { transform: scale(1.1); color: #e74c3c; }
         .heart-btn.active { color: #e74c3c; }
 
-        /* --- FLOATING CART BUTTON (WHATSAPP LIST) --- */
+        /* FLOAT CART */
         .float-cart {
             position: fixed; bottom: 30px; right: 30px; z-index: 999;
             background: #25D366; color: #fff; padding: 15px 25px;
@@ -61,22 +70,23 @@
         .float-cart span { background: #fff; color: #25D366; padding: 2px 8px; border-radius: 10px; font-size: 0.9rem; }
         @keyframes bounceIn { 0%{transform: scale(0);} 80%{transform: scale(1.1);} 100%{transform: scale(1);} }
 
-        /* --- PRIVATE LABEL BANNER --- */
+        /* --- PRIVATE LABEL BANNER (HIGH CONTRAST) --- */
         .private-label {
-            background: #f4f4f4; padding: 60px 40px; text-align: center;
-            border-top: 1px solid #ddd; margin-top: 60px;
+            background: var(--color-noble); /* KOYU RENK */
+            padding: 80px 40px; text-align: center; color: #fff;
+            margin-top: 60px;
         }
         .pl-content { max-width: 800px; margin: 0 auto; }
-        .pl-title { font-family: var(--font-display); font-size: 2rem; color: var(--color-noble); margin-bottom: 15px; }
-        .pl-text { color: #666; margin-bottom: 25px; line-height: 1.6; }
+        .pl-title { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-gold); margin-bottom: 20px; }
+        .pl-text { color: #ddd; margin-bottom: 35px; line-height: 1.6; font-size: 1.1rem; }
         .pl-btn { 
-            display: inline-block; background: var(--color-noble); color: #fff; 
-            padding: 12px 30px; text-decoration: none; font-weight: 600; letter-spacing: 1px;
-            transition: 0.3s; 
+            display: inline-block; background: var(--color-gold); color: #000; 
+            padding: 15px 40px; text-decoration: none; font-weight: 700; letter-spacing: 1px;
+            border-radius: 4px; transition: 0.3s; 
         }
-        .pl-btn:hover { background: var(--color-gold); }
+        .pl-btn:hover { background: #fff; transform: translateY(-3px); }
 
-        /* --- MODAL --- */
+        /* MODAL */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); }
         .modal-content { height: 100vh; display: grid; grid-template-columns: 3fr 1fr; }
         .slider { position: relative; background: #000; display: flex; align-items: center; justify-content: center; }
@@ -88,13 +98,12 @@
         .side-info { background: #fff; padding: 60px; display: flex; flex-direction: column; justify-content: center; position: relative; }
         .close { position: absolute; top: 25px; right: 35px; font-size: 45px; color: #fff; cursor: pointer; line-height: 1; }
         
-        /* QUALITY BADGES IN MODAL */
         .badges { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         .badge-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; font-size: 0.7rem; color: #666; font-weight: 600; text-transform: uppercase; }
         .badge-icon { font-size: 1.5rem; color: var(--color-noble); }
 
         /* FOOTER */
-        .footer { background: #000; color: #999; padding: 70px 40px; border-top: 4px solid var(--color-gold); }
+        .footer { background: #000; color: #999; padding: 70px 40px; border-top: 1px solid #333; }
         .footer-grid { max-width: var(--site-max-width); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 6rem; }
         .footer h4 { color: #fff; margin-bottom: 20px; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 10px; }
         .footer p { line-height: 1.8; margin-bottom: 15px; font-size: 0.9rem; }
@@ -102,7 +111,7 @@
 
         @media (max-width: 992px) {
             .modal-content { grid-template-columns: 1fr; }
-            .side-info { display: none; } /* Mobile modal logic could be improved but keeping simple for now */
+            .side-info { display: none; } 
             .nav-list { gap: 15px; }
             .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .heart-btn { width: 35px; height: 35px; font-size: 1.2rem; }
@@ -134,6 +143,11 @@
     <section class="page-title-area">
         <div id="back" class="back-btn" onclick="goBack()" style="display:none;">← BACK TO STYLES</div>
         <h1 class="cat-title" id="pTitle">COLLECTION</h1>
+        
+        <div class="info-guide" id="infoGuide">
+            <span>💡</span> 
+            <b id="guideText">Tap the heart ❤️ icons to create your inquiry list.</b>
+        </div>
     </section>
 
     <div class="grid" id="pGrid">
@@ -148,7 +162,7 @@
         </div>
     </section>
 
-    <div id="floatCart" class="float-cart" onclick="sendListToWhatsapp()">
+    <div id="floatCart" class="float-cart" onclick="sendListToWhatsapp()" title="Click to send inquiry via WhatsApp">
         <svg style="width:24px;height:24px;fill:white;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         SEND LIST <span id="cartCount">0</span>
     </div>
@@ -164,13 +178,11 @@
             <div class="side-info">
                 <span style="color:var(--color-gold); font-weight:700; font-size:0.8rem; letter-spacing:2px;">WHOLESALE MANUFACTURER</span>
                 <h2 id="mCode" style="font-family:var(--font-display); font-size:2.5rem; margin:15px 0 25px;">CODE</h2>
-                
                 <div class="badges">
                     <div class="badge-item"><span class="badge-icon">🧵</span>Premium<br>Fabric</div>
                     <div class="badge-item"><span class="badge-icon">🇹🇷</span>Made in<br>Turkey</div>
                     <div class="badge-item"><span class="badge-icon">📦</span>Wholesale<br>Only</div>
                 </div>
-
                 <p style="color:#555; margin-bottom:40px; font-size:1rem;">Premium quality fabric and meticulous Turkish craftsmanship. This model is available for bulk orders. Contact us for color swatches and sizing charts.</p>
                 <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700; letter-spacing:1px; border-radius:4px; box-shadow: 0 10px 20px rgba(201,169,98,0.3); text-decoration:none;">ASK PRICE VIA WHATSAPP</a>
             </div>
@@ -203,24 +215,35 @@
         const curCat = urlParams.get('category') || "Wedding Suits";
         const curSub = urlParams.get('subcategory');
         
-        // Sepet (Favori) Listesi
         let cart = JSON.parse(localStorage.getItem('pagusCart')) || [];
+
+        // DİL KONTROLÜ (REHBER İÇİN)
+        function setLanguage() {
+            let userLang = navigator.language || navigator.userLanguage; 
+            const guideText = document.getElementById('guideText');
+            if (userLang && userLang.startsWith("it")) {
+                guideText.innerText = "Tocca l'icona del cuore ❤️ per creare la tua lista di richieste.";
+            } else {
+                guideText.innerText = "Tap the heart ❤️ icons to create your inquiry list.";
+            }
+        }
 
         if (typeof productsDB === 'undefined') {
             document.getElementById('pGrid').innerHTML = "<div style='text-align:center; width:100%; padding:50px; color:red;'>Error: 'inventory.js' not found. Please upload it via GitHub Desktop.</div>";
         } else {
+            setLanguage();
             init();
-            updateCartUI(); // Sayfa açılınca sepeti güncelle
+            updateCartUI();
         }
 
         function init() { if (curSub) showProducts(); else showSubs(); }
 
-        // KATEGORİ LİSTELEME
         function showSubs() {
             const catData = productsDB.find(p => p.mainCat.toLowerCase() === curCat.toLowerCase());
             const displayCat = catData ? catData.mainCat : curCat;
             document.getElementById('pTitle').innerText = displayCat;
             document.getElementById('back').style.display = "none";
+            document.getElementById('infoGuide').style.display = "none"; // Alt kategoride rehberi gizle
             
             const subs = [...new Set(productsDB.filter(p => p.mainCat.toLowerCase() === curCat.toLowerCase()).map(p => p.subCat))];
             
@@ -243,10 +266,10 @@
             }).join('');
         }
 
-        // ÜRÜN LİSTELEME
         function showProducts() {
             document.getElementById('pTitle').innerText = curSub;
             document.getElementById('back').style.display = "inline-block";
+            document.getElementById('infoGuide').style.display = "flex"; // Ürünlerde rehberi göster
             
             const prods = productsDB.filter(p => p.mainCat.toLowerCase() === curCat.toLowerCase() && p.subCat === curSub);
             
@@ -271,20 +294,17 @@
 
         function goBack() { window.location.href = `?category=${curCat}`; }
 
-        // --- CART (FAVORI) SISTEMI ---
         function toggleCart(e, code) {
-            e.stopPropagation(); // Karta tıklayınca modal açılmasın
-            
+            e.stopPropagation();
             if (cart.includes(code)) {
-                cart = cart.filter(item => item !== code); // Çıkar
+                cart = cart.filter(item => item !== code);
                 e.target.innerText = '♡';
                 e.target.classList.remove('active');
             } else {
-                cart.push(code); // Ekle
+                cart.push(code);
                 e.target.innerText = '♥';
                 e.target.classList.add('active');
             }
-            
             localStorage.setItem('pagusCart', JSON.stringify(cart));
             updateCartUI();
         }
@@ -293,38 +313,27 @@
             const btn = document.getElementById('floatCart');
             const count = document.getElementById('cartCount');
             count.innerText = cart.length;
-            
-            if (cart.length > 0) {
-                btn.style.display = "flex";
-            } else {
-                btn.style.display = "none";
-            }
+            if (cart.length > 0) btn.style.display = "flex"; else btn.style.display = "none";
         }
 
         function sendListToWhatsapp() {
             if (cart.length === 0) return;
-            
             let userLang = navigator.language || navigator.userLanguage; 
             let message = "";
             let codes = cart.join(", ");
-
             if (userLang && userLang.startsWith("it")) {
                 message = `Salve Pagus, sono interessato ai prezzi di questi modelli:\n\n${codes}\n\nGrazie.`;
             } else {
                 message = `Hi Pagus, I am interested in the prices for these models:\n\n${codes}\n\nThanks.`;
             }
-            
             window.open(`https://wa.me/905511748907?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // --- MODAL ---
         let activeCode = ""; let activePath = ""; let idx = 1;
-
         function openModal(code, realCode, folderPath) {
             activeCode = code; activePath = folderPath; idx = 1;
             document.getElementById('pModal').style.display = "block";
             document.getElementById('mCode').innerText = realCode;
-
             let userLang = navigator.language || navigator.userLanguage; 
             let message = "";
             if (userLang && userLang.startsWith("it")) {
@@ -333,10 +342,8 @@
                 message = `Hi, inquiring about: ${realCode}`;
             }
             document.getElementById('wp').href = `https://wa.me/905511748907?text=${encodeURIComponent(message)}`;
-            
             update();
         }
-
         function closeModal() { document.getElementById('pModal').style.display = "none"; }
         window.onclick = function(event) { if (event.target == document.getElementById('pModal')) closeModal(); }
         function move(d) { idx += d; if(idx<1) idx=4; if(idx>4) idx=1; update(); }
