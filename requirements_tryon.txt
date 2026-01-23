@@ -1,0 +1,4 @@
+# PAGUS Virtual Try-On - Gerekli Paketler
+gradio>=4.0.0
+replicate>=0.15.0
+pillow>=9.0.0
