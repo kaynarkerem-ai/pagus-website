@@ -1,5 +1,264 @@
 const productsDB = [
     {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "1023D170-02",
+        "realCode": "1023D170-02",
+        "folderPath": "Formal Suits/1023D170-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15097-17",
+        "realCode": "15097-17",
+        "folderPath": "Formal Suits/15097-17"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15104-03",
+        "realCode": "15104-03",
+        "folderPath": "Formal Suits/15104-03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15118-35",
+        "realCode": "15118-35",
+        "folderPath": "Formal Suits/15118-35"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15120_43",
+        "realCode": "15120_43",
+        "folderPath": "Formal Suits/15120_43"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15124-01",
+        "realCode": "15124-01",
+        "folderPath": "Formal Suits/15124-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15124-31",
+        "realCode": "15124-31",
+        "folderPath": "Formal Suits/15124-31"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15124_13",
+        "realCode": "15124_13",
+        "folderPath": "Formal Suits/15124_13"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15127_17",
+        "realCode": "15127_17",
+        "folderPath": "Formal Suits/15127_17"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15128-02",
+        "realCode": "15128-02",
+        "folderPath": "Formal Suits/15128-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15130-02",
+        "realCode": "15130-02",
+        "folderPath": "Formal Suits/15130-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15130_03",
+        "realCode": "15130_03",
+        "folderPath": "Formal Suits/15130_03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15130_10",
+        "realCode": "15130_10",
+        "folderPath": "Formal Suits/15130_10"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15131-06",
+        "realCode": "15131-06",
+        "folderPath": "Formal Suits/15131-06"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15131-43",
+        "realCode": "15131-43",
+        "folderPath": "Formal Suits/15131-43"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15131-45",
+        "realCode": "15131-45",
+        "folderPath": "Formal Suits/15131-45"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15131_03",
+        "realCode": "15131_03",
+        "folderPath": "Formal Suits/15131_03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15136-14",
+        "realCode": "15136-14",
+        "folderPath": "Formal Suits/15136-14"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15155-02",
+        "realCode": "15155-02",
+        "folderPath": "Formal Suits/15155-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15155-03",
+        "realCode": "15155-03",
+        "folderPath": "Formal Suits/15155-03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15155-13",
+        "realCode": "15155-13",
+        "folderPath": "Formal Suits/15155-13"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15157-02",
+        "realCode": "15157-02",
+        "folderPath": "Formal Suits/15157-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15157-03",
+        "realCode": "15157-03",
+        "folderPath": "Formal Suits/15157-03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15157-05",
+        "realCode": "15157-05",
+        "folderPath": "Formal Suits/15157-05"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15157-17",
+        "realCode": "15157-17",
+        "folderPath": "Formal Suits/15157-17"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15158-02",
+        "realCode": "15158-02",
+        "folderPath": "Formal Suits/15158-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15158-02 Damatlık olanı A",
+        "realCode": "15158-02 Damatlık olanı A",
+        "folderPath": "Formal Suits/15158-02 Damatlık olanı A"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15158-02 Damatlık olanı B",
+        "realCode": "15158-02 Damatlık olanı B",
+        "folderPath": "Formal Suits/15158-02 Damatlık olanı B"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15165-02",
+        "realCode": "15165-02",
+        "folderPath": "Formal Suits/15165-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15165-05",
+        "realCode": "15165-05",
+        "folderPath": "Formal Suits/15165-05"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15165-14",
+        "realCode": "15165-14",
+        "folderPath": "Formal Suits/15165-14"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15170-24",
+        "realCode": "15170-24",
+        "folderPath": "Formal Suits/15170-24"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15173-04",
+        "realCode": "15173-04",
+        "folderPath": "Formal Suits/15173-04"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15173-05",
+        "realCode": "15173-05",
+        "folderPath": "Formal Suits/15173-05"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15173-14",
+        "realCode": "15173-14",
+        "folderPath": "Formal Suits/15173-14"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "15173-24",
+        "realCode": "15173-24",
+        "folderPath": "Formal Suits/15173-24"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "20010-24",
+        "realCode": "20010-24",
+        "folderPath": "Formal Suits/20010-24"
+    },
+    {
         "mainCat": "Wedding Suits",
         "subCat": "Mandarin Collar Suits",
         "code": "1023D170",
