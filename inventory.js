@@ -259,6 +259,468 @@ const productsDB = [
         "folderPath": "Formal Suits/20010-24"
     },
     {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50003-01",
+        "realCode": "50003-01",
+        "folderPath": "Formal Suits/50003-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50005-01",
+        "realCode": "50005-01",
+        "folderPath": "Formal Suits/50005-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50005-02",
+        "realCode": "50005-02",
+        "folderPath": "Formal Suits/50005-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50005-06",
+        "realCode": "50005-06",
+        "folderPath": "Formal Suits/50005-06"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50052-22",
+        "realCode": "50052-22",
+        "folderPath": "Formal Suits/50052-22"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50054-24",
+        "realCode": "50054-24",
+        "folderPath": "Formal Suits/50054-24"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50056-02",
+        "realCode": "50056-02",
+        "folderPath": "Formal Suits/50056-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50056-04",
+        "realCode": "50056-04",
+        "folderPath": "Formal Suits/50056-04"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50056-06",
+        "realCode": "50056-06",
+        "folderPath": "Formal Suits/50056-06"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50056-09",
+        "realCode": "50056-09",
+        "folderPath": "Formal Suits/50056-09"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50056-10",
+        "realCode": "50056-10",
+        "folderPath": "Formal Suits/50056-10"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50058-39",
+        "realCode": "50058-39",
+        "folderPath": "Formal Suits/50058-39"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50060-01",
+        "realCode": "50060-01",
+        "folderPath": "Formal Suits/50060-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50060-02A",
+        "realCode": "50060-02A",
+        "folderPath": "Formal Suits/50060-02A"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50060-02B",
+        "realCode": "50060-02B",
+        "folderPath": "Formal Suits/50060-02B"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50071-02",
+        "realCode": "50071-02",
+        "folderPath": "Formal Suits/50071-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50071-08",
+        "realCode": "50071-08",
+        "folderPath": "Formal Suits/50071-08"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50072-03",
+        "realCode": "50072-03",
+        "folderPath": "Formal Suits/50072-03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50073-06",
+        "realCode": "50073-06",
+        "folderPath": "Formal Suits/50073-06"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50074-01",
+        "realCode": "50074-01",
+        "folderPath": "Formal Suits/50074-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50075-01",
+        "realCode": "50075-01",
+        "folderPath": "Formal Suits/50075-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50075-02",
+        "realCode": "50075-02",
+        "folderPath": "Formal Suits/50075-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50080-01",
+        "realCode": "50080-01",
+        "folderPath": "Formal Suits/50080-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50080-02",
+        "realCode": "50080-02",
+        "folderPath": "Formal Suits/50080-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50110-01",
+        "realCode": "50110-01",
+        "folderPath": "Formal Suits/50110-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50110-06",
+        "realCode": "50110-06",
+        "folderPath": "Formal Suits/50110-06"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50111-02",
+        "realCode": "50111-02",
+        "folderPath": "Formal Suits/50111-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50111-03",
+        "realCode": "50111-03",
+        "folderPath": "Formal Suits/50111-03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50111-09",
+        "realCode": "50111-09",
+        "folderPath": "Formal Suits/50111-09"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50112-22",
+        "realCode": "50112-22",
+        "folderPath": "Formal Suits/50112-22"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50113-02",
+        "realCode": "50113-02",
+        "folderPath": "Formal Suits/50113-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50113-06",
+        "realCode": "50113-06",
+        "folderPath": "Formal Suits/50113-06"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50114-03",
+        "realCode": "50114-03",
+        "folderPath": "Formal Suits/50114-03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50114-06",
+        "realCode": "50114-06",
+        "folderPath": "Formal Suits/50114-06"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50120-06",
+        "realCode": "50120-06",
+        "folderPath": "Formal Suits/50120-06"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50122-24",
+        "realCode": "50122-24",
+        "folderPath": "Formal Suits/50122-24"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50125-02",
+        "realCode": "50125-02",
+        "folderPath": "Formal Suits/50125-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50127-10",
+        "realCode": "50127-10",
+        "folderPath": "Formal Suits/50127-10"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50128-43",
+        "realCode": "50128-43",
+        "folderPath": "Formal Suits/50128-43"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50129-03",
+        "realCode": "50129-03",
+        "folderPath": "Formal Suits/50129-03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50129-22",
+        "realCode": "50129-22",
+        "folderPath": "Formal Suits/50129-22"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50130-01",
+        "realCode": "50130-01",
+        "folderPath": "Formal Suits/50130-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50130-02",
+        "realCode": "50130-02",
+        "folderPath": "Formal Suits/50130-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50132-02",
+        "realCode": "50132-02",
+        "folderPath": "Formal Suits/50132-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50200-42",
+        "realCode": "50200-42",
+        "folderPath": "Formal Suits/50200-42"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50201-01",
+        "realCode": "50201-01",
+        "folderPath": "Formal Suits/50201-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50201-24",
+        "realCode": "50201-24",
+        "folderPath": "Formal Suits/50201-24"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50206-01",
+        "realCode": "50206-01",
+        "folderPath": "Formal Suits/50206-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "50206-02",
+        "realCode": "50206-02",
+        "folderPath": "Formal Suits/50206-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51005-03",
+        "realCode": "51005-03",
+        "folderPath": "Formal Suits/51005-03"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51005-10",
+        "realCode": "51005-10",
+        "folderPath": "Formal Suits/51005-10"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51080-01",
+        "realCode": "51080-01",
+        "folderPath": "Formal Suits/51080-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51900-02",
+        "realCode": "51900-02",
+        "folderPath": "Formal Suits/51900-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51900-17",
+        "realCode": "51900-17",
+        "folderPath": "Formal Suits/51900-17"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51904-01",
+        "realCode": "51904-01",
+        "folderPath": "Formal Suits/51904-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51905-01",
+        "realCode": "51905-01",
+        "folderPath": "Formal Suits/51905-01"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51905-02",
+        "realCode": "51905-02",
+        "folderPath": "Formal Suits/51905-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51905-07",
+        "realCode": "51905-07",
+        "folderPath": "Formal Suits/51905-07"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "51905-17",
+        "realCode": "51905-17",
+        "folderPath": "Formal Suits/51905-17"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "AGM1142-02",
+        "realCode": "AGM1142-02",
+        "folderPath": "Formal Suits/AGM1142-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "AGM1203-07",
+        "realCode": "AGM1203-07",
+        "folderPath": "Formal Suits/AGM1203-07"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "AGM4043-02",
+        "realCode": "AGM4043-02",
+        "folderPath": "Formal Suits/AGM4043-02"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "AGM801L-07",
+        "realCode": "AGM801L-07",
+        "folderPath": "Formal Suits/AGM801L-07"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "AGM801L-09",
+        "realCode": "AGM801L-09",
+        "folderPath": "Formal Suits/AGM801L-09"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "AGM801L-09 (1)",
+        "realCode": "AGM801L-09 (1)",
+        "folderPath": "Formal Suits/AGM801L-09 (1)"
+    },
+    {
+        "mainCat": "Formal Suits",
+        "subCat": "Formal Suits",
+        "code": "WhatsApp Image 2026-01-17 at 14.52.03 (2)",
+        "realCode": "WhatsApp Image 2026-01-17 at 14.52.03 (2)",
+        "folderPath": "Formal Suits/WhatsApp Image 2026-01-17 at 14.52.03 (2)"
+    },
+    {
         "mainCat": "Wedding Suits",
         "subCat": "Mandarin Collar Suits",
         "code": "1023D170",
