@@ -443,23 +443,9 @@ const productsDB = [
     {
         "mainCat": "Formal Suits",
         "subCat": "Formal Suits",
-        "code": "50111-02",
-        "realCode": "50111-02",
-        "folderPath": "Formal Suits/50111-02"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
         "code": "50111-03",
         "realCode": "50111-03",
         "folderPath": "Formal Suits/50111-03"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
-        "code": "50111-09",
-        "realCode": "50111-09",
-        "folderPath": "Formal Suits/50111-09"
     },
     {
         "mainCat": "Formal Suits",
@@ -499,65 +485,9 @@ const productsDB = [
     {
         "mainCat": "Formal Suits",
         "subCat": "Formal Suits",
-        "code": "50120-06",
-        "realCode": "50120-06",
-        "folderPath": "Formal Suits/50120-06"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
-        "code": "50122-24",
-        "realCode": "50122-24",
-        "folderPath": "Formal Suits/50122-24"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
         "code": "50125-02",
         "realCode": "50125-02",
         "folderPath": "Formal Suits/50125-02"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
-        "code": "50127-10",
-        "realCode": "50127-10",
-        "folderPath": "Formal Suits/50127-10"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
-        "code": "50128-43",
-        "realCode": "50128-43",
-        "folderPath": "Formal Suits/50128-43"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
-        "code": "50129-03",
-        "realCode": "50129-03",
-        "folderPath": "Formal Suits/50129-03"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
-        "code": "50129-22",
-        "realCode": "50129-22",
-        "folderPath": "Formal Suits/50129-22"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
-        "code": "50130-01",
-        "realCode": "50130-01",
-        "folderPath": "Formal Suits/50130-01"
-    },
-    {
-        "mainCat": "Formal Suits",
-        "subCat": "Formal Suits",
-        "code": "50130-02",
-        "realCode": "50130-02",
-        "folderPath": "Formal Suits/50130-02"
     },
     {
         "mainCat": "Formal Suits",
@@ -744,6 +674,20 @@ const productsDB = [
     {
         "mainCat": "Wedding Suits",
         "subCat": "Mandarin Collar Suits",
+        "code": "50111-02",
+        "realCode": "50111-02",
+        "folderPath": "Wedding Suits/50111-02"
+    },
+    {
+        "mainCat": "Wedding Suits",
+        "subCat": "Mandarin Collar Suits",
+        "code": "50111-09",
+        "realCode": "50111-09",
+        "folderPath": "Wedding Suits/50111-09"
+    },
+    {
+        "mainCat": "Wedding Suits",
+        "subCat": "Mandarin Collar Suits",
         "code": "50111-2 laci",
         "realCode": "50111-2 laci",
         "folderPath": "Wedding Suits/50111-2 laci"
@@ -789,6 +733,20 @@ const productsDB = [
         "code": "50201-24",
         "realCode": "50201-24",
         "folderPath": "Wedding Suits/50201-24"
+    },
+    {
+        "mainCat": "Wedding Suits",
+        "subCat": "Peak Lapel Smokings",
+        "code": "50130-01",
+        "realCode": "50130-01",
+        "folderPath": "Wedding Suits/50130-01"
+    },
+    {
+        "mainCat": "Wedding Suits",
+        "subCat": "Peak Lapel Smokings",
+        "code": "50130-02",
+        "realCode": "50130-02",
+        "folderPath": "Wedding Suits/50130-02"
     },
     {
         "mainCat": "Wedding Suits",
@@ -863,6 +821,20 @@ const productsDB = [
     {
         "mainCat": "Wedding Suits",
         "subCat": "Shawl Collar Smokings",
+        "code": "50120-06",
+        "realCode": "50120-06",
+        "folderPath": "Wedding Suits/50120-06"
+    },
+    {
+        "mainCat": "Wedding Suits",
+        "subCat": "Shawl Collar Smokings",
+        "code": "50122-24",
+        "realCode": "50122-24",
+        "folderPath": "Wedding Suits/50122-24"
+    },
+    {
+        "mainCat": "Wedding Suits",
+        "subCat": "Shawl Collar Smokings",
         "code": "50123-2",
         "realCode": "50123-2",
         "folderPath": "Wedding Suits/50123-2"
@@ -929,6 +901,20 @@ const productsDB = [
         "code": "50128-43",
         "realCode": "50128-43",
         "folderPath": "Wedding Suits/50128-43"
+    },
+    {
+        "mainCat": "Wedding Suits",
+        "subCat": "Shawl Collar Smokings",
+        "code": "50129-03",
+        "realCode": "50129-03",
+        "folderPath": "Wedding Suits/50129-03"
+    },
+    {
+        "mainCat": "Wedding Suits",
+        "subCat": "Shawl Collar Smokings",
+        "code": "50129-22",
+        "realCode": "50129-22",
+        "folderPath": "Wedding Suits/50129-22"
     },
     {
         "mainCat": "Wedding Suits",
