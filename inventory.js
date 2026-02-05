@@ -470,11 +470,6 @@ const productsDB = [
         "path": "WEB_READY/Wedding Suits/Mandarin Collar Suits/1023D170"
     },
     {
-        "id": "web1023D170",
-        "category": "Wedding Suits > Mandarin Collar Suits > 1023D170",
-        "path": "WEB_READY/Wedding Suits/Mandarin Collar Suits/1023D170/web1023D170"
-    },
-    {
         "id": "50055-6",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "WEB_READY/Wedding Suits/Mandarin Collar Suits/50055-6"
