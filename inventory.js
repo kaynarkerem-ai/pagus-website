@@ -1,4 +1,4 @@
-const inventory = [
+const productsDB = [
     {
         "id": "1023D170-02",
         "category": "Formal Suits",
