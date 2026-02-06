@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Wholesale Menswear Collection | Pagus Menswear Turkey</title>
+    <title>PAGUS MENSWEAR COMPANY</title>
     <meta name="description" content="Premium wholesale menswear collection from Turkey. Suits, Tuxedos, and more.">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://wa.me;">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,6 +80,21 @@
         .stat-num { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-gold); display: block; }
         .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #aaa; margin-top: 5px; }
         @media (max-width: 768px) { .hero { padding: 50px 20px; } .hero h2 { font-size: 2rem; } .hero-stats { gap: 30px; } .stat-num { font-size: 2rem; } }
+        /* SLIDESHOW */
+        .slideshow-section { background: #f9f9f9; padding: 60px 0; position: relative; overflow: hidden; }
+        .slideshow-container { max-width: 100%; overflow: hidden; }
+        .slideshow-track { display: flex; transition: transform 0.5s ease; gap: 20px; padding: 0 40px; }
+        .ss-slide { flex: 0 0 280px; cursor: pointer; transition: transform 0.3s; }
+        .ss-slide:hover { transform: scale(1.03); }
+        .ss-slide img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .ss-slide-info { text-align: center; padding: 15px 0; }
+        .ss-slide-info h4 { font-family: var(--font-display); font-size: 1rem; color: var(--color-noble); margin: 0; }
+        .ss-slide-info span { font-size: 0.75rem; color: var(--color-gold); font-weight: 600; }
+        .slideshow-nav { position: absolute; top: 50%; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 10px; transform: translateY(-50%); pointer-events: none; }
+        .ss-arrow { pointer-events: auto; background: rgba(255,255,255,0.9); border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; color: var(--color-noble); }
+        .ss-arrow:hover { background: var(--color-gold); color: #fff; }
+        .slideshow-title { text-align: center; font-family: var(--font-display); font-size: 2rem; color: var(--color-noble); margin-top: 30px; text-transform: uppercase; letter-spacing: 3px; }
+        @media (max-width: 768px) { .ss-slide { flex: 0 0 200px; } .slideshow-track { padding: 0 20px; gap: 15px; } }
     </style>
 </head>
 <body>
@@ -115,7 +130,19 @@
         </div>
     </section>
     
-    <section class="page-title-area">
+    <!-- SLIDESHOW - Ana sayfa için -->
+    <section class="slideshow-section" id="slideshowSection">
+        <div class="slideshow-container">
+            <div class="slideshow-track" id="slideshowTrack"></div>
+        </div>
+        <div class="slideshow-nav">
+            <button class="ss-arrow ss-prev" onclick="ssMove(-1)">&#10094;</button>
+            <button class="ss-arrow ss-next" onclick="ssMove(1)">&#10095;</button>
+        </div>
+        <div class="slideshow-title" id="ssTitle">Our Collection</div>
+    </section>
+    
+    <section class="page-title-area" id="pageTitleArea" style="display:none;">
         <div id="back" class="back-btn" onclick="goBack()" style="display:none;">&#8592; BACK</div>
         <h1 class="cat-title" id="pTitle">COLLECTION</h1>
         <div class="info-guide" id="infoGuide"><span>&#128161;</span><b id="guideText">Tap heart to create list.</b></div>
@@ -152,7 +179,7 @@
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear blends the rich heritage of Turkish tailoring with modern Italian aesthetics. Based in İzmir, we craft premium groom’s wear and formal suits for global retailers. Our mission is simple: to deliver sartorial excellence, impeccable fit, and reliable manufacturing to partners worldwide. Experience the art of timeless elegance.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved. KK</div></footer>
-    <script src="inventory.js?v=1770375887"></script>
+    <script src="inventory.js?v=1770378807"></script>
     <script>
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
         let cart=[];try{cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){localStorage.removeItem('pagusCart');}
@@ -161,9 +188,13 @@
         if(typeof productsDB==='undefined'){document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>Error: inventory.js not found.</div>";}else{
             productsDB.forEach(p=>{if(p.category&&p.category.includes(' > ')){let a=p.category.split(' > ');p.mainCat=a[0].trim();p.subCat=a[1].trim();}else{p.mainCat=p.category;p.subCat="General";}p.code=p.id;p.realCode=p.id;p.folderPath=p.path;});
             setLanguage();init();updateCartUI();}
-        function init(){const hero=document.getElementById('heroSection');if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';}if(curSub)showProducts();else showSubs();}
-        function showSubs(){const cd=productsDB.find(p=>p.mainCat.toLowerCase()===curCat.toLowerCase());const dc=cd?cd.mainCat:curCat;document.getElementById('pTitle').textContent=dc;document.getElementById('back').style.display="none";document.getElementById('infoGuide').style.display="none";const ss=[...new Set(productsDB.filter(p=>p.mainCat.toLowerCase()===curCat.toLowerCase()).map(p=>p.subCat))];if(ss.length===0){document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">Collection is being updated...</div>';return;}document.getElementById('pGrid').innerHTML=ss.map(s=>{const cv=productsDB.find(p=>p.subCat===s);const ss2=escapeHTML(s);const ip=`${cv.folderPath}/${cv.code} (1).webp`;const ib=`${cv.folderPath}/1.webp`;return`<div class="card" onclick="window.location.href='?category=${encodeURIComponent(curCat)}&subcategory=${encodeURIComponent(s)}'"><div class="img-box"><img src="${ip}" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='${ib}';}else{this.src='placeholder.jpg';}" alt="${ss2}"></div><div class="info-box"><h3 class="info-title">${ss2}</h3><span style="color:var(--color-gold);font-size:0.7rem;font-weight:700;">VIEW COLLECTION</span></div></div>`;}).join('');}
-        function showProducts(){document.getElementById('pTitle').textContent=curSub;document.getElementById('back').style.display="inline-block";document.getElementById('infoGuide').style.display="flex";const ps=productsDB.filter(p=>p.mainCat.toLowerCase()===curCat.toLowerCase()&&p.subCat===curSub);if(ps.length===0){document.getElementById('pGrid').innerHTML='<div style="text-align:center;width:100%;">No products found.</div>';return;}document.getElementById('pGrid').innerHTML=ps.map(p=>{const ip=`${p.folderPath}/${p.code} (1).webp`;const ib=`${p.folderPath}/1.webp`;const f=cart.includes(p.realCode)?'active':'';const h=f?'\u2665':'\u2661';const sr=escapeHTML(p.realCode);const sc=escapeHTML(p.code);const sp=escapeHTML(p.folderPath);return`<div class="card" onclick="openModal('${sc}','${sr}','${sp}')"><button class="heart-btn ${f}" onclick="toggleCart(event,'${sr}')">${h}</button><div class="img-box"><img src="${ip}" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='${ib}';}else{this.src='placeholder.jpg';}" alt="${sr}"></div><h3 class="info-title">${sr}</h3></div>`;}).join('');}
+        function init(){const hero=document.getElementById('heroSection');const ss=document.getElementById('slideshowSection');const pta=document.getElementById('pageTitleArea');if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';ss.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{hero.style.display='block';ss.style.display='block';pta.style.display='none';document.getElementById('pGrid').style.display='none';initSlideshow();}}
+        let ssPos=0,ssSlides=[];
+        function initSlideshow(){const track=document.getElementById('slideshowTrack');let slides=[];productsDB.forEach(p=>{slides.push({img:`${p.path}/${p.id} (1).webp`,imgAlt:`${p.path}/1.webp`,title:p.id,subcat:p.category.includes(' > ')?p.category.split(' > ')[1]:p.category,cat:p.category.includes(' > ')?p.category.split(' > ')[0]:p.category,path:p.path});slides.push({img:`${p.path}/${p.id} (2).webp`,imgAlt:`${p.path}/2.webp`,title:p.id,subcat:p.category.includes(' > ')?p.category.split(' > ')[1]:p.category,cat:p.category.includes(' > ')?p.category.split(' > ')[0]:p.category,path:p.path});});slides=slides.sort(()=>Math.random()-0.5);ssSlides=slides;track.innerHTML=slides.map((s,i)=>`<div class="ss-slide" onclick="window.location.href='?category=${encodeURIComponent(s.cat)}&subcategory=${encodeURIComponent(s.subcat)}'"><img src="${s.img}" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='${s.imgAlt}';}" loading="lazy" alt="${s.title}"><div class="ss-slide-info"><h4>${s.title}</h4><span>${s.subcat}</span></div></div>`).join('');ssAutoPlay();}
+        function ssMove(dir){const track=document.getElementById('slideshowTrack');const slideW=300;const maxPos=(ssSlides.length*slideW)-window.innerWidth+100;ssPos+=dir*slideW*2;if(ssPos<0)ssPos=0;if(ssPos>maxPos)ssPos=0;track.style.transform=`translateX(-${ssPos}px)`;}
+        function ssAutoPlay(){setInterval(()=>{ssMove(1);},4000);}
+        function showSubs(){document.getElementById('pGrid').style.display='grid';const cd=productsDB.find(p=>p.mainCat.toLowerCase()===curCat.toLowerCase());const dc=cd?cd.mainCat:curCat;document.getElementById('pTitle').textContent=dc;document.getElementById('back').style.display="none";document.getElementById('infoGuide').style.display="none";const ss=[...new Set(productsDB.filter(p=>p.mainCat.toLowerCase()===curCat.toLowerCase()).map(p=>p.subCat))];if(ss.length===0){document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">Collection is being updated...</div>';return;}document.getElementById('pGrid').innerHTML=ss.map(s=>{const cv=productsDB.find(p=>p.subCat===s);const ss2=escapeHTML(s);const ip=`${cv.folderPath}/${cv.code} (1).webp`;const ib=`${cv.folderPath}/1.webp`;return`<div class="card" onclick="window.location.href='?category=${encodeURIComponent(curCat)}&subcategory=${encodeURIComponent(s)}'"><div class="img-box"><img src="${ip}" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='${ib}';}else{this.src='placeholder.jpg';}" alt="${ss2}"></div><div class="info-box"><h3 class="info-title">${ss2}</h3><span style="color:var(--color-gold);font-size:0.7rem;font-weight:700;">VIEW COLLECTION</span></div></div>`;}).join('');}
+        function showProducts(){document.getElementById('pGrid').style.display='grid';document.getElementById('pTitle').textContent=curSub;document.getElementById('back').style.display="inline-block";document.getElementById('infoGuide').style.display="flex";const ps=productsDB.filter(p=>p.mainCat.toLowerCase()===curCat.toLowerCase()&&p.subCat===curSub);if(ps.length===0){document.getElementById('pGrid').innerHTML='<div style="text-align:center;width:100%;">No products found.</div>';return;}document.getElementById('pGrid').innerHTML=ps.map(p=>{const ip=`${p.folderPath}/${p.code} (1).webp`;const ib=`${p.folderPath}/1.webp`;const f=cart.includes(p.realCode)?'active':'';const h=f?'\u2665':'\u2661';const sr=escapeHTML(p.realCode);const sc=escapeHTML(p.code);const sp=escapeHTML(p.folderPath);return`<div class="card" onclick="openModal('${sc}','${sr}','${sp}')"><button class="heart-btn ${f}" onclick="toggleCart(event,'${sr}')">${h}</button><div class="img-box"><img src="${ip}" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='${ib}';}else{this.src='placeholder.jpg';}" alt="${sr}"></div><h3 class="info-title">${sr}</h3></div>`;}).join('');}
         function goBack(){window.location.href=`?category=${curCat}`;}
         function toggleCart(e,c){e.stopPropagation();if(cart.includes(c)){cart=cart.filter(i=>i!==c);e.target.innerText='\u2661';e.target.classList.remove('active');}else{cart.push(c);e.target.innerText='\u2665';e.target.classList.add('active');}localStorage.setItem('pagusCart',JSON.stringify(cart));updateCartUI();}
         function updateCartUI(){const b=document.getElementById('floatCart');const c=document.getElementById('cartCount');c.innerText=cart.length;b.style.display=cart.length>0?"flex":"none";}
