@@ -465,11 +465,6 @@ const productsDB = [
         "path": "WEB_READY/Formal Suits/WhatsApp Image 2026-01-17 at 14.52.03 (2)"
     },
     {
-        "id": "50130-01",
-        "category": "Shoes",
-        "path": "WEB_READY/Shoes/50130-01"
-    },
-    {
         "id": "1023D170",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "WEB_READY/Wedding Suits/Mandarin Collar Suits/1023D170"
@@ -533,6 +528,11 @@ const productsDB = [
         "id": "50201-24",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "WEB_READY/Wedding Suits/Mandarin Collar Suits/50201-24"
+    },
+    {
+        "id": "50130-01",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "WEB_READY/Wedding Suits/Peak Lapel Smokings/50130-01"
     },
     {
         "id": "50130-02",
