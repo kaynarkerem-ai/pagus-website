@@ -183,7 +183,7 @@
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear blends the rich heritage of Turkish tailoring with modern Italian aesthetics. Based in İzmir, we craft premium groom’s wear and formal suits for global retailers. Our mission is simple: to deliver sartorial excellence, impeccable fit, and reliable manufacturing to partners worldwide. Experience the art of timeless elegance.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved. KK</div></footer>
-    <script src="inventory.js?v=1770461250"></script>
+    <script src="inventory.js?v=1770463794"></script>
     <script>
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
         let cart=[];try{cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){localStorage.removeItem('pagusCart');}
@@ -209,16 +209,11 @@
             for(var m=0;m<slides.length;m++){
                 var s=slides[m];
                 var cls=m===0?'ss-slide active':'ss-slide';
-                html+='<div class="'+cls+'" data-code="'+s.title+'" data-path="'+s.path+'"><img src="'+s.img+'" alt="'+s.title+'" onerror="this.parentElement.classList.add(\'ss-broken\')"><div class="ss-slide-info"><h4>'+s.title+'</h4><span>'+s.sub+'</span></div></div>';
+                var safeCode=s.title.replace(/'/g,"\\'");
+                var safePath=s.path.replace(/'/g,"\\'");
+                html+='<div class="'+cls+'" onclick="openModal(\''+safeCode+'\',\''+safeCode+'\',\''+safePath+'\')"><img src="'+s.img+'" alt="'+s.title+'" onerror="this.parentElement.classList.add(\'ss-broken\')"><div class="ss-slide-info"><h4>'+s.title+'</h4><span>'+s.sub+'</span></div></div>';
             }
             track.innerHTML=html;
-            document.querySelectorAll('.ss-slide').forEach(function(el){
-                el.onclick=function(){
-                    var code=this.getAttribute('data-code');
-                    var path=this.getAttribute('data-path');
-                    openModal(code,code,path);
-                };
-            });
             var validSlides=document.querySelectorAll('.ss-slide:not(.ss-broken)');
             counter.innerHTML='<span class="ss-counter">1 / '+validSlides.length+'</span>';
             window.CAROUSEL_INDEX=0;
