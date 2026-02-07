@@ -95,6 +95,7 @@
         .slideshow-dots { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); z-index: 10; }
         .ss-counter { background: rgba(0,0,0,0.6); color: #fff; padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; }
         .ss-dot { display: none; }
+        .ss-slide.ss-broken { display: none !important; }
         .slideshow-title { display: none; }
         @media (max-width: 768px) { .slideshow-section { height: 60vh; min-height: 350px; } .ss-slide-info h4 { font-size: 1.2rem; } .ss-slide-info { padding: 20px; } .slideshow-dots { bottom: 80px; } .ss-arrow { width: 45px; height: 45px; font-size: 1.3rem; } }
     </style>
@@ -182,7 +183,7 @@
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear blends the rich heritage of Turkish tailoring with modern Italian aesthetics. Based in İzmir, we craft premium groom’s wear and formal suits for global retailers. Our mission is simple: to deliver sartorial excellence, impeccable fit, and reliable manufacturing to partners worldwide. Experience the art of timeless elegance.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved. KK</div></footer>
-    <script src="inventory.js?v=1770459115"></script>
+    <script src="inventory.js?v=1770461250"></script>
     <script>
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
         let cart=[];try{cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){localStorage.removeItem('pagusCart');}
@@ -201,38 +202,58 @@
                 var p=productsDB[i];
                 var sub=p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:p.category;
                 var cat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;
-                slides.push({img:p.path+'/1.webp',title:p.id,sub:sub,cat:cat});
-                slides.push({img:p.path+'/2.webp',title:p.id,sub:sub,cat:cat});
+                slides.push({img:p.path+'/1.webp',title:p.id,sub:sub,cat:cat,path:p.path});
             }
             for(var j=slides.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=slides[j];slides[j]=slides[k];slides[k]=t;}
             var html='';
             for(var m=0;m<slides.length;m++){
                 var s=slides[m];
                 var cls=m===0?'ss-slide active':'ss-slide';
-                html+='<div class="'+cls+'" onclick="location.href=\'?category='+encodeURIComponent(s.cat)+'&subcategory='+encodeURIComponent(s.sub)+'\'"><img src="'+s.img+'" alt="'+s.title+'"><div class="ss-slide-info"><h4>'+s.title+'</h4><span>'+s.sub+'</span></div></div>';
+                html+='<div class="'+cls+'" data-code="'+s.title+'" data-path="'+s.path+'"><img src="'+s.img+'" alt="'+s.title+'" onerror="this.parentElement.classList.add(\'ss-broken\')"><div class="ss-slide-info"><h4>'+s.title+'</h4><span>'+s.sub+'</span></div></div>';
             }
             track.innerHTML=html;
-            counter.innerHTML='<span class="ss-counter">1 / '+slides.length+'</span>';
+            document.querySelectorAll('.ss-slide').forEach(function(el){
+                el.onclick=function(){
+                    var code=this.getAttribute('data-code');
+                    var path=this.getAttribute('data-path');
+                    openModal(code,code,path);
+                };
+            });
+            var validSlides=document.querySelectorAll('.ss-slide:not(.ss-broken)');
+            counter.innerHTML='<span class="ss-counter">1 / '+validSlides.length+'</span>';
             window.CAROUSEL_INDEX=0;
-            window.CAROUSEL_TOTAL=slides.length;
+            window.CAROUSEL_TOTAL=document.querySelectorAll('.ss-slide').length;
             setInterval(carouselNext,5000);
         }
         function carouselNext(){
-            window.CAROUSEL_INDEX++;
-            if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
+            var all=document.querySelectorAll('.ss-slide');
+            var attempts=0;
+            do{
+                window.CAROUSEL_INDEX++;
+                if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
+                attempts++;
+            }while(all[window.CAROUSEL_INDEX] && all[window.CAROUSEL_INDEX].classList.contains('ss-broken') && attempts<window.CAROUSEL_TOTAL);
             carouselShow();
         }
         function carouselShow(){
             var all=document.querySelectorAll('.ss-slide');
-            for(var i=0;i<all.length;i++)all[i].className='ss-slide';
-            if(all[window.CAROUSEL_INDEX])all[window.CAROUSEL_INDEX].className='ss-slide active';
+            for(var i=0;i<all.length;i++)all[i].className=all[i].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide';
+            if(all[window.CAROUSEL_INDEX])all[window.CAROUSEL_INDEX].className=all[window.CAROUSEL_INDEX].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide active';
+            var valid=document.querySelectorAll('.ss-slide:not(.ss-broken)').length;
+            var current=0;
+            for(var j=0;j<=window.CAROUSEL_INDEX;j++){if(!all[j].classList.contains('ss-broken'))current++;}
             var c=document.querySelector('.ss-counter');
-            if(c)c.innerText=(window.CAROUSEL_INDEX+1)+' / '+window.CAROUSEL_TOTAL;
+            if(c)c.innerText=current+' / '+valid;
         }
         function ssMove(dir){
-            window.CAROUSEL_INDEX+=dir;
-            if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
-            if(window.CAROUSEL_INDEX<0)window.CAROUSEL_INDEX=window.CAROUSEL_TOTAL-1;
+            var all=document.querySelectorAll('.ss-slide');
+            var attempts=0;
+            do{
+                window.CAROUSEL_INDEX+=dir;
+                if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
+                if(window.CAROUSEL_INDEX<0)window.CAROUSEL_INDEX=window.CAROUSEL_TOTAL-1;
+                attempts++;
+            }while(all[window.CAROUSEL_INDEX] && all[window.CAROUSEL_INDEX].classList.contains('ss-broken') && attempts<window.CAROUSEL_TOTAL);
             carouselShow();
         }
         function showSubs(){document.getElementById('pGrid').style.display='grid';const cd=productsDB.find(p=>p.mainCat.toLowerCase()===curCat.toLowerCase());const dc=cd?cd.mainCat:curCat;document.getElementById('pTitle').textContent=dc;document.getElementById('back').style.display="none";document.getElementById('infoGuide').style.display="none";const ss=[...new Set(productsDB.filter(p=>p.mainCat.toLowerCase()===curCat.toLowerCase()).map(p=>p.subCat))];if(ss.length===0){document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">Collection is being updated...</div>';return;}document.getElementById('pGrid').innerHTML=ss.map(s=>{const cv=productsDB.find(p=>p.subCat===s);const ss2=escapeHTML(s);const ip=`${cv.folderPath}/1.webp`;return`<div class="card" onclick="window.location.href='?category=${encodeURIComponent(curCat)}&subcategory=${encodeURIComponent(s)}'"><div class="img-box"><img src="${ip}" loading="lazy" onerror="this.parentElement.style.background='#ddd';" alt="${ss2}"></div><div class="info-box"><h3 class="info-title">${ss2}</h3><span style="color:var(--color-gold);font-size:0.7rem;font-weight:700;">VIEW COLLECTION</span></div></div>`;}).join('');}
