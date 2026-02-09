@@ -139,6 +139,7 @@
                 <li><a href="?category=Shoes">Shoes</a></li>
                 <li><a href="?category=Accessories">Accessories</a></li>
                 <li><a href="?category=Children">Children</a></li>
+                <li><a href="?category=Çıkma Yaka">Çıkma Yaka</a></li>
         </ul></nav>
     </div></header>
     
@@ -175,7 +176,7 @@
     </section>
     <div class="grid" id="pGrid"><div style="grid-column:1/-1; text-align:center; padding:50px; color:#999;">Loading Collection...</div></div>
     <div id="searchResults" style="display:none;"></div>
-    <section class="private-label"><div class="pl-content">
+    <section class="private-label" id="privateLabelSection"><div class="pl-content">
         <h2 class="pl-title">YOUR BRAND, OUR PRODUCTION</h2>
         <p style="color:#ddd; margin-bottom:35px;">Looking for a manufacturing partner? Pagus offers specialized Private Label services.</p>
         <a href="https://wa.me/905511748907" target="_blank" class="pl-btn">START PRODUCTION</a>
@@ -206,8 +207,9 @@
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear blends the rich heritage of Turkish tailoring with modern Italian aesthetics. Based in İzmir, we craft premium groom’s wear and formal suits for global retailers. Our mission is simple: to deliver sartorial excellence, impeccable fit, and reliable manufacturing to partners worldwide. Experience the art of timeless elegance.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved. KK</div></footer>
-    <script src="inventory.js?v=1770623027"></script>
+    <script src="inventory.js?v=1770640765"></script>
     <script>
+        const FEATURES={carousel:true,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true};
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
         let cart=[];try{cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){localStorage.removeItem('pagusCart');}
         function escapeHTML(s){return s.replace(/[&<>'"]/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t]));}
@@ -215,7 +217,7 @@
         if(typeof productsDB==='undefined'){document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>Error: inventory.js not found.</div>";}else{
             productsDB.forEach(p=>{if(p.category&&p.category.includes(' > ')){let a=p.category.split(' > ');p.mainCat=a[0].trim();p.subCat=a[1].trim();}else{p.mainCat=p.category;p.subCat="General";}p.code=p.id;p.realCode=p.id;p.folderPath=p.path;});
             setLanguage();init();updateCartUI();}
-        function init(){var hero=document.getElementById('heroSection');var ss=document.getElementById('slideshowSection');var pta=document.getElementById('pageTitleArea');var sr=document.getElementById('searchResults');if(urlParams.get('search')){hero.style.display='none';ss.style.display='none';pta.style.display='none';sr.style.display='block';document.getElementById('pGrid').style.display='none';doSearchDisplay(urlParams.get('search'));}else if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';ss.style.display='none';sr.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{hero.style.display='block';ss.style.display='block';pta.style.display='none';sr.style.display='none';document.getElementById('pGrid').style.display='none';startCarousel();}}
+        function init(){var hero=document.getElementById('heroSection');var ss=document.getElementById('slideshowSection');var pta=document.getElementById('pageTitleArea');var sr=document.getElementById('searchResults');var wpFloat=document.getElementById('wpFloat');var privLabel=document.getElementById('privateLabelSection');var searchBox=document.querySelector('.search-box');if(!FEATURES.hero&&hero)hero.style.display='none';if(!FEATURES.carousel&&ss)ss.style.display='none';if(!FEATURES.whatsappFloat&&wpFloat)wpFloat.style.display='none';if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';if(!FEATURES.search&&searchBox)searchBox.style.display='none';if(!FEATURES.favorites){document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});}if(urlParams.get('search')){hero.style.display='none';ss.style.display='none';pta.style.display='none';sr.style.display='block';document.getElementById('pGrid').style.display='none';doSearchDisplay(urlParams.get('search'));}else if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';ss.style.display='none';sr.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{if(FEATURES.hero)hero.style.display='block';if(FEATURES.carousel){ss.style.display='block';startCarousel();}pta.style.display='none';sr.style.display='none';document.getElementById('pGrid').style.display='none';}}
         function doSiteSearch(){var q=document.getElementById('siteSearch').value.trim();if(q.length<2){alert('En az 2 karakter girin');return;}window.location.href='?search='+encodeURIComponent(q);}
         function doSearchDisplay(q){var results=[];var qLower=q.toLowerCase();for(var i=0;i<productsDB.length;i++){var p=productsDB[i];if(p.id.toLowerCase().indexOf(qLower)>-1){results.push(p);}}var container=document.getElementById('searchResults');var html='<div class="search-results-section"><h2 class="search-results-title">"'+q+'" için '+results.length+' sonuç</h2>';if(results.length===0){html+='<p style="text-align:center;color:#999;padding:50px;">Sonuç bulunamadı</p>';}else{html+='<div class="search-results-grid">';for(var j=0;j<results.length;j++){var r=results[j];var cat=r.category.indexOf(' > ')>-1?r.category.split(' > ')[0]:r.category;var sub=r.category.indexOf(' > ')>-1?r.category.split(' > ')[1]:r.category;html+='<div class="search-result-card" onclick="openModal(\''+r.id+'\',\''+r.id+'\',\''+r.path+'\')"><img src="'+r.path+'/1.webp" alt="'+r.id+'"><div class="info"><h4>'+r.id+'</h4><span>'+sub+'</span></div></div>';}html+='</div>';}html+='</div>';container.innerHTML=html;}
         function startCarousel(){

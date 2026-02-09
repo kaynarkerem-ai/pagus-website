@@ -1,10 +1,5 @@
 const productsDB = [
     {
-        "id": "1023D170-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/1023D170-02"
-    },
-    {
         "id": "15097-17",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15097-17"
@@ -130,16 +125,6 @@ const productsDB = [
         "path": "images/Formal Suits/15158-02"
     },
     {
-        "id": "15158-02 Damatlık olanı A",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/15158-02 Damatlık olanı A"
-    },
-    {
-        "id": "15158-02 Damatlık olanı B",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/15158-02 Damatlık olanı B"
-    },
-    {
         "id": "15165-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15165-02"
@@ -185,286 +170,6 @@ const productsDB = [
         "path": "images/Formal Suits/20010-24"
     },
     {
-        "id": "50003-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50003-01"
-    },
-    {
-        "id": "50005-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50005-01"
-    },
-    {
-        "id": "50005-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50005-02"
-    },
-    {
-        "id": "50005-06",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50005-06"
-    },
-    {
-        "id": "50052-22",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50052-22"
-    },
-    {
-        "id": "50054-24",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50054-24"
-    },
-    {
-        "id": "50056-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50056-02"
-    },
-    {
-        "id": "50056-04",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50056-04"
-    },
-    {
-        "id": "50056-06",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50056-06"
-    },
-    {
-        "id": "50056-09",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50056-09"
-    },
-    {
-        "id": "50056-10",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50056-10"
-    },
-    {
-        "id": "50058-39",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50058-39"
-    },
-    {
-        "id": "50060-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50060-01"
-    },
-    {
-        "id": "50060-02A",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50060-02A"
-    },
-    {
-        "id": "50060-02B",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50060-02B"
-    },
-    {
-        "id": "50071-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50071-02"
-    },
-    {
-        "id": "50071-08",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50071-08"
-    },
-    {
-        "id": "50072-03",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50072-03"
-    },
-    {
-        "id": "50073-06",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50073-06"
-    },
-    {
-        "id": "50074-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50074-01"
-    },
-    {
-        "id": "50075-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50075-01"
-    },
-    {
-        "id": "50075-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50075-02"
-    },
-    {
-        "id": "50080-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50080-01"
-    },
-    {
-        "id": "50080-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50080-02"
-    },
-    {
-        "id": "50110-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50110-01"
-    },
-    {
-        "id": "50110-06",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50110-06"
-    },
-    {
-        "id": "50111-03",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50111-03"
-    },
-    {
-        "id": "50112-22",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50112-22"
-    },
-    {
-        "id": "50113-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50113-02"
-    },
-    {
-        "id": "50113-06",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50113-06"
-    },
-    {
-        "id": "50114-03",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50114-03"
-    },
-    {
-        "id": "50114-06",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50114-06"
-    },
-    {
-        "id": "50125-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50125-02"
-    },
-    {
-        "id": "50132-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50132-02"
-    },
-    {
-        "id": "50200-42",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50200-42"
-    },
-    {
-        "id": "50201-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50201-01"
-    },
-    {
-        "id": "50201-24",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50201-24"
-    },
-    {
-        "id": "50206-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50206-01"
-    },
-    {
-        "id": "50206-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/50206-02"
-    },
-    {
-        "id": "51005-03",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51005-03"
-    },
-    {
-        "id": "51005-10",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51005-10"
-    },
-    {
-        "id": "51080-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51080-01"
-    },
-    {
-        "id": "51900-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51900-02"
-    },
-    {
-        "id": "51900-17",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51900-17"
-    },
-    {
-        "id": "51904-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51904-01"
-    },
-    {
-        "id": "51905-01",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51905-01"
-    },
-    {
-        "id": "51905-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51905-02"
-    },
-    {
-        "id": "51905-07",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51905-07"
-    },
-    {
-        "id": "51905-17",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/51905-17"
-    },
-    {
-        "id": "AGM1142-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/AGM1142-02"
-    },
-    {
-        "id": "AGM1203-07",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/AGM1203-07"
-    },
-    {
-        "id": "AGM4043-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/AGM4043-02"
-    },
-    {
-        "id": "AGM801L-07",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/AGM801L-07"
-    },
-    {
-        "id": "AGM801L-09",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/AGM801L-09"
-    },
-    {
-        "id": "AGM801L-09 (1)",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/AGM801L-09 (1)"
-    },
-    {
-        "id": "WhatsApp Image 2026-01-17 at 14.52.03 (2)",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/WhatsApp Image 2026-01-17 at 14.52.03 (2)"
-    },
-    {
         "id": "1023D170",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/1023D170"
@@ -475,9 +180,34 @@ const productsDB = [
         "path": "images/Wedding Suits/Mandarin Collar Suits/1023D170/web1023D170"
     },
     {
+        "id": "50005-01",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50005-01"
+    },
+    {
+        "id": "50005-02",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50005-02"
+    },
+    {
+        "id": "50005-06",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50005-06"
+    },
+    {
+        "id": "50054-24",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50054-24"
+    },
+    {
         "id": "50055-6",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50055-6"
+    },
+    {
+        "id": "50058-39",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50058-39"
     },
     {
         "id": "50059-1",
@@ -485,19 +215,44 @@ const productsDB = [
         "path": "images/Wedding Suits/Mandarin Collar Suits/50059-1"
     },
     {
+        "id": "50060-01",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50060-01"
+    },
+    {
+        "id": "50060-02A",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50060-02A"
+    },
+    {
+        "id": "50060-02B",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50060-02B"
+    },
+    {
+        "id": "50071-02",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50071-02"
+    },
+    {
+        "id": "50071-08",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50071-08"
+    },
+    {
+        "id": "50110-01",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50110-01"
+    },
+    {
+        "id": "50110-06",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50110-06"
+    },
+    {
         "id": "50111-02",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50111-02"
-    },
-    {
-        "id": "50111-09",
-        "category": "Wedding Suits > Mandarin Collar Suits",
-        "path": "images/Wedding Suits/Mandarin Collar Suits/50111-09"
-    },
-    {
-        "id": "50111-2 laci",
-        "category": "Wedding Suits > Mandarin Collar Suits",
-        "path": "images/Wedding Suits/Mandarin Collar Suits/50111-2 laci"
     },
     {
         "id": "50111-3",
@@ -530,6 +285,126 @@ const productsDB = [
         "path": "images/Wedding Suits/Mandarin Collar Suits/50201-24"
     },
     {
+        "id": "50206-01",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50206-01"
+    },
+    {
+        "id": "50206-02",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/50206-02"
+    },
+    {
+        "id": "AGM1142-02",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/AGM1142-02"
+    },
+    {
+        "id": "AGM1203-07",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/AGM1203-07"
+    },
+    {
+        "id": "AGM801L-07",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/AGM801L-07"
+    },
+    {
+        "id": "AGM801L-09",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/AGM801L-09"
+    },
+    {
+        "id": "AGM801L-09 (1)",
+        "category": "Wedding Suits > Mandarin Collar Suits",
+        "path": "images/Wedding Suits/Mandarin Collar Suits/AGM801L-09 (1)"
+    },
+    {
+        "id": "50003-01",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50003-01"
+    },
+    {
+        "id": "50052-22",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50052-22"
+    },
+    {
+        "id": "50056-02",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50056-02"
+    },
+    {
+        "id": "50056-04",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50056-04"
+    },
+    {
+        "id": "50056-06",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50056-06"
+    },
+    {
+        "id": "50056-09",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50056-09"
+    },
+    {
+        "id": "50056-10",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50056-10"
+    },
+    {
+        "id": "50072-03",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50072-03"
+    },
+    {
+        "id": "50073-06",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50073-06"
+    },
+    {
+        "id": "50074-01",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50074-01"
+    },
+    {
+        "id": "50075-01",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50075-01"
+    },
+    {
+        "id": "50075-02",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50075-02"
+    },
+    {
+        "id": "50080-01",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50080-01"
+    },
+    {
+        "id": "50080-02",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50080-02"
+    },
+    {
+        "id": "50120-06",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50120-06"
+    },
+    {
+        "id": "50129-03",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50129-03"
+    },
+    {
+        "id": "50129-22",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/50129-22"
+    },
+    {
         "id": "50130-01",
         "category": "Wedding Suits > Peak Lapel Smokings",
         "path": "images/Wedding Suits/Peak Lapel Smokings/50130-01"
@@ -540,29 +415,14 @@ const productsDB = [
         "path": "images/Wedding Suits/Peak Lapel Smokings/50130-02"
     },
     {
-        "id": "50003-01",
-        "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50003-01"
-    },
-    {
-        "id": "50005-01",
-        "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50005-01"
-    },
-    {
-        "id": "50005-02",
-        "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50005-02"
-    },
-    {
         "id": "50112-22",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50112-22"
     },
     {
-        "id": "50113-22",
+        "id": "50113-02",
         "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50113-22"
+        "path": "images/Wedding Suits/Shawl Collar Smokings/50113-02"
     },
     {
         "id": "50113-6",
@@ -588,11 +448,6 @@ const productsDB = [
         "id": "50116-02",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50116-02"
-    },
-    {
-        "id": "50120-06",
-        "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50120-06"
     },
     {
         "id": "50122-24",
@@ -650,18 +505,163 @@ const productsDB = [
         "path": "images/Wedding Suits/Shawl Collar Smokings/50128-43"
     },
     {
-        "id": "50129-03",
-        "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50129-03"
-    },
-    {
-        "id": "50129-22",
-        "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50129-22"
-    },
-    {
         "id": "AGM 4043",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/AGM 4043"
+    },
+    {
+        "id": "2026-02-09_1422_1023D170-02",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1422_1023D170-02"
+    },
+    {
+        "id": "2026-02-09_1422_50111-09",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1422_50111-09"
+    },
+    {
+        "id": "2026-02-09_1422_50111-2 laci",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1422_50111-2 laci"
+    },
+    {
+        "id": "2026-02-09_1422_WhatsApp Image 2026-01-17 at 14.52.03 (2)",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1422_WhatsApp Image 2026-01-17 at 14.52.03 (2)"
+    },
+    {
+        "id": "2026-02-09_1518_50114-03",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1518_50114-03"
+    },
+    {
+        "id": "2026-02-09_1528_AGM4043-02",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1528_AGM4043-02"
+    },
+    {
+        "id": "2026-02-09_1530_50003-01",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1530_50003-01"
+    },
+    {
+        "id": "2026-02-09_1530_50201-01",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1530_50201-01"
+    },
+    {
+        "id": "2026-02-09_1530_50201-24",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1530_50201-24"
+    },
+    {
+        "id": "2026-02-09_1531_50005-01",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1531_50005-01"
+    },
+    {
+        "id": "2026-02-09_1531_50005-02",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1531_50005-02"
+    },
+    {
+        "id": "2026-02-09_1531_50111-03",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1531_50111-03"
+    },
+    {
+        "id": "2026-02-09_1531_50112-22",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1531_50112-22"
+    },
+    {
+        "id": "2026-02-09_1531_50113-02",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1531_50113-02"
+    },
+    {
+        "id": "2026-02-09_1531_50113-06",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1531_50113-06"
+    },
+    {
+        "id": "2026-02-09_1531_50114-06",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1531_50114-06"
+    },
+    {
+        "id": "2026-02-09_1531_50125-02",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1531_50125-02"
+    },
+    {
+        "id": "2026-02-09_1532_15158-02",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1532_15158-02"
+    },
+    {
+        "id": "2026-02-09_1532_15158-02 Damatlık olanı B",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1532_15158-02 Damatlık olanı B"
+    },
+    {
+        "id": "2026-02-09_1532_50132-02",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1532_50132-02"
+    },
+    {
+        "id": "2026-02-09_1532_50200-42",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-09_1532_50200-42"
+    },
+    {
+        "id": "51005-03",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51005-03"
+    },
+    {
+        "id": "51005-10",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51005-10"
+    },
+    {
+        "id": "51080-01",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51080-01"
+    },
+    {
+        "id": "51900-03",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51900-03"
+    },
+    {
+        "id": "51900-17",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51900-17"
+    },
+    {
+        "id": "51904-01",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51904-01"
+    },
+    {
+        "id": "51905-01",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51905-01"
+    },
+    {
+        "id": "51905-02",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51905-02"
+    },
+    {
+        "id": "51905-07",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51905-07"
+    },
+    {
+        "id": "51905-17",
+        "category": "Çıkma Yaka",
+        "path": "images/Çıkma Yaka/51905-17"
     }
 ];
