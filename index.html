@@ -24,6 +24,20 @@
         .nav-list { display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; width: 100%; justify-content: center; flex-wrap: wrap; }
         .nav-list a { color: #fff; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-decoration: none; white-space: nowrap; padding: 10px 5px; }
         .nav-list a:hover { color: var(--color-gold); }
+        .search-box { display: flex; gap: 0; background: rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; }
+        .search-box input { background: transparent; border: none; padding: 10px 18px; color: #fff; font-size: 0.9rem; width: 180px; outline: none; }
+        .search-box input::placeholder { color: rgba(255,255,255,0.5); }
+        .search-box button { background: var(--color-gold); border: none; padding: 10px 18px; color: var(--color-noble); font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .search-box button:hover { background: #d4b366; }
+        .search-results-section { padding: 40px 20px; max-width: var(--site-max-width); margin: 0 auto; }
+        .search-results-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-noble); margin-bottom: 30px; text-align: center; }
+        .search-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        .search-result-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); cursor: pointer; transition: 0.3s; }
+        .search-result-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .search-result-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+        .search-result-card .info { padding: 15px; text-align: center; }
+        .search-result-card h4 { font-family: var(--font-display); font-size: 1rem; color: var(--color-noble); margin: 0 0 5px; }
+        .search-result-card span { font-size: 0.8rem; color: var(--color-gold); }
         .page-title-area { background: #f9f9f9; padding: 40px 0 20px; text-align: center; border-bottom: 1px solid #eee; }
         .cat-title { font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; color: var(--color-noble); margin-bottom: 20px; }
         .back-btn { display: inline-block; color: var(--color-gold); font-weight: 700; margin-bottom: 15px; cursor: pointer; border: 1px solid var(--color-gold); padding: 6px 18px; font-size: 0.8rem; transition: 0.3s; }
@@ -59,6 +73,9 @@
         .badge-icon { font-size: 1.5rem; color: var(--color-noble); }
         @media (max-width: 768px) {
             .header-inner { padding: 0 15px; }
+            .logo-row { flex-wrap: wrap; gap: 10px; }
+            .search-box { order: 3; width: 100%; margin-top: 10px; }
+            .search-box input { flex: 1; width: auto; }
             .nav-list { gap: 10px; justify-content: center; } .nav-list a { font-size: 0.75rem; padding: 5px; }
             .grid { padding: 20px 10px; gap: 15px; grid-template-columns: 1fr 1fr; }
             .modal-content { display: flex; flex-direction: column; height: 100%; overflow-y: scroll; }
@@ -67,6 +84,7 @@
             .arrow { font-size: 3rem; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
             .prev { left: 10px; } .next { right: 10px; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .search-results-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
         }
         /* HERO SECTION - KÜÇÜK, ALTTA */
         .hero { background: linear-gradient(135deg, var(--color-noble) 0%, #1a252f 100%); color: #fff; padding: 40px 20px; text-align: center; position: relative; }
@@ -104,6 +122,10 @@
     <header class="header"><div class="header-inner">
         <div class="logo-row">
             <a href="index.html" class="logo">PAGUS</a>
+            <div class="search-box">
+                <input type="text" id="siteSearch" placeholder="Ürün ara..." onkeypress="if(event.key==='Enter')doSiteSearch()">
+                <button onclick="doSiteSearch()">&#128269;</button>
+            </div>
             <div class="soc-icons">
 <a href="https://www.instagram.com/pagus_menswear/" target="_blank" rel="noopener" class="social-icon" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
 <a href="https://www.facebook.com/pagusmenswear/" target="_blank" rel="noopener" class="social-icon" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
@@ -152,6 +174,7 @@
         <div class="info-guide" id="infoGuide"><span>&#128161;</span><b id="guideText">Tap heart to create list.</b></div>
     </section>
     <div class="grid" id="pGrid"><div style="grid-column:1/-1; text-align:center; padding:50px; color:#999;">Loading Collection...</div></div>
+    <div id="searchResults" style="display:none;"></div>
     <section class="private-label"><div class="pl-content">
         <h2 class="pl-title">YOUR BRAND, OUR PRODUCTION</h2>
         <p style="color:#ddd; margin-bottom:35px;">Looking for a manufacturing partner? Pagus offers specialized Private Label services.</p>
@@ -183,7 +206,7 @@
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear blends the rich heritage of Turkish tailoring with modern Italian aesthetics. Based in İzmir, we craft premium groom’s wear and formal suits for global retailers. Our mission is simple: to deliver sartorial excellence, impeccable fit, and reliable manufacturing to partners worldwide. Experience the art of timeless elegance.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved. KK</div></footer>
-    <script src="inventory.js?v=1770622779"></script>
+    <script src="inventory.js?v=1770623027"></script>
     <script>
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
         let cart=[];try{cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){localStorage.removeItem('pagusCart');}
@@ -192,7 +215,9 @@
         if(typeof productsDB==='undefined'){document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>Error: inventory.js not found.</div>";}else{
             productsDB.forEach(p=>{if(p.category&&p.category.includes(' > ')){let a=p.category.split(' > ');p.mainCat=a[0].trim();p.subCat=a[1].trim();}else{p.mainCat=p.category;p.subCat="General";}p.code=p.id;p.realCode=p.id;p.folderPath=p.path;});
             setLanguage();init();updateCartUI();}
-        function init(){var hero=document.getElementById('heroSection');var ss=document.getElementById('slideshowSection');var pta=document.getElementById('pageTitleArea');if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';ss.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{hero.style.display='block';ss.style.display='block';pta.style.display='none';document.getElementById('pGrid').style.display='none';startCarousel();}}
+        function init(){var hero=document.getElementById('heroSection');var ss=document.getElementById('slideshowSection');var pta=document.getElementById('pageTitleArea');var sr=document.getElementById('searchResults');if(urlParams.get('search')){hero.style.display='none';ss.style.display='none';pta.style.display='none';sr.style.display='block';document.getElementById('pGrid').style.display='none';doSearchDisplay(urlParams.get('search'));}else if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';ss.style.display='none';sr.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{hero.style.display='block';ss.style.display='block';pta.style.display='none';sr.style.display='none';document.getElementById('pGrid').style.display='none';startCarousel();}}
+        function doSiteSearch(){var q=document.getElementById('siteSearch').value.trim();if(q.length<2){alert('En az 2 karakter girin');return;}window.location.href='?search='+encodeURIComponent(q);}
+        function doSearchDisplay(q){var results=[];var qLower=q.toLowerCase();for(var i=0;i<productsDB.length;i++){var p=productsDB[i];if(p.id.toLowerCase().indexOf(qLower)>-1){results.push(p);}}var container=document.getElementById('searchResults');var html='<div class="search-results-section"><h2 class="search-results-title">"'+q+'" için '+results.length+' sonuç</h2>';if(results.length===0){html+='<p style="text-align:center;color:#999;padding:50px;">Sonuç bulunamadı</p>';}else{html+='<div class="search-results-grid">';for(var j=0;j<results.length;j++){var r=results[j];var cat=r.category.indexOf(' > ')>-1?r.category.split(' > ')[0]:r.category;var sub=r.category.indexOf(' > ')>-1?r.category.split(' > ')[1]:r.category;html+='<div class="search-result-card" onclick="openModal(\''+r.id+'\',\''+r.id+'\',\''+r.path+'\')"><img src="'+r.path+'/1.webp" alt="'+r.id+'"><div class="info"><h4>'+r.id+'</h4><span>'+sub+'</span></div></div>';}html+='</div>';}html+='</div>';container.innerHTML=html;}
         function startCarousel(){
             var track=document.getElementById('slideshowTrack');
             var counter=document.getElementById('slideshowDots');
