@@ -183,7 +183,7 @@
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear blends the rich heritage of Turkish tailoring with modern Italian aesthetics. Based in İzmir, we craft premium groom’s wear and formal suits for global retailers. Our mission is simple: to deliver sartorial excellence, impeccable fit, and reliable manufacturing to partners worldwide. Experience the art of timeless elegance.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved. KK</div></footer>
-    <script src="inventory.js?v=1770470640"></script>
+    <script src="inventory.js?v=1770622779"></script>
     <script>
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
         let cart=[];try{cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){localStorage.removeItem('pagusCart');}
@@ -197,19 +197,19 @@
             var track=document.getElementById('slideshowTrack');
             var counter=document.getElementById('slideshowDots');
             if(!productsDB||productsDB.length===0)return;
-            window.CAROUSEL_DATA=[];
+            var slides=[];
             for(var i=0;i<productsDB.length;i++){
                 var p=productsDB[i];
                 var sub=p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:p.category;
                 var cat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;
-                window.CAROUSEL_DATA.push({img:p.path+'/1.webp',title:p.id,sub:sub,cat:cat,path:p.path});
+                slides.push({img:p.path+'/1.webp',title:p.id,sub:sub,cat:cat,path:p.path});
             }
-            for(var j=window.CAROUSEL_DATA.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=window.CAROUSEL_DATA[j];window.CAROUSEL_DATA[j]=window.CAROUSEL_DATA[k];window.CAROUSEL_DATA[k]=t;}
+            for(var j=slides.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=slides[j];slides[j]=slides[k];slides[k]=t;}
             var html='';
-            for(var m=0;m<window.CAROUSEL_DATA.length;m++){
-                var s=window.CAROUSEL_DATA[m];
+            for(var m=0;m<slides.length;m++){
+                var s=slides[m];
                 var cls=m===0?'ss-slide active':'ss-slide';
-                html+='<div class="'+cls+'" onclick="openCarouselItem('+m+')"><img src="'+s.img+'" alt="'+s.title+'" onerror="this.parentElement.classList.add(\'ss-broken\')"><div class="ss-slide-info"><h4>'+s.title+'</h4><span>'+s.sub+'</span></div></div>';
+                html+='<div class="'+cls+'" data-ptitle="'+s.title+'" data-ppath="'+s.path+'" onclick="openFromCarousel(this)"><img src="'+s.img+'" alt="'+s.title+'" onerror="this.parentElement.classList.add(\'ss-broken\')"><div class="ss-slide-info"><h4>'+s.title+'</h4><span>'+s.sub+'</span></div></div>';
             }
             track.innerHTML=html;
             var validSlides=document.querySelectorAll('.ss-slide:not(.ss-broken)');
@@ -218,9 +218,10 @@
             window.CAROUSEL_TOTAL=document.querySelectorAll('.ss-slide').length;
             setInterval(carouselNext,5000);
         }
-        function openCarouselItem(idx){
-            var item=window.CAROUSEL_DATA[idx];
-            if(item){openModal(item.title,item.title,item.path);}
+        function openFromCarousel(el){
+            var t=el.getAttribute('data-ptitle');
+            var p=el.getAttribute('data-ppath');
+            openModal(t,t,p);
         }
         function carouselNext(){
             var all=document.querySelectorAll('.ss-slide');
