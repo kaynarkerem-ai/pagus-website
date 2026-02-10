@@ -161,8 +161,8 @@ const productsDB = [
     },
     {
         "id": "20010-24",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/20010-24"
+        "category": "Jackets",
+        "path": "images/Jackets/20010-24"
     },
     {
         "id": "1023D170",
