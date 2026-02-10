@@ -120,11 +120,6 @@ const productsDB = [
         "path": "images/Formal Suits/15157-17"
     },
     {
-        "id": "15158-02",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/15158-02"
-    },
-    {
         "id": "15165-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15165-02"
@@ -613,6 +608,11 @@ const productsDB = [
         "id": "2026-02-09_1532_50200-42",
         "category": "_SILINEN",
         "path": "images/_SILINEN/2026-02-09_1532_50200-42"
+    },
+    {
+        "id": "2026-02-10_1001_15158-02",
+        "category": "_SILINEN",
+        "path": "images/_SILINEN/2026-02-10_1001_15158-02"
     },
     {
         "id": "51005-03",
