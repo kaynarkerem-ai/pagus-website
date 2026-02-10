@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Wholesale Menswear Collection | Pagus Menswear Turkey</title>
     <meta name="description" content="Premium wholesale menswear collection from Turkey. Suits, Tuxedos, and more.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://wa.me;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://wa.me https://res.cloudinary.com; connect-src 'self';">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -121,7 +121,7 @@
 <a href="https://wa.me/905511748907" target="_blank" rel="noopener" class="social-icon" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
             </div>
         </div>
-        <nav><ul class="nav-list">
+        <nav><ul class="nav-list" id="mainNav">
                 <li><a href="?category=Wedding Suits">Wedding Suits</a></li>
                 <li><a href="?category=Formal Suits">Formal Suits</a></li>
                 <li><a href="?category=Shirts">Shirts</a></li>
@@ -141,10 +141,10 @@
     <!-- HERO - ALTTA, KÜÇÜK -->
     <section class="hero" id="heroSection">
         <div class="hero-content">
-            <div class="hero-tagline">B2B Wholesale Menswear</div>
-            <h2>Premium Suits & Formal Wear</h2>
-            <p>Direct from manufacturer in İzmir, Turkey. We offer high-quality men's suits, tuxedos, and formal wear for retailers and wholesalers worldwide. Minimum order: 50 pieces.</p>
-            <div class="hero-stats">
+            <div class="hero-tagline" id="heroTagline">B2B Wholesale Menswear</div>
+            <h2 id="heroTitle">Premium Suits & Formal Wear</h2>
+            <p id="heroDescription">Direct from manufacturer in İzmir, Turkey. We offer high-quality men's suits, tuxedos, and formal wear for retailers and wholesalers worldwide. Minimum order: 50 pieces.</p>
+            <div class="hero-stats" id="heroStats">
                 <div class="stat-item"><span class="stat-num">15+</span><span class="stat-label">Years Experience</span></div>
                 <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label">Countries</span></div>
                 <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Active Partners</span></div>
@@ -160,9 +160,9 @@
     <div class="grid" id="pGrid"><div style="grid-column:1/-1; text-align:center; padding:50px; color:#999;">Loading Collection...</div></div>
     <div id="searchResults" style="display:none;"></div>
     <section class="private-label" id="privateLabelSection"><div class="pl-content">
-        <h2 class="pl-title">YOUR BRAND, OUR PRODUCTION</h2>
-        <p style="color:#ddd; margin-bottom:35px;">Looking for a manufacturing partner? Pagus offers specialized Private Label services.</p>
-        <a href="https://wa.me/905511748907" target="_blank" class="pl-btn">START PRODUCTION</a>
+        <h2 class="pl-title" id="plTitle">YOUR BRAND, OUR PRODUCTION</h2>
+        <p id="plDesc" style="color:#ddd; margin-bottom:35px;">Looking for a manufacturing partner? Pagus offers specialized Private Label services.</p>
+        <a id="plBtn" href="https://wa.me/905511748907" target="_blank" class="pl-btn">START PRODUCTION</a>
     </div></section>
     <button id="floatCart" class="float-cart" onclick="sendListToWhatsapp()">
         <svg style="width:20px;height:20px;fill:white;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
@@ -178,101 +178,180 @@
                 <div class="img-counter" id="imgCount">1/4</div>
             </div>
             <div class="side-info">
-                <span style="color:var(--color-gold); font-weight:700; font-size:0.8rem; letter-spacing:2px;">WHOLESALE MANUFACTURER</span>
+                <span id="modalSubtitle" style="color:var(--color-gold); font-weight:700; font-size:0.8rem; letter-spacing:2px;">WHOLESALE MANUFACTURER</span>
                 <h2 id="mCode" style="font-family:var(--font-display); font-size:2.5rem; margin:15px 0 25px;">CODE</h2>
-                <div class="badges"><div class="badge-item"><span class="badge-icon">thread</span>Premium Fabric</div><div class="badge-item"><span class="badge-icon">flag</span>Made in Turkey</div><div class="badge-item"><span class="badge-icon">box</span>Wholesale Only</div></div>
-                <p style="color:#555; margin-bottom:40px; font-size:1rem;">Premium quality fabric available for bulk orders.</p>
+                <div class="badges" id="modalBadges"><div class="badge-item"><span class="badge-icon">thread</span>Premium Fabric</div><div class="badge-item"><span class="badge-icon">flag</span>Made in Turkey</div><div class="badge-item"><span class="badge-icon">box</span>Wholesale Only</div></div>
+                <p id="modalDesc" style="color:#555; margin-bottom:40px; font-size:1rem;">Premium quality fabric available for bulk orders.</p>
                 <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700; letter-spacing:1px; border-radius:4px; box-shadow: 0 10px 20px rgba(201,169,98,0.3); text-decoration:none;">ASK PRICE VIA WHATSAPP</a>
             </div>
         </div>
     </div>
-    <footer class="footer"><div class="footer-grid">
-        <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear is established with a single mission: to provide world-class textile solutions.</p></div>
-        <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
-    </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved.</div></footer>
+    <footer class="footer"><div class="footer-grid" id="footerGrid">
+        <div><h4 id="footAboutTitle">ABOUT PAGUS MENSWEAR</h4><p id="footAboutText">PAGUS Menswear is established with a single mission: to provide world-class textile solutions.</p></div>
+        <div><h4 id="footContactTitle">B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> <span id="footWhatsapp">+905511748907</span></li><li><strong>Location:</strong> <span id="footLocation">Izmir, Turkey</span></li><li><a id="footPaymentLink" href="payment.html" style="color:#999; text-decoration:none;"><span id="footPaymentText">Secure Payment & Bank Accounts</span></a></li></ul></div>
+    </div><div id="footCopyright" style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved.</div></footer>
     <script src="inventory.js?v=1770709446"></script>
     <script>
-        const FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
+        /* ===== DEFAULT FEATURES (overridden by config) ===== */
+        var FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
+        var SITE_CONFIG=null;
+        var WP_NUMBER='905511748907';
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
         let cart=[];try{cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){localStorage.removeItem('pagusCart');}
         function escapeHTML(s){return s.replace(/[&<>'"]/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t]));}
         function setLanguage(){let l=navigator.language||navigator.userLanguage;const g=document.getElementById('guideText');if(l&&l.startsWith("it")){g.innerText="Tocca l'icona del cuore per creare la tua lista.";}else{g.innerText="Tap heart to create list.";}}
+
+        /* ===== LOAD CONFIG AND APPLY ===== */
+        function applyConfig(cfg){
+            SITE_CONFIG=cfg;
+            if(cfg.features) FEATURES=cfg.features;
+            if(cfg.header){
+                var h=cfg.header;
+                if(h.whatsapp) WP_NUMBER=h.whatsapp.replace(/[^0-9]/g,'');
+                var logoEl=document.querySelector('.logo');
+                if(logoEl&&h.logo) logoEl.textContent=h.logo;
+                var searchInput=document.getElementById('siteSearch');
+                if(searchInput&&h.searchPlaceholder) searchInput.placeholder=h.searchPlaceholder;
+                var igLink=document.querySelector('.soc-icons a[title="Instagram"]');
+                if(igLink&&h.instagram) igLink.href=h.instagram;
+                var waLink=document.querySelector('.soc-icons a[title="WhatsApp"]');
+                if(waLink&&h.whatsapp) waLink.href='https://wa.me/'+WP_NUMBER;
+            }
+            if(cfg.navigation){
+                var navEl=document.getElementById('mainNav');
+                if(navEl){
+                    var nh='';
+                    cfg.navigation.forEach(function(n){
+                        nh+='<li><a href="?category='+encodeURIComponent(n.category)+'">'+escapeHTML(n.label)+'</a></li>';
+                    });
+                    navEl.innerHTML=nh;
+                }
+            }
+            if(cfg.hero){
+                var tagEl=document.getElementById('heroTagline');
+                if(tagEl&&cfg.hero.tagline) tagEl.textContent=cfg.hero.tagline;
+                var titleEl=document.getElementById('heroTitle');
+                if(titleEl&&cfg.hero.title) titleEl.textContent=cfg.hero.title;
+                var descEl=document.getElementById('heroDescription');
+                if(descEl&&cfg.hero.description) descEl.textContent=cfg.hero.description;
+                if(cfg.hero.stats){
+                    var statsEl=document.getElementById('heroStats');
+                    if(statsEl){
+                        var sh='';
+                        cfg.hero.stats.forEach(function(s){
+                            sh+='<div class="stat-item"><span class="stat-num">'+escapeHTML(s.number)+'</span><span class="stat-label">'+escapeHTML(s.label)+'</span></div>';
+                        });
+                        statsEl.innerHTML=sh;
+                    }
+                }
+                if(cfg.hero.enabled===false) FEATURES.hero=false;
+            }
+            if(cfg.privateLabel){
+                var pl=cfg.privateLabel;
+                var plT=document.getElementById('plTitle');if(plT&&pl.title) plT.textContent=pl.title;
+                var plD=document.getElementById('plDesc');if(plD&&pl.description) plD.textContent=pl.description;
+                var plB=document.getElementById('plBtn');
+                if(plB){
+                    if(pl.buttonText) plB.textContent=pl.buttonText;
+                    if(pl.buttonLink) plB.href=pl.buttonLink;
+                }
+                if(pl.enabled===false) FEATURES.privateLabel=false;
+            }
+            if(cfg.footer){
+                var f=cfg.footer;
+                var fat=document.getElementById('footAboutTitle');if(fat&&f.aboutTitle) fat.textContent=f.aboutTitle;
+                var fatext=document.getElementById('footAboutText');if(fatext&&f.aboutText) fatext.textContent=f.aboutText;
+                var fct=document.getElementById('footContactTitle');if(fct&&f.contactTitle) fct.textContent=f.contactTitle;
+                var fw=document.getElementById('footWhatsapp');if(fw&&f.whatsapp) fw.textContent=f.whatsapp;
+                var fl=document.getElementById('footLocation');if(fl&&f.location) fl.textContent=f.location;
+                var fpl=document.getElementById('footPaymentLink');if(fpl&&f.paymentLink) fpl.href=f.paymentLink;
+                var fpt=document.getElementById('footPaymentText');if(fpt&&f.paymentText) fpt.textContent=f.paymentText;
+                var fc=document.getElementById('footCopyright');if(fc&&f.copyright) fc.textContent=f.copyright;
+            }
+            if(cfg.modal){
+                var md=cfg.modal;
+                var mSub=document.getElementById('modalSubtitle');if(mSub&&md.subtitle) mSub.textContent=md.subtitle;
+                var mDesc=document.getElementById('modalDesc');if(mDesc&&md.description) mDesc.textContent=md.description;
+                var wpBtn=document.getElementById('wp');if(wpBtn&&md.whatsappButtonText) wpBtn.textContent=md.whatsappButtonText;
+                if(md.badge1||md.badge2||md.badge3){
+                    var bEl=document.getElementById('modalBadges');
+                    if(bEl){
+                        var bh='';
+                        if(md.badge1) bh+='<div class="badge-item"><span class="badge-icon">thread</span>'+escapeHTML(md.badge1)+'</div>';
+                        if(md.badge2) bh+='<div class="badge-item"><span class="badge-icon">flag</span>'+escapeHTML(md.badge2)+'</div>';
+                        if(md.badge3) bh+='<div class="badge-item"><span class="badge-icon">box</span>'+escapeHTML(md.badge3)+'</div>';
+                        bEl.innerHTML=bh;
+                    }
+                }
+            }
+            if(cfg.showcase&&cfg.showcase.enabled===false) FEATURES.showcase=false;
+        }
+
+        function renderShowcase(){
+            var grid=document.getElementById('showcaseGrid');if(!grid)return;
+            /* Use config items if available */
+            if(SITE_CONFIG&&SITE_CONFIG.showcase&&SITE_CONFIG.showcase.items&&SITE_CONFIG.showcase.items.length>0){
+                var items=SITE_CONFIG.showcase.items;
+                var html='';
+                for(var i=0;i<items.length;i++){
+                    var it=items[i];
+                    var link=it.link||'#';
+                    html+='<div class="showcase-item" onclick="window.location.href=\''+escapeHTML(link)+'\'">';
+                    html+='<img src="'+escapeHTML(it.image)+'" alt="'+escapeHTML(it.label||'')+'" onerror="this.parentElement.style.display=\'none\'">';
+                    html+='<div class="showcase-overlay"><span>'+escapeHTML(it.label||'').toUpperCase()+'</span></div></div>';
+                }
+                grid.innerHTML=html;
+                /* Adjust grid columns to match item count */
+                var cols=items.length;
+                if(cols<=2) grid.style.gridTemplateColumns='repeat('+cols+', 1fr)';
+                else if(cols===3) grid.style.gridTemplateColumns='repeat(3, 1fr)';
+                else grid.style.gridTemplateColumns='repeat('+Math.min(cols,4)+', 1fr)';
+                return;
+            }
+            /* Fallback: auto-generate from productsDB */
+            if(typeof productsDB==='undefined'||!productsDB||productsDB.length===0){grid.innerHTML='';return;}
+            var catProducts={};for(var i=0;i<productsDB.length;i++){var p=productsDB[i];var mainCat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;if(!catProducts[mainCat])catProducts[mainCat]=[];catProducts[mainCat].push(p);}
+            var items=[];var cats=Object.keys(catProducts);
+            for(var c=0;c<cats.length&&items.length<4;c++){var catName=cats[c];var prods=catProducts[catName];for(var j=0;j<prods.length&&items.length<4;j++){if(items.length<4){items.push({cat:catName,path:prods[j].path});}if(cats.length<4&&items.length<4&&j<prods.length-1){items.push({cat:catName,path:prods[j+1].path});break;}}}
+            var html='';for(var i=0;i<items.length;i++){var it=items[i];html+='<div class="showcase-item" onclick="window.location.href=\'?category='+encodeURIComponent(it.cat)+'\'">';html+='<img src="'+it.path+'/1.webp" alt="'+it.cat+'" onerror="this.parentElement.style.display=\'none\'">';html+='<div class="showcase-overlay"><span>'+it.cat.toUpperCase()+'</span></div></div>';}grid.innerHTML=html;
+        }
+
+        function init(){var hero=document.getElementById('heroSection');var showcase=document.getElementById('showcaseSection');var pta=document.getElementById('pageTitleArea');var sr=document.getElementById('searchResults');var wpFloat=document.getElementById('wpFloat');var privLabel=document.getElementById('privateLabelSection');var searchBox=document.querySelector('.search-box');if(!FEATURES.hero&&hero)hero.style.display='none';if(!FEATURES.showcase&&showcase)showcase.style.display='none';if(!FEATURES.whatsappFloat&&wpFloat)wpFloat.style.display='none';if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';if(!FEATURES.search&&searchBox)searchBox.style.display='none';if(!FEATURES.favorites){document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});}if(urlParams.get('search')){hero.style.display='none';if(showcase)showcase.style.display='none';pta.style.display='none';sr.style.display='block';document.getElementById('pGrid').style.display='none';doSearchDisplay(urlParams.get('search'));}else if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';if(showcase)showcase.style.display='none';sr.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{if(FEATURES.hero)hero.style.display='block';if(FEATURES.showcase&&showcase){showcase.style.display='block';renderShowcase();}pta.style.display='none';sr.style.display='none';document.getElementById('pGrid').style.display='none';}}
+
+        /* ===== BOOT: load config then init ===== */
         if(typeof productsDB==='undefined'){document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>Error: inventory.js not found.</div>";}else{
             productsDB.forEach(p=>{if(p.category&&p.category.includes(' > ')){let a=p.category.split(' > ');p.mainCat=a[0].trim();p.subCat=a[1].trim();}else{p.mainCat=p.category;p.subCat="General";}p.code=p.id;p.realCode=p.id;p.folderPath=p.path;});
-            setLanguage();init();updateCartUI();}
-        function renderShowcase(){var grid=document.getElementById('showcaseGrid');if(!grid)return;if(typeof productsDB==='undefined'||!productsDB||productsDB.length===0){grid.innerHTML='';return;}var catProducts={};for(var i=0;i<productsDB.length;i++){var p=productsDB[i];var mainCat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;if(!catProducts[mainCat])catProducts[mainCat]=[];catProducts[mainCat].push(p);}var items=[];var cats=Object.keys(catProducts);for(var c=0;c<cats.length&&items.length<4;c++){var catName=cats[c];var prods=catProducts[catName];for(var j=0;j<prods.length&&items.length<4;j++){if(items.length<4){items.push({cat:catName,path:prods[j].path});}if(cats.length<4&&items.length<4&&j<prods.length-1){items.push({cat:catName,path:prods[j+1].path});break;}}}var html='';for(var i=0;i<items.length;i++){var it=items[i];html+='<div class="showcase-item" onclick="window.location.href=\'?category='+encodeURIComponent(it.cat)+'\'">';html+='<img src="'+it.path+'/1.webp" alt="'+it.cat+'" onerror="this.parentElement.style.display=\'none\'">';html+='<div class="showcase-overlay"><span>'+it.cat.toUpperCase()+'</span></div></div>';}grid.innerHTML=html;}
-        function init(){var hero=document.getElementById('heroSection');var showcase=document.getElementById('showcaseSection');var pta=document.getElementById('pageTitleArea');var sr=document.getElementById('searchResults');var wpFloat=document.getElementById('wpFloat');var privLabel=document.getElementById('privateLabelSection');var searchBox=document.querySelector('.search-box');if(!FEATURES.hero&&hero)hero.style.display='none';if(!FEATURES.showcase&&showcase)showcase.style.display='none';if(!FEATURES.whatsappFloat&&wpFloat)wpFloat.style.display='none';if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';if(!FEATURES.search&&searchBox)searchBox.style.display='none';if(!FEATURES.favorites){document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});}if(urlParams.get('search')){hero.style.display='none';if(showcase)showcase.style.display='none';pta.style.display='none';sr.style.display='block';document.getElementById('pGrid').style.display='none';doSearchDisplay(urlParams.get('search'));}else if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';if(showcase)showcase.style.display='none';sr.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{if(FEATURES.hero)hero.style.display='block';if(FEATURES.showcase&&showcase){showcase.style.display='block';renderShowcase();}pta.style.display='none';sr.style.display='none';document.getElementById('pGrid').style.display='none';}}
+            setLanguage();
+            /* Try loading config, then init */
+            fetch('_data/site_config.json?v='+Date.now()).then(function(r){return r.json();}).then(function(cfg){
+                applyConfig(cfg);init();updateCartUI();
+            }).catch(function(){
+                init();updateCartUI();
+            });
+        }
+
         function doSiteSearch(){var q=document.getElementById('siteSearch').value.trim();if(q.length<2){alert('En az 2 karakter girin');return;}window.location.href='?search='+encodeURIComponent(q);}
-        function doSearchDisplay(q){var results=[];var qLower=q.toLowerCase();for(var i=0;i<productsDB.length;i++){var p=productsDB[i];if(p.id.toLowerCase().indexOf(qLower)>-1){results.push(p);}}var container=document.getElementById('searchResults');var html='<div class="search-results-section"><h2 class="search-results-title">"'+q+'" için '+results.length+' sonuç</h2>';if(results.length===0){html+='<p style="text-align:center;color:#999;padding:50px;">Sonuç bulunamadı</p>';}else{html+='<div class="search-results-grid">';for(var j=0;j<results.length;j++){var r=results[j];var cat=r.category.indexOf(' > ')>-1?r.category.split(' > ')[0]:r.category;var sub=r.category.indexOf(' > ')>-1?r.category.split(' > ')[1]:r.category;html+='<div class="search-result-card" onclick="openModal(\''+r.id+'\',\''+r.id+'\',\''+r.path+'\')"><img src="'+r.path+'/1.webp" alt="'+r.id+'"><div class="info"><h4>'+r.id+'</h4><span>'+sub+'</span></div></div>';}html+='</div>';}html+='</div>';container.innerHTML=html;}
+        function doSearchDisplay(q){var results=[];var qLower=q.toLowerCase();for(var i=0;i<productsDB.length;i++){var p=productsDB[i];if(p.id.toLowerCase().indexOf(qLower)>-1){results.push(p);}}var container=document.getElementById('searchResults');var html='<div class="search-results-section"><h2 class="search-results-title">"'+q+'" i\u00e7in '+results.length+' sonu\u00e7</h2>';if(results.length===0){html+='<p style="text-align:center;color:#999;padding:50px;">Sonu\u00e7 bulunamad\u0131</p>';}else{html+='<div class="search-results-grid">';for(var j=0;j<results.length;j++){var r=results[j];var cat=r.category.indexOf(' > ')>-1?r.category.split(' > ')[0]:r.category;var sub=r.category.indexOf(' > ')>-1?r.category.split(' > ')[1]:r.category;html+='<div class="search-result-card" onclick="openModal(\''+r.id+'\',\''+r.id+'\',\''+r.path+'\')"><img src="'+r.path+'/1.webp" alt="'+r.id+'"><div class="info"><h4>'+r.id+'</h4><span>'+sub+'</span></div></div>';}html+='</div>';}html+='</div>';container.innerHTML=html;}
         function startCarousel(){
-            var track=document.getElementById('slideshowTrack');
-            var counter=document.getElementById('slideshowDots');
-            if(!productsDB||productsDB.length===0)return;
-            var slides=[];
-            for(var i=0;i<productsDB.length;i++){
-                var p=productsDB[i];
-                var sub=p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:p.category;
-                var cat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;
-                slides.push({img:p.path+'/1.webp',title:p.id,sub:sub,cat:cat,path:p.path});
-            }
+            var track=document.getElementById('slideshowTrack');var counter=document.getElementById('slideshowDots');
+            if(!productsDB||productsDB.length===0)return;var slides=[];
+            for(var i=0;i<productsDB.length;i++){var p=productsDB[i];var sub=p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:p.category;var cat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;slides.push({img:p.path+'/1.webp',title:p.id,sub:sub,cat:cat,path:p.path});}
             for(var j=slides.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=slides[j];slides[j]=slides[k];slides[k]=t;}
-            var html='';
-            for(var m=0;m<slides.length;m++){
-                var s=slides[m];
-                var cls=m===0?'ss-slide active':'ss-slide';
-                html+='<div class="'+cls+'" data-ptitle="'+s.title+'" data-ppath="'+s.path+'" onclick="openFromCarousel(this)"><img src="'+s.img+'" alt="'+s.title+'" onerror="this.parentElement.classList.add(\'ss-broken\')"><div class="ss-slide-info"><h4>'+s.title+'</h4><span>'+s.sub+'</span></div></div>';
-            }
-            track.innerHTML=html;
-            var validSlides=document.querySelectorAll('.ss-slide:not(.ss-broken)');
-            counter.innerHTML='<span class="ss-counter">1 / '+validSlides.length+'</span>';
-            window.CAROUSEL_INDEX=0;
-            window.CAROUSEL_TOTAL=document.querySelectorAll('.ss-slide').length;
-            setInterval(carouselNext,5000);
+            var html='';for(var m=0;m<slides.length;m++){var s=slides[m];var cls=m===0?'ss-slide active':'ss-slide';html+='<div class="'+cls+'" data-ptitle="'+s.title+'" data-ppath="'+s.path+'" onclick="openFromCarousel(this)"><img src="'+s.img+'" alt="'+s.title+'" onerror="this.parentElement.classList.add(\'ss-broken\')"><div class="ss-slide-info"><h4>'+s.title+'</h4><span>'+s.sub+'</span></div></div>';}
+            track.innerHTML=html;var validSlides=document.querySelectorAll('.ss-slide:not(.ss-broken)');counter.innerHTML='<span class="ss-counter">1 / '+validSlides.length+'</span>';window.CAROUSEL_INDEX=0;window.CAROUSEL_TOTAL=document.querySelectorAll('.ss-slide').length;setInterval(carouselNext,5000);
         }
-        function openFromCarousel(el){
-            var t=el.getAttribute('data-ptitle');
-            var p=el.getAttribute('data-ppath');
-            openModal(t,t,p);
-        }
-        function carouselNext(){
-            var all=document.querySelectorAll('.ss-slide');
-            var attempts=0;
-            do{
-                window.CAROUSEL_INDEX++;
-                if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
-                attempts++;
-            }while(all[window.CAROUSEL_INDEX] && all[window.CAROUSEL_INDEX].classList.contains('ss-broken') && attempts<window.CAROUSEL_TOTAL);
-            carouselShow();
-        }
-        function carouselShow(){
-            var all=document.querySelectorAll('.ss-slide');
-            for(var i=0;i<all.length;i++)all[i].className=all[i].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide';
-            if(all[window.CAROUSEL_INDEX])all[window.CAROUSEL_INDEX].className=all[window.CAROUSEL_INDEX].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide active';
-            var valid=document.querySelectorAll('.ss-slide:not(.ss-broken)').length;
-            var current=0;
-            for(var j=0;j<=window.CAROUSEL_INDEX;j++){if(!all[j].classList.contains('ss-broken'))current++;}
-            var c=document.querySelector('.ss-counter');
-            if(c)c.innerText=current+' / '+valid;
-        }
-        function ssMove(dir){
-            var all=document.querySelectorAll('.ss-slide');
-            var attempts=0;
-            do{
-                window.CAROUSEL_INDEX+=dir;
-                if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
-                if(window.CAROUSEL_INDEX<0)window.CAROUSEL_INDEX=window.CAROUSEL_TOTAL-1;
-                attempts++;
-            }while(all[window.CAROUSEL_INDEX] && all[window.CAROUSEL_INDEX].classList.contains('ss-broken') && attempts<window.CAROUSEL_TOTAL);
-            carouselShow();
-        }
+        function openFromCarousel(el){var t=el.getAttribute('data-ptitle');var p=el.getAttribute('data-ppath');openModal(t,t,p);}
+        function carouselNext(){var all=document.querySelectorAll('.ss-slide');var attempts=0;do{window.CAROUSEL_INDEX++;if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;attempts++;}while(all[window.CAROUSEL_INDEX]&&all[window.CAROUSEL_INDEX].classList.contains('ss-broken')&&attempts<window.CAROUSEL_TOTAL);carouselShow();}
+        function carouselShow(){var all=document.querySelectorAll('.ss-slide');for(var i=0;i<all.length;i++)all[i].className=all[i].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide';if(all[window.CAROUSEL_INDEX])all[window.CAROUSEL_INDEX].className=all[window.CAROUSEL_INDEX].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide active';var valid=document.querySelectorAll('.ss-slide:not(.ss-broken)').length;var current=0;for(var j=0;j<=window.CAROUSEL_INDEX;j++){if(!all[j].classList.contains('ss-broken'))current++;}var c=document.querySelector('.ss-counter');if(c)c.innerText=current+' / '+valid;}
+        function ssMove(dir){var all=document.querySelectorAll('.ss-slide');var attempts=0;do{window.CAROUSEL_INDEX+=dir;if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;if(window.CAROUSEL_INDEX<0)window.CAROUSEL_INDEX=window.CAROUSEL_TOTAL-1;attempts++;}while(all[window.CAROUSEL_INDEX]&&all[window.CAROUSEL_INDEX].classList.contains('ss-broken')&&attempts<window.CAROUSEL_TOTAL);carouselShow();}
         function showSubs(){document.getElementById('pGrid').style.display='grid';const cd=productsDB.find(p=>p.mainCat.toLowerCase()===curCat.toLowerCase());const dc=cd?cd.mainCat:curCat;document.getElementById('pTitle').textContent=dc;document.getElementById('back').style.display="none";document.getElementById('infoGuide').style.display="none";const ss=[...new Set(productsDB.filter(p=>p.mainCat.toLowerCase()===curCat.toLowerCase()).map(p=>p.subCat))];if(ss.length===0){document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">Collection is being updated...</div>';return;}document.getElementById('pGrid').innerHTML=ss.map(s=>{const cv=productsDB.find(p=>p.subCat===s);const ss2=escapeHTML(s);const ip=`${cv.folderPath}/1.webp`;return`<div class="card" onclick="window.location.href='?category=${encodeURIComponent(curCat)}&subcategory=${encodeURIComponent(s)}'"><div class="img-box"><img src="${ip}" loading="lazy" onerror="this.parentElement.style.background='#ddd';" alt="${ss2}"></div><div class="info-box"><h3 class="info-title">${ss2}</h3><span style="color:var(--color-gold);font-size:0.7rem;font-weight:700;">VIEW COLLECTION</span></div></div>`;}).join('');}
         function showProducts(){document.getElementById('pGrid').style.display='grid';document.getElementById('pTitle').textContent=curSub;document.getElementById('back').style.display="inline-block";document.getElementById('infoGuide').style.display="flex";const ps=productsDB.filter(p=>p.mainCat.toLowerCase()===curCat.toLowerCase()&&p.subCat===curSub);if(ps.length===0){document.getElementById('pGrid').innerHTML='<div style="text-align:center;width:100%;">No products found.</div>';return;}document.getElementById('pGrid').innerHTML=ps.map(p=>{const ip=`${p.folderPath}/1.webp`;const f=cart.includes(p.realCode)?'active':'';const h=f?'\u2665':'\u2661';const sr=escapeHTML(p.realCode);const sc=escapeHTML(p.code);const sp=escapeHTML(p.folderPath);return`<div class="card" onclick="openModal('${sc}','${sr}','${sp}')"><button class="heart-btn ${f}" onclick="toggleCart(event,'${sr}')">${h}</button><div class="img-box"><img src="${ip}" loading="lazy" onerror="this.parentElement.style.background='#ddd';" alt="${sr}"></div><h3 class="info-title">${sr}</h3></div>`;}).join('');}
         function goBack(){window.location.href=`?category=${curCat}`;}
         function toggleCart(e,c){e.stopPropagation();if(cart.includes(c)){cart=cart.filter(i=>i!==c);e.target.innerText='\u2661';e.target.classList.remove('active');}else{cart.push(c);e.target.innerText='\u2665';e.target.classList.add('active');}localStorage.setItem('pagusCart',JSON.stringify(cart));updateCartUI();}
         function updateCartUI(){const b=document.getElementById('floatCart');const c=document.getElementById('cartCount');c.innerText=cart.length;b.style.display=cart.length>0?"flex":"none";}
-        function sendListToWhatsapp(){if(cart.length===0)return;let l=navigator.language||navigator.userLanguage;let m="",c=cart.join(", ");if(l&&l.startsWith("it")){m="Salve Pagus, sono interessato ai prezzi di questi modelli:\n\n{codes}\n\nGrazie.".replace("{codes}",c);}else{m="Hi Pagus, I am interested in the prices for these models:\n\n{codes}\n\nThanks.".replace("{codes}",c);}window.open(`https://wa.me/905511748907?text=${encodeURIComponent(m)}`,'_blank');setTimeout(()=>{cart=[];localStorage.removeItem('pagusCart');updateCartUI();document.querySelectorAll('.heart-btn').forEach(b=>{b.innerText='\u2661';b.classList.remove('active');});},1000);}
+        function sendListToWhatsapp(){if(cart.length===0)return;let l=navigator.language||navigator.userLanguage;let m="",c=cart.join(", ");if(l&&l.startsWith("it")){m="Salve Pagus, sono interessato ai prezzi di questi modelli:\n\n{codes}\n\nGrazie.".replace("{codes}",c);}else{m="Hi Pagus, I am interested in the prices for these models:\n\n{codes}\n\nThanks.".replace("{codes}",c);}window.open('https://wa.me/'+WP_NUMBER+'?text='+encodeURIComponent(m),'_blank');setTimeout(()=>{cart=[];localStorage.removeItem('pagusCart');updateCartUI();document.querySelectorAll('.heart-btn').forEach(b=>{b.innerText='\u2661';b.classList.remove('active');});},1000);}
         let activeCode="",activePath="",idx=1;
-        function openModal(c,r,f){activeCode=c;activePath=f;idx=1;history.pushState({modal:true},null,"");const m=document.getElementById('pModal');m.style.display="block";document.getElementById('mCode').textContent=r;document.getElementById('imgCount').textContent=`${idx}/4`;let l=navigator.language||navigator.userLanguage;let msg="";if(l&&l.startsWith("it")){msg="Salve, vorrei ricevere informazioni sul modello: {code}".replace("{code}",r);}else{msg="Hi, inquiring about: {code}".replace("{code}",r);}document.getElementById('wp').href=`https://wa.me/905511748907?text=${encodeURIComponent(msg)}`;update();m.setAttribute('tabindex','-1');m.focus();}
+        function openModal(c,r,f){activeCode=c;activePath=f;idx=1;history.pushState({modal:true},null,"");const m=document.getElementById('pModal');m.style.display="block";document.getElementById('mCode').textContent=r;document.getElementById('imgCount').textContent=`${idx}/4`;let l=navigator.language||navigator.userLanguage;let msg="";if(l&&l.startsWith("it")){msg="Salve, vorrei ricevere informazioni sul modello: {code}".replace("{code}",r);}else{msg="Hi, inquiring about: {code}".replace("{code}",r);}document.getElementById('wp').href='https://wa.me/'+WP_NUMBER+'?text='+encodeURIComponent(msg);update();m.setAttribute('tabindex','-1');m.focus();}
         function closeModal(){document.getElementById('pModal').style.display="none";if(history.state&&history.state.modal){history.back();}}
         window.onclick=function(e){if(e.target==document.getElementById('pModal'))closeModal();};
         window.onpopstate=function(){if(document.getElementById('pModal').style.display==="block"){document.getElementById('pModal').style.display="none";}};

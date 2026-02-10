@@ -1,0 +1,70 @@
+{
+  "header": {
+    "logo": "PAGUS",
+    "searchPlaceholder": "Search products...",
+    "instagram": "https://www.instagram.com/pagus_menswear/",
+    "whatsapp": "905511748907"
+  },
+  "navigation": [
+    {"label": "Wedding Suits", "category": "Wedding Suits"},
+    {"label": "Formal Suits", "category": "Formal Suits"},
+    {"label": "Shirts", "category": "Shirts"},
+    {"label": "Shoes", "category": "Shoes"},
+    {"label": "Accessories", "category": "Accessories"},
+    {"label": "Children", "category": "Children"}
+  ],
+  "showcase": {
+    "enabled": true,
+    "items": [
+      {"image": "images/Formal Suits/15097-17/1.webp", "label": "FORMAL SUITS", "link": "?category=Formal Suits"},
+      {"image": "images/Wedding Suits/Mandarin Collar Suits/50005-01/1.webp", "label": "WEDDING SUITS", "link": "?category=Wedding Suits"},
+      {"image": "images/Wedding Suits/Peak Lapel Smokings/50003-01/1.webp", "label": "PEAK LAPEL", "link": "?category=Wedding Suits&subcategory=Peak Lapel Smokings"},
+      {"image": "images/Wedding Suits/Shawl Collar Smokings/50112-22/1.webp", "label": "SHAWL COLLAR", "link": "?category=Wedding Suits&subcategory=Shawl Collar Smokings"}
+    ]
+  },
+  "hero": {
+    "enabled": true,
+    "tagline": "B2B Wholesale Menswear",
+    "title": "Premium Suits & Formal Wear",
+    "description": "Direct from manufacturer in \u0130zmir, Turkey. We offer high-quality men's suits, tuxedos, and formal wear for retailers and wholesalers worldwide. Minimum order: 50 pieces.",
+    "stats": [
+      {"number": "15+", "label": "Years Experience"},
+      {"number": "50+", "label": "Countries"},
+      {"number": "500+", "label": "Active Partners"}
+    ]
+  },
+  "privateLabel": {
+    "enabled": true,
+    "title": "YOUR BRAND, OUR PRODUCTION",
+    "description": "Looking for a manufacturing partner? Pagus offers specialized Private Label services.",
+    "buttonText": "START PRODUCTION",
+    "buttonLink": "https://wa.me/905511748907"
+  },
+  "footer": {
+    "aboutTitle": "ABOUT PAGUS MENSWEAR",
+    "aboutText": "PAGUS Menswear is established with a single mission: to provide world-class textile solutions.",
+    "contactTitle": "B2B CONTACT",
+    "whatsapp": "+905511748907",
+    "location": "Izmir, Turkey",
+    "paymentLink": "payment.html",
+    "paymentText": "Secure Payment & Bank Accounts",
+    "copyright": "2026 Pagus Menswear. All Rights Reserved."
+  },
+  "features": {
+    "carousel": false,
+    "hero": true,
+    "search": true,
+    "favorites": true,
+    "whatsappFloat": true,
+    "privateLabel": true,
+    "showcase": true
+  },
+  "modal": {
+    "badge1": "Premium Fabric",
+    "badge2": "Made in Turkey",
+    "badge3": "Wholesale Only",
+    "subtitle": "WHOLESALE MANUFACTURER",
+    "description": "Premium quality fabric available for bulk orders.",
+    "whatsappButtonText": "ASK PRICE VIA WHATSAPP"
+  }
+}

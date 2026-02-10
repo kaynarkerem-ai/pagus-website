@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagus Visual Admin Panel</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+        :root {
+            --primary: #c9a962;
+            --dark: #2c3e50;
+            --darker: #1a252f;
+            --sidebar-w: 260px;
+            --bg: #f0f2f5;
+            --card: #fff;
+            --text: #333;
+            --text-light: #777;
+            --border: #e0e0e0;
+            --danger: #e74c3c;
+            --success: #27ae60;
+            --info: #3498db;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); }
+
+        /* LOGIN */
+        .login-screen { display:flex; align-items:center; justify-content:center; min-height:100vh; background: linear-gradient(135deg, var(--dark), var(--darker)); }
+        .login-box { background: var(--card); padding:50px 40px; border-radius:16px; text-align:center; max-width:420px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+        .login-box h1 { font-size:2rem; color:var(--dark); margin-bottom:8px; letter-spacing:3px; }
+        .login-box p { color:var(--text-light); margin-bottom:30px; }
+        .login-btn { background:var(--primary); color:#fff; border:none; padding:14px 40px; font-size:1rem; font-weight:700; border-radius:8px; cursor:pointer; transition:0.3s; letter-spacing:1px; }
+        .login-btn:hover { background:#d4b366; transform:translateY(-2px); }
+
+        /* LAYOUT */
+        .app { display:none; }
+        .topbar { position:fixed; top:0; left:var(--sidebar-w); right:0; height:60px; background:var(--card); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; padding:0 30px; z-index:100; }
+        .topbar h2 { font-size:1.1rem; color:var(--dark); }
+        .topbar-actions { display:flex; gap:12px; align-items:center; }
+        .topbar .user-info { font-size:0.85rem; color:var(--text-light); }
+
+        .sidebar { position:fixed; top:0; left:0; bottom:0; width:var(--sidebar-w); background:var(--dark); color:#fff; z-index:200; overflow-y:auto; }
+        .sidebar-logo { padding:20px 25px; font-size:1.5rem; font-weight:700; letter-spacing:3px; color:var(--primary); border-bottom:1px solid rgba(255,255,255,0.1); }
+        .sidebar-logo small { display:block; font-size:0.7rem; color:rgba(255,255,255,0.5); letter-spacing:1px; font-weight:400; margin-top:4px; }
+        .sidebar nav { padding:15px 0; }
+        .nav-item { display:flex; align-items:center; gap:12px; padding:12px 25px; color:rgba(255,255,255,0.7); cursor:pointer; transition:0.2s; font-size:0.9rem; border-left:3px solid transparent; }
+        .nav-item:hover { background:rgba(255,255,255,0.05); color:#fff; }
+        .nav-item.active { background:rgba(201,169,98,0.15); color:var(--primary); border-left-color:var(--primary); }
+        .nav-item .icon { font-size:1.2rem; width:24px; text-align:center; }
+        .nav-sep { height:1px; background:rgba(255,255,255,0.1); margin:10px 0; }
+
+        .main { margin-left:var(--sidebar-w); margin-top:60px; padding:30px; min-height:calc(100vh - 60px); }
+
+        /* CARDS & FORMS */
+        .section-panel { display:none; }
+        .section-panel.active { display:block; }
+        .card { background:var(--card); border-radius:12px; padding:25px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+        .card h3 { font-size:1.1rem; color:var(--dark); margin-bottom:15px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+        .card h3 .toggle-switch { float:right; }
+        .form-group { margin-bottom:18px; }
+        .form-group label { display:block; font-size:0.85rem; font-weight:600; color:var(--text-light); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+        .form-group input, .form-group textarea, .form-group select {
+            width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:8px; font-size:0.95rem; font-family:inherit;
+            transition:0.2s; background:#fff;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color:var(--primary); outline:none; box-shadow:0 0 0 3px rgba(201,169,98,0.15); }
+        .form-group textarea { resize:vertical; min-height:80px; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+        .form-row-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:15px; }
+
+        /* BUTTONS */
+        .btn { padding:10px 22px; border:none; border-radius:8px; font-size:0.9rem; font-weight:600; cursor:pointer; transition:0.2s; display:inline-flex; align-items:center; gap:8px; }
+        .btn-primary { background:var(--primary); color:#fff; }
+        .btn-primary:hover { background:#d4b366; }
+        .btn-danger { background:var(--danger); color:#fff; }
+        .btn-danger:hover { background:#c0392b; }
+        .btn-success { background:var(--success); color:#fff; }
+        .btn-success:hover { background:#219a52; }
+        .btn-outline { background:transparent; border:2px solid var(--border); color:var(--text); }
+        .btn-outline:hover { border-color:var(--primary); color:var(--primary); }
+        .btn-sm { padding:6px 14px; font-size:0.8rem; }
+        .btn-icon { width:36px; height:36px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:8px; }
+
+        /* TOGGLE */
+        .toggle-switch { position:relative; display:inline-block; width:48px; height:26px; }
+        .toggle-switch input { opacity:0; width:0; height:0; }
+        .toggle-slider { position:absolute; inset:0; background:#ccc; border-radius:26px; cursor:pointer; transition:0.3s; }
+        .toggle-slider:before { content:''; position:absolute; height:20px; width:20px; left:3px; bottom:3px; background:#fff; border-radius:50%; transition:0.3s; }
+        .toggle-switch input:checked + .toggle-slider { background:var(--success); }
+        .toggle-switch input:checked + .toggle-slider:before { transform:translateX(22px); }
+
+        /* SHOWCASE ITEMS */
+        .showcase-list { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:16px; }
+        .showcase-card { border:2px solid var(--border); border-radius:12px; overflow:hidden; cursor:grab; position:relative; transition:0.2s; background:#fff; }
+        .showcase-card:hover { border-color:var(--primary); box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+        .showcase-card.dragging { opacity:0.5; border-color:var(--info); }
+        .showcase-card.drag-over { border-color:var(--primary); border-style:dashed; transform:scale(1.02); }
+        .showcase-card img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; background:#eee; }
+        .showcase-card .sc-info { padding:12px; }
+        .showcase-card .sc-label { font-weight:700; font-size:0.9rem; color:var(--dark); }
+        .showcase-card .sc-link { font-size:0.75rem; color:var(--text-light); margin-top:4px; word-break:break-all; }
+        .showcase-card .sc-actions { display:flex; gap:6px; margin-top:8px; }
+        .showcase-card .sc-badge { position:absolute; top:10px; left:10px; background:rgba(0,0,0,0.7); color:#fff; font-size:0.7rem; padding:3px 10px; border-radius:10px; font-weight:700; }
+        .showcase-card .sc-remove { position:absolute; top:8px; right:8px; width:28px; height:28px; background:rgba(231,76,60,0.9); color:#fff; border:none; border-radius:50%; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; transition:0.2s; }
+        .showcase-card .sc-remove:hover { background:var(--danger); transform:scale(1.1); }
+        .showcase-add { border:2px dashed var(--border); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:200px; cursor:pointer; transition:0.2s; background:rgba(201,169,98,0.03); }
+        .showcase-add:hover { border-color:var(--primary); background:rgba(201,169,98,0.08); }
+        .showcase-add .plus { font-size:2.5rem; color:var(--primary); }
+        .showcase-add span { color:var(--text-light); font-size:0.85rem; margin-top:8px; }
+
+        /* NAV ITEMS */
+        .nav-edit-list { list-style:none; }
+        .nav-edit-item { display:flex; align-items:center; gap:12px; padding:12px 15px; border:1px solid var(--border); border-radius:8px; margin-bottom:8px; background:#fff; cursor:grab; transition:0.2s; }
+        .nav-edit-item:hover { border-color:var(--primary); }
+        .nav-edit-item.dragging { opacity:0.5; }
+        .nav-edit-item.drag-over { border-color:var(--primary); border-style:dashed; }
+        .nav-edit-item .grip { color:#ccc; font-size:1.2rem; cursor:grab; user-select:none; }
+        .nav-edit-item input { flex:1; padding:8px 12px; border:1px solid var(--border); border-radius:6px; font-size:0.9rem; }
+        .nav-edit-item input:focus { border-color:var(--primary); outline:none; }
+        .nav-edit-item .remove-nav { color:var(--danger); cursor:pointer; font-size:1.1rem; padding:5px; border:none; background:transparent; }
+
+        /* STAT ITEMS */
+        .stat-edit-item { display:grid; grid-template-columns:120px 1fr auto; gap:10px; align-items:center; padding:10px; border:1px solid var(--border); border-radius:8px; margin-bottom:8px; }
+        .stat-edit-item input { padding:8px 12px; border:1px solid var(--border); border-radius:6px; font-size:0.9rem; }
+        .stat-edit-item input:focus { border-color:var(--primary); outline:none; }
+
+        /* SAVE BAR */
+        .save-bar { position:fixed; bottom:0; left:var(--sidebar-w); right:0; background:var(--card); border-top:2px solid var(--primary); padding:12px 30px; display:flex; align-items:center; justify-content:space-between; z-index:100; transform:translateY(100%); transition:0.3s; }
+        .save-bar.visible { transform:translateY(0); }
+        .save-bar .changes-text { color:var(--primary); font-weight:600; font-size:0.9rem; }
+        .save-bar .save-actions { display:flex; gap:10px; }
+
+        /* IMAGE PICKER MODAL */
+        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center; }
+        .modal-overlay.active { display:flex; }
+        .modal-box { background:var(--card); border-radius:16px; max-width:800px; width:95%; max-height:85vh; overflow:hidden; display:flex; flex-direction:column; }
+        .modal-header { padding:20px 25px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+        .modal-header h3 { font-size:1.1rem; color:var(--dark); }
+        .modal-close { background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--text-light); padding:5px; }
+        .modal-body { padding:20px 25px; overflow-y:auto; flex:1; }
+        .modal-footer { padding:15px 25px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; gap:10px; }
+
+        /* IMAGE GRID IN MODAL */
+        .image-source-tabs { display:flex; gap:0; margin-bottom:20px; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+        .image-source-tab { flex:1; padding:10px; text-align:center; cursor:pointer; font-size:0.85rem; font-weight:600; background:#f5f5f5; border:none; transition:0.2s; }
+        .image-source-tab.active { background:var(--primary); color:#fff; }
+        .product-image-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); gap:10px; max-height:400px; overflow-y:auto; padding:5px; }
+        .product-image-option { border:2px solid var(--border); border-radius:8px; overflow:hidden; cursor:pointer; transition:0.2s; position:relative; }
+        .product-image-option:hover { border-color:var(--primary); }
+        .product-image-option.selected { border-color:var(--primary); box-shadow:0 0 0 3px rgba(201,169,98,0.3); }
+        .product-image-option img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; background:#eee; }
+        .product-image-option .img-label { padding:5px; font-size:0.7rem; text-align:center; color:var(--text-light); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .url-input-area { margin-top:15px; }
+        .url-input-area input { width:100%; padding:12px; border:1px solid var(--border); border-radius:8px; font-size:0.9rem; }
+        .url-preview { margin-top:10px; max-width:200px; border-radius:8px; }
+
+        /* EDIT INLINE MODAL */
+        .edit-modal-fields { display:flex; flex-direction:column; gap:15px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .sidebar { width:100%; height:auto; position:relative; }
+            .topbar { left:0; }
+            .main { margin-left:0; }
+            .save-bar { left:0; }
+            .form-row, .form-row-3 { grid-template-columns:1fr; }
+            .showcase-list { grid-template-columns:1fr 1fr; }
+        }
+
+        /* TOAST */
+        .toast { position:fixed; top:80px; right:30px; background:var(--success); color:#fff; padding:14px 24px; border-radius:10px; font-weight:600; z-index:9999; transform:translateX(120%); transition:0.4s; box-shadow:0 5px 20px rgba(0,0,0,0.2); }
+        .toast.show { transform:translateX(0); }
+        .toast.error { background:var(--danger); }
+
+        /* LIVE PREVIEW */
+        .preview-frame { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:#fff; }
+        .preview-frame iframe { width:100%; height:500px; border:none; }
+        .preview-toggle { display:flex; gap:0; margin-bottom:15px; }
+        .preview-toggle button { padding:8px 20px; border:1px solid var(--border); background:#f5f5f5; cursor:pointer; font-size:0.85rem; font-weight:600; }
+        .preview-toggle button:first-child { border-radius:8px 0 0 8px; }
+        .preview-toggle button:last-child { border-radius:0 8px 8px 0; }
+        .preview-toggle button.active { background:var(--dark); color:#fff; border-color:var(--dark); }
+
+        /* CATEGORY FILTER IN IMAGE PICKER */
+        .cat-filter { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; }
+        .cat-filter button { padding:6px 14px; border:1px solid var(--border); border-radius:20px; background:#fff; cursor:pointer; font-size:0.8rem; transition:0.2s; }
+        .cat-filter button.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+
+        /* LOADING */
+        .spinner { width:30px; height:30px; border:3px solid var(--border); border-top-color:var(--primary); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+
+        /* FEATURE TOGGLES GRID */
+        .features-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:12px; }
+        .feature-toggle-card { display:flex; align-items:center; justify-content:space-between; padding:15px; border:1px solid var(--border); border-radius:10px; background:#fff; }
+        .feature-toggle-card .ft-label { font-weight:600; font-size:0.9rem; }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="login-screen">
+    <div class="login-box">
+        <h1>PAGUS</h1>
+        <p>Gorsel Yonetim Paneli</p>
+        <button class="login-btn" onclick="doLogin()">GIRIS YAP</button>
+    </div>
+</div>
+
+<!-- APP -->
+<div id="app" class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            PAGUS
+            <small>ADMIN PANEL</small>
+        </div>
+        <nav>
+            <div class="nav-item active" data-section="showcase" onclick="switchSection('showcase')">
+                <span class="icon">&#9881;</span> Showcase / Carousel
+            </div>
+            <div class="nav-item" data-section="hero" onclick="switchSection('hero')">
+                <span class="icon">&#9733;</span> Hero Bolumu
+            </div>
+            <div class="nav-item" data-section="navigation" onclick="switchSection('navigation')">
+                <span class="icon">&#9776;</span> Navigasyon
+            </div>
+            <div class="nav-sep"></div>
+            <div class="nav-item" data-section="privatelabel" onclick="switchSection('privatelabel')">
+                <span class="icon">&#9874;</span> Private Label
+            </div>
+            <div class="nav-item" data-section="footer" onclick="switchSection('footer')">
+                <span class="icon">&#9881;</span> Footer
+            </div>
+            <div class="nav-item" data-section="modal" onclick="switchSection('modal')">
+                <span class="icon">&#128736;</span> Urun Detay Modal
+            </div>
+            <div class="nav-sep"></div>
+            <div class="nav-item" data-section="header" onclick="switchSection('header')">
+                <span class="icon">&#127760;</span> Header / Genel
+            </div>
+            <div class="nav-item" data-section="features" onclick="switchSection('features')">
+                <span class="icon">&#9889;</span> Ozellik Ayarlari
+            </div>
+            <div class="nav-sep"></div>
+            <div class="nav-item" data-section="preview" onclick="switchSection('preview')">
+                <span class="icon">&#128065;</span> Canli Onizleme
+            </div>
+        </nav>
+    </aside>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <h2 id="sectionTitle">Showcase / Carousel Yonetimi</h2>
+        <div class="topbar-actions">
+            <span class="user-info" id="userEmail"></span>
+            <button class="btn btn-sm btn-outline" onclick="doLogout()">Cikis</button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <!-- SHOWCASE SECTION -->
+        <div id="sec-showcase" class="section-panel active">
+            <div class="card">
+                <h3>Showcase Gorselleri
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="showcaseEnabled" onchange="markDirty()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </h3>
+                <p style="color:var(--text-light); font-size:0.85rem; margin-bottom:20px;">
+                    Ana sayfadaki buyuk gorsel alanini yonetin. Surukleyerek siralayin, ekleyin veya kaldirin.
+                </p>
+                <div class="showcase-list" id="showcaseList">
+                    <!-- JS fills -->
+                </div>
+            </div>
+        </div>
+
+        <!-- HERO SECTION -->
+        <div id="sec-hero" class="section-panel">
+            <div class="card">
+                <h3>Hero Bolumu
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="heroEnabled" onchange="markDirty()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </h3>
+                <div class="form-group">
+                    <label>Ustbaslik (Tagline)</label>
+                    <input type="text" id="heroTagline" oninput="markDirty()">
+                </div>
+                <div class="form-group">
+                    <label>Ana Baslik</label>
+                    <input type="text" id="heroTitle" oninput="markDirty()">
+                </div>
+                <div class="form-group">
+                    <label>Aciklama</label>
+                    <textarea id="heroDesc" rows="3" oninput="markDirty()"></textarea>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Istatistikler</h3>
+                <div id="statsEditor"><!-- JS fills --></div>
+                <button class="btn btn-outline btn-sm" style="margin-top:10px;" onclick="addStat()">+ Istatistik Ekle</button>
+            </div>
+        </div>
+
+        <!-- NAVIGATION SECTION -->
+        <div id="sec-navigation" class="section-panel">
+            <div class="card">
+                <h3>Navigasyon Menuleri</h3>
+                <p style="color:var(--text-light); font-size:0.85rem; margin-bottom:15px;">
+                    Surukleyerek sirayi degistirin. Yeni kategori ekleyin veya cikartin.
+                </p>
+                <ul class="nav-edit-list" id="navEditor"><!-- JS fills --></ul>
+                <button class="btn btn-outline btn-sm" style="margin-top:12px;" onclick="addNavItem()">+ Yeni Kategori Ekle</button>
+            </div>
+        </div>
+
+        <!-- PRIVATE LABEL -->
+        <div id="sec-privatelabel" class="section-panel">
+            <div class="card">
+                <h3>Private Label Bolumu
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="plEnabled" onchange="markDirty()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </h3>
+                <div class="form-group">
+                    <label>Baslik</label>
+                    <input type="text" id="plTitle" oninput="markDirty()">
+                </div>
+                <div class="form-group">
+                    <label>Aciklama</label>
+                    <textarea id="plDesc" rows="3" oninput="markDirty()"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Buton Metni</label>
+                        <input type="text" id="plBtnText" oninput="markDirty()">
+                    </div>
+                    <div class="form-group">
+                        <label>Buton Linki</label>
+                        <input type="text" id="plBtnLink" oninput="markDirty()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div id="sec-footer" class="section-panel">
+            <div class="card">
+                <h3>Footer Ayarlari</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Hakkimizda Basligi</label>
+                        <input type="text" id="footAboutTitle" oninput="markDirty()">
+                    </div>
+                    <div class="form-group">
+                        <label>Iletisim Basligi</label>
+                        <input type="text" id="footContactTitle" oninput="markDirty()">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Hakkimizda Metni</label>
+                    <textarea id="footAboutText" rows="3" oninput="markDirty()"></textarea>
+                </div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>WhatsApp</label>
+                        <input type="text" id="footWhatsapp" oninput="markDirty()">
+                    </div>
+                    <div class="form-group">
+                        <label>Konum</label>
+                        <input type="text" id="footLocation" oninput="markDirty()">
+                    </div>
+                    <div class="form-group">
+                        <label>Odeme Sayfasi Linki</label>
+                        <input type="text" id="footPaymentLink" oninput="markDirty()">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Odeme Sayfasi Metni</label>
+                        <input type="text" id="footPaymentText" oninput="markDirty()">
+                    </div>
+                    <div class="form-group">
+                        <label>Telif Hakki Metni</label>
+                        <input type="text" id="footCopyright" oninput="markDirty()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL SETTINGS -->
+        <div id="sec-modal" class="section-panel">
+            <div class="card">
+                <h3>Urun Detay Modal Ayarlari</h3>
+                <p style="color:var(--text-light); font-size:0.85rem; margin-bottom:15px;">
+                    Urun tiklandiginda acilan detay penceresindeki metinleri duzenleyin.
+                </p>
+                <div class="form-group">
+                    <label>Ust Baslik</label>
+                    <input type="text" id="modalSubtitle" oninput="markDirty()">
+                </div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Rozet 1</label>
+                        <input type="text" id="modalBadge1" oninput="markDirty()">
+                    </div>
+                    <div class="form-group">
+                        <label>Rozet 2</label>
+                        <input type="text" id="modalBadge2" oninput="markDirty()">
+                    </div>
+                    <div class="form-group">
+                        <label>Rozet 3</label>
+                        <input type="text" id="modalBadge3" oninput="markDirty()">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Aciklama</label>
+                    <textarea id="modalDescription" rows="2" oninput="markDirty()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Buton Metni</label>
+                    <input type="text" id="modalWpBtn" oninput="markDirty()">
+                </div>
+            </div>
+        </div>
+
+        <!-- HEADER / GENERAL -->
+        <div id="sec-header" class="section-panel">
+            <div class="card">
+                <h3>Header ve Genel Ayarlar</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Logo Metni</label>
+                        <input type="text" id="headerLogo" oninput="markDirty()">
+                    </div>
+                    <div class="form-group">
+                        <label>Arama Placeholder</label>
+                        <input type="text" id="headerSearchPlaceholder" oninput="markDirty()">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Instagram Linki</label>
+                        <input type="text" id="headerInstagram" oninput="markDirty()">
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp Numarasi</label>
+                        <input type="text" id="headerWhatsapp" oninput="markDirty()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FEATURES -->
+        <div id="sec-features" class="section-panel">
+            <div class="card">
+                <h3>Ozellik Ayarlari (On/Off)</h3>
+                <p style="color:var(--text-light); font-size:0.85rem; margin-bottom:20px;">
+                    Sitedeki ozellikleri acin veya kapatin.
+                </p>
+                <div class="features-grid" id="featuresGrid"><!-- JS fills --></div>
+            </div>
+        </div>
+
+        <!-- LIVE PREVIEW -->
+        <div id="sec-preview" class="section-panel">
+            <div class="card">
+                <h3>Canli Onizleme</h3>
+                <p style="color:var(--text-light); font-size:0.85rem; margin-bottom:15px;">
+                    Degisikliklerinizi kaydetmeden once onizleyin.
+                </p>
+                <div class="preview-frame">
+                    <iframe id="previewFrame" src="../index.html"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.main -->
+
+    <!-- SAVE BAR -->
+    <div class="save-bar" id="saveBar">
+        <span class="changes-text">Kaydedilmemis degisiklikler var</span>
+        <div class="save-actions">
+            <button class="btn btn-outline btn-sm" onclick="revertChanges()">Geri Al</button>
+            <button class="btn btn-success" onclick="saveConfig()" id="saveBtn">Kaydet ve Yayinla</button>
+        </div>
+    </div>
+</div>
+
+<!-- IMAGE PICKER MODAL -->
+<div class="modal-overlay" id="imagePickerModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>Gorsel Sec</h3>
+            <button class="modal-close" onclick="closeImagePicker()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="image-source-tabs">
+                <button class="image-source-tab active" onclick="switchImageSource('products')">Urunlerden Sec</button>
+                <button class="image-source-tab" onclick="switchImageSource('url')">URL ile Ekle</button>
+            </div>
+            <div id="imgSrcProducts">
+                <div class="cat-filter" id="catFilter"><!-- JS fills --></div>
+                <div class="product-image-grid" id="productImageGrid"><!-- JS fills --></div>
+            </div>
+            <div id="imgSrcUrl" style="display:none;">
+                <div class="url-input-area">
+                    <label style="font-size:0.85rem; font-weight:600; color:var(--text-light); margin-bottom:8px; display:block;">Gorsel URL'si</label>
+                    <input type="text" id="imageUrlInput" placeholder="https://... veya images/... seklinde yerel yol">
+                    <img id="urlPreview" class="url-preview" style="display:none; margin-top:10px; max-width:200px; border-radius:8px;">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeImagePicker()">Iptal</button>
+            <button class="btn btn-primary" onclick="confirmImagePick()">Sec</button>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT SHOWCASE ITEM MODAL -->
+<div class="modal-overlay" id="editShowcaseModal">
+    <div class="modal-box" style="max-width:500px;">
+        <div class="modal-header">
+            <h3>Showcase Ogesi Duzenle</h3>
+            <button class="modal-close" onclick="closeEditShowcase()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="edit-modal-fields">
+                <div class="form-group">
+                    <label>Etiket / Baslik</label>
+                    <input type="text" id="editScLabel">
+                </div>
+                <div class="form-group">
+                    <label>Link (Tiklayinca gidecegi sayfa)</label>
+                    <input type="text" id="editScLink" placeholder="?category=Formal Suits">
+                </div>
+                <div class="form-group">
+                    <label>Gorsel</label>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <img id="editScImgPreview" style="width:80px; height:100px; object-fit:cover; border-radius:8px; background:#eee;">
+                        <button class="btn btn-outline btn-sm" onclick="openImagePickerForEdit()">Degistir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeEditShowcase()">Iptal</button>
+            <button class="btn btn-primary" onclick="confirmEditShowcase()">Kaydet</button>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ STATE ============
+let config = null;
+let originalConfig = null;
+let isDirty = false;
+let fileSha = null;
+let currentUser = null;
+let imagePickerCallback = null;
+let editingShowcaseIndex = -1;
+let selectedImagePath = '';
+let productsDB = [];
+
+// ============ AUTH ============
+function doLogin() {
+    const identity = netlifyIdentity;
+    identity.open('login');
+    identity.on('login', function(user) {
+        currentUser = user;
+        identity.close();
+        startApp();
+    });
+}
+
+function doLogout() {
+    netlifyIdentity.logout();
+    currentUser = null;
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+}
+
+// Check if already logged in
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof netlifyIdentity !== 'undefined') {
+        netlifyIdentity.on('init', function(user) {
+            if (user) {
+                currentUser = user;
+                startApp();
+            }
+        });
+    }
+});
+
+// ============ APP INIT ============
+async function startApp() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('userEmail').textContent = currentUser.email || '';
+
+    // Load inventory for image picker
+    await loadInventory();
+    // Load config
+    await loadConfig();
+    // Render all
+    renderAll();
+}
+
+async function loadInventory() {
+    try {
+        const resp = await fetch('../inventory.js?t=' + Date.now());
+        const text = await resp.text();
+        // Extract array from: const productsDB = [...]
+        const match = text.match(/const\s+productsDB\s*=\s*(\[[\s\S]*\]);?/);
+        if (match) {
+            productsDB = JSON.parse(match[1]);
+        }
+    } catch(e) {
+        console.warn('Could not load inventory:', e);
+    }
+}
+
+async function loadConfig() {
+    try {
+        const token = currentUser.token.access_token;
+        const resp = await fetch('/.netlify/git/github/contents/_data/site_config.json', {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (resp.ok) {
+            const data = await resp.json();
+            fileSha = data.sha;
+            config = JSON.parse(atob(data.content));
+            originalConfig = JSON.parse(JSON.stringify(config));
+        } else {
+            // Fallback: load directly
+            const resp2 = await fetch('../_data/site_config.json?t=' + Date.now());
+            config = await resp2.json();
+            originalConfig = JSON.parse(JSON.stringify(config));
+        }
+    } catch(e) {
+        console.warn('Git gateway load failed, trying direct:', e);
+        try {
+            const resp = await fetch('../_data/site_config.json?t=' + Date.now());
+            config = await resp.json();
+            originalConfig = JSON.parse(JSON.stringify(config));
+        } catch(e2) {
+            showToast('Yapilandirma yuklenemedi!', true);
+        }
+    }
+}
+
+// ============ RENDER ============
+function renderAll() {
+    if (!config) return;
+    renderShowcase();
+    renderHero();
+    renderNav();
+    renderPrivateLabel();
+    renderFooter();
+    renderModal();
+    renderHeader();
+    renderFeatures();
+}
+
+function renderShowcase() {
+    const list = document.getElementById('showcaseList');
+    const items = config.showcase.items || [];
+    document.getElementById('showcaseEnabled').checked = config.showcase.enabled !== false;
+
+    let html = '';
+    items.forEach(function(item, i) {
+        html += '<div class="showcase-card" draggable="true" data-idx="' + i + '" ondragstart="scDragStart(event,' + i + ')" ondragover="scDragOver(event)" ondragenter="scDragEnter(event)" ondragleave="scDragLeave(event)" ondrop="scDrop(event,' + i + ')" ondragend="scDragEnd(event)">';
+        html += '<span class="sc-badge">' + (i+1) + '</span>';
+        html += '<button class="sc-remove" onclick="removeShowcaseItem(' + i + ')" title="Kaldir">&times;</button>';
+        html += '<img src="../' + item.image + '" onerror="this.style.background=\'#ddd\';this.alt=\'Gorsel bulunamadi\'" alt="' + (item.label||'') + '">';
+        html += '<div class="sc-info">';
+        html += '<div class="sc-label">' + (item.label||'Etiket Yok') + '</div>';
+        html += '<div class="sc-link">' + (item.link||'') + '</div>';
+        html += '<div class="sc-actions">';
+        html += '<button class="btn btn-outline btn-sm" onclick="editShowcaseItem(' + i + ')">Duzenle</button>';
+        html += '</div></div></div>';
+    });
+
+    html += '<div class="showcase-add" onclick="addShowcaseItem()">';
+    html += '<span class="plus">+</span>';
+    html += '<span>Yeni Gorsel Ekle</span>';
+    html += '</div>';
+
+    list.innerHTML = html;
+}
+
+function renderHero() {
+    document.getElementById('heroEnabled').checked = config.hero.enabled !== false;
+    document.getElementById('heroTagline').value = config.hero.tagline || '';
+    document.getElementById('heroTitle').value = config.hero.title || '';
+    document.getElementById('heroDesc').value = config.hero.description || '';
+
+    const statsEl = document.getElementById('statsEditor');
+    const stats = config.hero.stats || [];
+    let html = '';
+    stats.forEach(function(s, i) {
+        html += '<div class="stat-edit-item">';
+        html += '<input type="text" value="' + escH(s.number) + '" placeholder="15+" oninput="updateStat(' + i + ',\'number\',this.value)">';
+        html += '<input type="text" value="' + escH(s.label) + '" placeholder="Years Experience" oninput="updateStat(' + i + ',\'label\',this.value)">';
+        html += '<button class="btn btn-danger btn-icon btn-sm" onclick="removeStat(' + i + ')">&times;</button>';
+        html += '</div>';
+    });
+    statsEl.innerHTML = html;
+}
+
+function renderNav() {
+    const list = document.getElementById('navEditor');
+    const items = config.navigation || [];
+    let html = '';
+    items.forEach(function(item, i) {
+        html += '<li class="nav-edit-item" draggable="true" data-idx="' + i + '" ondragstart="navDragStart(event,' + i + ')" ondragover="navDragOver(event)" ondragenter="navDragEnter(event)" ondragleave="navDragLeave(event)" ondrop="navDrop(event,' + i + ')" ondragend="navDragEnd(event)">';
+        html += '<span class="grip">&#9776;</span>';
+        html += '<input type="text" value="' + escH(item.label) + '" placeholder="Etiket" oninput="updateNav(' + i + ',\'label\',this.value)">';
+        html += '<input type="text" value="' + escH(item.category) + '" placeholder="Kategori" oninput="updateNav(' + i + ',\'category\',this.value)">';
+        html += '<button class="remove-nav" onclick="removeNavItem(' + i + ')">&times;</button>';
+        html += '</li>';
+    });
+    list.innerHTML = html;
+}
+
+function renderPrivateLabel() {
+    document.getElementById('plEnabled').checked = config.privateLabel.enabled !== false;
+    document.getElementById('plTitle').value = config.privateLabel.title || '';
+    document.getElementById('plDesc').value = config.privateLabel.description || '';
+    document.getElementById('plBtnText').value = config.privateLabel.buttonText || '';
+    document.getElementById('plBtnLink').value = config.privateLabel.buttonLink || '';
+}
+
+function renderFooter() {
+    document.getElementById('footAboutTitle').value = config.footer.aboutTitle || '';
+    document.getElementById('footContactTitle').value = config.footer.contactTitle || '';
+    document.getElementById('footAboutText').value = config.footer.aboutText || '';
+    document.getElementById('footWhatsapp').value = config.footer.whatsapp || '';
+    document.getElementById('footLocation').value = config.footer.location || '';
+    document.getElementById('footPaymentLink').value = config.footer.paymentLink || '';
+    document.getElementById('footPaymentText').value = config.footer.paymentText || '';
+    document.getElementById('footCopyright').value = config.footer.copyright || '';
+}
+
+function renderModal() {
+    document.getElementById('modalSubtitle').value = config.modal.subtitle || '';
+    document.getElementById('modalBadge1').value = config.modal.badge1 || '';
+    document.getElementById('modalBadge2').value = config.modal.badge2 || '';
+    document.getElementById('modalBadge3').value = config.modal.badge3 || '';
+    document.getElementById('modalDescription').value = config.modal.description || '';
+    document.getElementById('modalWpBtn').value = config.modal.whatsappButtonText || '';
+}
+
+function renderHeader() {
+    document.getElementById('headerLogo').value = config.header.logo || '';
+    document.getElementById('headerSearchPlaceholder').value = config.header.searchPlaceholder || '';
+    document.getElementById('headerInstagram').value = config.header.instagram || '';
+    document.getElementById('headerWhatsapp').value = config.header.whatsapp || '';
+}
+
+function renderFeatures() {
+    const grid = document.getElementById('featuresGrid');
+    const labels = {
+        carousel: 'Carousel (Tam Ekran)',
+        hero: 'Hero Bolumu',
+        search: 'Arama',
+        favorites: 'Favoriler (Kalp)',
+        whatsappFloat: 'WhatsApp Butonu',
+        privateLabel: 'Private Label',
+        showcase: 'Showcase (4 Gorsel)'
+    };
+    let html = '';
+    Object.keys(config.features).forEach(function(key) {
+        html += '<div class="feature-toggle-card">';
+        html += '<span class="ft-label">' + (labels[key] || key) + '</span>';
+        html += '<label class="toggle-switch"><input type="checkbox" ' + (config.features[key] ? 'checked' : '') + ' onchange="config.features[\'' + key + '\']=this.checked;markDirty()"><span class="toggle-slider"></span></label>';
+        html += '</div>';
+    });
+    grid.innerHTML = html;
+}
+
+// ============ SHOWCASE ACTIONS ============
+let scDragIdx = -1;
+
+function scDragStart(e, idx) {
+    scDragIdx = idx;
+    e.target.closest('.showcase-card').classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+}
+function scDragOver(e) { e.preventDefault(); }
+function scDragEnter(e) {
+    e.preventDefault();
+    var card = e.target.closest('.showcase-card');
+    if (card) card.classList.add('drag-over');
+}
+function scDragLeave(e) {
+    var card = e.target.closest('.showcase-card');
+    if (card) card.classList.remove('drag-over');
+}
+function scDrop(e, targetIdx) {
+    e.preventDefault();
+    var card = e.target.closest('.showcase-card');
+    if (card) card.classList.remove('drag-over');
+    if (scDragIdx === targetIdx) return;
+    var items = config.showcase.items;
+    var moved = items.splice(scDragIdx, 1)[0];
+    items.splice(targetIdx, 0, moved);
+    markDirty();
+    renderShowcase();
+}
+function scDragEnd(e) {
+    document.querySelectorAll('.showcase-card').forEach(function(c) {
+        c.classList.remove('dragging', 'drag-over');
+    });
+}
+
+function addShowcaseItem() {
+    imagePickerCallback = function(path) {
+        config.showcase.items.push({
+            image: path,
+            label: 'YENI KATEGORI',
+            link: '?category='
+        });
+        markDirty();
+        renderShowcase();
+    };
+    openImagePicker();
+}
+
+function removeShowcaseItem(idx) {
+    if (confirm('Bu gorseli kaldirmak istediginize emin misiniz?')) {
+        config.showcase.items.splice(idx, 1);
+        markDirty();
+        renderShowcase();
+    }
+}
+
+function editShowcaseItem(idx) {
+    editingShowcaseIndex = idx;
+    var item = config.showcase.items[idx];
+    document.getElementById('editScLabel').value = item.label || '';
+    document.getElementById('editScLink').value = item.link || '';
+    document.getElementById('editScImgPreview').src = '../' + item.image;
+    selectedImagePath = item.image;
+    document.getElementById('editShowcaseModal').classList.add('active');
+}
+
+function closeEditShowcase() {
+    document.getElementById('editShowcaseModal').classList.remove('active');
+    editingShowcaseIndex = -1;
+}
+
+function openImagePickerForEdit() {
+    imagePickerCallback = function(path) {
+        selectedImagePath = path;
+        document.getElementById('editScImgPreview').src = '../' + path;
+    };
+    openImagePicker();
+}
+
+function confirmEditShowcase() {
+    if (editingShowcaseIndex < 0) return;
+    config.showcase.items[editingShowcaseIndex].label = document.getElementById('editScLabel').value;
+    config.showcase.items[editingShowcaseIndex].link = document.getElementById('editScLink').value;
+    config.showcase.items[editingShowcaseIndex].image = selectedImagePath;
+    markDirty();
+    renderShowcase();
+    closeEditShowcase();
+}
+
+// ============ NAV ACTIONS ============
+let navDragIdx = -1;
+
+function navDragStart(e, idx) {
+    navDragIdx = idx;
+    e.target.closest('.nav-edit-item').classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+}
+function navDragOver(e) { e.preventDefault(); }
+function navDragEnter(e) {
+    e.preventDefault();
+    var item = e.target.closest('.nav-edit-item');
+    if (item) item.classList.add('drag-over');
+}
+function navDragLeave(e) {
+    var item = e.target.closest('.nav-edit-item');
+    if (item) item.classList.remove('drag-over');
+}
+function navDrop(e, targetIdx) {
+    e.preventDefault();
+    var item = e.target.closest('.nav-edit-item');
+    if (item) item.classList.remove('drag-over');
+    if (navDragIdx === targetIdx) return;
+    var items = config.navigation;
+    var moved = items.splice(navDragIdx, 1)[0];
+    items.splice(targetIdx, 0, moved);
+    markDirty();
+    renderNav();
+}
+function navDragEnd(e) {
+    document.querySelectorAll('.nav-edit-item').forEach(function(c) {
+        c.classList.remove('dragging', 'drag-over');
+    });
+}
+
+function updateNav(idx, field, value) {
+    config.navigation[idx][field] = value;
+    markDirty();
+}
+
+function addNavItem() {
+    config.navigation.push({ label: 'Yeni Kategori', category: 'New Category' });
+    markDirty();
+    renderNav();
+}
+
+function removeNavItem(idx) {
+    if (confirm('Bu kategoriyi kaldirmak istediginize emin misiniz?')) {
+        config.navigation.splice(idx, 1);
+        markDirty();
+        renderNav();
+    }
+}
+
+// ============ HERO STATS ============
+function updateStat(idx, field, value) {
+    config.hero.stats[idx][field] = value;
+    markDirty();
+}
+
+function addStat() {
+    config.hero.stats.push({ number: '0', label: 'Yeni Istatistik' });
+    markDirty();
+    renderHero();
+}
+
+function removeStat(idx) {
+    config.hero.stats.splice(idx, 1);
+    markDirty();
+    renderHero();
+}
+
+// ============ IMAGE PICKER ============
+function openImagePicker() {
+    selectedImagePath = '';
+    document.getElementById('imagePickerModal').classList.add('active');
+    document.getElementById('imageUrlInput').value = '';
+    document.getElementById('urlPreview').style.display = 'none';
+    switchImageSource('products');
+    renderProductImages('all');
+    renderCatFilter();
+}
+
+function closeImagePicker() {
+    document.getElementById('imagePickerModal').classList.remove('active');
+    imagePickerCallback = null;
+}
+
+function switchImageSource(src) {
+    document.querySelectorAll('.image-source-tab').forEach(function(t) { t.classList.remove('active'); });
+    if (src === 'products') {
+        document.querySelector('.image-source-tab:first-child').classList.add('active');
+        document.getElementById('imgSrcProducts').style.display = 'block';
+        document.getElementById('imgSrcUrl').style.display = 'none';
+    } else {
+        document.querySelector('.image-source-tab:last-child').classList.add('active');
+        document.getElementById('imgSrcProducts').style.display = 'none';
+        document.getElementById('imgSrcUrl').style.display = 'block';
+    }
+}
+
+function renderCatFilter() {
+    var cats = {};
+    productsDB.forEach(function(p) {
+        var mainCat = p.category.indexOf(' > ') > -1 ? p.category.split(' > ')[0] : p.category;
+        cats[mainCat] = true;
+    });
+    var html = '<button class="active" onclick="filterCat(this,\'all\')">Tumumu</button>';
+    Object.keys(cats).forEach(function(c) {
+        html += '<button onclick="filterCat(this,\'' + escH(c) + '\')">' + c + '</button>';
+    });
+    document.getElementById('catFilter').innerHTML = html;
+}
+
+function filterCat(btn, cat) {
+    document.querySelectorAll('.cat-filter button').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    renderProductImages(cat);
+}
+
+function renderProductImages(catFilter) {
+    var grid = document.getElementById('productImageGrid');
+    var filtered = catFilter === 'all' ? productsDB : productsDB.filter(function(p) {
+        var mainCat = p.category.indexOf(' > ') > -1 ? p.category.split(' > ')[0] : p.category;
+        return mainCat === catFilter;
+    });
+
+    var html = '';
+    filtered.forEach(function(p) {
+        var imgPath = p.path + '/1.webp';
+        html += '<div class="product-image-option" onclick="selectProductImage(this,\'' + escH(imgPath) + '\')">';
+        html += '<img src="../' + imgPath + '" onerror="this.parentElement.style.display=\'none\'" alt="' + escH(p.id) + '">';
+        html += '<div class="img-label">' + p.id + '</div>';
+        html += '</div>';
+    });
+
+    if (html === '') html = '<p style="text-align:center;color:#999;grid-column:1/-1;padding:30px;">Bu kategoride urun bulunamadi.</p>';
+    grid.innerHTML = html;
+}
+
+function selectProductImage(el, path) {
+    document.querySelectorAll('.product-image-option').forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+    selectedImagePath = path;
+}
+
+function confirmImagePick() {
+    // Check URL source
+    var urlInput = document.getElementById('imageUrlInput');
+    if (document.getElementById('imgSrcUrl').style.display !== 'none' && urlInput.value.trim()) {
+        selectedImagePath = urlInput.value.trim();
+    }
+
+    if (!selectedImagePath) {
+        showToast('Lutfen bir gorsel secin!', true);
+        return;
+    }
+
+    if (imagePickerCallback) {
+        imagePickerCallback(selectedImagePath);
+    }
+    closeImagePicker();
+}
+
+// URL preview
+document.addEventListener('DOMContentLoaded', function() {
+    var urlInput = document.getElementById('imageUrlInput');
+    if (urlInput) {
+        urlInput.addEventListener('input', function() {
+            var val = this.value.trim();
+            var preview = document.getElementById('urlPreview');
+            if (val) {
+                preview.src = val.startsWith('http') ? val : '../' + val;
+                preview.style.display = 'block';
+                preview.onerror = function() { preview.style.display = 'none'; };
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+    }
+});
+
+// ============ COLLECT CONFIG FROM FORM ============
+function collectConfig() {
+    // Showcase
+    config.showcase.enabled = document.getElementById('showcaseEnabled').checked;
+
+    // Hero
+    config.hero.enabled = document.getElementById('heroEnabled').checked;
+    config.hero.tagline = document.getElementById('heroTagline').value;
+    config.hero.title = document.getElementById('heroTitle').value;
+    config.hero.description = document.getElementById('heroDesc').value;
+
+    // Private Label
+    config.privateLabel.enabled = document.getElementById('plEnabled').checked;
+    config.privateLabel.title = document.getElementById('plTitle').value;
+    config.privateLabel.description = document.getElementById('plDesc').value;
+    config.privateLabel.buttonText = document.getElementById('plBtnText').value;
+    config.privateLabel.buttonLink = document.getElementById('plBtnLink').value;
+
+    // Footer
+    config.footer.aboutTitle = document.getElementById('footAboutTitle').value;
+    config.footer.contactTitle = document.getElementById('footContactTitle').value;
+    config.footer.aboutText = document.getElementById('footAboutText').value;
+    config.footer.whatsapp = document.getElementById('footWhatsapp').value;
+    config.footer.location = document.getElementById('footLocation').value;
+    config.footer.paymentLink = document.getElementById('footPaymentLink').value;
+    config.footer.paymentText = document.getElementById('footPaymentText').value;
+    config.footer.copyright = document.getElementById('footCopyright').value;
+
+    // Modal
+    config.modal.subtitle = document.getElementById('modalSubtitle').value;
+    config.modal.badge1 = document.getElementById('modalBadge1').value;
+    config.modal.badge2 = document.getElementById('modalBadge2').value;
+    config.modal.badge3 = document.getElementById('modalBadge3').value;
+    config.modal.description = document.getElementById('modalDescription').value;
+    config.modal.whatsappButtonText = document.getElementById('modalWpBtn').value;
+
+    // Header
+    config.header.logo = document.getElementById('headerLogo').value;
+    config.header.searchPlaceholder = document.getElementById('headerSearchPlaceholder').value;
+    config.header.instagram = document.getElementById('headerInstagram').value;
+    config.header.whatsapp = document.getElementById('headerWhatsapp').value;
+}
+
+// ============ SAVE ============
+async function saveConfig() {
+    collectConfig();
+
+    var saveBtn = document.getElementById('saveBtn');
+    saveBtn.textContent = 'Kaydediliyor...';
+    saveBtn.disabled = true;
+
+    try {
+        // Refresh token if needed
+        var token = currentUser.token.access_token;
+        try {
+            var refreshed = await currentUser.jwt();
+            token = refreshed;
+        } catch(e) {
+            // use existing token
+        }
+
+        var content = JSON.stringify(config, null, 2);
+        var encoded = btoa(unescape(encodeURIComponent(content)));
+
+        // Get latest sha
+        var getResp = await fetch('/.netlify/git/github/contents/_data/site_config.json', {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (getResp.ok) {
+            var getData = await getResp.json();
+            fileSha = getData.sha;
+        }
+
+        var body = {
+            message: 'Admin panel: site ayarlari guncellendi',
+            content: encoded,
+            sha: fileSha
+        };
+
+        var putResp = await fetch('/.netlify/git/github/contents/_data/site_config.json', {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (putResp.ok) {
+            var putData = await putResp.json();
+            fileSha = putData.content.sha;
+            originalConfig = JSON.parse(JSON.stringify(config));
+            isDirty = false;
+            document.getElementById('saveBar').classList.remove('visible');
+            showToast('Basariyla kaydedildi ve yayinlandi!');
+        } else {
+            var errText = await putResp.text();
+            console.error('Save failed:', putResp.status, errText);
+            // Fallback: download as file
+            offerDownload(content);
+        }
+    } catch(e) {
+        console.error('Save error:', e);
+        // Fallback: download as file
+        var content = JSON.stringify(config, null, 2);
+        offerDownload(content);
+    }
+
+    saveBtn.textContent = 'Kaydet ve Yayinla';
+    saveBtn.disabled = false;
+}
+
+function offerDownload(content) {
+    showToast('Otomatik kayit yapilamadi. Dosya indiriliyor...', true);
+    var blob = new Blob([content], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'site_config.json';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function revertChanges() {
+    if (confirm('Tum degisiklikleri geri almak istediginize emin misiniz?')) {
+        config = JSON.parse(JSON.stringify(originalConfig));
+        isDirty = false;
+        document.getElementById('saveBar').classList.remove('visible');
+        renderAll();
+        showToast('Degisiklikler geri alindi.');
+    }
+}
+
+// ============ UI HELPERS ============
+function switchSection(name) {
+    var titles = {
+        showcase: 'Showcase / Carousel Yonetimi',
+        hero: 'Hero Bolumu',
+        navigation: 'Navigasyon Yonetimi',
+        privatelabel: 'Private Label Bolumu',
+        footer: 'Footer Ayarlari',
+        modal: 'Urun Detay Modal Ayarlari',
+        header: 'Header ve Genel Ayarlar',
+        features: 'Ozellik Ayarlari',
+        preview: 'Canli Onizleme'
+    };
+
+    document.querySelectorAll('.section-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+
+    document.getElementById('sec-' + name).classList.add('active');
+    document.querySelector('.nav-item[data-section="' + name + '"]').classList.add('active');
+    document.getElementById('sectionTitle').textContent = titles[name] || name;
+
+    // Refresh preview if switching to it
+    if (name === 'preview') {
+        document.getElementById('previewFrame').src = '../index.html?t=' + Date.now();
+    }
+}
+
+function markDirty() {
+    isDirty = true;
+    document.getElementById('saveBar').classList.add('visible');
+}
+
+function showToast(msg, isError) {
+    var toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.className = 'toast show' + (isError ? ' error' : '');
+    setTimeout(function() { toast.classList.remove('show'); }, 3000);
+}
+
+function escH(s) {
+    if (!s) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Warn before leaving with unsaved changes
+window.addEventListener('beforeunload', function(e) {
+    if (isDirty) {
+        e.preventDefault();
+        e.returnValue = '';
+    }
+});
+</script>
+
+</body>
+</html>
