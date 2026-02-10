@@ -97,25 +97,15 @@
         .stat-num { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-gold); display: block; }
         .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-top: 3px; }
         @media (max-width: 768px) { .hero { padding: 30px 15px; } .hero h2 { font-size: 1.4rem; } .hero-stats { gap: 25px; } .stat-num { font-size: 1.5rem; } }
-        /* FULL CAROUSEL - BÜYÜK, ÜSTTE */
-        .slideshow-section { position: relative; width: 100%; height: 80vh; min-height: 500px; overflow: hidden; background: #1a1a1a; }
-        .slideshow-container { width: 100%; height: 100%; position: relative; }
-        .slideshow-track { width: 100%; height: 100%; position: relative; }
-        .ss-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .ss-slide.active { opacity: 1; }
-        .ss-slide img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-        .ss-slide-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 40px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: #fff; text-align: center; }
-        .ss-slide-info h4 { font-family: var(--font-display); font-size: 1.8rem; margin: 0 0 5px; }
-        .ss-slide-info span { font-size: 0.85rem; color: var(--color-gold); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
-        .slideshow-nav { position: absolute; top: 50%; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 20px; transform: translateY(-50%); z-index: 10; pointer-events: none; }
-        .ss-arrow { pointer-events: auto; background: rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.3); width: 60px; height: 60px; border-radius: 50%; font-size: 1.8rem; cursor: pointer; color: #fff; transition: 0.3s; }
-        .ss-arrow:hover { background: var(--color-gold); border-color: var(--color-gold); }
-        .slideshow-dots { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); z-index: 10; }
-        .ss-counter { background: rgba(0,0,0,0.6); color: #fff; padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; }
-        .ss-dot { display: none; }
-        .ss-slide.ss-broken { display: none !important; }
-        .slideshow-title { display: none; }
-        @media (max-width: 768px) { .slideshow-section { height: 60vh; min-height: 350px; } .ss-slide-info h4 { font-size: 1.2rem; } .ss-slide-info { padding: 20px; } .slideshow-dots { bottom: 80px; } .ss-arrow { width: 45px; height: 45px; font-size: 1.3rem; } }
+        /* SHOWCASE - 4 FOTOĞRAF YAN YANA */
+        .showcase-section { width: 100%; background: #1a1a1a; }
+        .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+        .showcase-item { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; }
+        .showcase-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .showcase-item:hover img { transform: scale(1.05); }
+        .showcase-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 40px 20px 25px; }
+        .showcase-overlay span { color: #fff; font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
+        @media (max-width: 768px) { .showcase-grid { grid-template-columns: repeat(2, 1fr); } .showcase-overlay span { font-size: 0.8rem; letter-spacing: 1px; } .showcase-overlay { padding: 25px 15px 15px; } }
     </style>
 </head>
 <body>
@@ -143,16 +133,26 @@
         </ul></nav>
     </div></header>
     
-    <!-- FULL CAROUSEL - ÜSTTE, BÜYÜK -->
-    <section class="slideshow-section" id="slideshowSection">
-        <div class="slideshow-container">
-            <div class="slideshow-track" id="slideshowTrack"></div>
+    <!-- SHOWCASE - 4 FOTOĞRAF YAN YANA -->
+    <section class="showcase-section" id="showcaseSection">
+        <div class="showcase-grid">
+            <div class="showcase-item" onclick="window.location.href='?category=Wedding Suits&subcategory=Damatlık A'">
+                <img src="images/Wedding Suits/Damatlık A/15097-17/1.webp" alt="Collection 1">
+                <div class="showcase-overlay"><span>Wedding Suits</span></div>
+            </div>
+            <div class="showcase-item" onclick="window.location.href='?category=Wedding Suits&subcategory=Damatlık B'">
+                <img src="images/Wedding Suits/Damatlık B/50111-09/1.webp" alt="Collection 2">
+                <div class="showcase-overlay"><span>Groom Collection</span></div>
+            </div>
+            <div class="showcase-item" onclick="window.location.href='?category=Formal Suits&subcategory=Business'">
+                <img src="images/Formal Suits/Business/15173-05/1.webp" alt="Collection 3">
+                <div class="showcase-overlay"><span>Formal Suits</span></div>
+            </div>
+            <div class="showcase-item" onclick="window.location.href='?category=Formal Suits&subcategory=Classic'">
+                <img src="images/Formal Suits/Classic/50127-10/1.webp" alt="Collection 4">
+                <div class="showcase-overlay"><span>Classic Line</span></div>
+            </div>
         </div>
-        <div class="slideshow-nav">
-            <button class="ss-arrow ss-prev" onclick="ssMove(-1)">&#10094;</button>
-            <button class="ss-arrow ss-next" onclick="ssMove(1)">&#10095;</button>
-        </div>
-        <div class="slideshow-dots" id="slideshowDots"></div>
     </section>
     
     <!-- HERO - ALTTA, KÜÇÜK -->
@@ -207,9 +207,9 @@
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear blends the rich heritage of Turkish tailoring with modern Italian aesthetics. Based in İzmir, we craft premium groom’s wear and formal suits for global retailers. Our mission is simple: to deliver sartorial excellence, impeccable fit, and reliable manufacturing to partners worldwide. Experience the art of timeless elegance.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved. KK</div></footer>
-    <script src="inventory.js?v=1770706929"></script>
+    <script src="inventory.js?v=1770707459"></script>
     <script>
-        const FEATURES={carousel:true,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true};
+        const FEATURES={carousel:true,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
         let cart=[];try{cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){localStorage.removeItem('pagusCart');}
         function escapeHTML(s){return s.replace(/[&<>'"]/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t]));}
@@ -217,7 +217,7 @@
         if(typeof productsDB==='undefined'){document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>Error: inventory.js not found.</div>";}else{
             productsDB.forEach(p=>{if(p.category&&p.category.includes(' > ')){let a=p.category.split(' > ');p.mainCat=a[0].trim();p.subCat=a[1].trim();}else{p.mainCat=p.category;p.subCat="General";}p.code=p.id;p.realCode=p.id;p.folderPath=p.path;});
             setLanguage();init();updateCartUI();}
-        function init(){var hero=document.getElementById('heroSection');var ss=document.getElementById('slideshowSection');var pta=document.getElementById('pageTitleArea');var sr=document.getElementById('searchResults');var wpFloat=document.getElementById('wpFloat');var privLabel=document.getElementById('privateLabelSection');var searchBox=document.querySelector('.search-box');if(!FEATURES.hero&&hero)hero.style.display='none';if(!FEATURES.carousel&&ss)ss.style.display='none';if(!FEATURES.whatsappFloat&&wpFloat)wpFloat.style.display='none';if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';if(!FEATURES.search&&searchBox)searchBox.style.display='none';if(!FEATURES.favorites){document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});}if(urlParams.get('search')){hero.style.display='none';ss.style.display='none';pta.style.display='none';sr.style.display='block';document.getElementById('pGrid').style.display='none';doSearchDisplay(urlParams.get('search'));}else if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';ss.style.display='none';sr.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{if(FEATURES.hero)hero.style.display='block';if(FEATURES.carousel){ss.style.display='block';startCarousel();}pta.style.display='none';sr.style.display='none';document.getElementById('pGrid').style.display='none';}}
+        function init(){var hero=document.getElementById('heroSection');var showcase=document.getElementById('showcaseSection');var pta=document.getElementById('pageTitleArea');var sr=document.getElementById('searchResults');var wpFloat=document.getElementById('wpFloat');var privLabel=document.getElementById('privateLabelSection');var searchBox=document.querySelector('.search-box');if(!FEATURES.hero&&hero)hero.style.display='none';if(!FEATURES.showcase&&showcase)showcase.style.display='none';if(!FEATURES.whatsappFloat&&wpFloat)wpFloat.style.display='none';if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';if(!FEATURES.search&&searchBox)searchBox.style.display='none';if(!FEATURES.favorites){document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});}if(urlParams.get('search')){hero.style.display='none';if(showcase)showcase.style.display='none';pta.style.display='none';sr.style.display='block';document.getElementById('pGrid').style.display='none';doSearchDisplay(urlParams.get('search'));}else if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';if(showcase)showcase.style.display='none';sr.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{if(FEATURES.hero)hero.style.display='block';if(FEATURES.showcase&&showcase)showcase.style.display='block';pta.style.display='none';sr.style.display='none';document.getElementById('pGrid').style.display='none';}}
         function doSiteSearch(){var q=document.getElementById('siteSearch').value.trim();if(q.length<2){alert('En az 2 karakter girin');return;}window.location.href='?search='+encodeURIComponent(q);}
         function doSearchDisplay(q){var results=[];var qLower=q.toLowerCase();for(var i=0;i<productsDB.length;i++){var p=productsDB[i];if(p.id.toLowerCase().indexOf(qLower)>-1){results.push(p);}}var container=document.getElementById('searchResults');var html='<div class="search-results-section"><h2 class="search-results-title">"'+q+'" için '+results.length+' sonuç</h2>';if(results.length===0){html+='<p style="text-align:center;color:#999;padding:50px;">Sonuç bulunamadı</p>';}else{html+='<div class="search-results-grid">';for(var j=0;j<results.length;j++){var r=results[j];var cat=r.category.indexOf(' > ')>-1?r.category.split(' > ')[0]:r.category;var sub=r.category.indexOf(' > ')>-1?r.category.split(' > ')[1]:r.category;html+='<div class="search-result-card" onclick="openModal(\''+r.id+'\',\''+r.id+'\',\''+r.path+'\')"><img src="'+r.path+'/1.webp" alt="'+r.id+'"><div class="info"><h4>'+r.id+'</h4><span>'+sub+'</span></div></div>';}html+='</div>';}html+='</div>';container.innerHTML=html;}
         function startCarousel(){
