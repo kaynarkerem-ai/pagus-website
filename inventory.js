@@ -80,11 +80,6 @@ const productsDB = [
         "path": "images/Formal Suits/15131-43"
     },
     {
-        "id": "15131-45",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/15131-45"
-    },
-    {
         "id": "15131_03",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15131_03"
@@ -438,16 +433,6 @@ const productsDB = [
         "id": "50114-6",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50114-6"
-    },
-    {
-        "id": "50116-01",
-        "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50116-01"
-    },
-    {
-        "id": "50116-02",
-        "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50116-02"
     },
     {
         "id": "50122-24",
