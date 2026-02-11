@@ -380,11 +380,6 @@ const productsDB = [
         "path": "images/Wedding Suits/Peak Lapel Smokings/50080-01"
     },
     {
-        "id": "50080-02",
-        "category": "Wedding Suits > Peak Lapel Smokings",
-        "path": "images/Wedding Suits/Peak Lapel Smokings/50080-02"
-    },
-    {
         "id": "50120-06",
         "category": "Wedding Suits > Peak Lapel Smokings",
         "path": "images/Wedding Suits/Peak Lapel Smokings/50120-06"
