@@ -135,11 +135,6 @@ const productsDB = [
         "path": "images/Formal Suits/15165-02"
     },
     {
-        "id": "15165-05",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/15165-05"
-    },
-    {
         "id": "15165-14",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15165-14"
