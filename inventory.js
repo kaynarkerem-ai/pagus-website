@@ -1,5 +1,10 @@
 const productsDB = [
     {
+        "id": "web1023D170",
+        "category": "Accessories",
+        "path": "images/Accessories/web1023D170"
+    },
+    {
         "id": "15095-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15095-02"
@@ -10,6 +15,16 @@ const productsDB = [
         "path": "images/Formal Suits/15095-03"
     },
     {
+        "id": "15095-17",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15095-17"
+    },
+    {
+        "id": "15095-52",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15095-52"
+    },
+    {
         "id": "15097-17",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15097-17"
@@ -18,6 +33,26 @@ const productsDB = [
         "id": "15104-03",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15104-03"
+    },
+    {
+        "id": "15117-4",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15117-4"
+    },
+    {
+        "id": "15118-01",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15118-01"
+    },
+    {
+        "id": "15118-02",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15118-02"
+    },
+    {
+        "id": "15118-24",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15118-24"
     },
     {
         "id": "15118-35",
@@ -163,16 +198,6 @@ const productsDB = [
         "id": "20010-24",
         "category": "Jackets",
         "path": "images/Jackets/20010-24"
-    },
-    {
-        "id": "1023D170",
-        "category": "Wedding Suits > Mandarin Collar Suits",
-        "path": "images/Wedding Suits/Mandarin Collar Suits/1023D170"
-    },
-    {
-        "id": "web1023D170",
-        "category": "Wedding Suits > Mandarin Collar Suits > 1023D170",
-        "path": "images/Wedding Suits/Mandarin Collar Suits/1023D170/web1023D170"
     },
     {
         "id": "50005-01",
