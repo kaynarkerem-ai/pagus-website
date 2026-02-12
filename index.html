@@ -97,7 +97,7 @@
         .stat-num { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-gold); display: block; }
         .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-top: 3px; }
         @media (max-width: 768px) { .hero { padding: 30px 15px; } .hero h2 { font-size: 1.4rem; } .hero-stats { gap: 25px; } .stat-num { font-size: 1.5rem; } }
-        /* SHOWCASE - 4 FOTOĞRAF YAN YANA */
+        /* SHOWCASE */
         .showcase-section { width: 100%; background: #1a1a1a; }
         .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
         .showcase-item { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; }
@@ -105,7 +105,8 @@
         .showcase-item:hover img { transform: scale(1.05); }
         .showcase-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 40px 20px 25px; }
         .showcase-overlay span { color: #fff; font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
-        @media (max-width: 768px) { .showcase-grid { grid-template-columns: repeat(2, 1fr); } .showcase-overlay span { font-size: 0.8rem; letter-spacing: 1px; } .showcase-overlay { padding: 25px 15px 15px; } }
+        .showcase-hero-img { width: 100%; display: block; max-height: 600px; object-fit: cover; object-position: center; }
+        @media (max-width: 768px) { .showcase-grid { grid-template-columns: repeat(2, 1fr); } .showcase-overlay span { font-size: 0.8rem; letter-spacing: 1px; } .showcase-overlay { padding: 25px 15px 15px; } .showcase-hero-img { max-height: 300px; } }
     </style>
 </head>
 <body>
@@ -132,11 +133,9 @@
         </ul></nav>
     </div></header>
     
-    <!-- SHOWCASE - 4 FOTOĞRAF YAN YANA (Dinamik) -->
+    <!-- SHOWCASE -->
     <section class="showcase-section" id="showcaseSection">
-        <div class="showcase-grid" id="showcaseGrid">
-            <!-- JS ile doldurulacak -->
-        </div>
+        <img src="images/showcase_hero.webp" alt="PAGUS Collection" class="showcase-hero-img">
     </section>
     
     <!-- HERO - ALTTA, KÜÇÜK -->
@@ -191,7 +190,7 @@
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear is established with a single mission: to provide world-class textile solutions.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved.</div></footer>
-    <script src="inventory.js?v=1770817471"></script>
+    <script src="inventory.js?v=1770880675"></script>
     <script>
         const FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
