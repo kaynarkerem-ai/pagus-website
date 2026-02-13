@@ -1,10 +1,5 @@
 const productsDB = [
     {
-        "id": "web1023D170",
-        "category": "Accessories",
-        "path": "images/Accessories/web1023D170"
-    },
-    {
         "id": "15095-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15095-02"
@@ -15,9 +10,39 @@ const productsDB = [
         "path": "images/Formal Suits/15095-03"
     },
     {
+        "id": "15095-04",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15095-04"
+    },
+    {
+        "id": "15095-05",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15095-05"
+    },
+    {
+        "id": "15095-06",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15095-06"
+    },
+    {
         "id": "15095-17",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15095-17"
+    },
+    {
+        "id": "15095-24",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15095-24"
+    },
+    {
+        "id": "15095-42",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15095-42"
+    },
+    {
+        "id": "15095-43",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15095-43"
     },
     {
         "id": "15095-52",
@@ -55,9 +80,64 @@ const productsDB = [
         "path": "images/Formal Suits/15118-24"
     },
     {
+        "id": "15118-31 y",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15118-31 y"
+    },
+    {
         "id": "15118-35",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15118-35"
+    },
+    {
+        "id": "15119-01",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-01"
+    },
+    {
+        "id": "15119-02",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-02"
+    },
+    {
+        "id": "15119-03",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-03"
+    },
+    {
+        "id": "15119-04",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-04"
+    },
+    {
+        "id": "15119-05",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-05"
+    },
+    {
+        "id": "15119-10",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-10"
+    },
+    {
+        "id": "15119-17",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-17"
+    },
+    {
+        "id": "15119-24",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-24"
+    },
+    {
+        "id": "15119-32",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-32"
+    },
+    {
+        "id": "15119-43",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15119-43"
     },
     {
         "id": "15120_43",
@@ -93,6 +173,11 @@ const productsDB = [
         "id": "15130-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15130-02"
+    },
+    {
+        "id": "15130-03",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15130-03"
     },
     {
         "id": "15130_03",
@@ -430,6 +515,11 @@ const productsDB = [
         "path": "images/Wedding Suits/Peak Lapel Smokings/50130-02"
     },
     {
+        "id": "51900-03",
+        "category": "Wedding Suits > Peak Lapel Smokings",
+        "path": "images/Wedding Suits/Peak Lapel Smokings/51900-03"
+    },
+    {
         "id": "50112-22",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50112-22"
@@ -508,6 +598,11 @@ const productsDB = [
         "id": "50128-43",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50128-43"
+    },
+    {
+        "id": "50130-02",
+        "category": "Wedding Suits > Shawl Collar Smokings",
+        "path": "images/Wedding Suits/Shawl Collar Smokings/50130-02"
     },
     {
         "id": "AGM 4043",
