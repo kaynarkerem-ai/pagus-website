@@ -142,8 +142,8 @@
     <section class="hero" id="heroSection">
         <div class="hero-content">
             <div class="hero-tagline">B2B Wholesale Menswear</div>
-            <h2>Premium Suits & Formal Wear</h2>
-            <p>Direct from manufacturer in İzmir, Turkey. We offer high-quality men's suits, tuxedos, and formal wear for retailers and wholesalers worldwide. Minimum order: 50 pieces.</p>
+            <h2>Premium Suits &amp; Formal Wear</h2>
+            <p>Direct from manufacturer in İzmir, Turkey. We offer high-quality men&#x27;s suits, tuxedos, and formal wear for retailers and wholesalers worldwide. Minimum order: 50 pieces.</p>
             <div class="hero-stats">
                 <div class="stat-item"><span class="stat-num">15+</span><span class="stat-label">Years Experience</span></div>
                 <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label">Countries</span></div>
@@ -188,15 +188,15 @@
     </div>
     <footer class="footer"><div class="footer-grid">
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear is established with a single mission: to provide world-class textile solutions.</p></div>
-        <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment & Bank Accounts</a></li></ul></div>
+        <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment &amp; Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved.</div></footer>
-    <script src="inventory.js?v=1770984625"></script>
+    <script src="inventory.js?v=1771310806"></script>
     <script>
         const FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
         let cart=[];try{cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){localStorage.removeItem('pagusCart');}
         function escapeHTML(s){return s.replace(/[&<>'"]/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t]));}
-        function setLanguage(){let l=navigator.language||navigator.userLanguage;const g=document.getElementById('guideText');if(l&&l.startsWith("it")){g.innerText="Tocca l'icona del cuore per creare la tua lista.";}else{g.innerText="Tap heart to create list.";}}
+        function setLanguage(){let l=navigator.language||navigator.userLanguage;const g=document.getElementById('guideText');if(l&&l.startsWith("it")){g.innerText="Tocca l&#x27;icona del cuore per creare la tua lista.";}else{g.innerText="Tap heart to create list.";}}
         if(typeof productsDB==='undefined'){document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>Error: inventory.js not found.</div>";}else{
             productsDB.forEach(p=>{if(p.category&&p.category.includes(' > ')){let a=p.category.split(' > ');p.mainCat=a[0].trim();p.subCat=a[1].trim();}else{p.mainCat=p.category;p.subCat="General";}p.code=p.id;p.realCode=p.id;p.folderPath=p.path;});
             setLanguage();init();updateCartUI();}

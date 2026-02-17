@@ -145,9 +145,29 @@ const productsDB = [
         "path": "images/Formal Suits/15120_43"
     },
     {
+        "id": "15121-02",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15121-02"
+    },
+    {
+        "id": "15121-04",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15121-04"
+    },
+    {
+        "id": "15121-24",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15121-24"
+    },
+    {
         "id": "15124-01",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15124-01"
+    },
+    {
+        "id": "15124-13",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15124-13"
     },
     {
         "id": "15124-31",
@@ -190,6 +210,11 @@ const productsDB = [
         "path": "images/Formal Suits/15130_10"
     },
     {
+        "id": "15131-05",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15131-05"
+    },
+    {
         "id": "15131-06",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15131-06"
@@ -208,6 +233,31 @@ const productsDB = [
         "id": "15136-14",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15136-14"
+    },
+    {
+        "id": "15138-05",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15138-05"
+    },
+    {
+        "id": "15138-17",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15138-17"
+    },
+    {
+        "id": "15140-01",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15140-01"
+    },
+    {
+        "id": "15141-03",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15141-03"
+    },
+    {
+        "id": "15154-17",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15154-17"
     },
     {
         "id": "15155-02",
@@ -245,6 +295,11 @@ const productsDB = [
         "path": "images/Formal Suits/15157-17"
     },
     {
+        "id": "15158-02",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15158-02"
+    },
+    {
         "id": "15165-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15165-02"
@@ -253,6 +308,26 @@ const productsDB = [
         "id": "15165-14",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15165-14"
+    },
+    {
+        "id": "15167-02",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15167-02"
+    },
+    {
+        "id": "15167-03",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15167-03"
+    },
+    {
+        "id": "15167-17",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15167-17"
+    },
+    {
+        "id": "15168-17",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15168-17"
     },
     {
         "id": "15170-24",
