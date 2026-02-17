@@ -3,7 +3,7 @@ const productsDB = [
         "id": "15095-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15095-02",
-        "focal_y": 50
+        "focal_y": 27
     },
     {
         "id": "15095-03",
@@ -33,7 +33,7 @@ const productsDB = [
         "id": "15095-17",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15095-17",
-        "focal_y": 29
+        "focal_y": 50
     },
     {
         "id": "15095-24",
@@ -45,13 +45,7 @@ const productsDB = [
         "id": "15095-42",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15095-42",
-        "focal_y": 47
-    },
-    {
-        "id": "15095-43",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/15095-43",
-        "focal_y": 50
+        "focal_y": 29
     },
     {
         "id": "15095-52",
@@ -135,7 +129,7 @@ const productsDB = [
         "id": "15119-05",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15119-05",
-        "focal_y": 18
+        "focal_y": 29
     },
     {
         "id": "15119-10",
@@ -153,7 +147,7 @@ const productsDB = [
         "id": "15119-24",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15119-24",
-        "focal_y": 50
+        "focal_y": 35
     },
     {
         "id": "15119-32",
@@ -276,10 +270,22 @@ const productsDB = [
         "focal_y": 50
     },
     {
+        "id": "15136-01",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15136-01",
+        "focal_y": 11
+    },
+    {
         "id": "15136-14",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15136-14",
         "focal_y": 50
+    },
+    {
+        "id": "15136-46",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15136-46",
+        "focal_y": 24
     },
     {
         "id": "15138-05",
@@ -300,10 +306,52 @@ const productsDB = [
         "focal_y": 31
     },
     {
+        "id": "15140-02",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15140-02",
+        "focal_y": 33
+    },
+    {
+        "id": "15140-04",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15140-04",
+        "focal_y": 14
+    },
+    {
         "id": "15141-03",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15141-03",
         "focal_y": 15
+    },
+    {
+        "id": "15141-10",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15141-10",
+        "focal_y": 17
+    },
+    {
+        "id": "15149-02",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15149-02",
+        "focal_y": 22
+    },
+    {
+        "id": "15149-03",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15149-03",
+        "focal_y": 28
+    },
+    {
+        "id": "15149-06",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15149-06",
+        "focal_y": 13
+    },
+    {
+        "id": "15154-02",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15154-02",
+        "focal_y": 26
     },
     {
         "id": "15154-17",
@@ -351,7 +399,7 @@ const productsDB = [
         "id": "15157-17",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15157-17",
-        "focal_y": 50
+        "focal_y": 19
     },
     {
         "id": "15158-02",
@@ -384,6 +432,12 @@ const productsDB = [
         "focal_y": 36
     },
     {
+        "id": "15167-04",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15167-04",
+        "focal_y": 13
+    },
+    {
         "id": "15167-17",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15167-17",
@@ -394,6 +448,18 @@ const productsDB = [
         "category": "Formal Suits",
         "path": "images/Formal Suits/15168-17",
         "focal_y": 11
+    },
+    {
+        "id": "15170-04",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15170-04",
+        "focal_y": 9
+    },
+    {
+        "id": "15170-17",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/15170-17",
+        "focal_y": 16
     },
     {
         "id": "15170-24",
@@ -411,7 +477,7 @@ const productsDB = [
         "id": "15173-05",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15173-05",
-        "focal_y": 20
+        "focal_y": 27
     },
     {
         "id": "15173-14",
@@ -429,7 +495,7 @@ const productsDB = [
         "id": "20010-24",
         "category": "Formal Suits",
         "path": "images/Formal Suits/20010-24",
-        "focal_y": 28
+        "focal_y": 44
     },
     {
         "id": "50005-01",
@@ -495,7 +561,7 @@ const productsDB = [
         "id": "50071-02",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50071-02",
-        "focal_y": 32
+        "focal_y": 15
     },
     {
         "id": "50071-08",
@@ -537,7 +603,7 @@ const productsDB = [
         "id": "50200-14",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50200-14",
-        "focal_y": 50
+        "focal_y": 11
     },
     {
         "id": "50200-42",
@@ -627,7 +693,7 @@ const productsDB = [
         "id": "50056-06",
         "category": "Wedding Suits > Peak Lapel Smokings",
         "path": "images/Wedding Suits/Peak Lapel Smokings/50056-06",
-        "focal_y": 30
+        "focal_y": 17
     },
     {
         "id": "50056-09",
@@ -699,7 +765,7 @@ const productsDB = [
         "id": "50130-01",
         "category": "Wedding Suits > Peak Lapel Smokings",
         "path": "images/Wedding Suits/Peak Lapel Smokings/50130-01",
-        "focal_y": 17
+        "focal_y": 50
     },
     {
         "id": "50130-02",
@@ -729,7 +795,7 @@ const productsDB = [
         "id": "50113-6",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50113-6",
-        "focal_y": 25
+        "focal_y": 10
     },
     {
         "id": "50114-3",
@@ -783,7 +849,7 @@ const productsDB = [
         "id": "50127-17",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50127-17",
-        "focal_y": 11
+        "focal_y": 50
     },
     {
         "id": "50127-2",
@@ -795,13 +861,13 @@ const productsDB = [
         "id": "50127-24",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50127-24",
-        "focal_y": 13
+        "focal_y": 49
     },
     {
         "id": "50127-42",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50127-42",
-        "focal_y": 20
+        "focal_y": 50
     },
     {
         "id": "50128-43",
