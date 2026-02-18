@@ -173,7 +173,7 @@
         <div class="modal-content">
             <div class="slider" id="sliderArea">
                 <button class="arrow prev" onclick="move(-1)">&#10094;</button>
-                <img id="mImg" class="main-img" src="" alt="Product Detail">
+                <img id="mImg" class="main-img" src="" alt="Product Detail" onclick="openFullscreen(this.src)" style="cursor:zoom-in">
                 <button class="arrow next" onclick="move(1)">&#10095;</button>
                 <div class="img-counter" id="imgCount">1/4</div>
             </div>
@@ -186,11 +186,19 @@
             </div>
         </div>
     </div>
+    <!-- Fullscreen Lightbox -->
+    <div id="fullscreenOverlay" onclick="closeFullscreen()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;cursor:zoom-out;justify-content:center;align-items:center;">
+        <button onclick="event.stopPropagation();moveFullscreen(-1)" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;">‹</button>
+        <img id="fullscreenImg" src="" onclick="event.stopPropagation()" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px;">
+        <button onclick="event.stopPropagation();moveFullscreen(1)" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;">›</button>
+        <button onclick="closeFullscreen()" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;">×</button>
+        <div id="fullscreenCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#888;font-size:0.9rem;">1/4</div>
+    </div>
     <footer class="footer"><div class="footer-grid">
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear is established with a single mission: to provide world-class textile solutions.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> +905511748907</li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment &amp; Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">2026 Pagus Menswear. All Rights Reserved.</div></footer>
-    <script src="inventory.js?v=1771414363"></script>
+    <script src="inventory.js?v=1771415423"></script>
     <script>
         const FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
         const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
@@ -274,6 +282,13 @@
         let activeCode="",activePath="",idx=1;
         function openModal(c,r,f){activeCode=c;activePath=f;idx=1;history.pushState({modal:true},null,"");const m=document.getElementById('pModal');m.style.display="block";document.getElementById('mCode').textContent=r;document.getElementById('imgCount').textContent=`${idx}/4`;let l=navigator.language||navigator.userLanguage;let msg="";if(l&&l.startsWith("it")){msg="Salve, vorrei ricevere informazioni sul modello: {code}".replace("{code}",r);}else{msg="Hi, inquiring about: {code}".replace("{code}",r);}document.getElementById('wp').href=`https://wa.me/905511748907?text=${encodeURIComponent(msg)}`;update();m.setAttribute('tabindex','-1');m.focus();}
         function closeModal(){document.getElementById('pModal').style.display="none";if(history.state&&history.state.modal){history.back();}}
+        var fsIdx=1;
+        function openFullscreen(src){var o=document.getElementById('fullscreenOverlay');document.getElementById('fullscreenImg').src=src;fsIdx=idx;updateFsCounter();o.style.display='flex';}
+        function closeFullscreen(){document.getElementById('fullscreenOverlay').style.display='none';}
+        function moveFullscreen(d){fsIdx+=d;if(fsIdx<1)fsIdx=4;if(fsIdx>4)fsIdx=1;var img=document.getElementById('fullscreenImg');img.src=activePath+'/'+fsIdx+'.webp';img.onerror=function(){fsIdx=1;img.src=activePath+'/1.webp';updateFsCounter();};updateFsCounter();}
+        function updateFsCounter(){document.getElementById('fullscreenCounter').textContent=fsIdx+'/4';}
+        document.addEventListener('keydown',function(e){var o=document.getElementById('fullscreenOverlay');if(o.style.display==='flex'){if(e.key==='Escape')closeFullscreen();if(e.key==='ArrowLeft')moveFullscreen(-1);if(e.key==='ArrowRight')moveFullscreen(1);}});
+        var touchStartX=0;document.getElementById('fullscreenOverlay').addEventListener('touchstart',function(e){touchStartX=e.changedTouches[0].screenX;},{passive:true});document.getElementById('fullscreenOverlay').addEventListener('touchend',function(e){var diff=e.changedTouches[0].screenX-touchStartX;if(Math.abs(diff)>50){if(diff>0)moveFullscreen(-1);else moveFullscreen(1);}},{passive:true});
         window.onclick=function(e){if(e.target==document.getElementById('pModal'))closeModal();};
         window.onpopstate=function(){if(document.getElementById('pModal').style.display==="block"){document.getElementById('pModal').style.display="none";}};
         document.addEventListener('keydown',function(e){if(document.getElementById('pModal').style.display==="block"){if(e.key==="Escape")closeModal();if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1);}});
