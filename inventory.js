@@ -395,12 +395,7 @@ const productsDB = [
         "path": "images/Formal Suits/15124-31",
         "focal_y": 32
     },
-    {
-        "id": "15124_13",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/15124_13",
-        "focal_y": 29
-    },
+
     {
         "id": "15125-02",
         "category": "Formal Suits",
@@ -425,12 +420,7 @@ const productsDB = [
         "path": "images/Formal Suits/15127-17",
         "focal_y": 31
     },
-    {
-        "id": "15127_17",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/15127_17",
-        "focal_y": 23
-    },
+
     {
         "id": "15128-02",
         "category": "Formal Suits",
@@ -461,12 +451,7 @@ const productsDB = [
         "path": "images/Formal Suits/15130-03",
         "focal_y": 21
     },
-    {
-        "id": "15130_03",
-        "category": "Formal Suits",
-        "path": "images/Formal Suits/15130_03",
-        "focal_y": 50
-    },
+
     {
         "id": "15130_10",
         "category": "Formal Suits",
@@ -1104,9 +1089,9 @@ const productsDB = [
         "focal_y": 50
     },
     {
-        "id": "50130-02",
+        "id": "50130-02-SC",
         "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50130-02",
+        "path": "images/Wedding Suits/Shawl Collar Smokings/50130-02-SC",
         "focal_y": 23
     },
     {
@@ -1134,9 +1119,9 @@ const productsDB = [
         "focal_y": 20
     },
     {
-        "id": "51900-03",
+        "id": "51900-03-CY",
         "category": "Çıkma Yaka",
-        "path": "images/Çıkma Yaka/51900-03",
+        "path": "images/Çıkma Yaka/51900-03-CY",
         "focal_y": 20
     },
     {
