@@ -234,7 +234,7 @@ const productsDB = [
         "focal_y": 20
     },
     {
-        "id": "15118-31 y",
+        "id": "15118-31Y",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15118-31 y",
         "focal_y": 50
@@ -306,7 +306,7 @@ const productsDB = [
         "focal_y": 16
     },
     {
-        "id": "15120_43",
+        "id": "15120-43",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15120_43",
         "focal_y": 23
@@ -453,7 +453,7 @@ const productsDB = [
     },
 
     {
-        "id": "15130_10",
+        "id": "15130-10",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15130_10",
         "focal_y": 34
@@ -477,7 +477,7 @@ const productsDB = [
         "focal_y": 35
     },
     {
-        "id": "15131_03",
+        "id": "15131-03",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15131_03",
         "focal_y": 50
@@ -825,7 +825,7 @@ const productsDB = [
         "focal_y": 13
     },
     {
-        "id": "50201-1 koyu siyah",
+        "id": "50201-1-BK",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50201-1 koyu siyah",
         "focal_y": 50
@@ -873,7 +873,7 @@ const productsDB = [
         "focal_y": 50
     },
     {
-        "id": "AGM801L-09 (1)",
+        "id": "AGM801L-09-V2",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/AGM801L-09 (1)",
         "focal_y": 50
@@ -1095,7 +1095,7 @@ const productsDB = [
         "focal_y": 23
     },
     {
-        "id": "AGM 4043",
+        "id": "AGM-4043",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/AGM 4043",
         "focal_y": 50
