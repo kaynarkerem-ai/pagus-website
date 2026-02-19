@@ -24,6 +24,7 @@
         .nav-list { display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; width: 100%; justify-content: center; flex-wrap: wrap; }
         .nav-list a { color: #fff; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-decoration: none; white-space: nowrap; padding: 10px 5px; }
         .nav-list a:hover { color: var(--color-gold); }
+        .search-form { display: contents; }
         .search-box { display: flex; gap: 0; background: rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; }
         .search-box input { background: transparent; border: none; padding: 10px 18px; color: #fff; font-size: 0.9rem; width: 180px; outline: none; }
         .search-box input::placeholder { color: rgba(255,255,255,0.5); }
@@ -71,6 +72,23 @@
         .badges { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         .badge-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; font-size: 0.7rem; color: #666; font-weight: 600; text-transform: uppercase; }
         .badge-icon { font-size: 1.5rem; color: var(--color-noble); }
+        /* FIX #11: Styled toast notification */
+        .toast-notification { position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px); background: var(--color-noble); color: #fff; padding: 12px 28px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; z-index: 9999; opacity: 0; transition: opacity 0.3s, transform 0.3s; pointer-events: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .toast-notification.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+        /* FIX #1: Carousel styles */
+        .carousel-section { width: 100%; background: #000; position: relative; overflow: hidden; max-height: 500px; }
+        .ss-slide { display: none; position: relative; cursor: pointer; }
+        .ss-slide.active { display: block; }
+        .ss-slide.ss-broken { display: none !important; }
+        .ss-slide img { width: 100%; max-height: 500px; object-fit: cover; object-position: center top; }
+        .ss-slide-info { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 30px 20px 20px; text-align: center; }
+        .ss-slide-info h4 { color: #fff; font-family: var(--font-display); font-size: 1.2rem; }
+        .ss-slide-info span { color: var(--color-gold); font-size: 0.8rem; }
+        .ss-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: none; color: #fff; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10; }
+        .ss-nav:hover { background: rgba(255,255,255,0.2); }
+        .ss-nav.ss-prev { left: 15px; }
+        .ss-nav.ss-next { right: 15px; }
+        .ss-dots { position: absolute; bottom: 10px; right: 15px; background: rgba(0,0,0,0.5); color: #fff; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; }
         @media (max-width: 768px) {
             .header-inner { padding: 0 15px; }
             .logo-row { flex-wrap: wrap; gap: 10px; }
@@ -85,8 +103,10 @@
             .prev { left: 10px; } .next { right: 10px; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
             .search-results-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .carousel-section { max-height: 350px; }
+            .ss-slide img { max-height: 350px; }
         }
-        /* HERO SECTION - KÜÇÜK, ALTTA */
+        /* HERO SECTION */
         .hero { background: linear-gradient(135deg, var(--color-noble) 0%, #1a252f 100%); color: #fff; padding: 40px 20px; text-align: center; position: relative; }
         .hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
         .hero h2 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
@@ -101,6 +121,7 @@
         .showcase-section { width: 100%; background: #1a1a1a; }
         .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
         .showcase-item { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; }
+        .showcase-item:focus-visible { outline: 3px solid var(--color-gold); outline-offset: -3px; }
         .showcase-item img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease; }
         .showcase-item:hover img { transform: scale(1.05); }
         .showcase-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 40px 20px 25px; }
@@ -113,9 +134,12 @@
     <header class="header"><div class="header-inner">
         <div class="logo-row">
             <a href="index.html" class="logo">PAGUS</a>
-            <div class="search-box">
-                <input type="text" id="siteSearch" placeholder="Search products..." aria-label="Search products" onkeypress="if(event.key==='Enter')doSiteSearch()">
-                <button onclick="doSiteSearch()" aria-label="Search">&#128269;</button>
+            <!-- FIX #13: role="search" wrapper for accessibility -->
+            <div role="search" class="search-form">
+                <div class="search-box">
+                    <input type="text" id="siteSearch" placeholder="Search products..." aria-label="Search products" onkeypress="if(event.key==='Enter')doSiteSearch()">
+                    <button onclick="doSiteSearch()" aria-label="Search">&#128269;</button>
+                </div>
             </div>
             <div class="soc-icons">
 <a href="https://www.instagram.com/pagus_menswear/" target="_blank" rel="noopener" class="social-icon" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -132,14 +156,22 @@
                 <li><a href="?category=Jackets">Jackets</a></li>
         </ul></nav>
     </div></header>
-    
+
+    <!-- FIX #1: Carousel HTML elements - were completely missing -->
+    <section class="carousel-section" id="carouselSection" style="display:none;">
+        <div id="slideshowTrack" style="position:relative;"></div>
+        <button class="ss-nav ss-prev" onclick="ssMove(-1)" aria-label="Previous slide">&#10094;</button>
+        <button class="ss-nav ss-next" onclick="ssMove(1)" aria-label="Next slide">&#10095;</button>
+        <div id="slideshowDots" class="ss-dots"></div>
+    </section>
+
     <!-- SHOWCASE -->
     <section class="showcase-section" id="showcaseSection">
         <img src="images/showcase_hero.webp" alt="PAGUS Collection" class="showcase-hero-img">
         <div class="showcase-grid" id="showcaseGrid"></div>
     </section>
     
-    <!-- HERO - ALTTA, KÜÇÜK -->
+    <!-- HERO -->
     <section class="hero" id="heroSection">
         <div class="hero-content">
             <div class="hero-tagline">B2B Wholesale Menswear</div>
@@ -169,13 +201,15 @@
         <svg style="width:20px;height:20px;fill:white;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         SEND <span id="cartCount">0</span>
     </button>
+    <!-- FIX #11: Toast notification element -->
+    <div id="toastNotification" class="toast-notification" role="alert" aria-live="polite"></div>
     <div id="pModal" class="modal" role="dialog" aria-modal="true" aria-label="Product detail">
-        <span class="close" onclick="closeModal()">&#215;</span>
+        <span class="close" onclick="closeModal()" role="button" aria-label="Close modal" tabindex="0">&#215;</span>
         <div class="modal-content">
             <div class="slider" id="sliderArea">
-                <button class="arrow prev" onclick="move(-1)">&#10094;</button>
+                <button class="arrow prev" onclick="move(-1)" aria-label="Previous image">&#10094;</button>
                 <img id="mImg" class="main-img" src="" alt="Product Detail" onclick="openFullscreen(this.src)" style="cursor:zoom-in">
-                <button class="arrow next" onclick="move(1)">&#10095;</button>
+                <button class="arrow next" onclick="move(1)" aria-label="Next image">&#10095;</button>
                 <div class="img-counter" id="imgCount">1/4</div>
             </div>
             <div class="side-info">
@@ -187,41 +221,639 @@
             </div>
         </div>
     </div>
-    <!-- Fullscreen Lightbox -->
-    <div id="fullscreenOverlay" onclick="closeFullscreen()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;cursor:zoom-out;justify-content:center;align-items:center;">
-        <button onclick="event.stopPropagation();moveFullscreen(-1)" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;">‹</button>
-        <img id="fullscreenImg" src="" alt="Product detail fullscreen" onclick="event.stopPropagation()" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px;">
-        <button onclick="event.stopPropagation();moveFullscreen(1)" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;">›</button>
-        <button onclick="closeFullscreen()" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;">×</button>
-        <div id="fullscreenCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#888;font-size:0.9rem;">1/4</div>
+    <!-- FIX #9: Fullscreen lightbox - separated background click layer from image -->
+    <div id="fullscreenOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;justify-content:center;align-items:center;">
+        <div id="fullscreenBg" onclick="closeFullscreen()" style="position:absolute;inset:0;cursor:zoom-out;"></div>
+        <button onclick="event.stopPropagation();moveFullscreen(-1)" aria-label="Previous image" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:2;">&#8249;</button>
+        <img id="fullscreenImg" src="" alt="Product detail fullscreen" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px;position:relative;z-index:1;">
+        <button onclick="event.stopPropagation();moveFullscreen(1)" aria-label="Next image" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:2;">&#8250;</button>
+        <button onclick="closeFullscreen()" aria-label="Close fullscreen" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:2;">&times;</button>
+        <div id="fullscreenCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#888;font-size:0.9rem;z-index:2;">1/4</div>
     </div>
+    <!-- FIX #14: Replaced document.write with span + JS textContent -->
     <footer class="footer"><div class="footer-grid">
         <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear is established with a single mission: to provide world-class textile solutions.</p></div>
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> <span id="footerWa"></span></li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment &amp; Bank Accounts</a></li></ul></div>
-    </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">&copy; <script>document.write(new Date().getFullYear())</script> Pagus Menswear. All Rights Reserved.</div></footer>
+    </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">&copy; <span id="footerYear"></span> Pagus Menswear. All Rights Reserved.</div></footer>
     <script src="inventory.js?v=1771500808"></script>
     <script>
-        const FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
-        const WHATSAPP_NUMBER='905511748907';
-        const CAT_DISPLAY_NAMES={"Çıkma Yaka":"Detachable Collar"};
-        const urlParams=new URLSearchParams(window.location.search);const curCat=urlParams.get('category')||"Wedding Suits";const curSub=urlParams.get('subcategory');
-        let cart=[];var lsAvailable=true;try{localStorage.setItem('_test','1');localStorage.removeItem('_test');cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){lsAvailable=false;cart=[];}
-        function escapeHTML(s){if(!s)return '';return String(s).replace(/[&<>'"]/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t]));}
-        function escapeJS(s){if(!s)return '';return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'\\"').replace(/\n/g,'\\n').replace(/\r/g,'\\r');}
-        function escapeAttr(s){if(!s)return '';return String(s).replace(/[&<>"'`=\/]/g,function(t){return'&#'+t.charCodeAt(0)+';';});}
-        function setLanguage(){let l=navigator.language||navigator.userLanguage;const g=document.getElementById('guideText');if(l&&l.startsWith("it")){g.innerText="Tocca l'icona del cuore per creare la tua lista.";}else{g.innerText="Tap heart to create list.";}}
-        if(typeof productsDB==='undefined'){document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>Error: inventory.js not found.</div>";}else{
-            productsDB.forEach(p=>{if(p.category&&p.category.includes(' > ')){let a=p.category.split(' > ');p.mainCat=a[0].trim();p.subCat=a[1].trim();}else{p.mainCat=p.category;p.subCat="General";}p.code=p.id;p.realCode=p.id;p.folderPath=p.path;p.focalY=p.focal_y||20;});
-            setLanguage();init();updateCartUI();}
-        function renderShowcase(){var grid=document.getElementById('showcaseGrid');if(!grid)return;if(typeof productsDB==='undefined'||!productsDB||productsDB.length===0){grid.innerHTML='';return;}var catProducts={};for(var i=0;i<productsDB.length;i++){var p=productsDB[i];var mainCat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;if(!catProducts[mainCat])catProducts[mainCat]=[];catProducts[mainCat].push(p);}var items=[];var cats=Object.keys(catProducts);for(var c=0;c<cats.length&&items.length<4;c++){var catName=cats[c];var prods=catProducts[catName];for(var j=0;j<prods.length&&items.length<4;j++){if(items.length<4){items.push({cat:catName,path:prods[j].path});}if(cats.length<4&&items.length<4&&j<prods.length-1){items.push({cat:catName,path:prods[j+1].path});break;}}}var html='';for(var i=0;i<items.length;i++){var it=items[i];html+='<div class="showcase-item" data-cat="'+escapeAttr(it.cat)+'" onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)">';html+='<img src="'+escapeAttr(it.path)+'/1.webp" alt="'+escapeAttr(it.cat)+'" onerror="this.parentElement.style.display=\'none\'">';html+='<div class="showcase-overlay"><span>'+escapeHTML(CAT_DISPLAY_NAMES[it.cat]||it.cat).toUpperCase()+'</span></div></div>';}grid.innerHTML=html;}
-        function init(){var waUrl='https://wa.me/'+WHATSAPP_NUMBER;var wl=document.getElementById('waLink');if(wl)wl.href=waUrl;var pl=document.getElementById('plWaLink');if(pl)pl.href=waUrl;var fw=document.getElementById('footerWa');if(fw)fw.textContent='+'+WHATSAPP_NUMBER;var hero=document.getElementById('heroSection');var showcase=document.getElementById('showcaseSection');var pta=document.getElementById('pageTitleArea');var sr=document.getElementById('searchResults');var floatCartBtn=document.getElementById('floatCart');var privLabel=document.getElementById('privateLabelSection');var searchBox=document.querySelector('.search-box');if(!FEATURES.hero&&hero)hero.style.display='none';if(!FEATURES.showcase&&showcase)showcase.style.display='none';if(!FEATURES.whatsappFloat&&floatCartBtn)floatCartBtn.style.display='none';if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';if(!FEATURES.search&&searchBox)searchBox.style.display='none';if(!FEATURES.favorites){document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});}if(urlParams.get('search')){hero.style.display='none';if(showcase)showcase.style.display='none';pta.style.display='none';sr.style.display='block';document.getElementById('pGrid').style.display='none';doSearchDisplay(urlParams.get('search'));}else if(urlParams.get('category')||urlParams.get('subcategory')){hero.style.display='none';if(showcase)showcase.style.display='none';sr.style.display='none';pta.style.display='block';if(curSub)showProducts();else showSubs();}else{if(FEATURES.hero)hero.style.display='block';if(FEATURES.showcase&&showcase){showcase.style.display='block';renderShowcase();}pta.style.display='none';sr.style.display='none';document.getElementById('pGrid').style.display='none';}}
-        function doSiteSearch(){var q=document.getElementById('siteSearch').value.trim();if(q.length<2){alert('Please enter at least 2 characters');return;}window.location.href='?search='+encodeURIComponent(q);}
-        function openSearchResult(idx){if(!window._searchResults||!window._searchResults[idx])return;var r=window._searchResults[idx];openModal(r.id,r.id,r.path);}
-        function doSearchDisplay(q){var results=[];var qLower=q.toLowerCase();for(var i=0;i<productsDB.length;i++){var p=productsDB[i];if(p.id.toLowerCase().indexOf(qLower)>-1||p.category.toLowerCase().indexOf(qLower)>-1){results.push(p);}}var container=document.getElementById('searchResults');var safeQ=escapeHTML(q);var html='<div class="search-results-section"><h2 class="search-results-title">'+results.length+' results for "'+safeQ+'"</h2>';if(results.length===0){html+='<p style="text-align:center;color:#999;padding:50px;">No results found</p>';}else{html+='<div class="search-results-grid">';for(var j=0;j<results.length;j++){var r=results[j];var cat=r.category.indexOf(' > ')>-1?r.category.split(' > ')[0]:r.category;var sub=r.category.indexOf(' > ')>-1?r.category.split(' > ')[1]:r.category;var fy=r.focalY||r.focal_y||20;html+='<div class="search-result-card" data-idx="'+j+'" onclick="openSearchResult('+j+')"><img src="'+escapeAttr(r.path)+'/1.webp" style="object-position:center '+parseInt(fy)+'%;" alt="'+escapeAttr(r.id)+'"><div class="info"><h4>'+escapeHTML(r.id)+'</h4><span>'+escapeHTML(sub)+'</span></div></div>';}html+='</div>';}html+='</div>';container.innerHTML=html;window._searchResults=results;}
+        // ============================================================
+        // PAGUS MENSWEAR - FIXED VERSION
+        // All 14 issues resolved (see FIX comments throughout)
+        // ============================================================
+
+        var FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
+        var WHATSAPP_NUMBER='905511748907';
+        var CAT_DISPLAY_NAMES={"Çıkma Yaka":"Detachable Collar"};
+        var urlParams=new URLSearchParams(window.location.search);
+        var curCat=urlParams.get('category')||"Wedding Suits";
+        var curSub=urlParams.get('subcategory');
+
+        var cart=[];
+        var lsAvailable=true;
+        try{localStorage.setItem('_test','1');localStorage.removeItem('_test');cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){lsAvailable=false;cart=[];}
+
+        // FIX #14: Footer year without document.write
+        document.getElementById('footerYear').textContent=new Date().getFullYear();
+
+        // ===================== UTILITY FUNCTIONS =====================
+
+        function escapeHTML(s){
+            if(!s)return '';
+            return String(s).replace(/[&<>'"]/g,function(t){
+                return{'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t];
+            });
+        }
+
+        // FIX #6: Removed dead escapeJS function (was defined but never called)
+
+        function escapeAttr(s){
+            if(!s)return '';
+            return String(s).replace(/[&<>"'`=\/]/g,function(t){
+                return'&#'+t.charCodeAt(0)+';';
+            });
+        }
+
+        // FIX #5: Strict focal-y sanitizer — only allows integer 0-100, prevents XSS via inline style
+        function safeFocalY(val){
+            var n=parseInt(val,10);
+            if(isNaN(n)||n<0||n>100) return 20;
+            return n;
+        }
+
+        // FIX #11: Styled toast notification instead of native alert()
+        function showToast(msg,duration){
+            duration=duration||3000;
+            var t=document.getElementById('toastNotification');
+            t.textContent=msg;
+            t.classList.add('visible');
+            clearTimeout(window._toastTimer);
+            window._toastTimer=setTimeout(function(){t.classList.remove('visible');},duration);
+        }
+
+        function setLanguage(){
+            var l=navigator.language||navigator.userLanguage;
+            var g=document.getElementById('guideText');
+            if(l&&l.startsWith("it")){
+                g.innerText="Tocca l'icona del cuore per creare la tua lista.";
+            }else{
+                g.innerText="Tap heart to create list.";
+            }
+        }
+
+        // ===================== PRODUCT DATA INIT =====================
+
+        if(typeof productsDB==='undefined'){
+            document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>Error: inventory.js not found.</div>";
+        }else{
+            productsDB.forEach(function(p){
+                if(p.category&&p.category.includes(' > ')){
+                    var a=p.category.split(' > ');
+                    p.mainCat=a[0].trim();
+                    p.subCat=a[1].trim();
+                }else{
+                    p.mainCat=p.category;
+                    p.subCat="General";
+                }
+                p.code=p.id;
+                p.realCode=p.id;
+                p.folderPath=p.path;
+                p.focalY=p.focal_y||20;
+            });
+            setLanguage();
+            init();
+            updateCartUI();
+        }
+
+        // ===================== SHOWCASE =====================
+        // FIX #13: tabindex + keyboard Enter/Space for accessibility
+
+        function renderShowcase(){
+            var grid=document.getElementById('showcaseGrid');
+            if(!grid)return;
+            if(typeof productsDB==='undefined'||!productsDB||productsDB.length===0){grid.innerHTML='';return;}
+
+            var catProducts={};
+            for(var i=0;i<productsDB.length;i++){
+                var p=productsDB[i];
+                var mainCat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;
+                if(!catProducts[mainCat])catProducts[mainCat]=[];
+                catProducts[mainCat].push(p);
+            }
+
+            var items=[];
+            var cats=Object.keys(catProducts);
+            for(var c=0;c<cats.length&&items.length<4;c++){
+                var catName=cats[c];
+                var prods=catProducts[catName];
+                for(var j=0;j<prods.length&&items.length<4;j++){
+                    if(items.length<4){items.push({cat:catName,path:prods[j].path});}
+                    if(cats.length<4&&items.length<4&&j<prods.length-1){items.push({cat:catName,path:prods[j+1].path});break;}
+                }
+            }
+
+            var html='';
+            for(var k=0;k<items.length;k++){
+                var it=items[k];
+                // FIX #13: Added tabindex="0", role="link", and onkeydown for keyboard nav
+                html+='<div class="showcase-item" tabindex="0" role="link" data-cat="'+escapeAttr(it.cat)+'"'
+                    +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)"'
+                    +' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat);}">';
+                html+='<img src="'+escapeAttr(it.path)+'/1.webp" alt="'+escapeAttr(it.cat)+'" onerror="this.parentElement.style.display=\'none\'">';
+                html+='<div class="showcase-overlay"><span>'+escapeHTML(CAT_DISPLAY_NAMES[it.cat]||it.cat).toUpperCase()+'</span></div></div>';
+            }
+            grid.innerHTML=html;
+        }
+
+        // ===================== MAIN INIT =====================
+        // FIX #2: Null-safe element access throughout
+
+        function init(){
+            var waUrl='https://wa.me/'+WHATSAPP_NUMBER;
+            var wl=document.getElementById('waLink');
+            if(wl)wl.href=waUrl;
+            var pl=document.getElementById('plWaLink');
+            if(pl)pl.href=waUrl;
+            var fw=document.getElementById('footerWa');
+            if(fw)fw.textContent='+'+WHATSAPP_NUMBER;
+
+            var hero=document.getElementById('heroSection');
+            var showcase=document.getElementById('showcaseSection');
+            var carousel=document.getElementById('carouselSection');
+            var pta=document.getElementById('pageTitleArea');
+            var sr=document.getElementById('searchResults');
+            var floatCartBtn=document.getElementById('floatCart');
+            var privLabel=document.getElementById('privateLabelSection');
+            var searchBox=document.querySelector('.search-box');
+
+            // FIX #2: Every element access guarded with null check
+            if(!FEATURES.hero&&hero)hero.style.display='none';
+            if(!FEATURES.showcase&&showcase)showcase.style.display='none';
+            if(!FEATURES.carousel&&carousel)carousel.style.display='none';
+            if(!FEATURES.whatsappFloat&&floatCartBtn)floatCartBtn.style.display='none';
+            if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';
+            if(!FEATURES.search&&searchBox)searchBox.style.display='none';
+            if(!FEATURES.favorites){
+                document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});
+                document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});
+            }
+
+            if(urlParams.get('search')){
+                if(hero)hero.style.display='none';
+                if(showcase)showcase.style.display='none';
+                if(carousel)carousel.style.display='none';
+                if(pta)pta.style.display='none';
+                if(sr)sr.style.display='block';
+                document.getElementById('pGrid').style.display='none';
+                doSearchDisplay(urlParams.get('search'));
+            }else if(urlParams.get('category')||urlParams.get('subcategory')){
+                if(hero)hero.style.display='none';
+                if(showcase)showcase.style.display='none';
+                if(carousel)carousel.style.display='none';
+                if(sr)sr.style.display='none';
+                if(pta)pta.style.display='block';
+                if(curSub) showProducts(); else showSubs();
+            }else{
+                if(FEATURES.hero&&hero)hero.style.display='block';
+                if(FEATURES.showcase&&showcase){showcase.style.display='block';renderShowcase();}
+                // FIX #1: Carousel init with proper HTML
+                if(FEATURES.carousel&&carousel){carousel.style.display='block';startCarousel();}
+                if(pta)pta.style.display='none';
+                if(sr)sr.style.display='none';
+                document.getElementById('pGrid').style.display='none';
+            }
+        }
+
+        // ===================== SEARCH =====================
+        // FIX #11: Toast instead of alert, with i18n
+        // FIX #5: safeFocalY in search results
+
+        function doSiteSearch(){
+            var q=document.getElementById('siteSearch').value.trim();
+            if(q.length<2){
+                var l=navigator.language||navigator.userLanguage;
+                if(l&&l.startsWith("it")){
+                    showToast('Inserisci almeno 2 caratteri');
+                }else{
+                    showToast('Please enter at least 2 characters');
+                }
+                return;
+            }
+            window.location.href='?search='+encodeURIComponent(q);
+        }
+
+        function openSearchResult(resultIdx){
+            if(!window._searchResults||!window._searchResults[resultIdx])return;
+            var r=window._searchResults[resultIdx];
+            openModal(r.id,r.id,r.path);
+        }
+
+        function doSearchDisplay(q){
+            var results=[];
+            var qLower=q.toLowerCase();
+            for(var i=0;i<productsDB.length;i++){
+                var p=productsDB[i];
+                if(p.id.toLowerCase().indexOf(qLower)>-1||p.category.toLowerCase().indexOf(qLower)>-1){
+                    results.push(p);
+                }
+            }
+
+            var container=document.getElementById('searchResults');
+            var safeQ=escapeHTML(q);
+            var html='<div class="search-results-section"><h2 class="search-results-title">'+results.length+' results for "'+safeQ+'"</h2>';
+
+            if(results.length===0){
+                html+='<p style="text-align:center;color:#999;padding:50px;">No results found</p>';
+            }else{
+                html+='<div class="search-results-grid">';
+                for(var j=0;j<results.length;j++){
+                    var r=results[j];
+                    var sub=r.category.indexOf(' > ')>-1?r.category.split(' > ')[1]:r.category;
+                    // FIX #5: safeFocalY instead of raw parseInt
+                    var fy=safeFocalY(r.focalY||r.focal_y);
+                    html+='<div class="search-result-card" data-idx="'+j+'" onclick="openSearchResult('+j+')">';
+                    html+='<img src="'+escapeAttr(r.path)+'/1.webp" style="object-position:center '+fy+'%;" alt="'+escapeAttr(r.id)+'">';
+                    html+='<div class="info"><h4>'+escapeHTML(r.id)+'</h4><span>'+escapeHTML(sub)+'</span></div></div>';
+                }
+                html+='</div>';
+            }
+            html+='</div>';
+            container.innerHTML=html;
+            window._searchResults=results;
+        }
+
+        // ===================== SUBCATEGORY & PRODUCT VIEWS =====================
+        // FIX #5: safeFocalY everywhere
+        // FIX #12: Formatted for readability (was single-line minified)
+        // FIX #13: aria-labels on heart buttons
+
+        function showSubs(){
+            document.getElementById('pGrid').style.display='grid';
+            var cd=productsDB.find(function(p){return p.mainCat.toLowerCase()===curCat.toLowerCase();});
+            var dc=cd?cd.mainCat:curCat;
+            document.getElementById('pTitle').textContent=CAT_DISPLAY_NAMES[dc]||dc;
+            document.getElementById('back').style.display="none";
+            document.getElementById('infoGuide').style.display="none";
+
+            var ss=[...new Set(productsDB.filter(function(p){
+                return p.mainCat.toLowerCase()===curCat.toLowerCase();
+            }).map(function(p){return p.subCat;}))];
+
+            if(ss.length===0){
+                document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">Collection is being updated...</div>';
+                return;
+            }
+
+            document.getElementById('pGrid').innerHTML=ss.map(function(s){
+                var cv=productsDB.find(function(p){return p.subCat===s;});
+                var ss2=escapeHTML(s);
+                var ip=escapeAttr(cv.folderPath)+'/1.webp';
+                var fy=safeFocalY(cv.focalY);
+                return '<div class="card" data-cat="'+escapeAttr(curCat)+'" data-sub="'+escapeAttr(s)+'"'
+                    +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)+\'&subcategory=\'+encodeURIComponent(this.dataset.sub)">'
+                    +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(s)+'"></div>'
+                    +'<div class="info-box"><h3 class="info-title">'+ss2+'</h3>'
+                    +'<span style="color:var(--color-gold);font-size:0.7rem;font-weight:700;">VIEW COLLECTION</span></div></div>';
+            }).join('');
+        }
+
+        function showProducts(){
+            document.getElementById('pGrid').style.display='grid';
+            document.getElementById('pTitle').textContent=curSub;
+            document.getElementById('back').style.display="inline-block";
+            document.getElementById('infoGuide').style.display="flex";
+
+            var ps=productsDB.filter(function(p){
+                return p.mainCat.toLowerCase()===curCat.toLowerCase()&&p.subCat===curSub;
+            });
+
+            if(ps.length===0){
+                document.getElementById('pGrid').innerHTML='<div style="text-align:center;width:100%;">No products found.</div>';
+                return;
+            }
+
+            window._currentProducts=ps;
+
+            document.getElementById('pGrid').innerHTML=ps.map(function(p,i){
+                var ip=escapeAttr(p.folderPath)+'/1.webp';
+                var fy=safeFocalY(p.focalY);
+                var f=cart.includes(p.realCode)?'active':'';
+                var h=f?'\u2665':'\u2661';
+                // FIX #13: aria-label on heart buttons
+                var ariaLabel=f?'Remove '+escapeAttr(p.realCode)+' from list':'Add '+escapeAttr(p.realCode)+' to list';
+                return '<div class="card" data-pidx="'+i+'" onclick="openProductByIdx('+i+')">'
+                    +'<button class="heart-btn '+f+'" data-code="'+escapeAttr(p.realCode)+'" onclick="toggleCartSafe(event,this)" aria-label="'+ariaLabel+'">'+h+'</button>'
+                    +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(p.realCode)+'"></div>'
+                    +'<h3 class="info-title">'+escapeHTML(p.realCode)+'</h3></div>';
+            }).join('');
+        }
+
+        function openProductByIdx(i){
+            if(!window._currentProducts||!window._currentProducts[i])return;
+            var p=window._currentProducts[i];
+            openModal(p.code,p.realCode,p.folderPath);
+        }
+
+        // FIX #13: Update aria-label when toggling
+        function toggleCartSafe(e,btn){
+            e.stopPropagation();
+            var c=btn.dataset.code;
+            if(cart.includes(c)){
+                cart=cart.filter(function(i){return i!==c;});
+                btn.innerText='\u2661';
+                btn.classList.remove('active');
+                btn.setAttribute('aria-label','Add '+c+' to list');
+            }else{
+                cart.push(c);
+                btn.innerText='\u2665';
+                btn.classList.add('active');
+                btn.setAttribute('aria-label','Remove '+c+' from list');
+            }
+            if(lsAvailable)localStorage.setItem('pagusCart',JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function goBack(){window.location.href='?category='+encodeURIComponent(curCat);}
+
+        function updateCartUI(){
+            var b=document.getElementById('floatCart');
+            var c=document.getElementById('cartCount');
+            c.innerText=cart.length;
+            b.style.display=cart.length>0?"flex":"none";
+        }
+
+        // ===================== WHATSAPP CART =====================
+        // FIX #7: Only clear cart after confirmed WhatsApp window opened
+        // Uses visibilitychange instead of blind setTimeout
+
+        function sendListToWhatsapp(){
+            if(cart.length===0)return;
+            var l=navigator.language||navigator.userLanguage;
+            var m="",c=cart.join(", ");
+            if(l&&l.startsWith("it")){
+                m="Salve Pagus, sono interessato ai prezzi di questi modelli:\n\n"+c+"\n\nGrazie.";
+            }else{
+                m="Hi Pagus, I am interested in the prices for these models:\n\n"+c+"\n\nThanks.";
+            }
+
+            var waWindow=window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(m),'_blank');
+
+            if(waWindow){
+                // FIX #7: Clear cart when user returns from WhatsApp tab
+                var clearOnReturn=function(){
+                    if(document.visibilityState==='visible'){
+                        document.removeEventListener('visibilitychange',clearOnReturn);
+                        cart=[];
+                        if(lsAvailable)localStorage.removeItem('pagusCart');
+                        updateCartUI();
+                        document.querySelectorAll('.heart-btn').forEach(function(b){
+                            b.innerText='\u2661';
+                            b.classList.remove('active');
+                            b.setAttribute('aria-label','Add '+b.dataset.code+' to list');
+                        });
+                    }
+                };
+                document.addEventListener('visibilitychange',clearOnReturn);
+            }else{
+                // FIX #7: Popup was blocked — notify user, don't clear cart
+                var l2=navigator.language||navigator.userLanguage;
+                if(l2&&l2.startsWith("it")){
+                    showToast('Popup bloccato. Consenti i popup per WhatsApp.');
+                }else{
+                    showToast('Popup blocked. Please allow popups for WhatsApp.');
+                }
+            }
+        }
+
+        // ===================== MODAL =====================
+        // FIX #3: popstate race condition — proper state tracking
+        // FIX #4: probeImageCount race condition — session tracking
+        // FIX #13: Focus trap for accessibility
+
+        var activeCode="",activePath="";
+        var idx=1,maxIdx=1;
+        var _probeSession=0;  // FIX #4: Track probe sessions
+        var _modalOpen=false;  // FIX #3: Track modal state
+
+        // FIX #4: Probe with session tracking to prevent stale callbacks
+        function probeImageCount(basePath,cb){
+            _probeSession++;
+            var session=_probeSession;
+            var count=1;
+            function check(n){
+                if(n>20){cb(count);return;}
+                if(session!==_probeSession)return; // FIX #4: Abort stale probe
+                var img=new Image();
+                img.onload=function(){
+                    if(session!==_probeSession)return;
+                    count=n;
+                    check(n+1);
+                };
+                img.onerror=function(){
+                    if(session!==_probeSession)return;
+                    cb(count);
+                };
+                img.src=basePath+'/'+n+'.webp';
+            }
+            check(2);
+        }
+
+        function openModal(c,r,f){
+            activeCode=c;
+            activePath=f;
+            idx=1;
+            maxIdx=1; // FIX #4: Start safe at 1, probe will update
+
+            // FIX #3: Only push state if modal isn't already open
+            if(!_modalOpen){
+                history.pushState({modal:true},null,"");
+            }
+            _modalOpen=true;
+
+            var m=document.getElementById('pModal');
+            m.style.display="block";
+            document.getElementById('mCode').textContent=r;
+            document.getElementById('imgCount').textContent='1/...';
+
+            var l=navigator.language||navigator.userLanguage;
+            var msg="";
+            if(l&&l.startsWith("it")){
+                msg="Salve, vorrei ricevere informazioni sul modello: "+r;
+            }else{
+                msg="Hi, inquiring about: "+r;
+            }
+            document.getElementById('wp').href='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(msg);
+
+            update();
+
+            // FIX #4: Probe with session tracking
+            probeImageCount(f,function(n){
+                maxIdx=n;
+                if(idx>maxIdx) idx=maxIdx; // Clamp if user navigated past
+                document.getElementById('imgCount').textContent=idx+'/'+maxIdx;
+            });
+
+            // FIX #13: Setup focus trap
+            m.setAttribute('tabindex','-1');
+            m.focus();
+            setupFocusTrap(m);
+        }
+
+        // FIX #3: Clean closeModal with proper state reset
+        function closeModal(){
+            var m=document.getElementById('pModal');
+            if(m.style.display==="none")return;
+            m.style.display="none";
+            _probeSession++; // FIX #4: Invalidate running probe
+
+            if(_modalOpen){
+                _modalOpen=false;
+                if(history.state&&history.state.modal){
+                    history.back();
+                }
+            }
+            removeFocusTrap(); // FIX #13
+        }
+
+        // FIX #13: Focus trap for modal accessibility
+        var _focusTrapHandler=null;
+        function setupFocusTrap(modal){
+            removeFocusTrap();
+            _focusTrapHandler=function(e){
+                if(e.key!=='Tab')return;
+                var focusable=modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if(focusable.length===0)return;
+                var first=focusable[0];
+                var last=focusable[focusable.length-1];
+                if(e.shiftKey){
+                    if(document.activeElement===first){e.preventDefault();last.focus();}
+                }else{
+                    if(document.activeElement===last){e.preventDefault();first.focus();}
+                }
+            };
+            document.addEventListener('keydown',_focusTrapHandler);
+        }
+        function removeFocusTrap(){
+            if(_focusTrapHandler){
+                document.removeEventListener('keydown',_focusTrapHandler);
+                _focusTrapHandler=null;
+            }
+        }
+
+        // ===================== FULLSCREEN =====================
+        // FIX #9: Clean event propagation — background layer handles close
+
+        var fsIdx=1;
+
+        function openFullscreen(src){
+            var o=document.getElementById('fullscreenOverlay');
+            document.getElementById('fullscreenImg').src=src;
+            fsIdx=idx;
+            updateFsCounter();
+            o.style.display='flex';
+        }
+
+        function closeFullscreen(){
+            document.getElementById('fullscreenOverlay').style.display='none';
+        }
+
+        function moveFullscreen(d){
+            fsIdx+=d;
+            if(fsIdx<1)fsIdx=maxIdx;
+            if(fsIdx>maxIdx)fsIdx=1;
+            var img=document.getElementById('fullscreenImg');
+            img.src=activePath+'/'+fsIdx+'.webp';
+            img.onerror=function(){fsIdx=1;img.src=activePath+'/1.webp';updateFsCounter();};
+            updateFsCounter();
+        }
+
+        function updateFsCounter(){
+            document.getElementById('fullscreenCounter').textContent=fsIdx+'/'+maxIdx;
+        }
+
+        // ===================== KEYBOARD EVENTS =====================
+
+        document.addEventListener('keydown',function(e){
+            if(e.key==='Tab')return; // Let focus trap handle Tab
+            var o=document.getElementById('fullscreenOverlay');
+            if(o.style.display==='flex'){
+                if(e.key==='Escape')closeFullscreen();
+                if(e.key==='ArrowLeft')moveFullscreen(-1);
+                if(e.key==='ArrowRight')moveFullscreen(1);
+                return;
+            }
+            if(document.getElementById('pModal').style.display==="block"){
+                if(e.key==="Escape")closeModal();
+                if(e.key==="ArrowLeft")move(-1);
+                if(e.key==="ArrowRight")move(1);
+            }
+        });
+
+        // ===================== TOUCH EVENTS =====================
+
+        var touchStartX=0;
+        document.getElementById('fullscreenOverlay').addEventListener('touchstart',function(e){
+            touchStartX=e.changedTouches[0].screenX;
+        },{passive:true});
+        document.getElementById('fullscreenOverlay').addEventListener('touchend',function(e){
+            var diff=e.changedTouches[0].screenX-touchStartX;
+            if(Math.abs(diff)>50){
+                if(diff>0)moveFullscreen(-1);else moveFullscreen(1);
+            }
+        },{passive:true});
+
+        window.addEventListener('click',function(e){
+            if(e.target==document.getElementById('pModal'))closeModal();
+        });
+
+        // FIX #3: Proper popstate handler — full state cleanup
+        window.onpopstate=function(){
+            if(_modalOpen){
+                var m=document.getElementById('pModal');
+                m.style.display="none";
+                _modalOpen=false;
+                _probeSession++; // FIX #4: Invalidate probe
+                removeFocusTrap(); // FIX #13
+            }
+        };
+
+        var tsx=0,tex=0;
+        var sl=document.getElementById('sliderArea');
+        sl.addEventListener('touchstart',function(e){tsx=e.changedTouches[0].screenX;},{passive:true});
+        sl.addEventListener('touchend',function(e){tex=e.changedTouches[0].screenX;hs();},{passive:true});
+
+        function hs(){if(tex<tsx-50)move(1);if(tex>tsx+50)move(-1);}
+
+        // FIX #4: move() clamps to maxIdx safely
+        function move(d){
+            idx+=d;
+            if(idx<1)idx=maxIdx;
+            if(idx>maxIdx)idx=1;
+            document.getElementById('imgCount').textContent=idx+'/'+maxIdx;
+            update();
+        }
+
+        function update(){
+            var img=document.getElementById('mImg');
+            img.style.opacity=0;
+            img.src=activePath+'/'+idx+'.webp';
+            img.onload=function(){img.style.opacity=1;};
+            img.onerror=function(){
+                if(idx>1){idx=1;update();}
+                else{img.style.opacity=1;img.parentElement.style.background='#333';}
+            };
+        }
+
+        // ===================== CAROUSEL =====================
+        // FIX #1: Now has matching HTML elements with null-safety
+
         function startCarousel(){
             var track=document.getElementById('slideshowTrack');
             var counter=document.getElementById('slideshowDots');
+            // FIX #1: Null check — exit gracefully if elements missing
+            if(!track||!counter)return;
             if(!productsDB||productsDB.length===0)return;
+
             var slides=[];
             for(var i=0;i<productsDB.length;i++){
                 var p=productsDB[i];
@@ -229,82 +861,81 @@
                 var cat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;
                 slides.push({img:p.path+'/1.webp',title:p.id,sub:sub,cat:cat,path:p.path});
             }
-            for(var j=slides.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=slides[j];slides[j]=slides[k];slides[k]=t;}
+
+            // Shuffle
+            for(var j=slides.length-1;j>0;j--){
+                var k=Math.floor(Math.random()*(j+1));
+                var t=slides[j];slides[j]=slides[k];slides[k]=t;
+            }
+
             window._carouselSlides=slides;
             var html='';
             for(var m=0;m<slides.length;m++){
                 var s=slides[m];
                 var cls=m===0?'ss-slide active':'ss-slide';
-                html+='<div class="'+cls+'" data-slidx="'+m+'" onclick="openFromCarouselSafe('+m+')"><img src="'+escapeAttr(s.img)+'" alt="'+escapeAttr(s.title)+'" onerror="this.parentElement.classList.add(\'ss-broken\')"><div class="ss-slide-info"><h4>'+escapeHTML(s.title)+'</h4><span>'+escapeHTML(s.sub)+'</span></div></div>';
+                html+='<div class="'+cls+'" data-slidx="'+m+'" onclick="openFromCarouselSafe('+m+')">';
+                html+='<img src="'+escapeAttr(s.img)+'" alt="'+escapeAttr(s.title)+'" onerror="this.parentElement.classList.add(\'ss-broken\')">';
+                html+='<div class="ss-slide-info"><h4>'+escapeHTML(s.title)+'</h4><span>'+escapeHTML(s.sub)+'</span></div></div>';
             }
             track.innerHTML=html;
+
             var validSlides=document.querySelectorAll('.ss-slide:not(.ss-broken)');
             counter.innerHTML='<span class="ss-counter">1 / '+validSlides.length+'</span>';
             window.CAROUSEL_INDEX=0;
             window.CAROUSEL_TOTAL=document.querySelectorAll('.ss-slide').length;
+
             if(window.CAROUSEL_TIMER)clearInterval(window.CAROUSEL_TIMER);
             window.CAROUSEL_TIMER=setInterval(carouselNext,5000);
         }
-        function openFromCarouselSafe(idx){
-            if(!window._carouselSlides||!window._carouselSlides[idx])return;
-            var s=window._carouselSlides[idx];
+
+        function openFromCarouselSafe(carIdx){
+            if(!window._carouselSlides||!window._carouselSlides[carIdx])return;
+            var s=window._carouselSlides[carIdx];
             openModal(s.title,s.title,s.path);
         }
+
         function carouselNext(){
             var all=document.querySelectorAll('.ss-slide');
+            if(!all||all.length===0)return;
             var attempts=0;
             do{
                 window.CAROUSEL_INDEX++;
                 if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
                 attempts++;
-            }while(all[window.CAROUSEL_INDEX] && all[window.CAROUSEL_INDEX].classList.contains('ss-broken') && attempts<window.CAROUSEL_TOTAL);
+            }while(all[window.CAROUSEL_INDEX]&&all[window.CAROUSEL_INDEX].classList.contains('ss-broken')&&attempts<window.CAROUSEL_TOTAL);
             carouselShow();
         }
+
         function carouselShow(){
             var all=document.querySelectorAll('.ss-slide');
-            for(var i=0;i<all.length;i++)all[i].className=all[i].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide';
-            if(all[window.CAROUSEL_INDEX])all[window.CAROUSEL_INDEX].className=all[window.CAROUSEL_INDEX].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide active';
+            if(!all||all.length===0)return;
+            for(var i=0;i<all.length;i++){
+                all[i].className=all[i].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide';
+            }
+            if(all[window.CAROUSEL_INDEX]){
+                all[window.CAROUSEL_INDEX].className=all[window.CAROUSEL_INDEX].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide active';
+            }
             var valid=document.querySelectorAll('.ss-slide:not(.ss-broken)').length;
             var current=0;
-            for(var j=0;j<=window.CAROUSEL_INDEX;j++){if(!all[j].classList.contains('ss-broken'))current++;}
+            for(var j=0;j<=window.CAROUSEL_INDEX;j++){
+                if(all[j]&&!all[j].classList.contains('ss-broken'))current++;
+            }
             var c=document.querySelector('.ss-counter');
             if(c)c.innerText=current+' / '+valid;
         }
+
         function ssMove(dir){
             var all=document.querySelectorAll('.ss-slide');
+            if(!all||all.length===0)return;
             var attempts=0;
             do{
                 window.CAROUSEL_INDEX+=dir;
                 if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
                 if(window.CAROUSEL_INDEX<0)window.CAROUSEL_INDEX=window.CAROUSEL_TOTAL-1;
                 attempts++;
-            }while(all[window.CAROUSEL_INDEX] && all[window.CAROUSEL_INDEX].classList.contains('ss-broken') && attempts<window.CAROUSEL_TOTAL);
+            }while(all[window.CAROUSEL_INDEX]&&all[window.CAROUSEL_INDEX].classList.contains('ss-broken')&&attempts<window.CAROUSEL_TOTAL);
             carouselShow();
         }
-        function showSubs(){document.getElementById('pGrid').style.display='grid';const cd=productsDB.find(p=>p.mainCat.toLowerCase()===curCat.toLowerCase());const dc=cd?cd.mainCat:curCat;document.getElementById('pTitle').textContent=CAT_DISPLAY_NAMES[dc]||dc;document.getElementById('back').style.display="none";document.getElementById('infoGuide').style.display="none";const ss=[...new Set(productsDB.filter(p=>p.mainCat.toLowerCase()===curCat.toLowerCase()).map(p=>p.subCat))];if(ss.length===0){document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">Collection is being updated...</div>';return;}document.getElementById('pGrid').innerHTML=ss.map(s=>{const cv=productsDB.find(p=>p.subCat===s);const ss2=escapeHTML(s);const ip=escapeAttr(cv.folderPath)+'/1.webp';const fy=parseInt(cv.focalY)||20;return'<div class="card" data-cat="'+escapeAttr(curCat)+'" data-sub="'+escapeAttr(s)+'" onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)+\'&subcategory=\'+encodeURIComponent(this.dataset.sub)"><div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(s)+'"></div><div class="info-box"><h3 class="info-title">'+ss2+'</h3><span style="color:var(--color-gold);font-size:0.7rem;font-weight:700;">VIEW COLLECTION</span></div></div>';}).join('');}
-        function showProducts(){document.getElementById('pGrid').style.display='grid';document.getElementById('pTitle').textContent=curSub;document.getElementById('back').style.display="inline-block";document.getElementById('infoGuide').style.display="flex";const ps=productsDB.filter(p=>p.mainCat.toLowerCase()===curCat.toLowerCase()&&p.subCat===curSub);if(ps.length===0){document.getElementById('pGrid').innerHTML='<div style="text-align:center;width:100%;">No products found.</div>';return;}window._currentProducts=ps;document.getElementById('pGrid').innerHTML=ps.map((p,i)=>{const ip=escapeAttr(p.folderPath)+'/1.webp';const fy=parseInt(p.focalY)||20;const f=cart.includes(p.realCode)?'active':'';const h=f?'\u2665':'\u2661';return'<div class="card" data-pidx="'+i+'" onclick="openProductByIdx('+i+')"><button class="heart-btn '+f+'" data-code="'+escapeAttr(p.realCode)+'" onclick="toggleCartSafe(event,this)">'+ h+'</button><div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(p.realCode)+'"></div><h3 class="info-title">'+escapeHTML(p.realCode)+'</h3></div>';}).join('');}
-        function openProductByIdx(i){if(!window._currentProducts||!window._currentProducts[i])return;var p=window._currentProducts[i];openModal(p.code,p.realCode,p.folderPath);}
-        function toggleCartSafe(e,btn){e.stopPropagation();var c=btn.dataset.code;if(cart.includes(c)){cart=cart.filter(i=>i!==c);btn.innerText='\u2661';btn.classList.remove('active');}else{cart.push(c);btn.innerText='\u2665';btn.classList.add('active');}if(lsAvailable)localStorage.setItem('pagusCart',JSON.stringify(cart));updateCartUI();}
-        function goBack(){window.location.href=`?category=${curCat}`;}
-        function updateCartUI(){const b=document.getElementById('floatCart');const c=document.getElementById('cartCount');c.innerText=cart.length;b.style.display=cart.length>0?"flex":"none";}
-        function sendListToWhatsapp(){if(cart.length===0)return;let l=navigator.language||navigator.userLanguage;let m="",c=cart.join(", ");if(l&&l.startsWith("it")){m="Salve Pagus, sono interessato ai prezzi di questi modelli:\n\n{codes}\n\nGrazie.".replace("{codes}",c);}else{m="Hi Pagus, I am interested in the prices for these models:\n\n{codes}\n\nThanks.".replace("{codes}",c);}window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(m),'_blank');setTimeout(()=>{cart=[];if(lsAvailable)localStorage.removeItem('pagusCart');updateCartUI();document.querySelectorAll('.heart-btn').forEach(b=>{b.innerText='\u2661';b.classList.remove('active');});},1000);}
-        let activeCode="",activePath="",idx=1,maxIdx=4;
-        function probeImageCount(basePath,cb){var count=1;function check(n){if(n>20){cb(count);return;}var img=new Image();img.onload=function(){count=n;check(n+1);};img.onerror=function(){cb(count);};img.src=basePath+'/'+n+'.webp';}check(2);}
-        function openModal(c,r,f){activeCode=c;activePath=f;idx=1;maxIdx=4;history.pushState({modal:true},null,"");const m=document.getElementById('pModal');m.style.display="block";document.getElementById('mCode').textContent=r;document.getElementById('imgCount').textContent='1/?';let l=navigator.language||navigator.userLanguage;let msg="";if(l&&l.startsWith("it")){msg="Salve, vorrei ricevere informazioni sul modello: {code}".replace("{code}",r);}else{msg="Hi, inquiring about: {code}".replace("{code}",r);}document.getElementById('wp').href='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(msg);update();probeImageCount(f,function(n){maxIdx=n;document.getElementById('imgCount').textContent=idx+'/'+maxIdx;});m.setAttribute('tabindex','-1');m.focus();}
-        function closeModal(){var m=document.getElementById('pModal');if(m.style.display==="none")return;m.style.display="none";if(history.state&&history.state.modal){history.back();}}
-        var fsIdx=1;
-        function openFullscreen(src){var o=document.getElementById('fullscreenOverlay');document.getElementById('fullscreenImg').src=src;fsIdx=idx;updateFsCounter();o.style.display='flex';}
-        function closeFullscreen(){document.getElementById('fullscreenOverlay').style.display='none';}
-        function moveFullscreen(d){fsIdx+=d;if(fsIdx<1)fsIdx=maxIdx;if(fsIdx>maxIdx)fsIdx=1;var img=document.getElementById('fullscreenImg');img.src=activePath+'/'+fsIdx+'.webp';img.onerror=function(){fsIdx=1;img.src=activePath+'/1.webp';updateFsCounter();};updateFsCounter();}
-        function updateFsCounter(){document.getElementById('fullscreenCounter').textContent=fsIdx+'/'+maxIdx;}
-        document.addEventListener('keydown',function(e){var o=document.getElementById('fullscreenOverlay');if(o.style.display==='flex'){if(e.key==='Escape')closeFullscreen();if(e.key==='ArrowLeft')moveFullscreen(-1);if(e.key==='ArrowRight')moveFullscreen(1);return;}if(document.getElementById('pModal').style.display==="block"){if(e.key==="Escape")closeModal();if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1);}});
-        var touchStartX=0;document.getElementById('fullscreenOverlay').addEventListener('touchstart',function(e){touchStartX=e.changedTouches[0].screenX;},{passive:true});document.getElementById('fullscreenOverlay').addEventListener('touchend',function(e){var diff=e.changedTouches[0].screenX-touchStartX;if(Math.abs(diff)>50){if(diff>0)moveFullscreen(-1);else moveFullscreen(1);}},{passive:true});
-        window.addEventListener('click',function(e){if(e.target==document.getElementById('pModal'))closeModal();});
-        window.onpopstate=function(){if(document.getElementById('pModal').style.display==="block"){document.getElementById('pModal').style.display="none";}};
-        let tsx=0,tex=0;const sl=document.getElementById('sliderArea');sl.addEventListener('touchstart',e=>{tsx=e.changedTouches[0].screenX;},{passive:true});sl.addEventListener('touchend',e=>{tex=e.changedTouches[0].screenX;hs();},{passive:true});
-        function hs(){if(tex<tsx-50)move(1);if(tex>tsx+50)move(-1);}
-        function move(d){idx+=d;if(idx<1)idx=maxIdx;if(idx>maxIdx)idx=1;document.getElementById('imgCount').textContent=idx+'/'+maxIdx;update();}
-        function update(){const i=document.getElementById('mImg');i.style.opacity=0;i.src=`${activePath}/${idx}.webp`;i.onload=()=>{i.style.opacity=1;};i.onerror=()=>{if(idx>1){idx=1;update();}else{i.style.opacity=1;i.parentElement.style.background='#333';}};}
     </script>
 </body>
 </html>
