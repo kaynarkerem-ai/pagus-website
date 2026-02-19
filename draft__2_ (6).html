@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGUS | B2B Wholesale Menswear</title>
+    
+    <!-- Preload kritik fontlar -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ══════════════════════════════════════════════════════════════
+           DESIGN SYSTEM - 30 Years of UI Wisdom
+           ══════════════════════════════════════════════════════════════ */
+        
+        :root {
+            /* Colors - Sadece 4 renk. Fazlası karmaşa. */
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --cream: #f7f5f0;
+            --gold: #a08c5b;
+            
+            /* Typography Scale - Musical ratio (1.25) */
+            --text-xs: 0.64rem;
+            --text-sm: 0.8rem;
+            --text-base: 1rem;
+            --text-lg: 1.25rem;
+            --text-xl: 1.563rem;
+            --text-2xl: 1.953rem;
+            --text-3xl: 2.441rem;
+            --text-4xl: 3.052rem;
+            --text-5xl: 3.815rem;
+            
+            /* Spacing - 8px grid system */
+            --space-1: 0.5rem;
+            --space-2: 1rem;
+            --space-3: 1.5rem;
+            --space-4: 2rem;
+            --space-5: 3rem;
+            --space-6: 4rem;
+            --space-7: 6rem;
+            --space-8: 8rem;
+            
+            /* Transitions */
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-fast: 0.2s;
+            --duration-normal: 0.4s;
+            --duration-slow: 0.8s;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           RESET & BASE
+           ══════════════════════════════════════════════════════════════ */
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 300;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+        
+        ::selection {
+            background: var(--gold);
+            color: var(--white);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+           ══════════════════════════════════════════════════════════════ */
+        
+        .font-display {
+            font-family: 'Cormorant', Georgia, serif;
+            font-weight: 300;
+        }
+        
+        .text-label {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           TOP BAR
+           ══════════════════════════════════════════════════════════════ */
+        
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 101;
+            background: #2c2420;
+            border-bottom: 1px solid rgba(160,140,91,0.15);
+            padding: 8px 40px;
+            min-height: 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform var(--duration-normal) var(--ease-out);
+        }
+        
+        .top-bar.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .top-bar-info {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .top-bar-info a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: color var(--duration-fast);
+        }
+        
+        .top-bar-info a:hover {
+            color: var(--gold);
+        }
+        
+        .top-bar-divider {
+            width: 1px;
+            height: 12px;
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .top-bar-social {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .top-bar-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--duration-fast), transform var(--duration-fast);
+        }
+        
+        .top-bar-social a:hover {
+            color: var(--gold);
+            transform: translateY(-1px);
+        }
+        
+        .top-bar-social svg {
+            width: 15px;
+            height: 15px;
+            min-width: 15px;
+            min-height: 15px;
+            fill: currentColor;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           HEADER
+           ══════════════════════════════════════════════════════════════ */
+        
+        header {
+            position: fixed;
+            top: 36px;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: var(--space-4) var(--space-5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+        
+        /* Ensure nav can be positioned relative to header */
+        header nav {
+            position: relative;
+        }
+        
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px);
+            padding: var(--space-3) var(--space-5);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+        }
+        
+        .logo {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-lg);
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: var(--white);
+            text-decoration: none;
+            transition: color var(--duration-fast);
+        }
+        
+        header.scrolled .logo { color: var(--black); }
+        
+        nav {
+            display: flex;
+            gap: var(--space-5);
+        }
+        
+        nav a {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color var(--duration-fast);
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: currentColor;
+            transition: width var(--duration-normal) var(--ease-out);
+        }
+        
+        nav a:hover::after { width: 100%; }
+        header.scrolled nav a { color: var(--black); }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-1);
+        }
+        
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--white);
+            margin: 6px 0;
+            transition: all var(--duration-fast);
+        }
+        
+        header.scrolled .menu-toggle span { background: var(--black); }
+        
+        /* ══════════════════════════════════════════════════════════════
+           HERO
+           ══════════════════════════════════════════════════════════════ */
+        
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: flex-end;
+            padding: var(--space-8) var(--space-5);
+            overflow: hidden;
+        }
+        
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+        
+        .hero-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.75) 0%,
+                rgba(0,0,0,0.35) 40%,
+                rgba(0,0,0,0.15) 100%
+            );
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 600px;
+            color: var(--white);
+        }
+        
+        .hero-label { margin-bottom: var(--space-3); }
+        
+        .hero-title {
+            font-family: 'Cormorant', serif;
+            font-size: clamp(var(--text-3xl), 8vw, var(--text-5xl));
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: var(--space-4);
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-4);
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.4);
+            color: var(--white);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+        
+        .hero-cta:hover {
+            background: var(--white);
+            color: var(--black);
+            border-color: var(--white);
+        }
+        
+        .hero-cta svg {
+            width: 16px;
+            height: 16px;
+            transition: transform var(--duration-fast);
+        }
+        
+        .hero-cta:hover svg { transform: translateX(4px); }
+        
+        .scroll-hint {
+            position: absolute;
+            bottom: var(--space-5);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            color: rgba(255,255,255,0.5);
+            font-size: var(--text-xs);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        
+        .scroll-hint::after {
+            content: '';
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+            animation: scrollPulse 2s infinite;
+        }
+        
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.5; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.2); }
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           INTRO
+           ══════════════════════════════════════════════════════════════ */
+        
+        .intro {
+            padding: var(--space-8) var(--space-5);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro-text {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            line-height: 1.5;
+        }
+        
+        .intro-text em {
+            font-style: normal;
+            color: var(--gold);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           COLLECTION
+           ══════════════════════════════════════════════════════════════ */
+        
+        .section-header {
+            padding: var(--space-7) var(--space-5) var(--space-5);
+            text-align: center;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            margin-bottom: var(--space-2);
+        }
+        
+        .section-subtitle {
+            font-size: var(--text-sm);
+            color: #666;
+            letter-spacing: 0.05em;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           CATEGORY SHOWCASE
+           ══════════════════════════════════════════════════════════════ */
+        
+        .category-showcase {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 4px;
+            margin: 0 0 var(--space-6);
+            padding: 0;
+        }
+        
+        .category-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            height: 65vh;
+            min-height: 400px;
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            transition: transform 1.2s var(--ease-out);
+        }
+        
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .category-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(10,10,10,0.75) 0%,
+                rgba(10,10,10,0.05) 55%
+            );
+            transition: background var(--duration-normal);
+        }
+        
+        .category-card:hover .category-card-overlay {
+            background: linear-gradient(
+                to top,
+                rgba(10,10,10,0.85) 0%,
+                rgba(10,10,10,0.1) 60%
+            );
+        }
+        
+        .category-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--space-5);
+        }
+        
+        .category-card-label {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        
+        .category-card-title {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.2;
+        }
+        
+        .category-card-count {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.08em;
+            margin-top: 8px;
+            transition: color var(--duration-fast);
+        }
+        
+        .category-card:hover .category-card-count {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .category-card-arrow {
+            position: absolute;
+            bottom: var(--space-5);
+            right: var(--space-5);
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+        
+        .category-card:hover .category-card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .category-card-arrow svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--white);
+            fill: none;
+        }
+        
+        /* Divider between categories and products */
+        .collection-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-3);
+            padding: var(--space-4) var(--space-5) var(--space-2);
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .collection-divider::before,
+        .collection-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0ddd6;
+        }
+        
+        .collection-divider span {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+        
+        @media (max-width: 768px) {
+            .category-showcase {
+                grid-template-columns: 1fr;
+                gap: 3px;
+            }
+            .category-card {
+                height: 45vh;
+                min-height: 280px;
+            }
+            .category-card-title {
+                font-size: var(--text-xl);
+            }
+            .category-card-content {
+                padding: var(--space-4);
+            }
+            .category-card-arrow {
+                display: none;
+            }
+        }
+        
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-1);
+            padding: 0 var(--space-5) var(--space-5);
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: var(--space-2) var(--space-3);
+            background: transparent;
+            border: 1px solid transparent;
+            font-family: inherit;
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all var(--duration-fast);
+            color: #666;
+        }
+        
+        .filter-btn:hover { color: var(--black); }
+        
+        .filter-btn.active {
+            color: var(--black);
+            border-color: var(--black);
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            padding: 0 var(--space-5) var(--space-8);
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .product { cursor: pointer; }
+        
+        .product-image {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: var(--cream);
+            margin-bottom: var(--space-3);
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all var(--duration-slow) var(--ease-out);
+        }
+        
+        .product-image .hover-img {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+        }
+        
+        .product:hover .hover-img { opacity: 1; }
+        .product:hover .main-img { opacity: 0; transform: scale(1.02); }
+        
+        .product-info { text-align: center; }
+        
+        .product-name {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-lg);
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+        
+        .product-category {
+            font-size: var(--text-xs);
+            color: #888;
+            letter-spacing: 0.05em;
+        }
+        
+        .view-all-prominent {
+            text-align: center;
+            padding: var(--space-5) var(--space-5) var(--space-6);
+        }
+        
+        .view-all-prominent a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 48px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+        
+        .view-all-prominent a:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+        
+        .view-all-prominent a svg {
+            transition: transform var(--duration-fast);
+        }
+        
+        .view-all-prominent a:hover svg {
+            transform: translateX(4px);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           SPLIT SECTION
+           ══════════════════════════════════════════════════════════════ */
+        
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+        }
+        
+        .split-image {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .split-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: var(--space-7);
+            background: var(--cream);
+        }
+        
+        .split-label { margin-bottom: var(--space-3); }
+        
+        .split-title {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: var(--space-4);
+        }
+        
+        .split-text {
+            font-size: var(--text-base);
+            color: #555;
+            margin-bottom: var(--space-5);
+            max-width: 450px;
+        }
+        
+        .split-features {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: var(--text-sm);
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border-radius: 50%;
+            font-size: var(--text-lg);
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            background: var(--black);
+            color: var(--white);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+        
+        .btn-primary:hover { background: var(--gold); }
+        
+        /* ══════════════════════════════════════════════════════════════
+           NUMBERS
+           ══════════════════════════════════════════════════════════════ */
+        
+        .numbers {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: var(--space-7) var(--space-5);
+            background: var(--black);
+            text-align: center;
+        }
+        
+        .number-item { padding: var(--space-4); }
+        
+        .number-value {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-4xl);
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: var(--space-2);
+        }
+        
+        .number-label {
+            font-size: var(--text-xs);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           TESTIMONIAL
+           ══════════════════════════════════════════════════════════════ */
+        
+        .testimonial {
+            padding: var(--space-8) var(--space-5);
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-quote {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: var(--space-5);
+        }
+        
+        .testimonial-author {
+            font-size: var(--text-sm);
+            color: #666;
+        }
+        
+        .testimonial-author strong {
+            display: block;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           FOOTER
+           ══════════════════════════════════════════════════════════════ */
+        
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: var(--space-7) var(--space-5) var(--space-4);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-6);
+            max-width: 1400px;
+            margin: 0 auto var(--space-6);
+        }
+        
+        .footer-brand {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-xl);
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-3);
+        }
+        
+        .footer-text {
+            font-size: var(--text-sm);
+            color: rgba(255,255,255,0.5);
+            line-height: 1.8;
+            max-width: 300px;
+        }
+        
+        .footer-title {
+            font-size: var(--text-xs);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: var(--space-4);
+        }
+        
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: var(--space-2); }
+        
+        .footer-links a {
+            font-size: var(--text-sm);
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: color var(--duration-fast);
+        }
+        
+        .footer-links a:hover { color: var(--white); }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: var(--text-xs);
+            color: rgba(255,255,255,0.3);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           MODAL
+           ══════════════════════════════════════════════════════════════ */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: var(--white);
+            overflow-y: auto;
+        }
+        
+        .modal.open { display: block; }
+        
+        .modal-close {
+            position: fixed;
+            top: var(--space-4);
+            right: var(--space-4);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            font-size: var(--text-xl);
+            cursor: pointer;
+            z-index: 10;
+            transition: all var(--duration-fast);
+        }
+        
+        .modal-close:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+        
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            min-height: 100vh;
+        }
+        
+        .modal-gallery {
+            background: var(--cream);
+            padding: var(--space-6);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-main-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-4);
+        }
+        
+        .modal-main-image img {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            cursor: zoom-in;
+        }
+        
+        .modal-thumbs {
+            display: flex;
+            gap: var(--space-2);
+            justify-content: center;
+        }
+        
+        .modal-thumb {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: opacity var(--duration-fast);
+            border: 2px solid transparent;
+        }
+        
+        .modal-thumb:hover, .modal-thumb.active { opacity: 1; }
+        .modal-thumb.active { border-color: var(--black); }
+        
+        .modal-info {
+            padding: var(--space-7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .modal-label { margin-bottom: var(--space-3); }
+        
+        .modal-title {
+            font-family: 'Cormorant', serif;
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            margin-bottom: var(--space-2);
+        }
+        
+        .modal-category {
+            font-size: var(--text-sm);
+            color: #666;
+            margin-bottom: var(--space-4);
+        }
+        
+        .modal-desc {
+            font-size: var(--text-base);
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: var(--space-4);
+        }
+        
+        /* Technical Specs Table */
+        .modal-specs {
+            background: var(--cream);
+            border-radius: 8px;
+            padding: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-2) 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: var(--text-sm);
+        }
+        
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-label {
+            color: #888;
+        }
+        
+        .spec-value {
+            font-weight: 500;
+            color: var(--black);
+        }
+        
+        .modal-features {
+            display: flex;
+            gap: var(--space-5);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-5);
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .modal-feature { font-size: var(--text-sm); }
+        
+        .modal-feature span {
+            display: block;
+            font-size: var(--text-lg);
+            margin-bottom: 4px;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            background: #25D366;
+            color: var(--white);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background var(--duration-fast);
+        }
+        
+        .whatsapp-btn:hover { background: #128C7E; }
+        
+        .whatsapp-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           LIGHTBOX
+           ══════════════════════════════════════════════════════════════ */
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox.open { display: flex; }
+        
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            color: var(--white);
+            font-size: var(--text-2xl);
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity var(--duration-fast);
+        }
+        
+        .lightbox-close:hover { opacity: 1; }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            font-size: var(--text-3xl);
+            cursor: pointer;
+            opacity: 0.5;
+            padding: var(--space-4);
+            transition: opacity var(--duration-fast);
+        }
+        
+        .lightbox-nav:hover { opacity: 1; }
+        .lightbox-prev { left: var(--space-4); }
+        .lightbox-next { right: var(--space-4); }
+        
+        /* ══════════════════════════════════════════════════════════════
+           WHATSAPP FLOAT
+           ══════════════════════════════════════════════════════════════ */
+        
+        .wp-float {
+            position: fixed;
+            bottom: var(--space-4);
+            right: var(--space-4);
+            width: 56px;
+            height: 56px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 24px rgba(37, 211, 102, 0.4);
+            z-index: 90;
+            transition: transform var(--duration-fast);
+        }
+        
+        .wp-float:hover { transform: scale(1.1); }
+        
+        .wp-float svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ══════════════════════════════════════════════════════════════ */
+        
+        @media (max-width: 1200px) {
+            .products { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        @media (max-width: 992px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-3);
+                padding: 0 var(--space-4) var(--space-6);
+            }
+            .split { grid-template-columns: 1fr; }
+            .split-image { min-height: 50vh; }
+            .split-content { padding: var(--space-6) var(--space-4); }
+            .numbers { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+            .modal-grid { grid-template-columns: 1fr; }
+            .modal-info { padding: var(--space-5) var(--space-4); }
+        }
+        
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 6px 16px;
+                min-height: 32px;
+            }
+            .top-bar-info {
+                font-size: 11px;
+                letter-spacing: 0.04em;
+            }
+            .top-bar-info.hide-mobile {
+                display: none;
+            }
+            .top-bar-divider.hide-mobile {
+                display: none;
+            }
+            .top-bar-social svg {
+                width: 16px;
+                height: 16px;
+                min-width: 16px;
+                min-height: 16px;
+            }
+            .top-bar-social {
+                gap: 16px;
+            }
+            header { padding: var(--space-3) var(--space-4); }
+            nav { display: none; }
+            .menu-toggle { display: block; }
+            .hero {
+                height: auto;
+                min-height: auto;
+                padding: 0;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-media {
+                position: relative;
+                inset: auto;
+                z-index: 0;
+                aspect-ratio: 16/10;
+            }
+            .hero-media img {
+                object-fit: cover;
+                object-position: center 20%;
+            }
+            .hero-overlay {
+                background: linear-gradient(
+                    to top,
+                    rgba(10,10,10,0.95) 0%,
+                    rgba(10,10,10,0.4) 50%,
+                    rgba(0,0,0,0.05) 100%
+                );
+            }
+            .hero-content {
+                position: relative;
+                z-index: 1;
+                padding: var(--space-5) var(--space-4) var(--space-6);
+                margin-top: -80px;
+            }
+            .hero-title { font-size: var(--text-3xl); }
+            .intro { padding: var(--space-6) var(--space-4); }
+            .intro-text { font-size: var(--text-xl); }
+            .section-header { padding: var(--space-6) var(--space-4) var(--space-4); }
+            .products { grid-template-columns: 1fr; max-width: 400px; }
+            .numbers { padding: var(--space-5) var(--space-4); }
+            .number-value { font-size: var(--text-3xl); }
+            .testimonial { padding: var(--space-6) var(--space-4); }
+            .testimonial-quote { font-size: var(--text-xl); }
+            .footer-grid { grid-template-columns: 1fr; gap: var(--space-4); }
+            .scroll-hint { display: none; }
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           ANIMATIONS
+           ══════════════════════════════════════════════════════════════ */
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in { animation: fadeInUp 0.8s var(--ease-out) forwards; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        
+        /* ══════════════════════════════════════════════════════════════
+           SKELETON LOADING
+           ══════════════════════════════════════════════════════════════ */
+        
+        .skeleton-product { pointer-events: none; }
+        
+        .skeleton-image {
+            background: linear-gradient(90deg, var(--cream) 25%, #eee 50%, var(--cream) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        
+        .skeleton-text {
+            background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           FADE IN UP ANIMATION (for products)
+           ══════════════════════════════════════════════════════════════ */
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s var(--ease-out) forwards;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           SCROLL TRIGGERED ANIMATIONS
+           ══════════════════════════════════════════════════════════════ */
+        
+        .observe-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+        }
+        
+        .observe-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           MOBILE MENU ANIMATION
+           ══════════════════════════════════════════════════════════════ */
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .menu-toggle.active span:first-child {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+        
+        .menu-toggle.active span:last-child {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           PRODUCTS GRID TRANSITION
+           ══════════════════════════════════════════════════════════════ */
+        
+        .products {
+            transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           MODAL IMAGE TRANSITION
+           ══════════════════════════════════════════════════════════════ */
+        
+        .modal-main-image img {
+            transition: opacity 0.15s ease;
+        }
+        
+        .lightbox img {
+            transition: opacity 0.1s ease;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           ACCESSIBILITY FOCUS STATES
+           ══════════════════════════════════════════════════════════════ */
+        
+        .product:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+        }
+        
+        .product:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+        }
+        
+        .filter-btn:focus-visible,
+        .btn-primary:focus-visible,
+        .hero-cta:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           REDUCED MOTION PREFERENCE
+           ══════════════════════════════════════════════════════════════ */
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .scroll-hint::after {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar" id="topBar">
+        <div class="top-bar-left">
+            <span class="top-bar-info">
+                <a href="mailto:info@pagusmenswear.com">info@pagusmenswear.com</a>
+            </span>
+            <div class="top-bar-divider hide-mobile"></div>
+            <span class="top-bar-info hide-mobile">
+                <a href="tel:+905511748907">+90 551 174 89 07</a>
+            </span>
+        </div>
+        <div class="top-bar-social">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/pagus_menswear/" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/pagusmenswear" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/company/pagus-menswear/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/905511748907?text=Hello%2C%20I%27d%20like%20to%20learn%20about%20PAGUS%20wholesale%20partnership" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo">PAGUS</a>
+        <nav>
+            <a href="#collection">Collection</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-media">
+            <img src="https://www.pagusmenswear.com/images/showcase_hero.webp" alt="PAGUS Collection">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="text-label hero-label fade-in">B2B Wholesale Menswear</div>
+            <h1 class="hero-title fade-in delay-1">Crafted in İzmir,<br>Worn Across Europe</h1>
+            <a href="#collection" class="hero-cta fade-in delay-2">
+                Explore Collection
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="scroll-hint">Scroll</div>
+    </section>
+    
+    
+    <!-- Collection -->
+    <section id="collection">
+        <div class="section-header">
+            <h2 class="section-title">The Collection</h2>
+            <p class="section-subtitle">Spring/Summer 2026</p>
+        </div>
+        
+        <!-- Category Showcase -->
+        <div class="category-showcase">
+            <!-- Wedding Suits -->
+            <div class="category-card" onclick="filterCategory('Wedding Suits')">
+                <img src="images/Wedding Suits/Shawl Collar Smokings/15131-05/1.webp" alt="PAGUS Wedding Suits Collection" loading="lazy">
+                <div class="category-card-overlay"></div>
+                <div class="category-card-content">
+                    <div class="category-card-label">Bestseller</div>
+                    <div class="category-card-title">Wedding Suits</div>
+                    <div class="category-card-count">Smokings · Peak Lapel · Shawl Collar</div>
+                </div>
+                <div class="category-card-arrow">
+                    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+            </div>
+            
+            <!-- Formal Suits -->
+            <div class="category-card" onclick="filterCategory('Formal Suits')">
+                <img src="images/Wedding Suits/Peak Lapel Smokings/15124-01/1.webp" alt="PAGUS Formal Suits" loading="lazy">
+                <div class="category-card-overlay"></div>
+                <div class="category-card-content">
+                    <div class="category-card-label">Classic</div>
+                    <div class="category-card-title">Formal Suits</div>
+                    <div class="category-card-count">Business · Ceremony</div>
+                </div>
+                <div class="category-card-arrow">
+                    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+            </div>
+        </div>
+        
+        <div class="view-all-prominent">
+            <a href="https://www.pagusmenswear.com" target="_blank">
+                View All Products
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="filter-bar" id="filterBar"></div>
+        <div class="products" id="productsGrid"></div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro">
+        <p class="intro-text">
+            For over <em>15 years</em>, we've been dressing Europe's finest retailers. 
+            Premium fabrics, expert tailoring, delivered with the reliability your business deserves.
+        </p>
+    </section>
+    
+    <!-- Split - Why PAGUS -->
+    <section class="split" id="about">
+        <div class="split-image">
+            <img src="images/Wedding Suits/Peak Lapel Smokings/15124-01/1.webp" alt="PAGUS Craftsmanship">
+        </div>
+        <div class="split-content">
+            <div class="text-label split-label">Why PAGUS</div>
+            <h2 class="split-title">Where Italian Elegance Meets Turkish Craft</h2>
+            <p class="split-text">
+                We source the finest fabrics from Italian mills and combine them with 
+                generations of Turkish tailoring expertise. The result? Exceptional 
+                suits at wholesale prices that make sense for your business.
+            </p>
+            <div class="split-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🇮🇹</div>
+                    <span>Premium Italian & European Fabrics</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✂️</div>
+                    <span>Expert Turkish Craftsmanship</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📦</div>
+                    <span>Minimum Order: 5 Pieces</span>
+                </div>
+            </div>
+            <a href="https://wa.me/905511748907?text=I'd like to learn more about wholesale partnership" target="_blank" class="btn-primary">
+                Start Partnership
+            </a>
+        </div>
+    </section>
+    
+    <!-- Numbers -->
+    <section class="numbers">
+        <div class="number-item">
+            <div class="number-value">15+</div>
+            <div class="number-label">Years Experience</div>
+        </div>
+        <div class="number-item">
+            <div class="number-value">50+</div>
+            <div class="number-label">Countries</div>
+        </div>
+        <div class="number-item">
+            <div class="number-value">500+</div>
+            <div class="number-label">Active Partners</div>
+        </div>
+        <div class="number-item">
+            <div class="number-value">∞</div>
+            <div class="number-label">Commitment</div>
+        </div>
+    </section>
+    
+    <!-- Testimonial -->
+    <section class="testimonial">
+        <blockquote class="testimonial-quote">
+            "PAGUS has been our trusted supplier for 8 years. Their quality is consistent, 
+            delivery is always on time, and their team truly understands the European market."
+        </blockquote>
+        <div class="testimonial-author">
+            <strong>Marco Bianchi</strong>
+            Bianchi Sposi, Milano
+        </div>
+    </section>
+    
+    <!-- Private Label Split -->
+    <section class="split">
+        <div class="split-content" style="background: var(--black); color: var(--white);">
+            <div class="text-label split-label">Private Label</div>
+            <h2 class="split-title" style="color: var(--white);">Your Brand,<br>Our Expertise</h2>
+            <p class="split-text" style="color: rgba(255,255,255,0.6);">
+                Launch your own menswear line with our OEM manufacturing. 
+                Full customization from fabric selection to label design. 
+                Minimum 100 pieces per style.
+            </p>
+            <a href="https://wa.me/905511748907?text=I'm interested in Private Label manufacturing" target="_blank" class="btn-primary" style="background: var(--gold);">
+                Learn More
+            </a>
+        </div>
+        <div class="split-image">
+            <img src="images/Wedding Suits/Shawl Collar Smokings/15167-02/1.webp" alt="Private Label">
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">PAGUS</div>
+                <p class="footer-text">
+                    Premium wholesale menswear from İzmir, Turkey. 
+                    Wedding suits, formal wear, and business attire 
+                    for retailers who demand excellence.
+                </p>
+            </div>
+            <div>
+                <div class="footer-title">Collections</div>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="filterCategory('Wedding Suits')">Wedding Suits</a></li>
+                    <li><a href="#" onclick="filterCategory('Formal Suits')">Formal Suits</a></li>
+                    <li><a href="#" onclick="filterCategory('Vests')">Vests</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Contact</div>
+                <ul class="footer-links">
+                    <li><a href="https://wa.me/905511748907" target="_blank">WhatsApp</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#ea83848c85aa9a8b8d9f99878f84999d8f8b98c4898587">Email</a></li>
+                    <li><a href="#">İzmir, Turkey</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Follow</div>
+                <ul class="footer-links">
+                    <li><a href="https://www.instagram.com/pagus_menswear/" target="_blank">Instagram</a></li>
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Pagus Menswear. All rights reserved.
+        </div>
+    </footer>
+    
+    <!-- Product Modal -->
+    <div class="modal" id="modal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-grid">
+            <div class="modal-gallery">
+                <div class="modal-main-image">
+                    <img id="modalImg" src="" alt="" onclick="openLightbox()">
+                </div>
+                <div class="modal-thumbs" id="modalThumbs"></div>
+            </div>
+            <div class="modal-info">
+                <div class="text-label modal-label">Pagus Collection</div>
+                <h2 class="modal-title" id="modalTitle">Product</h2>
+                <div class="modal-category" id="modalCat">Category</div>
+                <p class="modal-desc">
+                    Premium quality garment crafted with expert Turkish tailoring 
+                    and finest European fabrics. Perfect for retailers seeking 
+                    distinguished wholesale menswear.
+                </p>
+                
+                <!-- Technical Details Table -->
+                <div class="modal-specs">
+                    <div class="spec-row">
+                        <span class="spec-label">Fabric Origin</span>
+                        <span class="spec-value">Italy / Europe</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Composition</span>
+                        <span class="spec-value">Premium Wool Blend</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Lining</span>
+                        <span class="spec-value">100% Viscose</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">MOQ</span>
+                        <span class="spec-value">5 pieces / color</span>
+                    </div>
+                </div>
+                
+                <div class="modal-features">
+                    <div class="modal-feature"><span>🇮🇹</span>Italian Fabric</div>
+                    <div class="modal-feature"><span>✂️</span>Expert Cut</div>
+                    <div class="modal-feature"><span>🚚</span>Fast Delivery</div>
+                </div>
+                <a id="modalWp" href="#" target="_blank" class="whatsapp-btn">
+                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    Inquire Now
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">×</span>
+        <span class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); navLightbox(-1)">‹</span>
+        <img id="lightboxImg" src="">
+        <span class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); navLightbox(1)">›</span>
+    </div>
+    
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/905511748907" target="_blank" class="wp-float">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+    
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="inventory.js"></script>
+    <script>
+        // ══════════════════════════════════════════════════════════════
+        // STATE MANAGEMENT
+        // ══════════════════════════════════════════════════════════════
+        
+        const state = {
+            currentProduct: null,
+            modalIdx: 0,
+            mobileMenuOpen: false,
+            isLoading: true
+        };
+        
+        // Placeholder SVG for broken images
+        const PLACEHOLDER = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='533' viewBox='0 0 400 533'%3E%3Crect fill='%23f7f5f0' width='400' height='533'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' fill='%23ccc'%3EImage not available%3C/text%3E%3C/svg%3E`;
+        
+        // ══════════════════════════════════════════════════════════════
+        // HEADER SCROLL
+        // ══════════════════════════════════════════════════════════════
+        
+        const header = document.getElementById('header');
+        const topBar = document.getElementById('topBar');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            const isScrolled = currentScroll > 60;
+            header.classList.toggle('scrolled', isScrolled);
+            topBar.classList.toggle('hidden', isScrolled);
+            header.style.top = isScrolled ? '0' : '36px';
+            lastScroll = currentScroll;
+        }, { passive: true });
+        
+        // ══════════════════════════════════════════════════════════════
+        // MOBILE MENU - Artık gerçekten çalışıyor!
+        // ══════════════════════════════════════════════════════════════
+        
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            const toggle = document.querySelector('.menu-toggle');
+            state.mobileMenuOpen = !state.mobileMenuOpen;
+            
+            if (state.mobileMenuOpen) {
+                nav.style.cssText = `
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: var(--white);
+                    padding: var(--space-4);
+                    gap: var(--space-3);
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                    animation: slideDown 0.3s var(--ease-out);
+                `;
+                nav.querySelectorAll('a').forEach(a => {
+                    a.style.color = 'var(--black)';
+                    a.style.padding = 'var(--space-2) 0';
+                    a.style.borderBottom = '1px solid #eee';
+                });
+                toggle.classList.add('active');
+            } else {
+                nav.style.cssText = '';
+                nav.querySelectorAll('a').forEach(a => a.style.cssText = '');
+                toggle.classList.remove('active');
+            }
+        }
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (state.mobileMenuOpen) toggleMenu();
+            });
+        });
+        
+        // ══════════════════════════════════════════════════════════════
+        // SKELETON LOADING
+        // ══════════════════════════════════════════════════════════════
+        
+        function showSkeletons(count = 8) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = Array(count).fill(0).map(() => `
+                <div class="product skeleton-product">
+                    <div class="product-image skeleton-image"></div>
+                    <div class="product-info">
+                        <div class="skeleton-text" style="width: 60%; height: 20px; margin: 0 auto 8px;"></div>
+                        <div class="skeleton-text" style="width: 40%; height: 14px; margin: 0 auto;"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // ══════════════════════════════════════════════════════════════
+        // SAFE INITIALIZATION with Error Handling
+        // ══════════════════════════════════════════════════════════════
+        
+        function init() {
+            showSkeletons();
+            
+            // Inventory.js yüklenmesini bekle
+            const checkInventory = setInterval(() => {
+                try {
+                    if (typeof productsDB !== 'undefined' && productsDB.length > 0) {
+                        clearInterval(checkInventory);
+                        clearTimeout(timeout);
+                        initializeApp();
+                    }
+                } catch (err) {
+                    console.error('Inventory check error:', err);
+                }
+            }, 100);
+            
+            // 5 saniye timeout
+            const timeout = setTimeout(() => {
+                clearInterval(checkInventory);
+                showError();
+            }, 5000);
+        }
+        
+        function initializeApp() {
+            try {
+                // Get unique categories
+                const cats = [...new Set(productsDB.map(p => {
+                    return p.category.includes(' > ') ? p.category.split(' > ')[0] : p.category;
+                }))];
+                
+                // Render filter buttons
+                const filterBar = document.getElementById('filterBar');
+                filterBar.innerHTML = `
+                    <button class="filter-btn active" onclick="filterCategory('all')">All</button>
+                    ${cats.map(c => `<button class="filter-btn" onclick="filterCategory('${c}')">${c}</button>`).join('')}
+                `;
+                
+                // Render products with animation
+                renderProducts(productsDB.slice(0, 8), true);
+                state.isLoading = false;
+                
+                // Setup IntersectionObserver for scroll animations
+                setupScrollAnimations();
+                
+            } catch (err) {
+                console.error('App initialization failed:', err);
+                showError();
+            }
+        }
+        
+        function showError() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: var(--space-7);">
+                    <div style="font-size: 3rem; margin-bottom: var(--space-3);">📦</div>
+                    <h3 style="font-family: 'Cormorant', serif; font-size: var(--text-xl); margin-bottom: var(--space-2);">
+                        Products are loading...
+                    </h3>
+                    <p style="color: #666; margin-bottom: var(--space-4);">
+                        If this persists, please contact us directly.
+                    </p>
+                    <a href="https://wa.me/905511748907" target="_blank" class="btn-primary">
+                        Contact via WhatsApp
+                    </a>
+                </div>
+            `;
+            document.getElementById('filterBar').innerHTML = '';
+        }
+        
+        // ══════════════════════════════════════════════════════════════
+        // FILTER with Micro-Interactions
+        // ══════════════════════════════════════════════════════════════
+        
+        function filterCategory(cat) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', 
+                    btn.textContent === cat || (cat === 'all' && btn.textContent === 'All')
+                );
+            });
+            
+            // Scroll to product grid area
+            const filterBar = document.getElementById('filterBar');
+            if (filterBar && filterBar.innerHTML.trim()) {
+                filterBar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            // Filter products
+            const filtered = cat === 'all' 
+                ? productsDB 
+                : productsDB.filter(p => {
+                    const main = p.category.includes(' > ') ? p.category.split(' > ')[0] : p.category;
+                    return main === cat;
+                });
+            
+            // Animate out, then in
+            const grid = document.getElementById('productsGrid');
+            grid.style.opacity = '0';
+            grid.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                renderProducts(filtered.slice(0, 8), true);
+                grid.style.opacity = '1';
+                grid.style.transform = 'translateY(0)';
+            }, 200);
+        }
+        
+        // ══════════════════════════════════════════════════════════════
+        // RENDER PRODUCTS with Better Accessibility
+        // ══════════════════════════════════════════════════════════════
+        
+        function renderProducts(products, animate = false) {
+            const grid = document.getElementById('productsGrid');
+            
+            grid.innerHTML = products.map((p, index) => {
+                const fy = p.focal_y || 25; // Better default
+                const subcat = p.category.includes(' > ') ? p.category.split(' > ')[1] : p.category;
+                
+                // Better alt text for accessibility
+                const altText = `${p.id} - ${subcat} - PAGUS Wholesale Menswear`;
+                
+                // Animation delay for stagger effect
+                const delay = animate ? `animation-delay: ${index * 0.05}s;` : '';
+                
+                return `
+                    <div class="product ${animate ? 'fade-in-up' : ''}" 
+                         style="${delay}"
+                         onclick="openModal('${p.id}', '${p.path}', '${p.category}')"
+                         role="button"
+                         tabindex="0"
+                         aria-label="View ${p.id} details"
+                         onkeydown="if(event.key==='Enter') openModal('${p.id}', '${p.path}', '${p.category}')">
+                        <div class="product-image">
+                            <img class="main-img" 
+                                 src="${p.path}/1.webp" 
+                                 alt="${altText}"
+                                 style="object-position: center ${fy}%" 
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='${PLACEHOLDER}';">
+                            <img class="hover-img" 
+                                 src="${p.path}/2.webp" 
+                                 alt="${altText} - alternate view"
+                                 style="object-position: center ${fy}%"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='${p.path}/1.webp';">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">${p.id}</div>
+                            <div class="product-category">${subcat}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // ══════════════════════════════════════════════════════════════
+        // INTERSECTION OBSERVER for Scroll Animations
+        // ══════════════════════════════════════════════════════════════
+        
+        function setupScrollAnimations() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe sections
+            document.querySelectorAll('.split, .numbers, .testimonial').forEach(el => {
+                el.classList.add('observe-fade');
+                observer.observe(el);
+            });
+        }
+        
+        // ══════════════════════════════════════════════════════════════
+        // MODAL with Better UX
+        // ══════════════════════════════════════════════════════════════
+        
+        function openModal(id, path, category) {
+            state.currentProduct = { id, path, category };
+            state.modalIdx = 0;
+            
+            // Find product data for better info
+            const product = productsDB.find(p => p.id === id);
+            const subcat = category.includes(' > ') ? category.split(' > ')[1] : category;
+            
+            document.getElementById('modalTitle').textContent = id;
+            document.getElementById('modalCat').textContent = category;
+            
+            const mainImg = document.getElementById('modalImg');
+            mainImg.src = `${path}/1.webp`;
+            mainImg.alt = `${id} - ${subcat} - PAGUS Collection`;
+            mainImg.onerror = function() { this.src = PLACEHOLDER; };
+            
+            // Render thumbs with better error handling
+            const thumbs = document.getElementById('modalThumbs');
+            thumbs.innerHTML = [1, 2, 3, 4].map((n, i) => `
+                <img class="modal-thumb ${i === 0 ? 'active' : ''}" 
+                     src="${path}/${n}.webp" 
+                     alt="${id} view ${n}"
+                     onclick="setModalImg(${i})"
+                     onerror="this.style.display='none';"
+                     loading="lazy">
+            `).join('');
+            
+            // WhatsApp link with product details
+            const wpMsg = encodeURIComponent(`Hi, I'm interested in product ${id} (${subcat}). Can you provide more details?`);
+            document.getElementById('modalWp').href = `https://wa.me/905511748907?text=${wpMsg}`;
+            
+            document.getElementById('modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            
+            // Focus trap for accessibility
+            document.querySelector('.modal-close').focus();
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('open');
+            document.body.style.overflow = '';
+            state.currentProduct = null;
+        }
+        
+        function setModalImg(idx) {
+            state.modalIdx = idx;
+            const img = document.getElementById('modalImg');
+            img.style.opacity = '0';
+            
+            setTimeout(() => {
+                img.src = `${state.currentProduct.path}/${idx + 1}.webp`;
+                img.style.opacity = '1';
+            }, 150);
+            
+            document.querySelectorAll('.modal-thumb').forEach((t, i) => {
+                t.classList.toggle('active', i === idx);
+            });
+        }
+        
+        // ══════════════════════════════════════════════════════════════
+        // LIGHTBOX
+        // ══════════════════════════════════════════════════════════════
+        
+        function openLightbox() {
+            document.getElementById('lightboxImg').src = document.getElementById('modalImg').src;
+            document.getElementById('lightbox').classList.add('open');
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+        }
+        
+        function navLightbox(dir) {
+            state.modalIdx = (state.modalIdx + dir + 4) % 4;
+            const img = document.getElementById('lightboxImg');
+            img.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                img.src = `${state.currentProduct.path}/${state.modalIdx + 1}.webp`;
+                img.style.opacity = '1';
+            }, 100);
+            
+            setModalImg(state.modalIdx);
+        }
+        
+        // ══════════════════════════════════════════════════════════════
+        // KEYBOARD & TOUCH SUPPORT
+        // ══════════════════════════════════════════════════════════════
+        
+        document.addEventListener('keydown', e => {
+            // ESC to close
+            if (e.key === 'Escape') {
+                if (document.getElementById('lightbox').classList.contains('open')) {
+                    closeLightbox();
+                } else if (document.getElementById('modal').classList.contains('open')) {
+                    closeModal();
+                } else if (state.mobileMenuOpen) {
+                    toggleMenu();
+                }
+            }
+            
+            // Arrow keys for lightbox
+            if (document.getElementById('lightbox').classList.contains('open')) {
+                if (e.key === 'ArrowLeft') navLightbox(-1);
+                if (e.key === 'ArrowRight') navLightbox(1);
+            }
+        });
+        
+        // Touch swipe for lightbox
+        let touchStartX = 0;
+        const lightbox = document.getElementById('lightbox');
+        
+        lightbox.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        lightbox.addEventListener('touchend', e => {
+            const diff = e.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(diff) > 50) {
+                navLightbox(diff > 0 ? -1 : 1);
+            }
+        }, { passive: true });
+        
+        // ══════════════════════════════════════════════════════════════
+        // INIT
+        // ══════════════════════════════════════════════════════════════
+        
+        // Start when DOM ready
+        if (document.readyState === 'l

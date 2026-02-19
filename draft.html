@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGUS | B2B Wholesale Menswear from Turkey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --cream: #f8f6f2;
+            --gold: #c9a962;
+            --gray: #888;
+            --light-gray: #e5e5e5;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+        
+        header.scrolled {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            padding: 15px 50px;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: 8px;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        header.scrolled .logo { color: var(--black); }
+        
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+        
+        nav a {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s, opacity 0.3s;
+            opacity: 0.9;
+        }
+        
+        nav a:hover { opacity: 1; }
+        header.scrolled nav a { color: var(--black); }
+        
+        /* Hero Slider */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+        
+        .hero-slide.active { opacity: 1; }
+        
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.4) 100%);
+        }
+        
+        .hero-content {
+            position: absolute;
+            bottom: 15%;
+            left: 50px;
+            color: var(--white);
+            max-width: 600px;
+        }
+        
+        .hero-label {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+        
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--white);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        
+        .hero-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+        
+        .hero-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .hero-dot.active {
+            background: var(--white);
+            transform: scale(1.3);
+        }
+        
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            padding: 80px 20px 50px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Categories Bar */
+        .categories-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 20px 50px;
+            flex-wrap: wrap;
+        }
+        
+        .cat-btn {
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--light-gray);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .cat-btn:hover, .cat-btn.active {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 0 50px 80px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-img {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: var(--cream);
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            transition: transform 0.6s ease, opacity 0.4s ease;
+        }
+        
+        .product-img .img-hover {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+        }
+        
+        .product-card:hover .img-hover { opacity: 1; }
+        .product-card:hover .img-main { opacity: 0; }
+        .product-card:hover .product-img img { transform: scale(1.05); }
+        
+        .product-info {
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .product-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .product-info span {
+            font-size: 0.7rem;
+            color: var(--gray);
+            letter-spacing: 1px;
+        }
+        
+        /* Featured Section */
+        .featured {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+        }
+        
+        .featured-img {
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .featured-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px;
+            background: var(--cream);
+        }
+        
+        .featured-label {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .featured-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+        
+        .featured-text {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 35px;
+            max-width: 400px;
+        }
+        
+        .btn-dark {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-dark:hover {
+            background: var(--gold);
+        }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            padding: 80px 50px;
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .stat-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px 50px 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+        
+        .footer-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+        
+        .footer-title {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 25px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover { color: var(--gold); }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            font-size: 0.75rem;
+        }
+        
+        /* Product Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal.show { display: block; }
+        
+        .modal-close {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border: 1px solid var(--light-gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+        
+        .modal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+        
+        .modal-gallery {
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-main-img {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .modal-main-img img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            cursor: zoom-in;
+        }
+        
+        .modal-thumbs {
+            display: flex;
+            gap: 10px;
+            padding: 20px 40px 40px;
+            justify-content: center;
+        }
+        
+        .modal-thumb {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .modal-thumb:hover, .modal-thumb.active {
+            opacity: 1;
+            border-color: var(--black);
+        }
+        
+        .modal-info {
+            padding: 100px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .modal-label {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+        
+        .modal-category {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        
+        .modal-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+        
+        .modal-badges {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .modal-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .modal-badge span:first-child {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: #25D366;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+        
+        .whatsapp-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        
+        /* Fullscreen Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.97);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox.show { display: flex; }
+        
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .lightbox-close:hover { opacity: 1; }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            font-size: 3rem;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            padding: 20px;
+        }
+        
+        .lightbox-nav:hover { opacity: 1; }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        
+        /* WhatsApp Float */
+        .wp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            z-index: 999;
+            transition: transform 0.3s;
+        }
+        
+        .wp-float:hover { transform: scale(1.1); }
+        .wp-float svg { width: 28px; height: 28px; fill: white; }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        @media (max-width: 992px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); padding: 0 30px 60px; }
+            .featured { grid-template-columns: 1fr; }
+            .featured-img { min-height: 50vh; }
+            .modal-content { grid-template-columns: 1fr; }
+            .modal-info { padding: 60px 30px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .stats { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        }
+        
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            nav { display: none; }
+            .hero-content { left: 20px; right: 20px; }
+            .hero-title { font-size: 2rem; }
+            .products-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .featured-content { padding: 50px 30px; }
+            .featured-title { font-size: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo">PAGUS</a>
+        <nav>
+            <a href="#collection">Collection</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <!-- Hero Slider -->
+    <section class="hero">
+        <div class="hero-slide active">
+            <img src="images/Wedding Suits/Shawl Collar Smokings/15131-05/1.webp" alt="Wedding Collection">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-slide">
+            <img src="images/Wedding Suits/Peak Lapel Smokings/15124-01/1.webp" alt="Formal Collection">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-slide">
+            <img src="images/Formal Suits/15138-05/1.webp" alt="Business Collection">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-label">B2B Wholesale Menswear</div>
+            <h1 class="hero-title">The Spring/Summer 2026 Collection</h1>
+            <a href="#collection" class="hero-btn">Explore Collection</a>
+        </div>
+        <div class="hero-nav">
+            <div class="hero-dot active" data-slide="0"></div>
+            <div class="hero-dot" data-slide="1"></div>
+            <div class="hero-dot" data-slide="2"></div>
+        </div>
+    </section>
+    
+    <!-- Collection -->
+    <section id="collection">
+        <div class="section-title">
+            <h2>The Collection</h2>
+            <p>Premium quality suits from İzmir, Turkey</p>
+        </div>
+        
+        <div class="categories-bar" id="categoriesBar">
+            <!-- JS ile doldurulacak -->
+        </div>
+        
+        <div class="products-grid" id="productsGrid">
+            <!-- JS ile doldurulacak -->
+        </div>
+    </section>
+    
+    <!-- Featured -->
+    <section class="featured">
+        <div class="featured-img" style="background-image: url('images/Wedding Suits/Shawl Collar Smokings/15167-02/1.webp')"></div>
+        <div class="featured-content">
+            <div class="featured-label">Private Label</div>
+            <h2 class="featured-title">Create Your Own Brand</h2>
+            <p class="featured-text">Partner with us for OEM manufacturing. Minimum order 100 pieces. Premium Italian fabrics, expert Turkish craftsmanship.</p>
+            <a href="https://wa.me/905511748907?text=I'm interested in Private Label manufacturing" target="_blank" class="btn-dark">Start Your Brand</a>
+        </div>
+    </section>
+    
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stat-item">
+            <h3>15+</h3>
+            <p>Years Experience</p>
+        </div>
+        <div class="stat-item">
+            <h3>50+</h3>
+            <p>Countries Served</p>
+        </div>
+        <div class="stat-item">
+            <h3>500+</h3>
+            <p>Active Partners</p>
+        </div>
+        <div class="stat-item">
+            <h3>10K+</h3>
+            <p>Products Delivered</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">PAGUS</div>
+                <p class="footer-text">Premium wholesale menswear manufacturer based in İzmir, Turkey. Specializing in wedding suits, formal wear, and business attire for retailers worldwide.</p>
+            </div>
+            <div>
+                <div class="footer-title">Collections</div>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="filterCategory('Wedding Suits')">Wedding Suits</a></li>
+                    <li><a href="#" onclick="filterCategory('Formal Suits')">Formal Suits</a></li>
+                    <li><a href="#" onclick="filterCategory('Shirts')">Shirts</a></li>
+                    <li><a href="#" onclick="filterCategory('Accessories')">Accessories</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Contact</div>
+                <ul class="footer-links">
+                    <li><a href="https://wa.me/905511748907" target="_blank">WhatsApp</a></li>
+                    <li><a href="https://www.instagram.com/pagus_menswear/" target="_blank">Instagram</a></li>
+                    <li><a href="#">İzmir, Turkey</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Information</div>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Pagus Menswear. All rights reserved.
+        </div>
+    </footer>
+    
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-content">
+            <div class="modal-gallery">
+                <div class="modal-main-img">
+                    <img id="modalMainImg" src="" alt="" onclick="openLightbox()">
+                </div>
+                <div class="modal-thumbs" id="modalThumbs"></div>
+            </div>
+            <div class="modal-info">
+                <div class="modal-label">Pagus Collection</div>
+                <h2 class="modal-title" id="modalTitle">Product</h2>
+                <div class="modal-category" id="modalCategory">Category</div>
+                <p class="modal-desc">Premium quality suit crafted with finest Italian fabrics and expert Turkish tailoring. Perfect for retailers seeking distinguished wholesale menswear.</p>
+                <div class="modal-badges">
+                    <div class="modal-badge"><span>🇮🇹</span> Italian Fabrics</div>
+                    <div class="modal-badge"><span>✂️</span> Expert Tailoring</div>
+                    <div class="modal-badge"><span>🚚</span> Worldwide Shipping</div>
+                </div>
+                <a id="whatsappLink" href="#" target="_blank" class="whatsapp-btn">
+                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    Inquire on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">×</span>
+        <span class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); lightboxNav(-1)">‹</span>
+        <img id="lightboxImg" src="" alt="">
+        <span class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); lightboxNav(1)">›</span>
+    </div>
+    
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/905511748907" target="_blank" class="wp-float">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+    
+    <script src="inventory.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.hero-dot');
+        
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => showSlide(parseInt(dot.dataset.slide)));
+        });
+        
+        setInterval(() => showSlide(currentSlide + 1), 5000);
+        
+        // Products
+        let activeCategory = 'all';
+        let currentProduct = null;
+        let modalImages = [];
+        let modalIdx = 0;
+        
+        function init() {
+            if (typeof productsDB === 'undefined') {
+                document.getElementById('productsGrid').innerHTML = '<p style="text-align:center;color:#999;grid-column:1/-1">Loading products...</p>';
+                return;
+            }
+            
+            // Get unique main categories
+            const categories = [...new Set(productsDB.map(p => {
+                const cat = p.category.includes(' > ') ? p.category.split(' > ')[0] : p.category;
+                return cat;
+            }))];
+            
+            // Render category buttons
+            const catBar = document.getElementById('categoriesBar');
+            catBar.innerHTML = `<button class="cat-btn active" onclick="filterCategory('all')">All</button>` +
+                categories.map(c => `<button class="cat-btn" onclick="filterCategory('${c}')">${c}</button>`).join('');
+            
+            renderProducts(productsDB);
+        }
+        
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.toggle('active', b.textContent === cat || (cat === 'all' && b.textContent === 'All'));
+            });
+            
+            const filtered = cat === 'all' ? productsDB : productsDB.filter(p => {
+                const mainCat = p.category.includes(' > ') ? p.category.split(' > ')[0] : p.category;
+                return mainCat === cat;
+            });
+            
+            renderProducts(filtered);
+        }
+        
+        function renderProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.slice(0, 12).map(p => {
+                const fy = p.focal_y || 20;
+                return `
+                <div class="product-card" onclick="openModal('${p.id}', '${p.path}', '${p.category}')">
+                    <div class="product-img">
+                        <img class="img-main" src="${p.path}/1.webp" alt="${p.id}" style="object-position: center ${fy}%">
+                        <img class="img-hover" src="${p.path}/2.webp" alt="${p.id}" style="object-position: center ${fy}%" onerror="this.src='${p.path}/1.webp'">
+                    </div>
+                    <div class="product-info">
+                        <h3>${p.id}</h3>
+                        <span>${p.category.includes(' > ') ? p.category.split(' > ')[1] : p.category}</span>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+        
+        function openModal(id, path, category) {
+            currentProduct = { id, path, category };
+            modalImages = [1, 2, 3, 4];
+            modalIdx = 0;
+            
+            document.getElementById('modalTitle').textContent = id;
+            document.getElementById('modalCategory').textContent = category;
+            document.getElementById('modalMainImg').src = `${path}/1.webp`;
+            
+            const thumbs = document.getElementById('modalThumbs');
+            thumbs.innerHTML = modalImages.map((n, i) => 
+                `<img class="modal-thumb ${i === 0 ? 'active' : ''}" src="${path}/${n}.webp" onclick="setModalImage(${i})" onerror="this.style.display='none'">`
+            ).join('');
+            
+            document.getElementById('whatsappLink').href = `https://wa.me/905511748907?text=Hi, I'm interested in product ${id}`;
+            
+            document.getElementById('productModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        function setModalImage(idx) {
+            modalIdx = idx;
+            document.getElementById('modalMainImg').src = `${currentProduct.path}/${modalImages[idx]}.webp`;
+            document.querySelectorAll('.modal-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+        }
+        
+        // Lightbox
+        function openLightbox() {
+            document.getElementById('lightboxImg').src = document.getElementById('modalMainImg').src;
+            document.getElementById('lightbox').classList.add('show');
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('show');
+        }
+        
+        function lightboxNav(dir) {
+            modalIdx = (modalIdx + dir + modalImages.length) % modalImages.length;
+            document.getElementById('lightboxImg').src = `${currentProduct.path}/${modalImages[modalIdx]}.webp`;
+            setModalImage(modalIdx);
+        }
+        
+        // Keyboard
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeModal();
+            }
+            if (document.getElementById('lightbox').classList.contains('show')) {
+                if (e.key === 'ArrowLeft') lightboxNav(-1);
+                if (e.key === 'ArrowRight') lightboxNav(1);
+            }
+        });
+        
+        // Init
+        init();
+    </script>
+</body>
+</html>
