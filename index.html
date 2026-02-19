@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wholesale Menswear Collection | Pagus Menswear Turkey</title>
     <meta name="description" content="Premium wholesale menswear collection from Turkey. Suits, Tuxedos, and more.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'none'; object-src 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.googleusercontent.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; frame-src https://*.firebaseapp.com https://accounts.google.com;">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -117,6 +117,61 @@
         .stat-num { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-gold); display: block; }
         .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-top: 3px; }
         @media (max-width: 768px) { .hero { padding: 30px 15px; } .hero h2 { font-size: 1.4rem; } .hero-stats { gap: 25px; } .stat-num { font-size: 1.5rem; } }
+        /* AUTH UI */
+        .auth-btn { background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold); padding: 8px 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 3px; white-space: nowrap; }
+        .auth-btn:hover { background: var(--color-gold); color: var(--color-noble); }
+        .user-menu { display: flex; align-items: center; gap: 12px; }
+        .user-greeting { color: var(--color-gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .logout-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 14px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 3px; }
+        .logout-btn:hover { border-color: #e74c3c; color: #e74c3c; }
+        /* AUTH MODAL */
+        .auth-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 5000; justify-content: center; align-items: center; }
+        .auth-overlay.visible { display: flex; }
+        .auth-card { background: #fff; width: 420px; max-width: 92vw; border-radius: 8px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.4); animation: authSlideUp 0.3s ease; }
+        @keyframes authSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .auth-header { background: var(--color-noble); padding: 30px; text-align: center; }
+        .auth-header h3 { font-family: var(--font-display); color: #fff; font-size: 1.4rem; margin-bottom: 5px; }
+        .auth-header p { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+        .auth-tabs { display: flex; border-bottom: 1px solid #eee; }
+        .auth-tab { flex: 1; padding: 14px; text-align: center; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; color: #aaa; border-bottom: 2px solid transparent; transition: 0.3s; background: none; border-top: none; border-left: none; border-right: none; font-family: var(--font-body); }
+        .auth-tab.active { color: var(--color-noble); border-bottom-color: var(--color-gold); }
+        .auth-body { padding: 30px; }
+        .auth-field { margin-bottom: 18px; }
+        .auth-field label { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 6px; }
+        .auth-field input { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.95rem; font-family: var(--font-body); transition: 0.3s; outline: none; }
+        .auth-field input:focus { border-color: var(--color-gold); box-shadow: 0 0 0 3px rgba(201,169,98,0.15); }
+        .auth-submit { width: 100%; padding: 14px; background: var(--color-noble); color: #fff; border: none; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 4px; }
+        .auth-submit:hover { background: #1a252f; }
+        .auth-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+        .auth-divider { display: flex; align-items: center; gap: 15px; margin: 20px 0; color: #ccc; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .auth-divider::before, .auth-divider::after { content: ''; flex: 1; border-top: 1px solid #eee; }
+        .google-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: var(--font-body); display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; color: #333; }
+        .google-btn:hover { background: #f8f8f8; border-color: #bbb; }
+        .google-btn svg { width: 18px; height: 18px; }
+        .auth-error { background: #fff5f5; border: 1px solid #fed7d7; color: #c53030; padding: 10px 15px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 15px; display: none; }
+        .auth-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.6); font-size: 1.8rem; cursor: pointer; z-index: 5001; line-height: 1; }
+        .auth-close:hover { color: #fff; }
+        /* PRICE TAGS */
+        .price-tag { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-gold); font-weight: 700; margin-top: 5px; }
+        .price-login-hint { font-size: 0.75rem; color: #aaa; margin-top: 5px; cursor: pointer; text-decoration: underline; text-decoration-color: rgba(170,170,170,0.3); }
+        .price-login-hint:hover { color: var(--color-gold); }
+        .modal-price { font-family: var(--font-display); font-size: 2rem; color: var(--color-gold); margin: 15px 0; }
+        .modal-price-hint { color: #999; font-size: 0.85rem; cursor: pointer; margin: 10px 0; }
+        .modal-price-hint:hover { color: var(--color-gold); }
+        .price-tier { font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+        /* COOKIE BANNER */
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--color-noble); color: #fff; padding: 18px 25px; z-index: 8000; display: none; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; box-shadow: 0 -4px 20px rgba(0,0,0,0.3); font-size: 0.85rem; }
+        .cookie-banner.visible { display: flex; }
+        .cookie-banner p { max-width: 700px; line-height: 1.5; color: rgba(255,255,255,0.8); }
+        .cookie-banner a { color: var(--color-gold); }
+        .cookie-accept { background: var(--color-gold); color: var(--color-noble); border: none; padding: 10px 25px; font-weight: 700; font-size: 0.85rem; cursor: pointer; border-radius: 3px; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+        .cookie-accept:hover { background: #d4b366; }
+        @media (max-width: 768px) {
+            .auth-card { width: 100%; max-width: 100%; border-radius: 0; min-height: 100vh; display: flex; flex-direction: column; }
+            .auth-body { flex: 1; }
+            .user-greeting { max-width: 80px; font-size: 0.7rem; }
+            .auth-btn { padding: 6px 12px; font-size: 0.7rem; }
+        }
         /* SHOWCASE */
         .showcase-section { width: 100%; background: #1a1a1a; }
         .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
@@ -142,6 +197,10 @@
                 </div>
             </div>
             <div class="soc-icons">
+                <!-- Auth UI: shows login btn or user greeting -->
+                <div id="authArea">
+                    <button class="auth-btn" onclick="openAuthModal('login')">LOGIN</button>
+                </div>
 <a href="https://www.instagram.com/pagus_menswear/" target="_blank" rel="noopener" class="social-icon" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
 <a href="#" id="waLink" target="_blank" rel="noopener" class="social-icon" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
             </div>
@@ -203,6 +262,72 @@
     </button>
     <!-- FIX #11: Toast notification element -->
     <div id="toastNotification" class="toast-notification" role="alert" aria-live="polite"></div>
+
+    <!-- AUTH MODAL -->
+    <div class="auth-overlay" id="authOverlay" onclick="if(event.target===this)closeAuthModal()">
+        <button class="auth-close" onclick="closeAuthModal()" aria-label="Close">&times;</button>
+        <div class="auth-card">
+            <div class="auth-header">
+                <h3>PAGUS</h3>
+                <p>B2B Wholesale Portal</p>
+            </div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')" id="tabLogin">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')" id="tabRegister">Register</button>
+            </div>
+            <div class="auth-body">
+                <div id="authError" class="auth-error"></div>
+                <!-- LOGIN FORM -->
+                <div id="loginForm">
+                    <div class="auth-field">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="your@email.com" autocomplete="email">
+                    </div>
+                    <div class="auth-field">
+                        <label for="loginPass">Password</label>
+                        <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
+                    </div>
+                    <button class="auth-submit" onclick="doLogin()" id="loginBtn">LOGIN</button>
+                    <div class="auth-divider">or</div>
+                    <button class="google-btn" onclick="doGoogleLogin()">
+                        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                        Continue with Google
+                    </button>
+                </div>
+                <!-- REGISTER FORM -->
+                <div id="registerForm" style="display:none;">
+                    <div class="auth-field">
+                        <label for="regName">Company / Name</label>
+                        <input type="text" id="regName" placeholder="Your company or full name" autocomplete="name">
+                    </div>
+                    <div class="auth-field">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" placeholder="your@email.com" autocomplete="email">
+                    </div>
+                    <div class="auth-field">
+                        <label for="regPass">Password</label>
+                        <input type="password" id="regPass" placeholder="Min. 6 characters" autocomplete="new-password">
+                    </div>
+                    <div class="auth-field">
+                        <label for="regPass2">Confirm Password</label>
+                        <input type="password" id="regPass2" placeholder="Repeat password" autocomplete="new-password" onkeypress="if(event.key==='Enter')doRegister()">
+                    </div>
+                    <button class="auth-submit" onclick="doRegister()" id="regBtn">CREATE ACCOUNT</button>
+                    <div class="auth-divider">or</div>
+                    <button class="google-btn" onclick="doGoogleLogin()">
+                        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                        Continue with Google
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>We use essential cookies and local storage to improve your experience. By continuing, you accept our <a href="privacy.html">Privacy Policy</a>.</p>
+        <button class="cookie-accept" onclick="acceptCookies()">ACCEPT</button>
+    </div>
     <div id="pModal" class="modal" role="dialog" aria-modal="true" aria-label="Product detail">
         <span class="close" onclick="closeModal()" role="button" aria-label="Close modal" tabindex="0">&#215;</span>
         <div class="modal-content">
@@ -214,7 +339,8 @@
             </div>
             <div class="side-info">
                 <span style="color:var(--color-gold); font-weight:700; font-size:0.8rem; letter-spacing:2px;">WHOLESALE MANUFACTURER</span>
-                <h2 id="mCode" style="font-family:var(--font-display); font-size:2.5rem; margin:15px 0 25px;">CODE</h2>
+                <h2 id="mCode" style="font-family:var(--font-display); font-size:2.5rem; margin:15px 0 10px;">CODE</h2>
+                <div id="modalPriceArea" style="margin-bottom:15px;"></div>
                 <div class="badges"><div class="badge-item"><span class="badge-icon">🧵</span>Premium Fabric</div><div class="badge-item"><span class="badge-icon">🇹🇷</span>Made in Turkey</div><div class="badge-item"><span class="badge-icon">📦</span>Wholesale Only</div></div>
                 <p style="color:#555; margin-bottom:40px; font-size:1rem;">Premium quality fabric available for bulk orders.</p>
                 <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700; letter-spacing:1px; border-radius:4px; box-shadow: 0 10px 20px rgba(201,169,98,0.3); text-decoration:none;">ASK PRICE VIA WHATSAPP</a>
@@ -236,6 +362,329 @@
         <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> <span id="footerWa"></span></li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment &amp; Bank Accounts</a></li></ul></div>
     </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">&copy; <span id="footerYear"></span> Pagus Menswear. All Rights Reserved.</div></footer>
     <script src="inventory.js?v=1771500808"></script>
+    <!-- Firebase SDK (Compat for single-file usage) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script>
+    // ================================================================
+    //  🔥 FIREBASE CONFIG — Kendi project bilgilerini buraya yaz
+    // ================================================================
+    //  Firebase Console > Project Settings > General > Your Apps > Web App
+    //  "firebaseConfig" objesini kopyalayıp aşağıya yapıştır.
+    // ================================================================
+    var firebaseConfig = {
+        apiKey: "AIzaSyAWiTFG-XRg7u_dY7G_jftrL5uIwq4vvWM",
+        authDomain: "pagus-website.firebaseapp.com",
+        projectId: "pagus-website",
+        storageBucket: "pagus-website.firebasestorage.app",
+        messagingSenderId: "181201607827",
+        appId: "1:181201607827:web:7872bded476390a6754166"
+    };
+
+    var _firebaseReady = false;
+    var _currentUser = null;
+    var _userRole = 'standard';
+    var _priceCache = {};  // productId -> {standard, premium, vip, currency}
+
+    try {
+        firebase.initializeApp(firebaseConfig);
+        _firebaseReady = true;
+    } catch(e) {
+        console.warn('Firebase init failed:', e.message);
+    }
+
+    var db = _firebaseReady ? firebase.firestore() : null;
+    var auth = _firebaseReady ? firebase.auth() : null;
+
+    // ===================== AUTH STATE =====================
+
+    if(auth){
+        auth.onAuthStateChanged(function(user){
+            _currentUser = user;
+            updateAuthUI();
+            if(user){
+                loadUserRole(user.uid);
+                syncFavoritesFromFirestore(user.uid);
+                loadAllPrices();
+            } else {
+                _userRole = 'standard';
+                _priceCache = {};
+                refreshPriceDisplays();
+            }
+        });
+    }
+
+    function updateAuthUI(){
+        var area = document.getElementById('authArea');
+        if(!area) return;
+        if(_currentUser){
+            var name = _currentUser.displayName || _currentUser.email.split('@')[0];
+            area.innerHTML = '<div class="user-menu">'
+                + '<span class="user-greeting">' + escapeHTML(name) + '</span>'
+                + '<button class="logout-btn" onclick="doLogout()">Logout</button>'
+                + '</div>';
+        } else {
+            area.innerHTML = '<button class="auth-btn" onclick="openAuthModal(\'login\')">LOGIN</button>';
+        }
+    }
+
+    function loadUserRole(uid){
+        if(!db) return;
+        db.collection('users').doc(uid).get().then(function(doc){
+            if(doc.exists){
+                _userRole = doc.data().role || 'standard';
+            }
+            refreshPriceDisplays();
+        }).catch(function(e){ console.warn('Role load error:', e); });
+    }
+
+    // ===================== AUTH MODAL =====================
+
+    function openAuthModal(tab){
+        document.getElementById('authOverlay').classList.add('visible');
+        document.getElementById('authError').style.display = 'none';
+        switchAuthTab(tab || 'login');
+    }
+
+    function closeAuthModal(){
+        document.getElementById('authOverlay').classList.remove('visible');
+        document.getElementById('authError').style.display = 'none';
+    }
+
+    function switchAuthTab(tab){
+        document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
+        document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
+        document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+        document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+        document.getElementById('authError').style.display = 'none';
+    }
+
+    function showAuthError(msg){
+        var el = document.getElementById('authError');
+        el.textContent = msg;
+        el.style.display = 'block';
+    }
+
+    function doLogin(){
+        if(!auth){ showAuthError('Firebase not configured.'); return; }
+        var email = document.getElementById('loginEmail').value.trim();
+        var pass = document.getElementById('loginPass').value;
+        if(!email || !pass){ showAuthError('Please fill in all fields.'); return; }
+
+        var btn = document.getElementById('loginBtn');
+        btn.disabled = true; btn.textContent = 'LOGGING IN...';
+
+        auth.signInWithEmailAndPassword(email, pass)
+            .then(function(){
+                closeAuthModal();
+                showToast('Welcome back!');
+            })
+            .catch(function(e){
+                var msg = 'Login failed.';
+                if(e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') msg = 'Invalid email or password.';
+                if(e.code === 'auth/too-many-requests') msg = 'Too many attempts. Try again later.';
+                showAuthError(msg);
+            })
+            .finally(function(){ btn.disabled = false; btn.textContent = 'LOGIN'; });
+    }
+
+    function doRegister(){
+        if(!auth){ showAuthError('Firebase not configured.'); return; }
+        var name = document.getElementById('regName').value.trim();
+        var email = document.getElementById('regEmail').value.trim();
+        var pass = document.getElementById('regPass').value;
+        var pass2 = document.getElementById('regPass2').value;
+
+        if(!name || !email || !pass){ showAuthError('Please fill in all fields.'); return; }
+        if(pass.length < 6){ showAuthError('Password must be at least 6 characters.'); return; }
+        if(pass !== pass2){ showAuthError('Passwords do not match.'); return; }
+
+        var btn = document.getElementById('regBtn');
+        btn.disabled = true; btn.textContent = 'CREATING...';
+
+        auth.createUserWithEmailAndPassword(email, pass)
+            .then(function(cred){
+                // Set display name
+                return cred.user.updateProfile({ displayName: name }).then(function(){
+                    // Create Firestore user doc
+                    if(db){
+                        return db.collection('users').doc(cred.user.uid).set({
+                            displayName: name,
+                            email: email,
+                            role: 'standard',
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    }
+                });
+            })
+            .then(function(){
+                closeAuthModal();
+                updateAuthUI();
+                showToast('Account created! Welcome, ' + name);
+            })
+            .catch(function(e){
+                var msg = 'Registration failed.';
+                if(e.code === 'auth/email-already-in-use') msg = 'Email already registered. Try logging in.';
+                if(e.code === 'auth/weak-password') msg = 'Password is too weak.';
+                if(e.code === 'auth/invalid-email') msg = 'Invalid email address.';
+                showAuthError(msg);
+            })
+            .finally(function(){ btn.disabled = false; btn.textContent = 'CREATE ACCOUNT'; });
+    }
+
+    function doLogout(){
+        if(!auth) return;
+        auth.signOut().then(function(){
+            showToast('Logged out.');
+            updateAuthUI();
+            refreshPriceDisplays();
+        });
+    }
+
+    function doGoogleLogin(){
+        if(!auth){ showAuthError('Firebase not configured.'); return; }
+        var provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider)
+            .then(function(result){
+                var user = result.user;
+                var isNew = result.additionalUserInfo && result.additionalUserInfo.isNewUser;
+                if(isNew && db){
+                    db.collection('users').doc(user.uid).set({
+                        displayName: user.displayName || user.email.split('@')[0],
+                        email: user.email,
+                        role: 'standard',
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+                closeAuthModal();
+                showToast('Welcome, ' + (user.displayName || 'there') + '!');
+            })
+            .catch(function(e){
+                if(e.code === 'auth/popup-closed-by-user') return;
+                if(e.code === 'auth/popup-blocked'){
+                    showAuthError('Popup blocked. Please allow popups for this site.');
+                    return;
+                }
+                showAuthError('Google login failed: ' + e.message);
+            });
+    }
+
+    // ===================== PRICING =====================
+
+    function loadAllPrices(){
+        if(!db || !_currentUser) return;
+        db.collection('pricing').get().then(function(snap){
+            _priceCache = {};
+            snap.forEach(function(doc){
+                _priceCache[doc.id] = doc.data();
+            });
+            refreshPriceDisplays();
+        }).catch(function(e){ console.warn('Price load error:', e); });
+    }
+
+    function getPrice(productId){
+        var p = _priceCache[productId];
+        if(!p) return null;
+        var val = p[_userRole] || p['standard'] || null;
+        if(val === null || val === undefined) return null;
+        var currency = p.currency || 'EUR';
+        return { value: val, currency: currency };
+    }
+
+    function formatPrice(price){
+        if(!price) return '';
+        return '€' + Number(price.value).toFixed(2);
+    }
+
+    function refreshPriceDisplays(){
+        // Update price tags on product cards
+        document.querySelectorAll('[data-price-id]').forEach(function(el){
+            var pid = el.dataset.priceId;
+            if(_currentUser){
+                var price = getPrice(pid);
+                if(price){
+                    el.innerHTML = '<span class="price-tag">' + formatPrice(price) + '</span>'
+                        + '<span class="price-tier">' + escapeHTML(_userRole) + ' price</span>';
+                } else {
+                    el.innerHTML = '<span class="price-tag" style="font-size:0.85rem;color:#999;">Price on request</span>';
+                }
+            } else {
+                el.innerHTML = '<span class="price-login-hint" onclick="event.stopPropagation();openAuthModal(\'login\')">Login to see prices</span>';
+            }
+        });
+
+        // Update modal price if open
+        var modalPrice = document.getElementById('modalPriceArea');
+        if(modalPrice && activeCode){
+            if(_currentUser){
+                var mp = getPrice(activeCode);
+                if(mp){
+                    modalPrice.innerHTML = '<div class="modal-price">' + formatPrice(mp) + '</div>'
+                        + '<span class="price-tier">' + escapeHTML(_userRole) + ' price</span>';
+                } else {
+                    modalPrice.innerHTML = '<div class="modal-price" style="font-size:1.2rem;color:#999;">Price on request</div>';
+                }
+            } else {
+                modalPrice.innerHTML = '<span class="modal-price-hint" onclick="openAuthModal(\'login\')">Login to see wholesale prices →</span>';
+            }
+        }
+    }
+
+    // ===================== FAVORITES SYNC =====================
+
+    function syncFavoritesFromFirestore(uid){
+        if(!db) return;
+        db.collection('users').doc(uid).collection('favorites').get().then(function(snap){
+            var firestoreFavs = [];
+            snap.forEach(function(doc){ firestoreFavs.push(doc.id); });
+
+            // Merge: localStorage + Firestore (union)
+            var merged = [...new Set([...cart, ...firestoreFavs])];
+            cart = merged;
+            if(lsAvailable) localStorage.setItem('pagusCart', JSON.stringify(cart));
+            updateCartUI();
+
+            // Save merged back to Firestore
+            var batch = db.batch();
+            merged.forEach(function(code){
+                batch.set(db.collection('users').doc(uid).collection('favorites').doc(code), {
+                    addedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            });
+            batch.commit().catch(function(e){ console.warn('Fav sync error:', e); });
+        }).catch(function(e){ console.warn('Fav load error:', e); });
+    }
+
+    function saveFavToFirestore(code, add){
+        if(!db || !_currentUser) return;
+        var ref = db.collection('users').doc(_currentUser.uid).collection('favorites').doc(code);
+        if(add){
+            ref.set({ addedAt: firebase.firestore.FieldValue.serverTimestamp() }).catch(function(){});
+        } else {
+            ref.delete().catch(function(){});
+        }
+    }
+
+    // ===================== COOKIE BANNER =====================
+
+    function initCookieBanner(){
+        try {
+            if(!localStorage.getItem('pagus_cookie_consent')){
+                document.getElementById('cookieBanner').classList.add('visible');
+            }
+        } catch(e){
+            // No localStorage — don't show banner
+        }
+    }
+
+    function acceptCookies(){
+        try { localStorage.setItem('pagus_cookie_consent', '1'); } catch(e){}
+        document.getElementById('cookieBanner').classList.remove('visible');
+    }
+
+    initCookieBanner();
+    </script>
     <script>
         // ============================================================
         // PAGUS MENSWEAR - FIXED VERSION
@@ -475,13 +924,15 @@
                     var fy=safeFocalY(r.focalY||r.focal_y);
                     html+='<div class="search-result-card" data-idx="'+j+'" onclick="openSearchResult('+j+')">';
                     html+='<img src="'+escapeAttr(r.path)+'/1.webp" style="object-position:center '+fy+'%;" alt="'+escapeAttr(r.id)+'">';
-                    html+='<div class="info"><h4>'+escapeHTML(r.id)+'</h4><span>'+escapeHTML(sub)+'</span></div></div>';
+                    html+='<div class="info"><h4>'+escapeHTML(r.id)+'</h4><span>'+escapeHTML(sub)+'</span>'
+                        +'<div data-price-id="'+escapeAttr(r.id)+'" style="margin-top:5px;"></div></div></div>';
                 }
                 html+='</div>';
             }
             html+='</div>';
             container.innerHTML=html;
             window._searchResults=results;
+            if(typeof refreshPriceDisplays==='function') refreshPriceDisplays();
         }
 
         // ===================== SUBCATEGORY & PRODUCT VIEWS =====================
@@ -546,8 +997,10 @@
                 return '<div class="card" data-pidx="'+i+'" onclick="openProductByIdx('+i+')">'
                     +'<button class="heart-btn '+f+'" data-code="'+escapeAttr(p.realCode)+'" onclick="toggleCartSafe(event,this)" aria-label="'+ariaLabel+'">'+h+'</button>'
                     +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(p.realCode)+'"></div>'
-                    +'<h3 class="info-title">'+escapeHTML(p.realCode)+'</h3></div>';
+                    +'<h3 class="info-title">'+escapeHTML(p.realCode)+'</h3>'
+                    +'<div data-price-id="'+escapeAttr(p.realCode)+'"></div></div>';
             }).join('');
+            if(typeof refreshPriceDisplays==='function') refreshPriceDisplays();
         }
 
         function openProductByIdx(i){
@@ -572,6 +1025,7 @@
                 btn.setAttribute('aria-label','Remove '+c+' from list');
             }
             if(lsAvailable)localStorage.setItem('pagusCart',JSON.stringify(cart));
+            if(typeof saveFavToFirestore==='function') saveFavToFirestore(c, cart.includes(c));
             updateCartUI();
         }
 
@@ -699,6 +1153,7 @@
             m.setAttribute('tabindex','-1');
             m.focus();
             setupFocusTrap(m);
+            if(typeof refreshPriceDisplays==='function') refreshPriceDisplays();
         }
 
         // FIX #3: Clean closeModal with proper state reset
