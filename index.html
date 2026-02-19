@@ -245,6 +245,18 @@
         var FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
         var WHATSAPP_NUMBER='905511748907';
         var CAT_DISPLAY_NAMES={"Çıkma Yaka":"Detachable Collar"};
+
+        // i18n helper — single source of truth for language detection & texts
+        var LANG=(navigator.language||navigator.userLanguage||'').startsWith('it')?'it':'en';
+        var TEXTS={
+            guide_tap:       {it:"Tocca l'icona del cuore per creare la tua lista.", en:"Tap heart to create list."},
+            search_min:      {it:'Inserisci almeno 2 caratteri',                     en:'Please enter at least 2 characters'},
+            wa_list_header:  {it:'Salve Pagus, sono interessato ai prezzi di questi modelli:',  en:'Hi Pagus, I am interested in the prices for these models:'},
+            wa_list_footer:  {it:'Grazie.',                                          en:'Thanks.'},
+            wa_inquiry:      {it:'Salve, vorrei ricevere informazioni sul modello: ', en:'Hi, inquiring about: '},
+            popup_blocked:   {it:'Popup bloccato. Consenti i popup per WhatsApp.',   en:'Popup blocked. Please allow popups for WhatsApp.'}
+        };
+        function t(key){return(TEXTS[key]&&TEXTS[key][LANG])||((TEXTS[key]&&TEXTS[key]['en'])||key);}
         var urlParams=new URLSearchParams(window.location.search);
         var curCat=urlParams.get('category')||"Wedding Suits";
         var curSub=urlParams.get('subcategory');
@@ -292,13 +304,8 @@
         }
 
         function setLanguage(){
-            var l=navigator.language||navigator.userLanguage;
             var g=document.getElementById('guideText');
-            if(l&&l.startsWith("it")){
-                g.innerText="Tocca l'icona del cuore per creare la tua lista.";
-            }else{
-                g.innerText="Tap heart to create list.";
-            }
+            g.innerText=t('guide_tap');
         }
 
         // ===================== PRODUCT DATA INIT =====================
@@ -431,12 +438,7 @@
         function doSiteSearch(){
             var q=document.getElementById('siteSearch').value.trim();
             if(q.length<2){
-                var l=navigator.language||navigator.userLanguage;
-                if(l&&l.startsWith("it")){
-                    showToast('Inserisci almeno 2 caratteri');
-                }else{
-                    showToast('Please enter at least 2 characters');
-                }
+                showToast(t('search_min'));
                 return;
             }
             window.location.href='?search='+encodeURIComponent(q);
@@ -588,13 +590,8 @@
 
         function sendListToWhatsapp(){
             if(cart.length===0)return;
-            var l=navigator.language||navigator.userLanguage;
-            var m="",c=cart.join(", ");
-            if(l&&l.startsWith("it")){
-                m="Salve Pagus, sono interessato ai prezzi di questi modelli:\n\n"+c+"\n\nGrazie.";
-            }else{
-                m="Hi Pagus, I am interested in the prices for these models:\n\n"+c+"\n\nThanks.";
-            }
+            var c=cart.join(", ");
+            var m=t('wa_list_header')+"\n\n"+c+"\n\n"+t('wa_list_footer');
 
             var waWindow=window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(m),'_blank');
 
@@ -616,12 +613,7 @@
                 document.addEventListener('visibilitychange',clearOnReturn);
             }else{
                 // FIX #7: Popup was blocked — notify user, don't clear cart
-                var l2=navigator.language||navigator.userLanguage;
-                if(l2&&l2.startsWith("it")){
-                    showToast('Popup bloccato. Consenti i popup per WhatsApp.');
-                }else{
-                    showToast('Popup blocked. Please allow popups for WhatsApp.');
-                }
+                showToast(t('popup_blocked'));
             }
         }
 
@@ -662,7 +654,31 @@
             activeCode=c;
             activePath=f;
             idx=1;
-            maxIdx=1; // FIX #4: Start safe at 1, probe will update
+
+            // FIX #15: Use imageCount from inventory.js if available, probe as fallback
+            var knownCount=0;
+            if(typeof productsDB!=='undefined'){
+                for(var i=0;i<productsDB.length;i++){
+                    if(productsDB[i].path===f&&productsDB[i].imageCount){
+                        knownCount=productsDB[i].imageCount;
+                        break;
+                    }
+                }
+            }
+
+            if(knownCount>0){
+                maxIdx=knownCount;
+                document.getElementById('imgCount').textContent='1/'+maxIdx;
+            }else{
+                maxIdx=1;
+                document.getElementById('imgCount').textContent='1/...';
+                // Fallback: probe if imageCount not in inventory.js
+                probeImageCount(f,function(n){
+                    maxIdx=n;
+                    if(idx>maxIdx) idx=maxIdx;
+                    document.getElementById('imgCount').textContent=idx+'/'+maxIdx;
+                });
+            }
 
             // FIX #3: Only push state if modal isn't already open
             if(!_modalOpen){
@@ -673,25 +689,11 @@
             var m=document.getElementById('pModal');
             m.style.display="block";
             document.getElementById('mCode').textContent=r;
-            document.getElementById('imgCount').textContent='1/...';
 
-            var l=navigator.language||navigator.userLanguage;
-            var msg="";
-            if(l&&l.startsWith("it")){
-                msg="Salve, vorrei ricevere informazioni sul modello: "+r;
-            }else{
-                msg="Hi, inquiring about: "+r;
-            }
+            var msg=t('wa_inquiry')+r;
             document.getElementById('wp').href='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(msg);
 
             update();
-
-            // FIX #4: Probe with session tracking
-            probeImageCount(f,function(n){
-                maxIdx=n;
-                if(idx>maxIdx) idx=maxIdx; // Clamp if user navigated past
-                document.getElementById('imgCount').textContent=idx+'/'+maxIdx;
-            });
 
             // FIX #13: Setup focus trap
             m.setAttribute('tabindex','-1');
