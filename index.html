@@ -24,12 +24,56 @@
         .nav-list { display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; width: 100%; justify-content: center; flex-wrap: wrap; }
         .nav-list a { color: #fff; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-decoration: none; white-space: nowrap; padding: 10px 5px; }
         .nav-list a:hover { color: var(--color-gold); }
-        .search-form { display: contents; }
-        .search-box { display: flex; gap: 0; background: rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; }
-        .search-box input { background: transparent; border: none; padding: 10px 18px; color: #fff; font-size: 0.9rem; width: 180px; outline: none; }
-        .search-box input::placeholder { color: rgba(255,255,255,0.5); }
-        .search-box button { background: var(--color-gold); border: none; padding: 10px 18px; color: var(--color-noble); font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .search-box button:hover { background: #d4b366; }
+        .search-area { display: flex; align-items: center; gap: 8px; position: relative; }
+        .search-icon-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.12); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; flex-shrink: 0; }
+        .search-icon-btn:hover { background: var(--color-gold); }
+        .search-icon-btn svg { width: 20px; height: 20px; fill: #fff; transition: 0.3s; }
+        .search-icon-btn:hover svg { fill: var(--color-noble); }
+        .search-expand { display: flex; align-items: center; background: rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; max-width: 0; opacity: 0; transition: max-width 0.35s ease, opacity 0.25s ease, padding 0.3s; padding: 0; }
+        .search-expand.open { max-width: 280px; opacity: 1; padding: 0 0 0 15px; }
+        .search-expand input { background: transparent; border: none; color: #fff; font-size: 0.9rem; width: 180px; outline: none; padding: 10px 0; font-family: var(--font-body); }
+        .search-expand input::placeholder { color: rgba(255,255,255,0.5); }
+        .search-expand .search-go { background: var(--color-gold); border: none; padding: 10px 16px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+        .search-expand .search-go:hover { background: #d4b366; }
+        .search-expand .search-go svg { width: 16px; height: 16px; fill: var(--color-noble); }
+        .adv-search-btn { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); padding: 8px 14px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 20px; white-space: nowrap; }
+        .adv-search-btn:hover { border-color: var(--color-gold); color: var(--color-gold); }
+        /* Advanced Search Panel */
+        .adv-panel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 3000; }
+        .adv-panel-overlay.visible { display: flex; justify-content: center; align-items: flex-start; padding-top: 90px; }
+        .adv-panel { background: #fff; width: 600px; max-width: 94vw; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.35); animation: advSlideDown 0.3s ease; max-height: 80vh; overflow-y: auto; }
+        @keyframes advSlideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .adv-panel-header { background: var(--color-noble); padding: 22px 28px; border-radius: 12px 12px 0 0; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1; }
+        .adv-panel-header h3 { font-family: var(--font-display); color: #fff; font-size: 1.2rem; margin: 0; }
+        .adv-panel-close { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 1.6rem; cursor: pointer; line-height: 1; padding: 5px; }
+        .adv-panel-close:hover { color: #fff; }
+        .adv-panel-body { padding: 25px 28px; }
+        .adv-section { margin-bottom: 22px; }
+        .adv-section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-noble); margin-bottom: 12px; }
+        .adv-section-title svg { width: 14px; height: 14px; fill: var(--color-gold); vertical-align: -2px; margin-right: 5px; }
+        .adv-keyword { width: 100%; padding: 12px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; font-family: var(--font-body); outline: none; transition: 0.3s; }
+        .adv-keyword:focus { border-color: var(--color-gold); box-shadow: 0 0 0 3px rgba(201,169,98,0.15); }
+        .adv-checks { display: flex; flex-wrap: wrap; gap: 8px; }
+        .adv-check { display: flex; align-items: center; gap: 6px; }
+        .adv-check input[type="checkbox"] { display: none; }
+        .adv-check label { display: flex; align-items: center; gap: 6px; padding: 7px 14px; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: #555; cursor: pointer; transition: 0.2s; user-select: none; }
+        .adv-check label:hover { border-color: var(--color-gold); color: var(--color-noble); }
+        .adv-check input:checked + label { background: var(--color-noble); color: #fff; border-color: var(--color-noble); }
+        .adv-colors { display: flex; flex-wrap: wrap; gap: 10px; }
+        .adv-color-swatch { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: 0.2s; position: relative; }
+        .adv-color-swatch:hover { transform: scale(1.15); }
+        .adv-color-swatch.selected { border-color: var(--color-gold); box-shadow: 0 0 0 2px var(--color-gold); }
+        .adv-color-swatch::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 700; opacity: 0; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+        .adv-color-swatch.selected::after { opacity: 1; }
+        .adv-panel-footer { padding: 18px 28px; border-top: 1px solid #eee; display: flex; gap: 12px; justify-content: flex-end; position: sticky; bottom: 0; background: #fff; border-radius: 0 0 12px 12px; }
+        .adv-clear-btn { background: transparent; border: 1px solid #ddd; color: #888; padding: 11px 22px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border-radius: 6px; font-family: var(--font-body); transition: 0.2s; }
+        .adv-clear-btn:hover { border-color: #999; color: #333; }
+        .adv-search-submit { background: var(--color-noble); color: #fff; border: none; padding: 11px 30px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; border-radius: 6px; font-family: var(--font-body); transition: 0.2s; }
+        .adv-search-submit:hover { background: #1a252f; }
+        /* Search results grouped */
+        .search-group { margin-bottom: 35px; }
+        .search-group-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-noble); padding-bottom: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--color-gold); display: inline-block; }
+        .search-group-count { font-family: var(--font-body); font-size: 0.8rem; color: #999; font-weight: 400; margin-left: 8px; }
         .search-results-section { padding: 40px 20px; max-width: var(--site-max-width); margin: 0 auto; }
         .search-results-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-noble); margin-bottom: 30px; text-align: center; }
         .search-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
@@ -92,8 +136,11 @@
         @media (max-width: 768px) {
             .header-inner { padding: 0 15px; }
             .logo-row { flex-wrap: wrap; gap: 10px; }
-            .search-box { order: 3; width: 100%; margin-top: 10px; }
-            .search-box input { flex: 1; width: auto; }
+            .search-expand.open { max-width: 200px; }
+            .search-expand input { width: 120px; }
+            .adv-search-btn { font-size: 0.6rem; padding: 6px 10px; }
+            .adv-panel { width: 100%; max-width: 100%; border-radius: 0; max-height: 100vh; }
+            .adv-panel-header { border-radius: 0; }
             .nav-list { gap: 10px; justify-content: center; } .nav-list a { font-size: 0.75rem; padding: 5px; }
             .grid { padding: 20px 10px; gap: 15px; grid-template-columns: 1fr 1fr; }
             .modal-content { display: flex; flex-direction: column; height: 100%; overflow-y: scroll; }
@@ -189,12 +236,15 @@
     <header class="header"><div class="header-inner">
         <div class="logo-row">
             <a href="index.html" class="logo">PAGUS</a>
-            <!-- FIX #13: role="search" wrapper for accessibility -->
-            <div role="search" class="search-form">
-                <div class="search-box">
+            <div class="search-area">
+                <div class="search-expand" id="searchExpand">
                     <input type="text" id="siteSearch" placeholder="Search products..." aria-label="Search products" onkeypress="if(event.key==='Enter')doSiteSearch()">
-                    <button onclick="doSiteSearch()" aria-label="Search">&#128269;</button>
+                    <button class="search-go" onclick="doSiteSearch()" aria-label="Search"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
                 </div>
+                <button class="search-icon-btn" id="searchToggleBtn" onclick="toggleSearchBar()" aria-label="Search" title="Search">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </button>
+                <button class="adv-search-btn" onclick="openAdvancedSearch()">Advanced Search</button>
             </div>
             <div class="soc-icons">
                 <!-- Auth UI: shows login btn or user greeting -->
@@ -217,6 +267,34 @@
                 <li><a href="?category=Children">Children</a></li>
         </ul></nav>
     </div></header>
+
+    <!-- Advanced Search Panel -->
+    <div class="adv-panel-overlay" id="advPanelOverlay" onclick="if(event.target===this)closeAdvancedSearch()">
+        <div class="adv-panel">
+            <div class="adv-panel-header">
+                <h3>Advanced Search</h3>
+                <button class="adv-panel-close" onclick="closeAdvancedSearch()">&times;</button>
+            </div>
+            <div class="adv-panel-body">
+                <div class="adv-section">
+                    <div class="adv-section-title"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>Keyword</div>
+                    <input type="text" class="adv-keyword" id="advKeyword" placeholder="e.g. slim fit, velvet, double breasted..." onkeypress="if(event.key==='Enter')runAdvancedSearch()">
+                </div>
+                <div class="adv-section">
+                    <div class="adv-section-title"><svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>Categories</div>
+                    <div class="adv-checks" id="advCategoryChecks"></div>
+                </div>
+                <div class="adv-section">
+                    <div class="adv-section-title"><svg viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><circle cx="12" cy="12" r="5"/></svg>Colors</div>
+                    <div class="adv-colors" id="advColorSwatches"></div>
+                </div>
+            </div>
+            <div class="adv-panel-footer">
+                <button class="adv-clear-btn" onclick="clearAdvancedSearch()">Clear All</button>
+                <button class="adv-search-submit" onclick="runAdvancedSearch()">Search</button>
+            </div>
+        </div>
+    </div>
 
     <!-- FIX #1: Carousel HTML elements - were completely missing -->
     <section class="carousel-section" id="carouselSection" style="display:none;">
@@ -842,7 +920,7 @@
             var sr=document.getElementById('searchResults');
             var floatCartBtn=document.getElementById('floatCart');
             var privLabel=document.getElementById('privateLabelSection');
-            var searchBox=document.querySelector('.search-box');
+            var searchArea=document.querySelector('.search-area');
 
             // FIX #2: Every element access guarded with null check
             if(!FEATURES.hero&&hero)hero.style.display='none';
@@ -850,20 +928,20 @@
             if(!FEATURES.carousel&&carousel)carousel.style.display='none';
             if(!FEATURES.whatsappFloat&&floatCartBtn)floatCartBtn.style.display='none';
             if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';
-            if(!FEATURES.search&&searchBox)searchBox.style.display='none';
+            if(!FEATURES.search&&searchArea)searchArea.style.display='none';
             if(!FEATURES.favorites){
                 document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});
                 document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});
             }
 
-            if(urlParams.get('search')){
+            if(urlParams.get('search')||urlParams.get('adv_cats')||urlParams.get('adv_colors')){
                 if(hero)hero.style.display='none';
                 if(showcase)showcase.style.display='none';
                 if(carousel)carousel.style.display='none';
                 if(pta)pta.style.display='none';
                 if(sr)sr.style.display='block';
                 document.getElementById('pGrid').style.display='none';
-                doSearchDisplay(urlParams.get('search'));
+                doSearchDisplay(urlParams.get('search')||'');
             }else if(urlParams.get('category')||urlParams.get('subcategory')){
                 if(hero)hero.style.display='none';
                 if(showcase)showcase.style.display='none';
@@ -883,8 +961,22 @@
         }
 
         // ===================== SEARCH =====================
-        // FIX #11: Toast instead of alert, with i18n
-        // FIX #5: safeFocalY in search results
+
+        function toggleSearchBar(){
+            var exp=document.getElementById('searchExpand');
+            exp.classList.toggle('open');
+            if(exp.classList.contains('open')){
+                setTimeout(function(){ document.getElementById('siteSearch').focus(); },350);
+            }
+        }
+
+        // Close search bar on click outside
+        document.addEventListener('click',function(e){
+            var area=document.querySelector('.search-area');
+            if(area&&!area.contains(e.target)){
+                document.getElementById('searchExpand').classList.remove('open');
+            }
+        });
 
         function doSiteSearch(){
             var q=document.getElementById('siteSearch').value.trim();
@@ -901,35 +993,152 @@
             openModal(r.id,r.id,r.path);
         }
 
+        // --- Advanced Search ---
+        var ADV_COLORS=[
+            {name:'Black',hex:'#1a1a1a',keywords:['black','siyah','nero']},
+            {name:'Navy',hex:'#1b2a4a',keywords:['navy','lacivert','blu']},
+            {name:'Blue',hex:'#2563eb',keywords:['blue','mavi','azzurro']},
+            {name:'Grey',hex:'#8b8b8b',keywords:['grey','gray','gri','grigio']},
+            {name:'Burgundy',hex:'#722f37',keywords:['burgundy','bordo','bordeaux']},
+            {name:'Red',hex:'#c0392b',keywords:['red','kırmızı','rosso']},
+            {name:'Green',hex:'#27ae60',keywords:['green','yeşil','verde']},
+            {name:'Beige',hex:'#c8b88a',keywords:['beige','bej','cream','krem']},
+            {name:'White',hex:'#f5f5f5',keywords:['white','beyaz','bianco']},
+            {name:'Brown',hex:'#6d4c2e',keywords:['brown','kahve','marrone']},
+            {name:'Pink',hex:'#e8a0bf',keywords:['pink','pembe','rosa']},
+            {name:'Gold',hex:'#c9a962',keywords:['gold','altın','oro']}
+        ];
+
+        function buildAdvancedSearchUI(){
+            if(typeof productsDB==='undefined')return;
+            // Build category checkboxes
+            var cats={};
+            productsDB.forEach(function(p){
+                var mc=p.mainCat||p.category;
+                if(!cats[mc])cats[mc]=0;
+                cats[mc]++;
+            });
+            var checkHtml='';
+            Object.keys(cats).forEach(function(cat,i){
+                checkHtml+='<div class="adv-check"><input type="checkbox" id="advCat'+i+'" value="'+escapeAttr(cat)+'">'
+                    +'<label for="advCat'+i+'">'+escapeHTML(cat)+' <span style="opacity:0.5;font-size:0.7rem">('+cats[cat]+')</span></label></div>';
+            });
+            var el=document.getElementById('advCategoryChecks');
+            if(el)el.innerHTML=checkHtml;
+
+            // Build color swatches
+            var colorHtml='';
+            ADV_COLORS.forEach(function(c,i){
+                var border=c.name==='White'?'border:1px solid #ccc;':'';
+                colorHtml+='<div class="adv-color-swatch" data-color-idx="'+i+'" title="'+c.name+'" style="background:'+c.hex+';'+border+'" onclick="toggleAdvColor(this)"></div>';
+            });
+            var cel=document.getElementById('advColorSwatches');
+            if(cel)cel.innerHTML=colorHtml;
+        }
+
+        function openAdvancedSearch(){
+            buildAdvancedSearchUI();
+            document.getElementById('advPanelOverlay').classList.add('visible');
+            document.body.style.overflow='hidden';
+            setTimeout(function(){ var kw=document.getElementById('advKeyword'); if(kw)kw.focus(); },300);
+        }
+
+        function closeAdvancedSearch(){
+            document.getElementById('advPanelOverlay').classList.remove('visible');
+            document.body.style.overflow='';
+        }
+
+        function toggleAdvColor(el){
+            el.classList.toggle('selected');
+        }
+
+        function clearAdvancedSearch(){
+            document.getElementById('advKeyword').value='';
+            document.querySelectorAll('#advCategoryChecks input').forEach(function(cb){cb.checked=false;});
+            document.querySelectorAll('.adv-color-swatch').forEach(function(s){s.classList.remove('selected');});
+        }
+
+        function runAdvancedSearch(){
+            var keyword=(document.getElementById('advKeyword').value||'').trim().toLowerCase();
+            var selectedCats=[];
+            document.querySelectorAll('#advCategoryChecks input:checked').forEach(function(cb){
+                selectedCats.push(cb.value.toLowerCase());
+            });
+            var selectedColors=[];
+            document.querySelectorAll('.adv-color-swatch.selected').forEach(function(s){
+                var idx=parseInt(s.getAttribute('data-color-idx'));
+                if(ADV_COLORS[idx]) selectedColors=selectedColors.concat(ADV_COLORS[idx].keywords);
+            });
+
+            closeAdvancedSearch();
+
+            // Build query string for advanced search
+            var params=[];
+            if(keyword) params.push('search='+encodeURIComponent(keyword));
+            if(selectedCats.length) params.push('adv_cats='+encodeURIComponent(selectedCats.join('|')));
+            if(selectedColors.length) params.push('adv_colors='+encodeURIComponent(selectedColors.join('|')));
+            if(params.length===0){
+                showToast('Please enter a keyword, select a category, or choose a color.');
+                return;
+            }
+            window.location.href='?'+params.join('&');
+        }
+
         function doSearchDisplay(q){
+            var urlP=new URLSearchParams(window.location.search);
+            var advCats=(urlP.get('adv_cats')||'').toLowerCase().split('|').filter(Boolean);
+            var advColors=(urlP.get('adv_colors')||'').toLowerCase().split('|').filter(Boolean);
+            var qLower=(q||'').toLowerCase();
+            var isAdvanced=advCats.length>0||advColors.length>0;
+
             var results=[];
-            var qLower=q.toLowerCase();
             for(var i=0;i<productsDB.length;i++){
                 var p=productsDB[i];
-                if(p.id.toLowerCase().indexOf(qLower)>-1||p.category.toLowerCase().indexOf(qLower)>-1){
-                    results.push(p);
-                }
+                var matchKw=!qLower||p.id.toLowerCase().indexOf(qLower)>-1||p.category.toLowerCase().indexOf(qLower)>-1;
+                var matchCat=advCats.length===0||advCats.some(function(c){return (p.mainCat||p.category).toLowerCase()===c;});
+                var matchColor=advColors.length===0||advColors.some(function(c){return p.id.toLowerCase().indexOf(c)>-1||p.category.toLowerCase().indexOf(c)>-1;});
+                if(matchKw&&matchCat&&matchColor) results.push(p);
+            }
+
+            // Group by subcategory
+            var groups={};
+            var groupOrder=[];
+            for(var j=0;j<results.length;j++){
+                var r=results[j];
+                var sub=r.subCat||r.category;
+                if(!groups[sub]){groups[sub]=[];groupOrder.push(sub);}
+                groups[sub].push({item:r,globalIdx:j});
             }
 
             var container=document.getElementById('searchResults');
-            var safeQ=escapeHTML(q);
-            var html='<div class="search-results-section"><h2 class="search-results-title">'+results.length+' results for "'+safeQ+'"</h2>';
+            var safeQ=escapeHTML(q||'');
+            var titleText=results.length+' result'+(results.length!==1?'s':'')+' found';
+            if(safeQ) titleText+=' for "'+safeQ+'"';
+            if(isAdvanced) titleText+=' (filtered)';
+
+            var html='<div class="search-results-section">';
+            html+='<h2 class="search-results-title">'+titleText+'</h2>';
 
             if(results.length===0){
-                html+='<p style="text-align:center;color:#999;padding:50px;">No results found</p>';
+                html+='<p style="text-align:center;color:#999;padding:50px;">No results found. Try different keywords or filters.</p>';
             }else{
-                html+='<div class="search-results-grid">';
-                for(var j=0;j<results.length;j++){
-                    var r=results[j];
-                    var sub=r.category.indexOf(' > ')>-1?r.category.split(' > ')[1]:r.category;
-                    // FIX #5: safeFocalY instead of raw parseInt
-                    var fy=safeFocalY(r.focalY||r.focal_y);
-                    html+='<div class="search-result-card" data-idx="'+j+'" onclick="openSearchResult('+j+')">';
-                    html+='<img src="'+escapeAttr(r.path)+'/1.webp" style="object-position:center '+fy+'%;" alt="'+escapeAttr(r.id)+'">';
-                    html+='<div class="info"><h4>'+escapeHTML(r.id)+'</h4><span>'+escapeHTML(sub)+'</span>'
-                        +'<div data-price-id="'+escapeAttr(r.id)+'" style="margin-top:5px;"></div></div></div>';
+                for(var g=0;g<groupOrder.length;g++){
+                    var groupName=groupOrder[g];
+                    var items=groups[groupName];
+                    html+='<div class="search-group">';
+                    html+='<h3 class="search-group-title">'+escapeHTML(groupName)+'<span class="search-group-count">('+items.length+')</span></h3>';
+                    html+='<div class="search-results-grid">';
+                    for(var k=0;k<items.length;k++){
+                        var ri=items[k].item;
+                        var gi=items[k].globalIdx;
+                        var fy=safeFocalY(ri.focalY||ri.focal_y);
+                        html+='<div class="search-result-card" data-idx="'+gi+'" onclick="openSearchResult('+gi+')">';
+                        html+='<img src="'+escapeAttr(ri.path)+'/1.webp" style="object-position:center '+fy+'%;" alt="'+escapeAttr(ri.id)+'" loading="lazy">';
+                        html+='<div class="info"><h4>'+escapeHTML(ri.id)+'</h4><span>'+escapeHTML(groupName)+'</span>'
+                            +'<div data-price-id="'+escapeAttr(ri.id)+'" style="margin-top:5px;"></div></div></div>';
+                    }
+                    html+='</div></div>';
                 }
-                html+='</div>';
             }
             html+='</div>';
             container.innerHTML=html;
