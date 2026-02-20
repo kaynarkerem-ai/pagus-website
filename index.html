@@ -27,7 +27,22 @@
         .nav-list { display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; width: 100%; justify-content: center; flex-wrap: wrap; }
         .nav-list a { color: #fff; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-decoration: none; white-space: nowrap; padding: 10px 5px; }
         .nav-list a:hover { color: var(--color-gold); }
-        .search-form { display: contents; }
+        .search-form { display: flex; align-items: center; gap: 10px; }
+        .adv-search-link { color: rgba(255,255,255,0.4); font-size: 0.7rem; text-decoration: none; white-space: nowrap; letter-spacing: 0.5px; transition: 0.3s; }
+        .adv-search-link:hover { color: var(--color-gold); }
+        /* ADVANCED SEARCH MODAL */
+        .adv-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); backdrop-filter:blur(4px); z-index:5500; justify-content:center; align-items:flex-start; padding-top:80px; }
+        .adv-overlay.visible { display:flex; }
+        .adv-card { background:#fff; border-radius:12px; padding:35px 30px; width:90%; max-width:520px; box-shadow:0 20px 50px rgba(0,0,0,0.3); position:relative; max-height:80vh; overflow-y:auto; }
+        .adv-card h3 { font-family:var(--font-display); font-size:1.3rem; color:var(--color-noble); margin-bottom:20px; }
+        .adv-card label { display:block; font-size:0.78rem; font-weight:600; color:#555; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+        .adv-card input, .adv-card select { width:100%; padding:11px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.9rem; margin-bottom:18px; font-family:var(--font-body); transition:0.3s; box-sizing:border-box; }
+        .adv-card input:focus, .adv-card select:focus { border-color:var(--color-gold); outline:none; }
+        .adv-card .adv-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .adv-card .adv-btn { width:100%; padding:14px; background:var(--color-noble); color:#fff; border:none; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:2px; border-radius:6px; cursor:pointer; transition:0.3s; font-family:var(--font-body); }
+        .adv-card .adv-btn:hover { background:#1a252f; }
+        .adv-card .adv-close { position:absolute; top:12px; right:15px; background:none; border:none; font-size:1.5rem; color:#999; cursor:pointer; transition:0.3s; }
+        .adv-card .adv-close:hover { color:var(--color-noble); }
         .search-box { display: flex; gap: 0; background: rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; }
         .search-box input { background: transparent; border: none; padding: 10px 18px; color: #fff; font-size: 0.9rem; width: 180px; outline: none; }
         .search-box input::placeholder { color: rgba(255,255,255,0.5); }
@@ -137,6 +152,9 @@
             .toolbar-row { flex-wrap: wrap; gap: 8px; padding: 8px 0; }
             .search-box { order: 3; width: 100%; margin-top: 4px; }
             .search-box input { flex: 1; width: auto; }
+            .adv-search-link { display: none; }
+            .search-form { flex-wrap: wrap; }
+            .adv-card .adv-row { grid-template-columns: 1fr; }
             .toolbar-right { gap: 8px; }
             .soc-icons { gap: 8px; }
             .soc-icons .social-icon svg { width: 16px; height: 16px; }
@@ -245,6 +263,7 @@
                     <input type="text" id="siteSearch" placeholder="Search products..." data-tp="search_placeholder" aria-label="Search products" onkeypress="if(event.key==='Enter')doSiteSearch()">
                     <button onclick="doSiteSearch()" aria-label="Search">&#128269;</button>
                 </div>
+                <a href="javascript:void(0)" onclick="openAdvSearch()" class="adv-search-link" data-t="adv_search">Advanced Search</a>
             </div>
             <div class="toolbar-right">
                 <div class="lang-switch" id="langBar">
@@ -457,6 +476,31 @@
             </div>
         </div>
     </div><div class="footer-bottom">&copy; <span id="footerYear"></span> Pagus Menswear. <span data-t="ft_rights">All Rights Reserved.</span> &nbsp;|&nbsp; <a href="javascript:void(0)" onclick="openTerms()" style="color:#666;" data-t="ft_tc">Terms &amp; Conditions</a></div></footer>
+
+    <!-- ADVANCED SEARCH MODAL -->
+    <div class="adv-overlay" id="advOverlay" onclick="if(event.target===this)closeAdvSearch()">
+        <div class="adv-card">
+            <button class="adv-close" onclick="closeAdvSearch()" aria-label="Close">&times;</button>
+            <h3 data-t="adv_search">Advanced Search</h3>
+            <label data-t="adv_keyword">Keyword</label>
+            <input type="text" id="advKeyword" data-tp="search_placeholder" placeholder="Search products..." onkeypress="if(event.key==='Enter')doAdvancedSearch()">
+            <div class="adv-row">
+                <div>
+                    <label data-t="adv_category">Category</label>
+                    <select id="advCategory" onchange="populateAdvSubcats()">
+                        <option value="" data-t="adv_all_cats">All Categories</option>
+                    </select>
+                </div>
+                <div>
+                    <label data-t="adv_subcat">Subcategory</label>
+                    <select id="advSubcat">
+                        <option value="" data-t="adv_all_subcats">All Subcategories</option>
+                    </select>
+                </div>
+            </div>
+            <button class="adv-btn" onclick="doAdvancedSearch()" data-t="adv_search_btn">SEARCH</button>
+        </div>
+    </div>
 
     <!-- T&C OVERLAY -->
     <div class="tc-overlay" id="tcOverlay" onclick="if(event.target===this)closeTerms()">
@@ -939,7 +983,15 @@
             wa_inquiry:{en:'Hi, inquiring about: ',it:'Salve, vorrei ricevere informazioni sul modello: ',fr:'Bonjour, je souhaite me renseigner sur : ',de:'Hallo, Anfrage zu: ',es:'Hola, consulta sobre: '},
             popup_blocked:{en:'Popup blocked. Please allow popups for WhatsApp.',it:'Popup bloccato. Consenti i popup per WhatsApp.',fr:'Popup bloqué. Veuillez autoriser les popups pour WhatsApp.',de:'Popup blockiert. Bitte erlauben Sie Popups für WhatsApp.',es:'Popup bloqueado. Permita los popups para WhatsApp.'},
             // ADV SEARCH
-            adv_search:{en:'Advanced Search',it:'Ricerca Avanzata',fr:'Recherche Avancée',de:'Erweiterte Suche',es:'Búsqueda Avanzada'}
+            adv_search:{en:'Advanced Search',it:'Ricerca Avanzata',fr:'Recherche Avancée',de:'Erweiterte Suche',es:'Búsqueda Avanzada'},
+            adv_keyword:{en:'Keyword',it:'Parola Chiave',fr:'Mot-clé',de:'Stichwort',es:'Palabra Clave'},
+            adv_category:{en:'Category',it:'Categoria',fr:'Catégorie',de:'Kategorie',es:'Categoría'},
+            adv_subcat:{en:'Subcategory',it:'Sottocategoria',fr:'Sous-catégorie',de:'Unterkategorie',es:'Subcategoría'},
+            adv_all_cats:{en:'All Categories',it:'Tutte le Categorie',fr:'Toutes les Catégories',de:'Alle Kategorien',es:'Todas las Categorías'},
+            adv_all_subcats:{en:'All Subcategories',it:'Tutte le Sottocategorie',fr:'Toutes les Sous-catégories',de:'Alle Unterkategorien',es:'Todas las Subcategorías'},
+            adv_search_btn:{en:'SEARCH',it:'CERCA',fr:'RECHERCHER',de:'SUCHEN',es:'BUSCAR'},
+            adv_no_results:{en:'No results found',it:'Nessun risultato',fr:'Aucun résultat',de:'Keine Ergebnisse',es:'Sin resultados'},
+            adv_results:{en:'results for',it:'risultati per',fr:'résultats pour',de:'Ergebnisse für',es:'resultados para'}
         };
 
         // Compat: old t() function
@@ -1291,6 +1343,103 @@
         // ===================== SEARCH =====================
         // FIX #11: Toast instead of alert, with i18n
         // FIX #5: safeFocalY in search results
+
+        // ===================== ADVANCED SEARCH =====================
+        function openAdvSearch(){
+            var ov=document.getElementById('advOverlay');
+            ov.classList.add('visible');
+            document.body.style.overflow='hidden';
+            // Populate categories from productsDB
+            var catSel=document.getElementById('advCategory');
+            if(catSel.options.length<=1){
+                var cats=[...new Set(productsDB.map(function(p){return p.mainCat;}))];
+                cats.sort();
+                cats.forEach(function(c){
+                    var o=document.createElement('option');
+                    o.value=c; o.textContent=c;
+                    catSel.appendChild(o);
+                });
+            }
+            document.getElementById('advKeyword').focus();
+        }
+        function closeAdvSearch(){
+            document.getElementById('advOverlay').classList.remove('visible');
+            document.body.style.overflow='';
+        }
+        function populateAdvSubcats(){
+            var cat=document.getElementById('advCategory').value;
+            var subSel=document.getElementById('advSubcat');
+            subSel.innerHTML='<option value="">'+t('adv_all_subcats')+'</option>';
+            if(!cat) return;
+            var subs=[...new Set(productsDB.filter(function(p){return p.mainCat===cat;}).map(function(p){return p.subCat;}))];
+            subs.sort();
+            subs.forEach(function(s){
+                var o=document.createElement('option');
+                o.value=s; o.textContent=s;
+                subSel.appendChild(o);
+            });
+        }
+        function doAdvancedSearch(){
+            var q=document.getElementById('advKeyword').value.trim().toLowerCase();
+            var cat=document.getElementById('advCategory').value;
+            var sub=document.getElementById('advSubcat').value;
+            if(!q&&!cat&&!sub){ showToast(t('search_min')); return; }
+
+            var results=productsDB.filter(function(p){
+                var matchQ=!q||(p.id.toLowerCase().indexOf(q)>-1||p.category.toLowerCase().indexOf(q)>-1);
+                var matchCat=!cat||p.mainCat===cat;
+                var matchSub=!sub||p.subCat===sub;
+                return matchQ&&matchCat&&matchSub;
+            });
+
+            closeAdvSearch();
+
+            // Show results
+            var container=document.getElementById('searchResults');
+            var label=q?('"'+escapeHTML(q)+'"'):(sub||cat);
+            var html='<div class="search-results-section"><h2 class="search-results-title">'+results.length+' '+t('adv_results')+' '+label+'</h2>';
+
+            if(results.length===0){
+                html+='<p style="text-align:center;color:#999;padding:50px;">'+t('adv_no_results')+'</p>';
+            }else{
+                // Group by subcategory
+                var groups={};
+                results.forEach(function(r){
+                    var sub2=r.subCat||r.mainCat;
+                    if(!groups[sub2]) groups[sub2]=[];
+                    groups[sub2].push(r);
+                });
+                Object.keys(groups).sort().forEach(function(grp){
+                    html+='<h3 style="color:var(--color-gold);font-family:var(--font-display);font-size:1rem;letter-spacing:2px;margin:25px 0 12px;padding-bottom:6px;border-bottom:1px solid rgba(201,169,98,0.3);">'+escapeHTML(grp)+'</h3>';
+                    html+='<div class="search-results-grid">';
+                    groups[grp].forEach(function(r,j){
+                        var idx=results.indexOf(r);
+                        var fy=safeFocalY(r.focalY||r.focal_y);
+                        html+='<div class="search-result-card" onclick="openSearchResult('+idx+')">';
+                        html+='<img src="'+escapeAttr(r.path)+'/1.webp" style="object-position:center '+fy+'%;" alt="'+escapeAttr(r.id)+'">';
+                        html+='<div class="info"><h4>'+escapeHTML(r.id)+'</h4><span>'+escapeHTML(r.subCat||'')+'</span>';
+                        html+='<div data-price-id="'+escapeAttr(r.id)+'" style="margin-top:5px;"></div></div></div>';
+                    });
+                    html+='</div>';
+                });
+            }
+            html+='</div>';
+            container.innerHTML=html;
+            window._searchResults=results;
+
+            // Show results, hide other sections
+            document.getElementById('heroSection').style.display='none';
+            document.getElementById('showcaseSection').style.display='none';
+            document.getElementById('privateLabelSection').style.display='none';
+            document.getElementById('pGrid').style.display='none';
+            document.getElementById('pageTitleArea').style.display='none';
+            container.style.display='block';
+            if(typeof refreshPriceDisplays==='function') refreshPriceDisplays();
+            window.scrollTo(0,0);
+        }
+        document.addEventListener('keydown',function(e){
+            if(e.key==='Escape'&&document.getElementById('advOverlay').classList.contains('visible')) closeAdvSearch();
+        });
 
         function doSiteSearch(){
             var q=document.getElementById('siteSearch').value.trim();
