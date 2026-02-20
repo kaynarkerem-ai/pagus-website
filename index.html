@@ -65,8 +65,16 @@
         .private-label { background: var(--color-noble); padding: 80px 40px; text-align: center; color: #fff; margin-top: 60px; }
         .pl-title { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-gold); margin-bottom: 20px; }
         .pl-btn { display: inline-block; background: var(--color-gold); color: #000; padding: 15px 40px; text-decoration: none; font-weight: 700; border-radius: 4px; }
+        
+        /* LANGUAGE BAR */
+        .lang-bar { background: var(--color-noble); text-align: center; padding: 6px 0; border-bottom: 1px solid rgba(201,169,98,0.2); }
+        .lang-bar button { background: none; border: 2px solid transparent; border-radius: 4px; cursor: pointer; padding: 2px; margin: 0 4px; opacity: 0.6; transition: 0.3s; vertical-align: middle; line-height: 1; }
+        .lang-bar button:hover, .lang-bar button.active { opacity: 1; border-color: var(--color-gold); }
+        .lang-bar button img { width: 26px; height: 18px; display: block; border-radius: 2px; }
+
         .footer { background: #000; color: #999; padding: 70px 40px; border-top: 1px solid #333; }
         .footer-grid { max-width: var(--site-max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4rem; }
+        /* FOOTER 3-COL */
         .footer h4 { color: var(--color-gold); font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
         .footer p { font-size: 0.85rem; line-height: 1.8; color: #888; }
         .footer ul { list-style: none; }
@@ -81,6 +89,7 @@
         .footer-service-list { list-style: none; }
         .footer-service-list li { padding-left: 18px; position: relative; margin-bottom: 8px; font-size: 0.85rem; color: #888; }
         .footer-service-list li::before { content: '›'; position: absolute; left: 0; color: var(--color-gold); font-weight: 700; }
+        /* T&C OVERLAY */
         .tc-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 6000; overflow-y: auto; }
         .tc-overlay.visible { display: block; }
         .tc-container { max-width: 860px; margin: 40px auto; padding: 50px; background: #fff; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.4); position: relative; }
@@ -89,13 +98,13 @@
         .tc-container h1 { font-family: var(--font-display); font-size: 2rem; color: var(--color-noble); margin-bottom: 5px; }
         .tc-container .tc-subtitle { color: var(--color-gold); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
         .tc-container .tc-updated { color: #999; font-size: 0.8rem; margin-bottom: 30px; }
-        .tc-container h2 { font-family: var(--font-display); font-size: 1.2rem; color: var(--color-noble); margin: 30px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #eee; }
-        .tc-container p, .tc-container li { font-size: 0.9rem; line-height: 1.8; color: #555; }
+        .tc-container h2 { font-family: var(--font-display); font-size: 1.15rem; color: var(--color-noble); margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #eee; }
+        .tc-container p, .tc-container li { font-size: 0.88rem; line-height: 1.8; color: #555; }
         .tc-container ul { padding-left: 20px; margin: 8px 0; }
-        .tc-container li { margin-bottom: 6px; }
+        .tc-container li { margin-bottom: 5px; }
         .tc-contact { background: var(--color-noble); color: #fff; padding: 25px 30px; border-radius: 8px; margin-top: 30px; }
         .tc-contact strong { color: var(--color-gold); }
-        @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 30px; } .tc-container { margin: 15px; padding: 30px 20px; } .tc-close { top: 10px; right: 15px; } }
+
         .float-cart { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #25D366; color: #fff; padding: 12px 20px; border-radius: 50px; font-weight: 700; display: none; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: none; cursor: pointer; font-family: var(--font-body); font-size: 1rem; }
         .float-cart:hover { background: #1da851; transform: scale(1.05); }
         .badges { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
@@ -215,20 +224,28 @@
     </style>
 </head>
 <body>
+    <!-- LANGUAGE BAR -->
+    <div class="lang-bar" id="langBar">
+        <button onclick="setLang('en')" id="langBtn_en" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></button>
+        <button onclick="setLang('it')" id="langBtn_it" title="Italiano"><img src="https://flagcdn.com/w40/it.png" alt="IT"></button>
+        <button onclick="setLang('fr')" id="langBtn_fr" title="Français"><img src="https://flagcdn.com/w40/fr.png" alt="FR"></button>
+        <button onclick="setLang('de')" id="langBtn_de" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE"></button>
+        <button onclick="setLang('es')" id="langBtn_es" title="Español"><img src="https://flagcdn.com/w40/es.png" alt="ES"></button>
+    </div>
     <header class="header"><div class="header-inner">
         <div class="logo-row">
             <a href="index.html" class="logo">PAGUS</a>
             <!-- FIX #13: role="search" wrapper for accessibility -->
             <div role="search" class="search-form">
                 <div class="search-box">
-                    <input type="text" id="siteSearch" placeholder="Search products..." aria-label="Search products" onkeypress="if(event.key==='Enter')doSiteSearch()">
+                    <input type="text" id="siteSearch" placeholder="Search products..." data-tp="search_placeholder" aria-label="Search products" onkeypress="if(event.key==='Enter')doSiteSearch()">
                     <button onclick="doSiteSearch()" aria-label="Search">&#128269;</button>
                 </div>
             </div>
             <div class="soc-icons">
                 <!-- Auth UI: shows login btn or user greeting -->
                 <div id="authArea">
-                    <button class="auth-btn" onclick="openAuthModal('login')">LOGIN</button>
+                    <button class="auth-btn" onclick="openAuthModal('login')" data-t="login">LOGIN</button>
                 </div>
 <a href="https://www.instagram.com/pagus_menswear/" target="_blank" rel="noopener" class="social-icon" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
 <a href="#" id="waLink" target="_blank" rel="noopener" class="social-icon" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
@@ -237,13 +254,13 @@
             </div>
         </div>
         <nav><ul class="nav-list">
-                <li><a href="?category=Wedding Suits">Wedding Suits</a></li>
-                <li><a href="?category=Formal Suits">Formal Suits</a></li>
-                <li><a href="?category=Jackets">Jackets</a></li>
-                <li><a href="?category=Shirts">Shirts</a></li>
-                <li><a href="?category=Shoes">Shoes</a></li>
-                <li><a href="?category=Accessories">Accessories</a></li>
-                <li><a href="?category=Children">Children</a></li>
+                <li><a href="?category=Wedding Suits" data-t="nav_wedding">Wedding Suits</a></li>
+                <li><a href="?category=Formal Suits" data-t="nav_formal">Formal Suits</a></li>
+                <li><a href="?category=Jackets" data-t="nav_jackets">Jackets</a></li>
+                <li><a href="?category=Shirts" data-t="nav_shirts">Shirts</a></li>
+                <li><a href="?category=Shoes" data-t="nav_shoes">Shoes</a></li>
+                <li><a href="?category=Accessories" data-t="nav_accessories">Accessories</a></li>
+                <li><a href="?category=Children" data-t="nav_children">Children</a></li>
         </ul></nav>
     </div></header>
 
@@ -264,32 +281,32 @@
     <!-- HERO -->
     <section class="hero" id="heroSection">
         <div class="hero-content">
-            <div class="hero-tagline">B2B Wholesale Menswear</div>
-            <h2>Premium Suits &amp; Formal Wear</h2>
-            <p>Direct from manufacturer in İzmir, Turkey. We offer high-quality men&#x27;s suits, tuxedos, and formal wear for retailers and wholesalers worldwide. Minimum order: 50 pieces.</p>
+            <div class="hero-tagline" data-t="hero_tagline">B2B Wholesale Menswear</div>
+            <h2 data-t="hero_title">Premium Suits &amp; Formal Wear</h2>
+            <p data-t="hero_desc">Direct from manufacturer in İzmir, Turkey. We offer high-quality men&#x27;s suits, tuxedos, and formal wear for retailers and wholesalers worldwide. Minimum order: 50 pieces.</p>
             <div class="hero-stats">
-                <div class="stat-item"><span class="stat-num">15+</span><span class="stat-label">Years Experience</span></div>
-                <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label">Countries</span></div>
-                <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Active Partners</span></div>
+                <div class="stat-item"><span class="stat-num">15+</span><span class="stat-label" data-t="stat_years">Years Experience</span></div>
+                <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label" data-t="stat_countries">Countries</span></div>
+                <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label" data-t="stat_partners">Active Partners</span></div>
             </div>
         </div>
     </section>
     
     <section class="page-title-area" id="pageTitleArea" style="display:none;">
-        <div id="back" class="back-btn" onclick="goBack()" style="display:none;">&#8592; BACK</div>
-        <h1 class="cat-title" id="pTitle">COLLECTION</h1>
-        <div class="info-guide" id="infoGuide"><span>&#128161;</span><b id="guideText">Tap heart to create list.</b></div>
+        <div id="back" class="back-btn" onclick="goBack()" style="display:none;">&#8592; <span data-t="back_btn">BACK</span></div>
+        <h1 class="cat-title" id="pTitle" data-t="collection">COLLECTION</h1>
+        <div class="info-guide" id="infoGuide"><span>&#128161;</span><b id="guideText" data-t="guide_tap">Tap heart to create list.</b></div>
     </section>
-    <div class="grid" id="pGrid"><div style="grid-column:1/-1; text-align:center; padding:50px; color:#999;">Loading Collection...</div></div>
+    <div class="grid" id="pGrid"><div style="grid-column:1/-1; text-align:center; padding:50px; color:#999;" data-t="loading">Loading Collection...</div></div>
     <div id="searchResults" style="display:none;"></div>
     <section class="private-label" id="privateLabelSection"><div class="pl-content">
-        <h2 class="pl-title">YOUR BRAND, OUR PRODUCTION</h2>
-        <p style="color:#ddd; margin-bottom:35px;">Looking for a manufacturing partner? Pagus offers specialized Private Label services.</p>
-        <a href="#" id="plWaLink" target="_blank" class="pl-btn">START PRODUCTION</a>
+        <h2 class="pl-title" data-t="pl_title">YOUR BRAND, OUR PRODUCTION</h2>
+        <p style="color:#ddd; margin-bottom:35px;" data-t="pl_desc">Looking for a manufacturing partner? Pagus offers specialized Private Label services.</p>
+        <a href="#" id="plWaLink" target="_blank" class="pl-btn" data-t="pl_btn">START PRODUCTION</a>
     </div></section>
     <button id="floatCart" class="float-cart" onclick="sendListToWhatsapp()">
         <svg style="width:20px;height:20px;fill:white;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        SEND <span id="cartCount">0</span>
+        <span data-t="send_text">SEND</span> <span id="cartCount">0</span>
     </button>
     <!-- FIX #11: Toast notification element -->
     <div id="toastNotification" class="toast-notification" role="alert" aria-live="polite"></div>
@@ -300,26 +317,26 @@
         <div class="auth-card">
             <div class="auth-header">
                 <h3>PAGUS</h3>
-                <p>B2B Wholesale Portal</p>
+                <p data-t="auth_subtitle">B2B Wholesale Portal</p>
             </div>
             <div class="auth-tabs">
-                <button class="auth-tab active" onclick="switchAuthTab('login')" id="tabLogin">Login</button>
-                <button class="auth-tab" onclick="switchAuthTab('register')" id="tabRegister">Register</button>
+                <button class="auth-tab active" onclick="switchAuthTab('login')" id="tabLogin" data-t="login_tab">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')" id="tabRegister" data-t="register_tab">Register</button>
             </div>
             <div class="auth-body">
                 <div id="authError" class="auth-error"></div>
                 <!-- LOGIN FORM -->
                 <div id="loginForm">
                     <div class="auth-field">
-                        <label for="loginEmail">Email</label>
+                        <label for="loginEmail" data-t="email_label">Email</label>
                         <input type="email" id="loginEmail" placeholder="your@email.com" autocomplete="email">
                     </div>
                     <div class="auth-field">
-                        <label for="loginPass">Password</label>
+                        <label for="loginPass" data-t="password_label">Password</label>
                         <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
                     </div>
-                    <button class="auth-submit" onclick="doLogin()" id="loginBtn">LOGIN</button>
-                    <div class="auth-divider">or</div>
+                    <button class="auth-submit" onclick="doLogin()" id="loginBtn" data-t="login">LOGIN</button>
+                    <div class="auth-divider" data-t="or_divider">or</div>
                     <button class="google-btn" onclick="doGoogleLogin()">
                         <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                         Continue with Google
@@ -328,23 +345,23 @@
                 <!-- REGISTER FORM -->
                 <div id="registerForm" style="display:none;">
                     <div class="auth-field">
-                        <label for="regName">Company / Name</label>
-                        <input type="text" id="regName" placeholder="Your company or full name" autocomplete="name">
+                        <label for="regName" data-t="company_label">Company / Name</label>
+                        <input type="text" id="regName" placeholder="Your company or full name" data-tp="company_ph" autocomplete="name">
                     </div>
                     <div class="auth-field">
-                        <label for="regEmail">Email</label>
+                        <label for="regEmail" data-t="email_label">Email</label>
                         <input type="email" id="regEmail" placeholder="your@email.com" autocomplete="email">
                     </div>
                     <div class="auth-field">
-                        <label for="regPass">Password</label>
-                        <input type="password" id="regPass" placeholder="Min. 6 characters" autocomplete="new-password">
+                        <label for="regPass" data-t="password_label">Password</label>
+                        <input type="password" id="regPass" placeholder="Min. 6 characters" data-tp="min6_ph" autocomplete="new-password">
                     </div>
                     <div class="auth-field">
-                        <label for="regPass2">Confirm Password</label>
-                        <input type="password" id="regPass2" placeholder="Repeat password" autocomplete="new-password" onkeypress="if(event.key==='Enter')doRegister()">
+                        <label for="regPass2" data-t="confirm_pw">Confirm Password</label>
+                        <input type="password" id="regPass2" placeholder="Repeat password" data-tp="repeat_ph" autocomplete="new-password" onkeypress="if(event.key==='Enter')doRegister()">
                     </div>
-                    <button class="auth-submit" onclick="doRegister()" id="regBtn">CREATE ACCOUNT</button>
-                    <div class="auth-divider">or</div>
+                    <button class="auth-submit" onclick="doRegister()" id="regBtn" data-t="create_account">CREATE ACCOUNT</button>
+                    <div class="auth-divider" data-t="or_divider">or</div>
                     <button class="google-btn" onclick="doGoogleLogin()">
                         <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                         Continue with Google
@@ -356,8 +373,8 @@
 
     <!-- COOKIE BANNER -->
     <div class="cookie-banner" id="cookieBanner">
-        <p>We use essential cookies and local storage to improve your experience. By continuing, you accept our <a href="privacy.html">Privacy Policy</a>.</p>
-        <button class="cookie-accept" onclick="acceptCookies()">ACCEPT</button>
+        <p data-t="cookie_text">We use essential cookies and local storage to improve your experience. By continuing, you accept our <a href="privacy.html">Privacy Policy</a>.</p>
+        <button class="cookie-accept" onclick="acceptCookies()" data-t="accept_btn">ACCEPT</button>
     </div>
     <div id="pModal" class="modal" role="dialog" aria-modal="true" aria-label="Product detail">
         <span class="close" onclick="closeModal()" role="button" aria-label="Close modal" tabindex="0">&#215;</span>
@@ -369,12 +386,12 @@
                 <div class="img-counter" id="imgCount">1/4</div>
             </div>
             <div class="side-info">
-                <span style="color:var(--color-gold); font-weight:700; font-size:0.8rem; letter-spacing:2px;">WHOLESALE MANUFACTURER</span>
+                <span style="color:var(--color-gold); font-weight:700; font-size:0.8rem; letter-spacing:2px;" data-t="wholesale_mfr">WHOLESALE MANUFACTURER</span>
                 <h2 id="mCode" style="font-family:var(--font-display); font-size:2.5rem; margin:15px 0 10px;">CODE</h2>
                 <div id="modalPriceArea" style="margin-bottom:15px;"></div>
-                <div class="badges"><div class="badge-item"><span class="badge-icon">🧵</span>Premium Fabric</div><div class="badge-item"><span class="badge-icon">🇹🇷</span>Made in Turkey</div><div class="badge-item"><span class="badge-icon">📦</span>Wholesale Only</div></div>
-                <p style="color:#555; margin-bottom:40px; font-size:1rem;">Premium quality fabric available for bulk orders.</p>
-                <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700; letter-spacing:1px; border-radius:4px; box-shadow: 0 10px 20px rgba(201,169,98,0.3); text-decoration:none;">ASK PRICE VIA WHATSAPP</a>
+                <div class="badges"><div class="badge-item"><span class="badge-icon">🧵</span data-t="badge_fabric">Premium Fabric</div><div class="badge-item"><span class="badge-icon">🇹🇷</span data-t="badge_turkey">Made in Turkey</div><div class="badge-item"><span class="badge-icon">📦</span data-t="badge_wholesale">Wholesale Only</div></div>
+                <p style="color:#555; margin-bottom:40px; font-size:1rem;" data-t="modal_desc">Premium quality fabric available for bulk orders.</p>
+                <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700; letter-spacing:1px; border-radius:4px; box-shadow: 0 10px 20px rgba(201,169,98,0.3); text-decoration:none;" data-t="ask_wa">ASK PRICE VIA WHATSAPP</a>
             </div>
         </div>
     </div>
@@ -390,110 +407,38 @@
     <!-- FIX #14: Replaced document.write with span + JS textContent -->
     <footer class="footer"><div class="footer-grid">
         <div>
-            <h4>Why Pagus</h4>
-            <p><strong style="color:#ccc;">15+ years</strong> of excellence in premium menswear manufacturing. From wedding suits to formal business attire, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.</p>
+            <h4 data-t="ft_why">Why Pagus</h4>
+            <p data-t="ft_why_text"><strong style="color:#ccc;">15+</strong> years of excellence in premium menswear manufacturing. From wedding suits to formal business attire, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.</p>
         </div>
         <div>
-            <h4>B2B Contact</h4>
+            <h4 data-t="ft_contact">B2B Contact</h4>
             <ul>
                 <li><strong>WhatsApp:</strong> <span id="footerWa"></span></li>
-                <li><strong>Location:</strong> İzmir, Turkey</li>
+                <li><strong data-t="ft_location">Location:</strong> İzmir, Turkey</li>
                 <li><strong>Email:</strong> info@pagusmenswear.com</li>
             </ul>
             <ul class="footer-service-list" style="margin-top:15px;">
-                <li>Minimum order: 50 pieces</li>
-                <li>Private label &amp; custom branding</li>
-                <li>Direct factory pricing</li>
-                <li>Worldwide shipping &amp; export docs</li>
-                <li>Dedicated account manager</li>
+                <li data-t="ft_moq">Minimum order: 50 pieces</li>
+                <li data-t="ft_pl">Private label &amp; custom branding</li>
+                <li data-t="ft_price">Direct factory pricing</li>
+                <li data-t="ft_ship">Worldwide shipping &amp; export docs</li>
+                <li data-t="ft_mgr">Dedicated account manager</li>
             </ul>
         </div>
         <div>
-            <h4>Quick Links</h4>
+            <h4 data-t="ft_links">Quick Links</h4>
             <div class="footer-links">
-                <a href="javascript:void(0)" onclick="openTerms()"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>Terms &amp; Conditions</a>
-                <a href="javascript:void(0)" onclick="openTerms()"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg>Privacy &amp; GDPR</a>
-                <a href="payment.html"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>Secure Payment &amp; Bank Accounts</a>
+                <a href="javascript:void(0)" onclick="openTerms()"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg><span data-t="ft_tc">Terms &amp; Conditions</span></a>
+                <a href="javascript:void(0)" onclick="openTerms()"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.89 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg><span data-t="ft_privacy">Privacy &amp; GDPR</span></a>
+                <a href="payment.html"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg><span data-t="ft_payment">Secure Payment &amp; Bank Accounts</span></a>
             </div>
         </div>
-    </div><div class="footer-bottom">&copy; <span id="footerYear"></span> Pagus Menswear. All Rights Reserved. &nbsp;|&nbsp; <a href="javascript:void(0)" onclick="openTerms()" style="color:#666;">Terms &amp; Conditions</a></div></footer>
+    </div><div class="footer-bottom">&copy; <span id="footerYear"></span> Pagus Menswear. <span data-t="ft_rights">All Rights Reserved.</span> &nbsp;|&nbsp; <a href="javascript:void(0)" onclick="openTerms()" style="color:#666;" data-t="ft_tc">Terms &amp; Conditions</a></div></footer>
 
-    <!-- Terms & Conditions Overlay -->
+    <!-- T&C OVERLAY -->
     <div class="tc-overlay" id="tcOverlay" onclick="if(event.target===this)closeTerms()">
         <button class="tc-close" onclick="closeTerms()" aria-label="Close">&times;</button>
-        <div class="tc-container">
-            <h1>Terms and Conditions</h1>
-            <div class="tc-subtitle">Wholesale Terms and Conditions of Sale</div>
-            <div class="tc-updated">Last updated: February 2026</div>
-            <h2>1. Definitions</h2>
-            <ul><li><strong>"Seller"</strong> refers to PAGUS Menswear, located in İzmir, Turkey.</li><li><strong>"Buyer"</strong> refers to any business entity placing a wholesale order.</li><li><strong>"Goods"</strong> refers to all menswear products offered for sale.</li><li><strong>"Order"</strong> refers to any purchase order submitted by the Buyer.</li><li><strong>"Website"</strong> refers to pagusmenswear.com and all its subdomains.</li></ul>
-            <h2>2. Scope and Application</h2>
-            <p>2.1. These Terms and Conditions ("T&amp;Cs") apply to all wholesale orders placed with PAGUS Menswear through the Website, email, WhatsApp, or any other channel.</p>
-            <p>2.2. By placing an order, the Buyer agrees to be bound by these T&amp;Cs. Any conflicting terms proposed by the Buyer shall not apply unless expressly agreed in writing.</p>
-            <p>2.3. These T&amp;Cs are intended for business-to-business (B2B) transactions only. PAGUS Menswear does not sell directly to consumers.</p>
-            <h2>3. Orders and Minimum Quantities</h2>
-            <p>3.1. The minimum order quantity (MOQ) is 50 pieces per order, unless otherwise agreed in writing.</p>
-            <p>3.2. Orders may be placed via the Website inquiry form, email, or WhatsApp. An order is confirmed only upon written acknowledgement by PAGUS Menswear.</p>
-            <p>3.3. PAGUS Menswear reserves the right to refuse any order at its sole discretion without being required to provide a reason.</p>
-            <p>3.4. Product availability is subject to stock levels at the time of order confirmation. Colours and fabric compositions may vary slightly between production batches.</p>
-            <h2>4. Prices and Payment</h2>
-            <p>4.1. All prices are quoted in Euros (EUR) or US Dollars (USD) as indicated, and are exclusive of shipping, insurance, customs duties, and applicable taxes.</p>
-            <p>4.2. Prices are valid for 30 days from the date of quotation unless otherwise specified.</p>
-            <p>4.3. Payment terms shall be agreed upon in the order confirmation. Standard payment terms are:</p>
-            <ul><li>50% deposit upon order confirmation</li><li>50% balance before shipment</li></ul>
-            <p>4.4. Payment may be made by bank transfer (SWIFT/IBAN) or other methods agreed in writing. All bank charges are borne by the Buyer.</p>
-            <p>4.5. PAGUS Menswear reserves the right to suspend or cancel orders in case of late or incomplete payment.</p>
-            <h2>5. Shipping and Delivery</h2>
-            <p>5.1. Delivery terms shall be specified in each order confirmation using Incoterms&reg; 2020 (e.g., EXW, FOB, CIF).</p>
-            <p>5.2. Estimated delivery times are indicative and not binding. PAGUS Menswear shall not be liable for delays caused by circumstances beyond its reasonable control.</p>
-            <p>5.3. Risk of loss or damage to the Goods passes to the Buyer in accordance with the agreed Incoterm.</p>
-            <p>5.4. The Buyer is responsible for all import duties, customs clearance, and local taxes applicable in the destination country.</p>
-            <h2>6. Quality and Inspection</h2>
-            <p>6.1. PAGUS Menswear warrants that all Goods are manufactured to professional quality standards consistent with the garment industry.</p>
-            <p>6.2. The Buyer must inspect the Goods upon delivery and notify PAGUS Menswear of any visible defects or discrepancies within 7 (seven) business days of receipt.</p>
-            <p>6.3. Failure to notify within this period shall constitute acceptance of the Goods.</p>
-            <p>6.4. Minor variations in colour, texture, or measurements (within industry tolerances) shall not constitute a defect.</p>
-            <h2>7. Returns and Claims</h2>
-            <p>7.1. Returns are only accepted for manufacturing defects or incorrect items shipped, subject to prior written approval from PAGUS Menswear.</p>
-            <p>7.2. Approved returns must be shipped back in original packaging within 14 days of approval. Return shipping costs are borne by the Buyer unless the defect is attributable to PAGUS Menswear.</p>
-            <p>7.3. Upon inspection and confirmation of the defect, PAGUS Menswear shall, at its sole discretion, either replace the defective Goods or issue a credit note.</p>
-            <p>7.4. Goods that have been altered, washed, worn, or damaged by the Buyer are not eligible for return.</p>
-            <h2>8. Private Label and Customisation</h2>
-            <p>8.1. PAGUS Menswear offers private label manufacturing and custom branding services subject to separate written agreements.</p>
-            <p>8.2. Custom or private label orders are non-cancellable and non-refundable once production has commenced.</p>
-            <p>8.3. The Buyer warrants that any logos, trademarks, or designs provided for private label production do not infringe any third-party intellectual property rights.</p>
-            <h2>9. Intellectual Property</h2>
-            <p>9.1. All product designs, photographs, catalogue imagery, and content on the Website are the exclusive property of PAGUS Menswear and are protected under applicable intellectual property laws.</p>
-            <p>9.2. The Buyer may use product images provided by PAGUS Menswear solely for the purpose of reselling the purchased Goods. Any other use requires prior written consent.</p>
-            <h2>10. Data Protection (GDPR Compliance)</h2>
-            <p>10.1. PAGUS Menswear collects and processes personal data (such as contact names, email addresses, phone numbers, and business addresses) solely for the purposes of:</p>
-            <ul><li>Processing and fulfilling orders</li><li>Communicating with Buyers regarding orders and inquiries</li><li>Providing customer support</li><li>Sending relevant B2B marketing communications (with consent or legitimate interest)</li></ul>
-            <p>10.2. In accordance with the EU General Data Protection Regulation (GDPR) and applicable Turkish data protection legislation (KVKK), the Buyer has the right to:</p>
-            <ul><li>Access, rectify, or erase personal data held by PAGUS Menswear</li><li>Object to or restrict processing of personal data</li><li>Request data portability</li><li>Withdraw consent at any time</li></ul>
-            <p>10.3. Personal data shall not be shared with third parties except as necessary for order fulfilment (e.g., shipping companies, payment processors).</p>
-            <p>10.4. For data protection inquiries or requests, please contact: info@pagusmenswear.com.</p>
-            <p>10.5. PAGUS Menswear implements appropriate technical and organisational measures to protect personal data against unauthorised access, loss, or destruction.</p>
-            <h2>11. Cookies and Website Usage</h2>
-            <p>11.1. The Website uses cookies and similar technologies to enhance user experience, analyse traffic, and store user preferences (such as language settings and login sessions).</p>
-            <p>11.2. By using the Website, the Buyer consents to the use of cookies as described. Cookies can be managed or disabled through browser settings.</p>
-            <p>11.3. Essential cookies required for Website functionality (e.g., authentication, cart) cannot be disabled without impacting the service.</p>
-            <h2>12. Limitation of Liability</h2>
-            <p>12.1. To the maximum extent permitted by applicable law, PAGUS Menswear's total liability arising from or in connection with any order shall not exceed the total value of the specific order giving rise to the claim.</p>
-            <p>12.2. PAGUS Menswear shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, revenue, or business opportunities.</p>
-            <p>12.3. Nothing in these T&amp;Cs shall limit liability for fraud, wilful misconduct, or any liability that cannot be excluded under applicable law.</p>
-            <h2>13. Force Majeure</h2>
-            <p>13.1. PAGUS Menswear shall not be liable for any failure or delay in performing its obligations due to events beyond its reasonable control, including but not limited to natural disasters, pandemics, war, government regulations, trade embargoes, strikes, or supply chain disruptions.</p>
-            <h2>14. Governing Law and Dispute Resolution</h2>
-            <p>14.1. These T&amp;Cs shall be governed by and construed in accordance with the laws of the Republic of Turkey.</p>
-            <p>14.2. Any dispute arising from or in connection with these T&amp;Cs that cannot be resolved amicably shall be submitted to the exclusive jurisdiction of the İzmir Courts and Enforcement Offices.</p>
-            <p>14.3. For Buyers within the European Union, nothing in this clause shall prevent the Buyer from asserting mandatory consumer or B2B protection rights available under the laws of their country of residence, to the extent applicable.</p>
-            <h2>15. Modifications</h2>
-            <p>15.1. PAGUS Menswear reserves the right to modify these T&amp;Cs at any time. The updated version shall be published on the Website with the effective date.</p>
-            <p>15.2. Continued use of the Website or placement of orders after such changes constitutes acceptance of the modified T&amp;Cs.</p>
-            <h2>16. Contact Information</h2>
-            <div class="tc-contact"><strong>PAGUS Menswear</strong><br>İzmir, Turkey<br>Email: info@pagusmenswear.com<br>WhatsApp: Available on the Website</div>
-            <p style="margin-top:20px; color:#999; font-size:0.8rem; font-style:italic;">These Terms and Conditions are effective as of the date stated above.</p>
-        </div>
+        <div class="tc-container" id="tcContent"></div>
     </div>
     <script src="inventory.js?v=1771500808"></script>
     <!-- Firebase SDK (Compat for single-file usage) -->
@@ -830,26 +775,257 @@
         var CAT_DISPLAY_NAMES={"Çıkma Yaka":"Detachable Collar"};
 
         // i18n helper — single source of truth for language detection & texts
-        var LANG=(navigator.language||navigator.userLanguage||'').startsWith('it')?'it':'en';
-        var TEXTS={
-            guide_tap:       {it:"Tocca l'icona del cuore per creare la tua lista.", en:"Tap heart to create list."},
-            search_min:      {it:'Inserisci almeno 2 caratteri',                     en:'Please enter at least 2 characters'},
-            wa_list_header:  {it:'Salve Pagus, sono interessato ai prezzi di questi modelli:',  en:'Hi Pagus, I am interested in the prices for these models:'},
-            wa_list_footer:  {it:'Grazie.',                                          en:'Thanks.'},
-            wa_inquiry:      {it:'Salve, vorrei ricevere informazioni sul modello: ', en:'Hi, inquiring about: '},
-            popup_blocked:   {it:'Popup bloccato. Consenti i popup per WhatsApp.',   en:'Popup blocked. Please allow popups for WhatsApp.'}
+        // ===================== i18n SYSTEM =====================
+        var SUPPORTED_LANGS=['en','it','fr','de','es'];
+        function detectLang(){
+            var saved=localStorage.getItem('pagusLang');
+            if(saved&&SUPPORTED_LANGS.indexOf(saved)!==-1) return saved;
+            var bl=navigator.language||navigator.userLanguage||'en';
+            var short=bl.substring(0,2).toLowerCase();
+            return SUPPORTED_LANGS.indexOf(short)!==-1?short:'en';
+        }
+        var LANG=detectLang();
+
+        var I18N={
+            // NAV
+            nav_wedding:{en:'Wedding Suits',it:'Abiti da Sposo',fr:'Costumes de Mariage',de:'Hochzeitsanzüge',es:'Trajes de Novio'},
+            nav_formal:{en:'Formal Suits',it:'Abiti Formali',fr:'Costumes Formels',de:'Formelle Anzüge',es:'Trajes Formales'},
+            nav_jackets:{en:'Jackets',it:'Giacche',fr:'Vestes',de:'Jacken',es:'Chaquetas'},
+            nav_shirts:{en:'Shirts',it:'Camicie',fr:'Chemises',de:'Hemden',es:'Camisas'},
+            nav_shoes:{en:'Shoes',it:'Scarpe',fr:'Chaussures',de:'Schuhe',es:'Zapatos'},
+            nav_accessories:{en:'Accessories',it:'Accessori',fr:'Accessoires',de:'Accessoires',es:'Accesorios'},
+            nav_children:{en:'Children',it:'Bambini',fr:'Enfants',de:'Kinder',es:'Niños'},
+            login:{en:'LOGIN',it:'ACCEDI',fr:'CONNEXION',de:'ANMELDEN',es:'INICIAR SESIÓN'},
+            // SEARCH
+            search_placeholder:{en:'Search products...',it:'Cerca prodotti...',fr:'Rechercher...',de:'Produkte suchen...',es:'Buscar productos...'},
+            // HERO
+            hero_tagline:{en:'B2B Wholesale Menswear',it:'Abbigliamento Uomo B2B all\'Ingrosso',fr:'Mode Homme B2B en Gros',de:'B2B Herrenmode Großhandel',es:'Moda Masculina B2B al por Mayor'},
+            hero_title:{en:'Premium Suits & Formal Wear',it:'Abiti Premium & Cerimonia',fr:'Costumes Premium & Tenue de Cérémonie',de:'Premium-Anzüge & Festliche Kleidung',es:'Trajes Premium & Ropa de Ceremonia'},
+            hero_desc:{en:'Direct from manufacturer in İzmir, Turkey. We offer high-quality men\'s suits, tuxedos, and formal wear for retailers and wholesalers worldwide. Minimum order: 50 pieces.',it:'Direttamente dal produttore a İzmir, Turchia. Offriamo abiti da uomo, smoking e abbigliamento formale di alta qualità per rivenditori e grossisti in tutto il mondo. Ordine minimo: 50 pezzi.',fr:'Directement du fabricant à İzmir, Turquie. Nous proposons des costumes, smokings et vêtements de cérémonie de haute qualité pour détaillants et grossistes du monde entier. Commande minimum : 50 pièces.',de:'Direkt vom Hersteller in İzmir, Türkei. Wir bieten hochwertige Herrenanzüge, Smokings und festliche Kleidung für Einzelhändler und Großhändler weltweit. Mindestbestellung: 50 Stück.',es:'Directamente del fabricante en İzmir, Turquía. Ofrecemos trajes, esmóquines y ropa formal de alta calidad para minoristas y mayoristas en todo el mundo. Pedido mínimo: 50 piezas.'},
+            stat_years:{en:'Years Experience',it:'Anni di Esperienza',fr:'Ans d\'Expérience',de:'Jahre Erfahrung',es:'Años de Experiencia'},
+            stat_countries:{en:'Countries',it:'Paesi',fr:'Pays',de:'Länder',es:'Países'},
+            stat_partners:{en:'Active Partners',it:'Partner Attivi',fr:'Partenaires Actifs',de:'Aktive Partner',es:'Socios Activos'},
+            // PAGE
+            back_btn:{en:'BACK',it:'INDIETRO',fr:'RETOUR',de:'ZURÜCK',es:'ATRÁS'},
+            collection:{en:'COLLECTION',it:'COLLEZIONE',fr:'COLLECTION',de:'KOLLEKTION',es:'COLECCIÓN'},
+            guide_tap:{en:'Tap heart to create list.',it:'Tocca il cuore per creare la lista.',fr:'Appuyez sur le cœur pour créer votre liste.',de:'Tippen Sie auf das Herz, um eine Liste zu erstellen.',es:'Toca el corazón para crear tu lista.'},
+            loading:{en:'Loading Collection...',it:'Caricamento Collezione...',fr:'Chargement de la Collection...',de:'Kollektion wird geladen...',es:'Cargando Colección...'},
+            // PRIVATE LABEL
+            pl_title:{en:'YOUR BRAND, OUR PRODUCTION',it:'IL VOSTRO MARCHIO, LA NOSTRA PRODUZIONE',fr:'VOTRE MARQUE, NOTRE PRODUCTION',de:'IHRE MARKE, UNSERE PRODUKTION',es:'SU MARCA, NUESTRA PRODUCCIÓN'},
+            pl_desc:{en:'Looking for a manufacturing partner? Pagus offers specialized Private Label services.',it:'Cercate un partner produttivo? Pagus offre servizi specializzati di Private Label.',fr:'Vous cherchez un partenaire de fabrication ? Pagus propose des services de marque privée spécialisés.',de:'Suchen Sie einen Produktionspartner? Pagus bietet spezialisierte Private-Label-Services.',es:'¿Busca un socio de fabricación? Pagus ofrece servicios especializados de Marca Blanca.'},
+            pl_btn:{en:'START PRODUCTION',it:'AVVIA PRODUZIONE',fr:'LANCER LA PRODUCTION',de:'PRODUKTION STARTEN',es:'INICIAR PRODUCCIÓN'},
+            // FLOAT CART
+            send_text:{en:'SEND',it:'INVIA',fr:'ENVOYER',de:'SENDEN',es:'ENVIAR'},
+            // MODAL
+            wholesale_mfr:{en:'WHOLESALE MANUFACTURER',it:'PRODUTTORE ALL\'INGROSSO',fr:'FABRICANT EN GROS',de:'GROSSHANDEL-HERSTELLER',es:'FABRICANTE MAYORISTA'},
+            badge_fabric:{en:'Premium Fabric',it:'Tessuto Premium',fr:'Tissu Premium',de:'Premium-Stoff',es:'Tela Premium'},
+            badge_turkey:{en:'Made in Turkey',it:'Prodotto in Turchia',fr:'Fabriqué en Turquie',de:'Hergestellt in der Türkei',es:'Hecho en Turquía'},
+            badge_wholesale:{en:'Wholesale Only',it:'Solo Ingrosso',fr:'Grossiste Uniquement',de:'Nur Großhandel',es:'Solo Mayorista'},
+            modal_desc:{en:'Premium quality fabric available for bulk orders.',it:'Tessuto di qualità premium disponibile per ordini all\'ingrosso.',fr:'Tissu de qualité premium disponible pour commandes en gros.',de:'Premium-Qualitätsstoff für Großbestellungen verfügbar.',es:'Tela de calidad premium disponible para pedidos al por mayor.'},
+            ask_wa:{en:'ASK PRICE VIA WHATSAPP',it:'CHIEDI IL PREZZO SU WHATSAPP',fr:'DEMANDER LE PRIX VIA WHATSAPP',de:'PREIS ÜBER WHATSAPP ANFRAGEN',es:'PEDIR PRECIO POR WHATSAPP'},
+            // AUTH
+            auth_subtitle:{en:'B2B Wholesale Portal',it:'Portale B2B Ingrosso',fr:'Portail B2B Grossiste',de:'B2B Großhandel-Portal',es:'Portal B2B Mayorista'},
+            login_tab:{en:'Login',it:'Accedi',fr:'Connexion',de:'Anmelden',es:'Iniciar Sesión'},
+            register_tab:{en:'Register',it:'Registrati',fr:'S\'inscrire',de:'Registrieren',es:'Registrarse'},
+            email_label:{en:'Email',it:'Email',fr:'Email',de:'E-Mail',es:'Correo electrónico'},
+            password_label:{en:'Password',it:'Password',fr:'Mot de passe',de:'Passwort',es:'Contraseña'},
+            or_divider:{en:'or',it:'oppure',fr:'ou',de:'oder',es:'o'},
+            google_btn:{en:'Continue with Google',it:'Continua con Google',fr:'Continuer avec Google',de:'Mit Google fortfahren',es:'Continuar con Google'},
+            company_label:{en:'Company / Name',it:'Azienda / Nome',fr:'Entreprise / Nom',de:'Firma / Name',es:'Empresa / Nombre'},
+            company_ph:{en:'Your company or full name',it:'Nome della vostra azienda',fr:'Nom de votre entreprise',de:'Ihr Firmenname',es:'Nombre de su empresa'},
+            min6_ph:{en:'Min. 6 characters',it:'Min. 6 caratteri',fr:'Min. 6 caractères',de:'Min. 6 Zeichen',es:'Mín. 6 caracteres'},
+            confirm_pw:{en:'Confirm Password',it:'Conferma Password',fr:'Confirmer le mot de passe',de:'Passwort bestätigen',es:'Confirmar contraseña'},
+            repeat_ph:{en:'Repeat password',it:'Ripeti la password',fr:'Répéter le mot de passe',de:'Passwort wiederholen',es:'Contraseña de nuevo'},
+            create_account:{en:'CREATE ACCOUNT',it:'CREA ACCOUNT',fr:'CRÉER UN COMPTE',de:'KONTO ERSTELLEN',es:'CREAR CUENTA'},
+            // COOKIE
+            cookie_text:{en:'We use essential cookies and local storage to improve your experience. By continuing, you accept our <a href="privacy.html">Privacy Policy</a>.',it:'Utilizziamo cookie essenziali e archiviazione locale per migliorare la tua esperienza. Continuando, accetti la nostra <a href="privacy.html">Informativa sulla Privacy</a>.',fr:'Nous utilisons des cookies essentiels et le stockage local pour améliorer votre expérience. En continuant, vous acceptez notre <a href="privacy.html">Politique de Confidentialité</a>.',de:'Wir verwenden essentielle Cookies und lokalen Speicher, um Ihr Erlebnis zu verbessern. Durch die weitere Nutzung akzeptieren Sie unsere <a href="privacy.html">Datenschutzrichtlinie</a>.',es:'Utilizamos cookies esenciales y almacenamiento local para mejorar su experiencia. Al continuar, acepta nuestra <a href="privacy.html">Política de Privacidad</a>.'},
+            accept_btn:{en:'ACCEPT',it:'ACCETTO',fr:'ACCEPTER',de:'AKZEPTIEREN',es:'ACEPTAR'},
+            // FOOTER
+            ft_why:{en:'Why Pagus',it:'Perché Pagus',fr:'Pourquoi Pagus',de:'Warum Pagus',es:'¿Por Qué Pagus?'},
+            ft_why_text:{en:'<strong style="color:#ccc;">15+</strong> years of excellence in premium menswear manufacturing. From wedding suits to formal business attire, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.',it:'<strong style="color:#ccc;">15+</strong> anni di eccellenza nella produzione di abbigliamento maschile premium. Dagli abiti da sposo ai completi formali, offriamo artigianalità di qualità europea a prezzi competitivi. Affidabili per rivenditori in Italia, Germania, Francia e oltre.',fr:'<strong style="color:#ccc;">15+</strong> ans d\'excellence dans la fabrication de mode masculine premium. Des costumes de mariage aux tenues formelles, nous offrons un savoir-faire de qualité européenne à des prix de gros compétitifs. Approuvé par des détaillants en Italie, Allemagne, France et au-delà.',de:'<strong style="color:#ccc;">15+</strong> Jahre Exzellenz in der Premium-Herrenmode-Fertigung. Von Hochzeitsanzügen bis zu formeller Geschäftskleidung liefern wir europäische Handwerksqualität zu wettbewerbsfähigen Großhandelspreisen. Vertraut von Einzelhändlern in Italien, Deutschland, Frankreich und darüber hinaus.',es:'<strong style="color:#ccc;">15+</strong> años de excelencia en la fabricación de moda masculina premium. Desde trajes de novio hasta vestimenta formal, ofrecemos artesanía de calidad europea a precios mayoristas competitivos. Confianza de minoristas en Italia, Alemania, Francia y más.'},
+            ft_contact:{en:'B2B Contact',it:'Contatto B2B',fr:'Contact B2B',de:'B2B Kontakt',es:'Contacto B2B'},
+            ft_location:{en:'Location:',it:'Sede:',fr:'Siège :',de:'Standort:',es:'Ubicación:'},
+            ft_moq:{en:'Minimum order: 50 pieces',it:'Ordine minimo: 50 pezzi',fr:'Commande minimum : 50 pièces',de:'Mindestbestellung: 50 Stück',es:'Pedido mínimo: 50 piezas'},
+            ft_pl:{en:'Private label & custom branding',it:'Private label & personalizzazione del marchio',fr:'Marque privée & personnalisation',de:'Private Label & individuelle Markengestaltung',es:'Marca blanca & personalización'},
+            ft_price:{en:'Direct factory pricing',it:'Prezzi diretti di fabbrica',fr:'Prix usine direct',de:'Direkte Fabrikpreise',es:'Precios directos de fábrica'},
+            ft_ship:{en:'Worldwide shipping & export docs',it:'Spedizione mondiale & documentazione export',fr:'Expédition mondiale & documents d\'exportation',de:'Weltweiter Versand & Exportdokumente',es:'Envío mundial & documentación de exportación'},
+            ft_mgr:{en:'Dedicated account manager',it:'Account manager dedicato',fr:'Gestionnaire de compte dédié',de:'Dedizierter Kundenbetreuer',es:'Gestor de cuenta dedicado'},
+            ft_links:{en:'Quick Links',it:'Link Utili',fr:'Liens Rapides',de:'Schnelllinks',es:'Enlaces Rápidos'},
+            ft_tc:{en:'Terms & Conditions',it:'Termini e Condizioni',fr:'Conditions Générales',de:'Allgemeine Geschäftsbedingungen',es:'Términos y Condiciones'},
+            ft_privacy:{en:'Privacy & GDPR',it:'Privacy & GDPR',fr:'Confidentialité & RGPD',de:'Datenschutz & DSGVO',es:'Privacidad & RGPD'},
+            ft_payment:{en:'Secure Payment & Bank Accounts',it:'Pagamento Sicuro & Conti Bancari',fr:'Paiement Sécurisé & Comptes Bancaires',de:'Sichere Zahlung & Bankkonten',es:'Pago Seguro & Cuentas Bancarias'},
+            ft_rights:{en:'All Rights Reserved.',it:'Tutti i Diritti Riservati.',fr:'Tous Droits Réservés.',de:'Alle Rechte vorbehalten.',es:'Todos los Derechos Reservados.'},
+            // EXISTING TEXTS
+            search_min:{en:'Please enter at least 2 characters',it:'Inserisci almeno 2 caratteri',fr:'Veuillez entrer au moins 2 caractères',de:'Bitte mindestens 2 Zeichen eingeben',es:'Ingrese al menos 2 caracteres'},
+            wa_list_header:{en:'Hi Pagus, I am interested in the prices for these models:',it:'Salve Pagus, sono interessato ai prezzi di questi modelli:',fr:'Bonjour Pagus, je suis intéressé par les prix de ces modèles :',de:'Hallo Pagus, ich interessiere mich für die Preise dieser Modelle:',es:'Hola Pagus, estoy interesado en los precios de estos modelos:'},
+            wa_list_footer:{en:'Thanks.',it:'Grazie.',fr:'Merci.',de:'Danke.',es:'Gracias.'},
+            wa_inquiry:{en:'Hi, inquiring about: ',it:'Salve, vorrei ricevere informazioni sul modello: ',fr:'Bonjour, je souhaite me renseigner sur : ',de:'Hallo, Anfrage zu: ',es:'Hola, consulta sobre: '},
+            popup_blocked:{en:'Popup blocked. Please allow popups for WhatsApp.',it:'Popup bloccato. Consenti i popup per WhatsApp.',fr:'Popup bloqué. Veuillez autoriser les popups pour WhatsApp.',de:'Popup blockiert. Bitte erlauben Sie Popups für WhatsApp.',es:'Popup bloqueado. Permita los popups para WhatsApp.'},
+            // ADV SEARCH
+            adv_search:{en:'Advanced Search',it:'Ricerca Avanzata',fr:'Recherche Avancée',de:'Erweiterte Suche',es:'Búsqueda Avanzada'}
         };
-        function t(key){return(TEXTS[key]&&TEXTS[key][LANG])||((TEXTS[key]&&TEXTS[key]['en'])||key);}
-        var urlParams=new URLSearchParams(window.location.search);
-        var curCat=urlParams.get('category')||"Wedding Suits";
-        var curSub=urlParams.get('subcategory');
 
-        var cart=[];
-        var lsAvailable=true;
-        try{localStorage.setItem('_test','1');localStorage.removeItem('_test');cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){lsAvailable=false;cart=[];}
+        // Compat: old t() function
+        var TEXTS=I18N;
+        function t(key){return(I18N[key]&&I18N[key][LANG])||((I18N[key]&&I18N[key]['en'])||key);}
 
-        // FIX #14: Footer year without document.write
-        document.getElementById('footerYear').textContent=new Date().getFullYear();
+        // ===================== T&C TRANSLATIONS =====================
+        var TC={
+            en:{
+                h1:'Terms and Conditions',
+                sub:'Wholesale Terms and Conditions of Sale',
+                upd:'Last updated: February 2026',
+                s:[
+                    {t:'1. Definitions',c:'<ul><li><strong>"Seller"</strong> refers to PAGUS Menswear, located in İzmir, Turkey.</li><li><strong>"Buyer"</strong> refers to any business entity placing a wholesale order.</li><li><strong>"Goods"</strong> refers to all menswear products offered for sale.</li><li><strong>"Order"</strong> refers to any purchase order submitted by the Buyer.</li><li><strong>"Website"</strong> refers to pagusmenswear.com and all its subdomains.</li></ul>'},
+                    {t:'2. Scope and Application',c:'<p>2.1. These Terms and Conditions ("T&Cs") apply to all wholesale orders placed with PAGUS Menswear through the Website, email, WhatsApp, or any other channel.</p><p>2.2. By placing an order, the Buyer agrees to be bound by these T&Cs. Any conflicting terms proposed by the Buyer shall not apply unless expressly agreed in writing.</p><p>2.3. These T&Cs are intended for business-to-business (B2B) transactions only. PAGUS Menswear does not sell directly to consumers.</p>'},
+                    {t:'3. Orders and Minimum Quantities',c:'<p>3.1. The minimum order quantity (MOQ) is 50 pieces per order, unless otherwise agreed in writing.</p><p>3.2. Orders may be placed via the Website inquiry form, email, or WhatsApp. An order is confirmed only upon written acknowledgement by PAGUS Menswear.</p><p>3.3. PAGUS Menswear reserves the right to refuse any order at its sole discretion.</p><p>3.4. Product availability is subject to stock levels at the time of order confirmation. Colours and fabric compositions may vary slightly between production batches.</p>'},
+                    {t:'4. Prices and Payment',c:'<p>4.1. All prices are quoted in Euros (EUR) or US Dollars (USD) and are exclusive of shipping, insurance, customs duties, and applicable taxes.</p><p>4.2. Prices are valid for 30 days from the date of quotation.</p><p>4.3. Standard payment terms:</p><ul><li>50% deposit upon order confirmation</li><li>50% balance before shipment</li></ul><p>4.4. Payment by bank transfer (SWIFT/IBAN). All bank charges are borne by the Buyer.</p><p>4.5. PAGUS Menswear reserves the right to suspend or cancel orders in case of late or incomplete payment.</p>'},
+                    {t:'5. Shipping and Delivery',c:'<p>5.1. Delivery terms specified using Incoterms® 2020 (e.g., EXW, FOB, CIF).</p><p>5.2. Estimated delivery times are indicative and not binding.</p><p>5.3. Risk of loss passes to the Buyer per the agreed Incoterm.</p><p>5.4. The Buyer is responsible for all import duties, customs clearance, and local taxes.</p>'},
+                    {t:'6. Quality and Inspection',c:'<p>6.1. All Goods are manufactured to professional quality standards.</p><p>6.2. The Buyer must inspect Goods upon delivery and notify of any defects within 7 business days.</p><p>6.3. Failure to notify constitutes acceptance.</p><p>6.4. Minor variations in colour, texture, or measurements within industry tolerances are not defects.</p>'},
+                    {t:'7. Returns and Claims',c:'<p>7.1. Returns accepted only for manufacturing defects or incorrect items, with prior written approval.</p><p>7.2. Approved returns shipped back in original packaging within 14 days.</p><p>7.3. PAGUS Menswear may replace defective Goods or issue a credit note.</p><p>7.4. Altered, washed, worn, or damaged Goods are not eligible for return.</p>'},
+                    {t:'8. Private Label and Customisation',c:'<p>8.1. Private label and custom branding services available under separate agreements.</p><p>8.2. Custom orders are non-cancellable once production has commenced.</p><p>8.3. The Buyer warrants provided designs do not infringe third-party IP rights.</p>'},
+                    {t:'9. Intellectual Property',c:'<p>9.1. All designs, photographs, and content are the exclusive property of PAGUS Menswear.</p><p>9.2. Product images may be used solely for reselling purchased Goods.</p>'},
+                    {t:'10. Data Protection (GDPR)',c:'<p>10.1. PAGUS Menswear collects personal data solely for:</p><ul><li>Processing and fulfilling orders</li><li>Communicating regarding orders and inquiries</li><li>Customer support</li><li>B2B marketing communications (with consent or legitimate interest)</li></ul><p>10.2. Under GDPR and Turkish KVKK, the Buyer has the right to access, rectify, erase, restrict, port data, and withdraw consent.</p><p>10.3. Data not shared with third parties except for order fulfilment.</p><p>10.4. Contact: info@pagusmenswear.com</p>'},
+                    {t:'11. Cookies',c:'<p>11.1. The Website uses cookies to enhance user experience and analyse traffic.</p><p>11.2. Cookies can be managed through browser settings.</p><p>11.3. Essential cookies cannot be disabled without impacting functionality.</p>'},
+                    {t:'12. Limitation of Liability',c:'<p>12.1. Total liability shall not exceed the value of the specific order.</p><p>12.2. No liability for indirect, incidental, or consequential damages.</p><p>12.3. Nothing limits liability for fraud or wilful misconduct.</p>'},
+                    {t:'13. Force Majeure',c:'<p>13.1. No liability for failures due to events beyond reasonable control including natural disasters, pandemics, war, trade embargoes, or supply chain disruptions.</p>'},
+                    {t:'14. Governing Law',c:'<p>14.1. Governed by the laws of the Republic of Turkey.</p><p>14.2. Disputes submitted to İzmir Courts and Enforcement Offices.</p><p>14.3. EU Buyers may assert mandatory protection rights under their local laws.</p>'},
+                    {t:'15. Modifications',c:'<p>15.1. PAGUS Menswear may modify these T&Cs at any time.</p><p>15.2. Continued use constitutes acceptance of modified T&Cs.</p>'},
+                    {t:'16. Contact',c:'<div class="tc-contact"><strong>PAGUS Menswear</strong><br>İzmir, Turkey<br>Email: info@pagusmenswear.com<br>WhatsApp: Available on the Website</div>'}
+                ]
+            },
+            it:{
+                h1:'Termini e Condizioni',
+                sub:'Condizioni Generali di Vendita all\'Ingrosso',
+                upd:'Ultimo aggiornamento: Febbraio 2026',
+                s:[
+                    {t:'1. Definizioni',c:'<ul><li><strong>"Venditore"</strong> si riferisce a PAGUS Menswear, con sede a İzmir, Turchia.</li><li><strong>"Acquirente"</strong> si riferisce a qualsiasi entità commerciale che effettua un ordine all\'ingrosso.</li><li><strong>"Merci"</strong> si riferisce a tutti i prodotti di abbigliamento maschile in vendita.</li><li><strong>"Ordine"</strong> si riferisce a qualsiasi ordine di acquisto inviato dall\'Acquirente.</li><li><strong>"Sito Web"</strong> si riferisce a pagusmenswear.com e tutti i suoi sottodomini.</li></ul>'},
+                    {t:'2. Ambito di Applicazione',c:'<p>2.1. Le presenti Condizioni Generali si applicano a tutti gli ordini all\'ingrosso effettuati con PAGUS Menswear tramite Sito Web, email, WhatsApp o qualsiasi altro canale.</p><p>2.2. Effettuando un ordine, l\'Acquirente accetta le presenti Condizioni. Condizioni contrastanti proposte dall\'Acquirente non si applicano salvo accordo scritto.</p><p>2.3. Le presenti Condizioni sono destinate esclusivamente a transazioni B2B. PAGUS Menswear non vende direttamente ai consumatori.</p>'},
+                    {t:'3. Ordini e Quantità Minime',c:'<p>3.1. La quantità minima d\'ordine (MOQ) è di 50 pezzi per ordine, salvo diverso accordo scritto.</p><p>3.2. Gli ordini possono essere effettuati tramite modulo di richiesta, email o WhatsApp. Un ordine è confermato solo previa conferma scritta di PAGUS Menswear.</p><p>3.3. PAGUS Menswear si riserva il diritto di rifiutare qualsiasi ordine a sua esclusiva discrezione.</p><p>3.4. La disponibilità dei prodotti è soggetta ai livelli di stock al momento della conferma. Colori e composizioni dei tessuti possono variare leggermente tra i lotti di produzione.</p>'},
+                    {t:'4. Prezzi e Pagamento',c:'<p>4.1. Tutti i prezzi sono indicati in Euro (EUR) o Dollari USA (USD), escluse spedizione, assicurazione, dazi doganali e tasse.</p><p>4.2. I prezzi sono validi per 30 giorni dalla data del preventivo.</p><p>4.3. Condizioni standard di pagamento:</p><ul><li>50% di anticipo alla conferma dell\'ordine</li><li>50% di saldo prima della spedizione</li></ul><p>4.4. Pagamento tramite bonifico bancario (SWIFT/IBAN). Tutte le spese bancarie sono a carico dell\'Acquirente.</p><p>4.5. PAGUS Menswear si riserva il diritto di sospendere o annullare ordini in caso di pagamento tardivo o incompleto.</p>'},
+                    {t:'5. Spedizione e Consegna',c:'<p>5.1. Le condizioni di consegna sono specificate secondo gli Incoterms® 2020 (es. EXW, FOB, CIF).</p><p>5.2. I tempi di consegna stimati sono indicativi e non vincolanti.</p><p>5.3. Il rischio di perdita o danno passa all\'Acquirente secondo l\'Incoterm concordato.</p><p>5.4. L\'Acquirente è responsabile di tutti i dazi all\'importazione, sdoganamento e tasse locali.</p>'},
+                    {t:'6. Qualità e Ispezione',c:'<p>6.1. Tutte le Merci sono fabbricate secondo standard professionali di qualità.</p><p>6.2. L\'Acquirente deve ispezionare le Merci alla consegna e notificare eventuali difetti entro 7 giorni lavorativi.</p><p>6.3. La mancata notifica entro tale periodo costituisce accettazione.</p><p>6.4. Variazioni minime di colore, consistenza o misure entro le tolleranze industriali non costituiscono difetto.</p>'},
+                    {t:'7. Resi e Reclami',c:'<p>7.1. I resi sono accettati solo per difetti di fabbricazione o articoli errati, previa approvazione scritta.</p><p>7.2. I resi approvati devono essere spediti nella confezione originale entro 14 giorni.</p><p>7.3. PAGUS Menswear può sostituire le Merci difettose o emettere una nota di credito.</p><p>7.4. Merci alterate, lavate, indossate o danneggiate non sono idonee al reso.</p>'},
+                    {t:'8. Private Label e Personalizzazione',c:'<p>8.1. Servizi di private label e personalizzazione disponibili con accordi separati.</p><p>8.2. Gli ordini personalizzati non sono cancellabili una volta avviata la produzione.</p><p>8.3. L\'Acquirente garantisce che i design forniti non violano diritti di proprietà intellettuale di terzi.</p>'},
+                    {t:'9. Proprietà Intellettuale',c:'<p>9.1. Tutti i design, le fotografie e i contenuti sono di proprietà esclusiva di PAGUS Menswear.</p><p>9.2. Le immagini dei prodotti possono essere utilizzate esclusivamente per la rivendita delle Merci acquistate.</p>'},
+                    {t:'10. Protezione dei Dati (GDPR)',c:'<p>10.1. PAGUS Menswear raccoglie dati personali esclusivamente per:</p><ul><li>Elaborazione ed evasione degli ordini</li><li>Comunicazioni relative a ordini e richieste</li><li>Assistenza clienti</li><li>Comunicazioni marketing B2B (con consenso o legittimo interesse)</li></ul><p>10.2. Ai sensi del GDPR e del KVKK turco, l\'Acquirente ha diritto di accesso, rettifica, cancellazione, limitazione, portabilità e revoca del consenso.</p><p>10.3. I dati non sono condivisi con terzi, salvo necessità per l\'evasione dell\'ordine.</p><p>10.4. Contatto: info@pagusmenswear.com</p>'},
+                    {t:'11. Cookie',c:'<p>11.1. Il Sito Web utilizza cookie per migliorare l\'esperienza utente e analizzare il traffico.</p><p>11.2. I cookie possono essere gestiti tramite le impostazioni del browser.</p><p>11.3. I cookie essenziali non possono essere disabilitati senza compromettere la funzionalità.</p>'},
+                    {t:'12. Limitazione di Responsabilità',c:'<p>12.1. La responsabilità totale non supera il valore dell\'ordine specifico.</p><p>12.2. Nessuna responsabilità per danni indiretti, incidentali o consequenziali.</p><p>12.3. Nulla limita la responsabilità per frode o dolo.</p>'},
+                    {t:'13. Forza Maggiore',c:'<p>13.1. Nessuna responsabilità per inadempimenti dovuti a eventi al di fuori del ragionevole controllo, inclusi disastri naturali, pandemie, guerre, embarghi commerciali o interruzioni della catena di approvvigionamento.</p>'},
+                    {t:'14. Legge Applicabile',c:'<p>14.1. Regolato dalle leggi della Repubblica di Turchia.</p><p>14.2. Le controversie sono di competenza dei Tribunali di İzmir.</p><p>14.3. Gli Acquirenti UE possono far valere i diritti di protezione obbligatori previsti dalle leggi del proprio paese.</p>'},
+                    {t:'15. Modifiche',c:'<p>15.1. PAGUS Menswear può modificare le presenti Condizioni in qualsiasi momento.</p><p>15.2. L\'uso continuato costituisce accettazione delle Condizioni modificate.</p>'},
+                    {t:'16. Contatti',c:'<div class="tc-contact"><strong>PAGUS Menswear</strong><br>İzmir, Turchia<br>Email: info@pagusmenswear.com<br>WhatsApp: Disponibile sul Sito Web</div>'}
+                ]
+            },
+            fr:{
+                h1:'Conditions Générales',
+                sub:'Conditions Générales de Vente en Gros',
+                upd:'Dernière mise à jour : Février 2026',
+                s:[
+                    {t:'1. Définitions',c:'<ul><li><strong>« Vendeur »</strong> désigne PAGUS Menswear, situé à İzmir, Turquie.</li><li><strong>« Acheteur »</strong> désigne toute entité commerciale passant une commande en gros.</li><li><strong>« Marchandises »</strong> désigne tous les produits de mode masculine proposés à la vente.</li><li><strong>« Commande »</strong> désigne tout bon de commande soumis par l\'Acheteur.</li><li><strong>« Site Web »</strong> désigne pagusmenswear.com et tous ses sous-domaines.</li></ul>'},
+                    {t:'2. Portée et Application',c:'<p>2.1. Les présentes CGV s\'appliquent à toutes les commandes en gros passées auprès de PAGUS Menswear via le Site Web, email, WhatsApp ou tout autre canal.</p><p>2.2. En passant commande, l\'Acheteur accepte les présentes CGV. Toute condition contraire ne s\'applique pas sauf accord écrit exprès.</p><p>2.3. Les présentes CGV sont destinées exclusivement aux transactions B2B. PAGUS Menswear ne vend pas directement aux consommateurs.</p>'},
+                    {t:'3. Commandes et Quantités Minimales',c:'<p>3.1. La quantité minimale de commande (MOQ) est de 50 pièces, sauf accord écrit contraire.</p><p>3.2. Les commandes peuvent être passées via le formulaire du Site Web, email ou WhatsApp. Une commande n\'est confirmée qu\'après accusé de réception écrit de PAGUS Menswear.</p><p>3.3. PAGUS Menswear se réserve le droit de refuser toute commande à sa seule discrétion.</p><p>3.4. La disponibilité est soumise aux niveaux de stock. Les couleurs et compositions peuvent varier légèrement entre les lots.</p>'},
+                    {t:'4. Prix et Paiement',c:'<p>4.1. Tous les prix sont indiqués en Euros (EUR) ou Dollars US (USD), hors frais de port, assurance, droits de douane et taxes.</p><p>4.2. Les prix sont valables 30 jours à compter du devis.</p><p>4.3. Conditions standard de paiement :</p><ul><li>50% d\'acompte à la confirmation</li><li>50% de solde avant expédition</li></ul><p>4.4. Paiement par virement bancaire (SWIFT/IBAN). Tous les frais bancaires sont à la charge de l\'Acheteur.</p><p>4.5. PAGUS Menswear se réserve le droit de suspendre ou annuler les commandes en cas de retard ou défaut de paiement.</p>'},
+                    {t:'5. Expédition et Livraison',c:'<p>5.1. Les conditions de livraison sont spécifiées selon les Incoterms® 2020 (ex. EXW, FOB, CIF).</p><p>5.2. Les délais de livraison sont indicatifs et non contraignants.</p><p>5.3. Le risque de perte passe à l\'Acheteur selon l\'Incoterm convenu.</p><p>5.4. L\'Acheteur est responsable de tous les droits d\'importation, dédouanement et taxes locales.</p>'},
+                    {t:'6. Qualité et Inspection',c:'<p>6.1. Toutes les Marchandises sont fabriquées selon des normes de qualité professionnelles.</p><p>6.2. L\'Acheteur doit inspecter les Marchandises à la livraison et signaler tout défaut dans les 7 jours ouvrables.</p><p>6.3. L\'absence de notification constitue une acceptation.</p><p>6.4. Les variations mineures de couleur, texture ou mesures dans les tolérances industrielles ne constituent pas un défaut.</p>'},
+                    {t:'7. Retours et Réclamations',c:'<p>7.1. Les retours sont acceptés uniquement pour défauts de fabrication ou articles incorrects, avec approbation écrite préalable.</p><p>7.2. Les retours approuvés doivent être expédiés dans l\'emballage d\'origine sous 14 jours.</p><p>7.3. PAGUS Menswear peut remplacer les Marchandises défectueuses ou émettre un avoir.</p><p>7.4. Les Marchandises modifiées, lavées, portées ou endommagées ne sont pas éligibles au retour.</p>'},
+                    {t:'8. Marque Privée et Personnalisation',c:'<p>8.1. Services de marque privée et personnalisation disponibles sous accords séparés.</p><p>8.2. Les commandes personnalisées ne sont ni annulables ni remboursables une fois la production lancée.</p><p>8.3. L\'Acheteur garantit que les designs fournis ne portent pas atteinte aux droits de propriété intellectuelle de tiers.</p>'},
+                    {t:'9. Propriété Intellectuelle',c:'<p>9.1. Tous les designs, photographies et contenus sont la propriété exclusive de PAGUS Menswear.</p><p>9.2. Les images produits peuvent être utilisées uniquement pour la revente des Marchandises achetées.</p>'},
+                    {t:'10. Protection des Données (RGPD)',c:'<p>10.1. PAGUS Menswear collecte des données personnelles uniquement pour :</p><ul><li>Le traitement et l\'exécution des commandes</li><li>Les communications relatives aux commandes</li><li>Le service client</li><li>Les communications marketing B2B (avec consentement ou intérêt légitime)</li></ul><p>10.2. Conformément au RGPD et au KVKK turc, l\'Acheteur dispose des droits d\'accès, rectification, effacement, limitation, portabilité et retrait du consentement.</p><p>10.3. Les données ne sont pas partagées avec des tiers sauf nécessité pour l\'exécution de la commande.</p><p>10.4. Contact : info@pagusmenswear.com</p>'},
+                    {t:'11. Cookies',c:'<p>11.1. Le Site Web utilise des cookies pour améliorer l\'expérience utilisateur et analyser le trafic.</p><p>11.2. Les cookies peuvent être gérés via les paramètres du navigateur.</p><p>11.3. Les cookies essentiels ne peuvent pas être désactivés sans impact sur la fonctionnalité.</p>'},
+                    {t:'12. Limitation de Responsabilité',c:'<p>12.1. La responsabilité totale ne dépasse pas la valeur de la commande spécifique.</p><p>12.2. Aucune responsabilité pour dommages indirects, accessoires ou consécutifs.</p><p>12.3. Rien ne limite la responsabilité pour fraude ou faute intentionnelle.</p>'},
+                    {t:'13. Force Majeure',c:'<p>13.1. Aucune responsabilité en cas d\'inexécution due à des événements hors contrôle raisonnable, y compris catastrophes naturelles, pandémies, guerres, embargos ou perturbations de la chaîne d\'approvisionnement.</p>'},
+                    {t:'14. Droit Applicable',c:'<p>14.1. Régi par les lois de la République de Turquie.</p><p>14.2. Les litiges sont soumis à la compétence exclusive des Tribunaux d\'İzmir.</p><p>14.3. Les Acheteurs de l\'UE peuvent faire valoir les droits de protection obligatoires de leur pays de résidence.</p>'},
+                    {t:'15. Modifications',c:'<p>15.1. PAGUS Menswear peut modifier les présentes CGV à tout moment.</p><p>15.2. L\'utilisation continue constitue une acceptation des CGV modifiées.</p>'},
+                    {t:'16. Contact',c:'<div class="tc-contact"><strong>PAGUS Menswear</strong><br>İzmir, Turquie<br>Email : info@pagusmenswear.com<br>WhatsApp : Disponible sur le Site Web</div>'}
+                ]
+            },
+            de:{
+                h1:'Allgemeine Geschäftsbedingungen',
+                sub:'Allgemeine Geschäftsbedingungen für den Großhandelsverkauf',
+                upd:'Letzte Aktualisierung: Februar 2026',
+                s:[
+                    {t:'1. Definitionen',c:'<ul><li><strong>„Verkäufer"</strong> bezieht sich auf PAGUS Menswear mit Sitz in İzmir, Türkei.</li><li><strong>„Käufer"</strong> bezieht sich auf jede Geschäftseinheit, die eine Großhandelsbestellung aufgibt.</li><li><strong>„Waren"</strong> bezieht sich auf alle zum Verkauf angebotenen Herrenbekleidungsprodukte.</li><li><strong>„Bestellung"</strong> bezieht sich auf jeden vom Käufer eingereichten Kaufauftrag.</li><li><strong>„Website"</strong> bezieht sich auf pagusmenswear.com und alle Subdomains.</li></ul>'},
+                    {t:'2. Geltungsbereich',c:'<p>2.1. Diese AGB gelten für alle Großhandelsbestellungen bei PAGUS Menswear über die Website, E-Mail, WhatsApp oder jeden anderen Kanal.</p><p>2.2. Mit der Bestellung akzeptiert der Käufer diese AGB. Abweichende Bedingungen des Käufers gelten nicht, sofern nicht ausdrücklich schriftlich vereinbart.</p><p>2.3. Diese AGB gelten ausschließlich für B2B-Transaktionen. PAGUS Menswear verkauft nicht direkt an Verbraucher.</p>'},
+                    {t:'3. Bestellungen und Mindestmengen',c:'<p>3.1. Die Mindestbestellmenge (MOQ) beträgt 50 Stück pro Bestellung, sofern nicht schriftlich anders vereinbart.</p><p>3.2. Bestellungen können über das Anfrageformular, E-Mail oder WhatsApp aufgegeben werden. Eine Bestellung gilt erst nach schriftlicher Bestätigung durch PAGUS Menswear als bestätigt.</p><p>3.3. PAGUS Menswear behält sich das Recht vor, Bestellungen nach eigenem Ermessen abzulehnen.</p><p>3.4. Die Produktverfügbarkeit unterliegt den Lagerbeständen. Farben und Stoffzusammensetzungen können zwischen Produktionschargen leicht variieren.</p>'},
+                    {t:'4. Preise und Zahlung',c:'<p>4.1. Alle Preise verstehen sich in Euro (EUR) oder US-Dollar (USD), zuzüglich Versand, Versicherung, Zölle und Steuern.</p><p>4.2. Preise gelten 30 Tage ab Angebotsdatum.</p><p>4.3. Standard-Zahlungsbedingungen:</p><ul><li>50% Anzahlung bei Auftragsbestätigung</li><li>50% Restbetrag vor Versand</li></ul><p>4.4. Zahlung per Banküberweisung (SWIFT/IBAN). Alle Bankgebühren trägt der Käufer.</p><p>4.5. PAGUS Menswear behält sich das Recht vor, Bestellungen bei verspäteter oder unvollständiger Zahlung auszusetzen oder zu stornieren.</p>'},
+                    {t:'5. Versand und Lieferung',c:'<p>5.1. Lieferbedingungen werden gemäß Incoterms® 2020 spezifiziert (z.B. EXW, FOB, CIF).</p><p>5.2. Geschätzte Lieferzeiten sind unverbindlich.</p><p>5.3. Das Verlustrisiko geht gemäß vereinbartem Incoterm auf den Käufer über.</p><p>5.4. Der Käufer ist für alle Einfuhrzölle, Zollabfertigung und lokale Steuern verantwortlich.</p>'},
+                    {t:'6. Qualität und Prüfung',c:'<p>6.1. Alle Waren werden nach professionellen Qualitätsstandards hergestellt.</p><p>6.2. Der Käufer muss die Waren bei Lieferung prüfen und Mängel innerhalb von 7 Werktagen melden.</p><p>6.3. Unterlassene Meldung gilt als Annahme.</p><p>6.4. Geringfügige Abweichungen bei Farbe, Textur oder Maßen innerhalb branchenüblicher Toleranzen gelten nicht als Mangel.</p>'},
+                    {t:'7. Retouren und Reklamationen',c:'<p>7.1. Retouren nur bei Herstellungsfehlern oder falschen Artikeln nach vorheriger schriftlicher Genehmigung.</p><p>7.2. Genehmigte Retouren müssen in Originalverpackung innerhalb von 14 Tagen zurückgesandt werden.</p><p>7.3. PAGUS Menswear kann mangelhafte Waren ersetzen oder eine Gutschrift ausstellen.</p><p>7.4. Veränderte, gewaschene, getragene oder beschädigte Waren sind nicht retournierbar.</p>'},
+                    {t:'8. Private Label und Individualisierung',c:'<p>8.1. Private-Label- und individuelle Branding-Services sind unter separaten Vereinbarungen verfügbar.</p><p>8.2. Individuelle Bestellungen sind nach Produktionsbeginn nicht stornierbar.</p><p>8.3. Der Käufer garantiert, dass bereitgestellte Designs keine IP-Rechte Dritter verletzen.</p>'},
+                    {t:'9. Geistiges Eigentum',c:'<p>9.1. Alle Designs, Fotografien und Inhalte sind ausschließliches Eigentum von PAGUS Menswear.</p><p>9.2. Produktbilder dürfen ausschließlich zum Weiterverkauf der gekauften Waren verwendet werden.</p>'},
+                    {t:'10. Datenschutz (DSGVO)',c:'<p>10.1. PAGUS Menswear erhebt personenbezogene Daten ausschließlich für:</p><ul><li>Bestellabwicklung und -erfüllung</li><li>Kommunikation bezüglich Bestellungen und Anfragen</li><li>Kundenservice</li><li>B2B-Marketingkommunikation (mit Einwilligung oder berechtigtem Interesse)</li></ul><p>10.2. Gemäß DSGVO und türkischem KVKK hat der Käufer das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenportabilität und Widerruf der Einwilligung.</p><p>10.3. Daten werden nicht an Dritte weitergegeben, außer zur Auftragsabwicklung.</p><p>10.4. Kontakt: info@pagusmenswear.com</p>'},
+                    {t:'11. Cookies',c:'<p>11.1. Die Website verwendet Cookies zur Verbesserung der Benutzererfahrung und Analyse des Datenverkehrs.</p><p>11.2. Cookies können über Browsereinstellungen verwaltet werden.</p><p>11.3. Essentielle Cookies können nicht ohne Funktionseinschränkung deaktiviert werden.</p>'},
+                    {t:'12. Haftungsbeschränkung',c:'<p>12.1. Die Gesamthaftung übersteigt nicht den Wert der jeweiligen Bestellung.</p><p>12.2. Keine Haftung für indirekte, beiläufige oder Folgeschäden.</p><p>12.3. Nichts beschränkt die Haftung bei Betrug oder vorsätzlichem Fehlverhalten.</p>'},
+                    {t:'13. Höhere Gewalt',c:'<p>13.1. Keine Haftung bei Nichterfüllung aufgrund von Ereignissen außerhalb zumutbarer Kontrolle, einschließlich Naturkatastrophen, Pandemien, Krieg, Handelsembargos oder Lieferkettenunterbrechungen.</p>'},
+                    {t:'14. Anwendbares Recht',c:'<p>14.1. Es gilt das Recht der Republik Türkei.</p><p>14.2. Streitigkeiten unterliegen der ausschließlichen Zuständigkeit der Gerichte in İzmir.</p><p>14.3. EU-Käufer können zwingende Schutzrechte ihres Wohnsitzlandes geltend machen.</p>'},
+                    {t:'15. Änderungen',c:'<p>15.1. PAGUS Menswear kann diese AGB jederzeit ändern.</p><p>15.2. Die fortgesetzte Nutzung gilt als Akzeptanz der geänderten AGB.</p>'},
+                    {t:'16. Kontakt',c:'<div class="tc-contact"><strong>PAGUS Menswear</strong><br>İzmir, Türkei<br>E-Mail: info@pagusmenswear.com<br>WhatsApp: Auf der Website verfügbar</div>'}
+                ]
+            },
+            es:{
+                h1:'Términos y Condiciones',
+                sub:'Condiciones Generales de Venta al por Mayor',
+                upd:'Última actualización: Febrero 2026',
+                s:[
+                    {t:'1. Definiciones',c:'<ul><li><strong>"Vendedor"</strong> se refiere a PAGUS Menswear, ubicado en İzmir, Turquía.</li><li><strong>"Comprador"</strong> se refiere a cualquier entidad comercial que realice un pedido mayorista.</li><li><strong>"Mercancías"</strong> se refiere a todos los productos de moda masculina ofrecidos.</li><li><strong>"Pedido"</strong> se refiere a cualquier orden de compra enviada por el Comprador.</li><li><strong>"Sitio Web"</strong> se refiere a pagusmenswear.com y todos sus subdominios.</li></ul>'},
+                    {t:'2. Alcance y Aplicación',c:'<p>2.1. Estos T&C se aplican a todos los pedidos mayoristas realizados con PAGUS Menswear a través del Sitio Web, email, WhatsApp o cualquier otro canal.</p><p>2.2. Al realizar un pedido, el Comprador acepta estos T&C. Las condiciones contradictorias del Comprador no se aplican salvo acuerdo escrito expreso.</p><p>2.3. Estos T&C están destinados exclusivamente a transacciones B2B. PAGUS Menswear no vende directamente a consumidores.</p>'},
+                    {t:'3. Pedidos y Cantidades Mínimas',c:'<p>3.1. La cantidad mínima de pedido (MOQ) es de 50 piezas, salvo acuerdo escrito diferente.</p><p>3.2. Los pedidos pueden realizarse mediante el formulario del Sitio Web, email o WhatsApp. Un pedido se confirma solo tras acuse de recibo escrito de PAGUS Menswear.</p><p>3.3. PAGUS Menswear se reserva el derecho de rechazar cualquier pedido a su entera discreción.</p><p>3.4. La disponibilidad está sujeta a niveles de stock. Colores y composiciones pueden variar ligeramente entre lotes.</p>'},
+                    {t:'4. Precios y Pago',c:'<p>4.1. Todos los precios se indican en Euros (EUR) o Dólares US (USD), sin incluir envío, seguro, aranceles e impuestos.</p><p>4.2. Los precios son válidos durante 30 días desde la cotización.</p><p>4.3. Condiciones estándar de pago:</p><ul><li>50% de anticipo a la confirmación del pedido</li><li>50% de saldo antes del envío</li></ul><p>4.4. Pago por transferencia bancaria (SWIFT/IBAN). Todos los cargos bancarios corren por cuenta del Comprador.</p><p>4.5. PAGUS Menswear se reserva el derecho de suspender o cancelar pedidos por pago tardío o incompleto.</p>'},
+                    {t:'5. Envío y Entrega',c:'<p>5.1. Las condiciones de entrega se especifican según Incoterms® 2020 (ej. EXW, FOB, CIF).</p><p>5.2. Los plazos de entrega son orientativos y no vinculantes.</p><p>5.3. El riesgo de pérdida pasa al Comprador según el Incoterm acordado.</p><p>5.4. El Comprador es responsable de todos los aranceles de importación, despacho de aduanas e impuestos locales.</p>'},
+                    {t:'6. Calidad e Inspección',c:'<p>6.1. Todas las Mercancías se fabrican según estándares profesionales de calidad.</p><p>6.2. El Comprador debe inspeccionar las Mercancías a la entrega y notificar defectos en un plazo de 7 días hábiles.</p><p>6.3. La falta de notificación constituye aceptación.</p><p>6.4. Variaciones menores de color, textura o medidas dentro de tolerancias industriales no constituyen defecto.</p>'},
+                    {t:'7. Devoluciones y Reclamaciones',c:'<p>7.1. Las devoluciones se aceptan solo por defectos de fabricación o artículos incorrectos, con aprobación escrita previa.</p><p>7.2. Las devoluciones aprobadas deben enviarse en embalaje original en un plazo de 14 días.</p><p>7.3. PAGUS Menswear puede reemplazar las Mercancías defectuosas o emitir una nota de crédito.</p><p>7.4. Las Mercancías alteradas, lavadas, usadas o dañadas no son elegibles para devolución.</p>'},
+                    {t:'8. Marca Blanca y Personalización',c:'<p>8.1. Servicios de marca blanca y personalización disponibles bajo acuerdos separados.</p><p>8.2. Los pedidos personalizados no son cancelables una vez iniciada la producción.</p><p>8.3. El Comprador garantiza que los diseños proporcionados no infringen derechos de propiedad intelectual de terceros.</p>'},
+                    {t:'9. Propiedad Intelectual',c:'<p>9.1. Todos los diseños, fotografías y contenidos son propiedad exclusiva de PAGUS Menswear.</p><p>9.2. Las imágenes de productos pueden utilizarse únicamente para la reventa de las Mercancías adquiridas.</p>'},
+                    {t:'10. Protección de Datos (RGPD)',c:'<p>10.1. PAGUS Menswear recopila datos personales únicamente para:</p><ul><li>Procesamiento y cumplimiento de pedidos</li><li>Comunicaciones sobre pedidos y consultas</li><li>Atención al cliente</li><li>Comunicaciones de marketing B2B (con consentimiento o interés legítimo)</li></ul><p>10.2. Según el RGPD y la KVKK turca, el Comprador tiene derecho de acceso, rectificación, supresión, limitación, portabilidad y retirada del consentimiento.</p><p>10.3. Los datos no se comparten con terceros excepto para el cumplimiento del pedido.</p><p>10.4. Contacto: info@pagusmenswear.com</p>'},
+                    {t:'11. Cookies',c:'<p>11.1. El Sitio Web utiliza cookies para mejorar la experiencia del usuario y analizar el tráfico.</p><p>11.2. Las cookies se pueden gestionar a través de la configuración del navegador.</p><p>11.3. Las cookies esenciales no se pueden desactivar sin afectar la funcionalidad.</p>'},
+                    {t:'12. Limitación de Responsabilidad',c:'<p>12.1. La responsabilidad total no excede el valor del pedido específico.</p><p>12.2. Sin responsabilidad por daños indirectos, incidentales o consecuentes.</p><p>12.3. Nada limita la responsabilidad por fraude o conducta dolosa.</p>'},
+                    {t:'13. Fuerza Mayor',c:'<p>13.1. Sin responsabilidad por incumplimiento debido a eventos fuera del control razonable, incluyendo desastres naturales, pandemias, guerras, embargos comerciales o interrupciones en la cadena de suministro.</p>'},
+                    {t:'14. Ley Aplicable',c:'<p>14.1. Regido por las leyes de la República de Turquía.</p><p>14.2. Los litigios se someten a la jurisdicción exclusiva de los Tribunales de İzmir.</p><p>14.3. Los Compradores de la UE pueden hacer valer los derechos de protección obligatorios de su país de residencia.</p>'},
+                    {t:'15. Modificaciones',c:'<p>15.1. PAGUS Menswear puede modificar estos T&C en cualquier momento.</p><p>15.2. El uso continuado constituye aceptación de los T&C modificados.</p>'},
+                    {t:'16. Contacto',c:'<div class="tc-contact"><strong>PAGUS Menswear</strong><br>İzmir, Turquía<br>Email: info@pagusmenswear.com<br>WhatsApp: Disponible en el Sitio Web</div>'}
+                ]
+            }
+        };
+
+        // ===================== APPLY LANGUAGE =====================
+        function applyLanguage(){
+            // Text content
+            document.querySelectorAll('[data-t]').forEach(function(el){
+                var key=el.getAttribute('data-t');
+                if(I18N[key]&&I18N[key][LANG]){
+                    if(key==='cookie_text'||key==='ft_why_text') el.innerHTML=I18N[key][LANG];
+                    else el.textContent=I18N[key][LANG];
+                }
+            });
+            // Placeholders
+            document.querySelectorAll('[data-tp]').forEach(function(el){
+                var key=el.getAttribute('data-tp');
+                if(I18N[key]&&I18N[key][LANG]) el.placeholder=I18N[key][LANG];
+            });
+            // Flag active state
+            SUPPORTED_LANGS.forEach(function(l){
+                var b=document.getElementById('langBtn_'+l);
+                if(b) b.classList.toggle('active',l===LANG);
+            });
+            // Render T&C
+            renderTC();
+        }
+
+        function renderTC(){
+            var d=TC[LANG]||TC['en'];
+            var h='<h1>'+d.h1+'</h1><div class="tc-subtitle">'+d.sub+'</div><div class="tc-updated">'+d.upd+'</div>';
+            d.s.forEach(function(sec){ h+='<h2>'+sec.t+'</h2>'+sec.c; });
+            h+='<p style="margin-top:20px;color:#999;font-size:0.8rem;font-style:italic;">'+d.upd+'</p>';
+            var el=document.getElementById('tcContent');
+            if(el) el.innerHTML=h;
+        }
+
+        function setLang(lang){
+            LANG=lang;
+            localStorage.setItem('pagusLang',lang);
+            applyLanguage();
+        }
 
         function openTerms(){
             document.getElementById('tcOverlay').classList.add('visible');
@@ -862,6 +1038,16 @@
         document.addEventListener('keydown',function(e){
             if(e.key==='Escape'&&document.getElementById('tcOverlay').classList.contains('visible')) closeTerms();
         });
+        var urlParams=new URLSearchParams(window.location.search);
+        var curCat=urlParams.get('category')||"Wedding Suits";
+        var curSub=urlParams.get('subcategory');
+
+        var cart=[];
+        var lsAvailable=true;
+        try{localStorage.setItem('_test','1');localStorage.removeItem('_test');cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){lsAvailable=false;cart=[];}
+
+        // FIX #14: Footer year without document.write
+        document.getElementById('footerYear').textContent=new Date().getFullYear();
 
         // ===================== UTILITY FUNCTIONS =====================
 
@@ -899,8 +1085,7 @@
         }
 
         function setLanguage(){
-            var g=document.getElementById('guideText');
-            g.innerText=t('guide_tap');
+            applyLanguage();
         }
 
         // ===================== PRODUCT DATA INIT =====================
