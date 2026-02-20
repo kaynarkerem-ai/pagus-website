@@ -184,6 +184,9 @@
         .auth-submit:disabled { opacity: 0.5; cursor: not-allowed; }
         .auth-divider { display: flex; align-items: center; gap: 15px; margin: 20px 0; color: #ccc; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
         .auth-divider::before, .auth-divider::after { content: ''; flex: 1; border-top: 1px solid #eee; }
+        .auth-forgot { text-align: right; margin: -5px 0 15px; }
+        .auth-forgot a { color: var(--color-gold); font-size: 0.78rem; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .auth-forgot a:hover { color: var(--color-noble); text-decoration: underline; }
         .google-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: var(--font-body); display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; color: #333; }
         .google-btn:hover { background: #f8f8f8; border-color: #bbb; }
         .google-btn svg { width: 18px; height: 18px; }
@@ -335,12 +338,23 @@
                         <label for="loginPass" data-t="password_label">Password</label>
                         <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
                     </div>
+                    <div class="auth-forgot"><a href="javascript:void(0)" onclick="showForgotPassword()" data-t="forgot_pw">Forgot your password?</a></div>
                     <button class="auth-submit" onclick="doLogin()" id="loginBtn" data-t="login">LOGIN</button>
                     <div class="auth-divider" data-t="or_divider">or</div>
                     <button class="google-btn" onclick="doGoogleLogin()">
                         <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                         Continue with Google
                     </button>
+                </div>
+                <!-- FORGOT PASSWORD FORM -->
+                <div id="forgotForm" style="display:none;">
+                    <p style="color:#666; font-size:0.85rem; margin-bottom:20px;" data-t="forgot_desc">Enter your email address and we'll send you a link to reset your password.</p>
+                    <div class="auth-field">
+                        <label for="forgotEmail" data-t="email_label">Email</label>
+                        <input type="email" id="forgotEmail" placeholder="your@email.com" autocomplete="email" onkeypress="if(event.key==='Enter')doForgotPassword()">
+                    </div>
+                    <button class="auth-submit" onclick="doForgotPassword()" id="forgotBtn" data-t="send_reset">SEND RESET LINK</button>
+                    <div class="auth-forgot" style="text-align:center; margin-top:15px;"><a href="javascript:void(0)" onclick="hideForgotPassword()" data-t="back_to_login">← Back to Login</a></div>
                 </div>
                 <!-- REGISTER FORM -->
                 <div id="registerForm" style="display:none;">
@@ -536,6 +550,8 @@
         document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
         document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
         document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+        document.getElementById('forgotForm').style.display = 'none';
+        document.querySelector('.auth-tabs').style.display = 'flex';
         document.getElementById('authError').style.display = 'none';
     }
 
@@ -565,7 +581,47 @@
                 if(e.code === 'auth/too-many-requests') msg = 'Too many attempts. Try again later.';
                 showAuthError(msg);
             })
-            .finally(function(){ btn.disabled = false; btn.textContent = 'LOGIN'; });
+            .finally(function(){ btn.disabled = false; btn.textContent = t('login'); });
+    }
+
+    function showForgotPassword(){
+        document.getElementById('loginForm').style.display='none';
+        document.getElementById('forgotForm').style.display='block';
+        document.getElementById('authError').style.display='none';
+        document.querySelector('.auth-tabs').style.display='none';
+        document.getElementById('forgotEmail').value=document.getElementById('loginEmail').value||'';
+        document.getElementById('forgotEmail').focus();
+    }
+
+    function hideForgotPassword(){
+        document.getElementById('forgotForm').style.display='none';
+        document.getElementById('loginForm').style.display='block';
+        document.querySelector('.auth-tabs').style.display='flex';
+        document.getElementById('authError').style.display='none';
+    }
+
+    function doForgotPassword(){
+        if(!auth){ showAuthError('Firebase not configured.'); return; }
+        var email=document.getElementById('forgotEmail').value.trim();
+        if(!email){ showAuthError(t('forgot_empty')); return; }
+
+        var btn=document.getElementById('forgotBtn');
+        btn.disabled=true; btn.textContent=t('sending');
+
+        auth.sendPasswordResetEmail(email)
+            .then(function(){
+                document.getElementById('authError').style.display='none';
+                showToast(t('reset_sent'));
+                setTimeout(function(){ hideForgotPassword(); },1500);
+            })
+            .catch(function(e){
+                var msg=t('reset_error');
+                if(e.code==='auth/user-not-found') msg=t('reset_not_found');
+                if(e.code==='auth/invalid-email') msg=t('reset_invalid');
+                if(e.code==='auth/too-many-requests') msg=t('reset_too_many');
+                showAuthError(msg);
+            })
+            .finally(function(){ btn.disabled=false; btn.textContent=t('send_reset'); });
     }
 
     function doRegister(){
@@ -837,6 +893,18 @@
             confirm_pw:{en:'Confirm Password',it:'Conferma Password',fr:'Confirmer le mot de passe',de:'Passwort bestätigen',es:'Confirmar contraseña'},
             repeat_ph:{en:'Repeat password',it:'Ripeti la password',fr:'Répéter le mot de passe',de:'Passwort wiederholen',es:'Contraseña de nuevo'},
             create_account:{en:'CREATE ACCOUNT',it:'CREA ACCOUNT',fr:'CRÉER UN COMPTE',de:'KONTO ERSTELLEN',es:'CREAR CUENTA'},
+            // FORGOT PASSWORD
+            forgot_pw:{en:'Forgot your password?',it:'Password dimenticata?',fr:'Mot de passe oublié ?',de:'Passwort vergessen?',es:'¿Olvidaste tu contraseña?'},
+            forgot_desc:{en:'Enter your email address and we\'ll send you a link to reset your password.',it:'Inserisci il tuo indirizzo email e ti invieremo un link per reimpostare la password.',fr:'Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.',de:'Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.',es:'Ingrese su correo electrónico y le enviaremos un enlace para restablecer su contraseña.'},
+            send_reset:{en:'SEND RESET LINK',it:'INVIA LINK DI RESET',fr:'ENVOYER LE LIEN',de:'LINK SENDEN',es:'ENVIAR ENLACE'},
+            back_to_login:{en:'← Back to Login',it:'← Torna al Login',fr:'← Retour à la Connexion',de:'← Zurück zur Anmeldung',es:'← Volver al Inicio de Sesión'},
+            sending:{en:'SENDING...',it:'INVIO...',fr:'ENVOI...',de:'WIRD GESENDET...',es:'ENVIANDO...'},
+            reset_sent:{en:'Reset link sent! Check your email inbox.',it:'Link di reset inviato! Controlla la tua casella email.',fr:'Lien envoyé ! Vérifiez votre boîte mail.',de:'Link gesendet! Überprüfen Sie Ihr E-Mail-Postfach.',es:'¡Enlace enviado! Revise su bandeja de entrada.'},
+            reset_error:{en:'Could not send reset email. Please try again.',it:'Impossibile inviare l\'email di reset. Riprova.',fr:'Impossible d\'envoyer l\'email. Veuillez réessayer.',de:'E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',es:'No se pudo enviar el correo. Inténtelo de nuevo.'},
+            reset_not_found:{en:'No account found with this email address.',it:'Nessun account trovato con questa email.',fr:'Aucun compte trouvé avec cette adresse email.',de:'Kein Konto mit dieser E-Mail-Adresse gefunden.',es:'No se encontró ninguna cuenta con este correo.'},
+            reset_invalid:{en:'Please enter a valid email address.',it:'Inserisci un indirizzo email valido.',fr:'Veuillez entrer une adresse email valide.',de:'Bitte geben Sie eine gültige E-Mail-Adresse ein.',es:'Ingrese una dirección de correo válida.'},
+            reset_too_many:{en:'Too many attempts. Please try again later.',it:'Troppi tentativi. Riprova più tardi.',fr:'Trop de tentatives. Réessayez plus tard.',de:'Zu viele Versuche. Bitte versuchen Sie es später erneut.',es:'Demasiados intentos. Inténtelo más tarde.'},
+            forgot_empty:{en:'Please enter your email address.',it:'Inserisci il tuo indirizzo email.',fr:'Veuillez entrer votre adresse email.',de:'Bitte geben Sie Ihre E-Mail-Adresse ein.',es:'Ingrese su dirección de correo.'},
             // COOKIE
             cookie_text:{en:'We use essential cookies and local storage to improve your experience. By continuing, you accept our <a href="privacy.html">Privacy Policy</a>.',it:'Utilizziamo cookie essenziali e archiviazione locale per migliorare la tua esperienza. Continuando, accetti la nostra <a href="privacy.html">Informativa sulla Privacy</a>.',fr:'Nous utilisons des cookies essentiels et le stockage local pour améliorer votre expérience. En continuant, vous acceptez notre <a href="privacy.html">Politique de Confidentialité</a>.',de:'Wir verwenden essentielle Cookies und lokalen Speicher, um Ihr Erlebnis zu verbessern. Durch die weitere Nutzung akzeptieren Sie unsere <a href="privacy.html">Datenschutzrichtlinie</a>.',es:'Utilizamos cookies esenciales y almacenamiento local para mejorar su experiencia. Al continuar, acepta nuestra <a href="privacy.html">Política de Privacidad</a>.'},
             accept_btn:{en:'ACCEPT',it:'ACCETTO',fr:'ACCEPTER',de:'AKZEPTIEREN',es:'ACEPTAR'},
