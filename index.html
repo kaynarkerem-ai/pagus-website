@@ -67,11 +67,11 @@
         .pl-btn { display: inline-block; background: var(--color-gold); color: #000; padding: 15px 40px; text-decoration: none; font-weight: 700; border-radius: 4px; }
         
         /* LANGUAGE BAR */
-        .lang-bar { background: var(--color-noble); text-align: center; padding: 5px 0; border-bottom: 1px solid rgba(201,169,98,0.15); display: flex; justify-content: center; align-items: center; gap: 0; }
-        .lang-bar button { background: none; border: none; cursor: pointer; padding: 4px 10px; color: rgba(255,255,255,0.4); font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; transition: 0.3s; }
-        .lang-bar button:hover { color: var(--color-gold); }
-        .lang-bar button.active { color: var(--color-gold); }
-        .lang-sep { color: rgba(255,255,255,0.15); font-size: 0.65rem; user-select: none; }
+        /* LANGUAGE SWITCH */
+        .lang-switch { display: flex; align-items: center; gap: 2px; margin-right: 12px; padding-right: 12px; border-right: 1px solid rgba(255,255,255,0.15); }
+        .lang-switch button { background: none; border: none; cursor: pointer; padding: 3px 5px; color: rgba(255,255,255,0.35); font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 1.5px; transition: 0.3s; border-radius: 2px; }
+        .lang-switch button:hover { color: var(--color-gold); }
+        .lang-switch button.active { color: var(--color-gold); background: rgba(201,169,98,0.12); }
 
         .footer { background: #000; color: #999; padding: 70px 40px; border-top: 1px solid #333; }
         .footer-grid { max-width: var(--site-max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4rem; }
@@ -225,18 +225,6 @@
     </style>
 </head>
 <body>
-    <!-- LANGUAGE BAR -->
-    <div class="lang-bar" id="langBar">
-        <button onclick="setLang('en')" id="langBtn_en" title="English">EN</button>
-        <span class="lang-sep">|</span>
-        <button onclick="setLang('it')" id="langBtn_it" title="Italiano">IT</button>
-        <span class="lang-sep">|</span>
-        <button onclick="setLang('fr')" id="langBtn_fr" title="Français">FR</button>
-        <span class="lang-sep">|</span>
-        <button onclick="setLang('de')" id="langBtn_de" title="Deutsch">DE</button>
-        <span class="lang-sep">|</span>
-        <button onclick="setLang('es')" id="langBtn_es" title="Español">ES</button>
-    </div>
     <header class="header"><div class="header-inner">
         <div class="logo-row">
             <a href="index.html" class="logo">PAGUS</a>
@@ -248,6 +236,13 @@
                 </div>
             </div>
             <div class="soc-icons">
+                <div class="lang-switch" id="langBar">
+                    <button onclick="setLang('en')" id="langBtn_en" title="English">EN</button>
+                    <button onclick="setLang('it')" id="langBtn_it" title="Italiano">IT</button>
+                    <button onclick="setLang('fr')" id="langBtn_fr" title="Français">FR</button>
+                    <button onclick="setLang('de')" id="langBtn_de" title="Deutsch">DE</button>
+                    <button onclick="setLang('es')" id="langBtn_es" title="Español">ES</button>
+                </div>
                 <!-- Auth UI: shows login btn or user greeting -->
                 <div id="authArea">
                     <button class="auth-btn" onclick="openAuthModal('login')" data-t="login">LOGIN</button>
