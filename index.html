@@ -24,51 +24,12 @@
         .nav-list { display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; width: 100%; justify-content: center; flex-wrap: wrap; }
         .nav-list a { color: #fff; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-decoration: none; white-space: nowrap; padding: 10px 5px; }
         .nav-list a:hover { color: var(--color-gold); }
-        .search-area { display: flex; align-items: center; gap: 8px; position: relative; }
-        .search-icon-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.12); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; flex-shrink: 0; }
-        .search-icon-btn:hover { background: var(--color-gold); }
-        .search-icon-btn svg { width: 20px; height: 20px; fill: #fff; transition: 0.3s; }
-        .search-icon-btn:hover svg { fill: var(--color-noble); }
-        .search-expand { display: flex; align-items: center; background: rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; max-width: 0; opacity: 0; transition: max-width 0.35s ease, opacity 0.25s ease, padding 0.3s; padding: 0; }
-        .search-expand.open { max-width: 280px; opacity: 1; padding: 0 0 0 15px; }
-        .search-expand input { background: transparent; border: none; color: #fff; font-size: 0.9rem; width: 180px; outline: none; padding: 10px 0; font-family: var(--font-body); }
-        .search-expand input::placeholder { color: rgba(255,255,255,0.5); }
-        .search-expand .search-go { background: var(--color-gold); border: none; padding: 10px 16px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; border-radius: 0 25px 25px 0; }
-        .search-expand .search-go:hover { background: #d4b366; }
-        .search-expand .search-go svg { width: 16px; height: 16px; fill: var(--color-noble); }
-        .adv-search-btn { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); padding: 8px 14px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 20px; white-space: nowrap; }
-        .adv-search-btn:hover { border-color: var(--color-gold); color: var(--color-gold); }
-        /* Advanced Search Panel */
-        .adv-panel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 3000; }
-        .adv-panel-overlay.visible { display: flex; justify-content: center; align-items: flex-start; padding-top: 90px; }
-        .adv-panel { background: #fff; width: 600px; max-width: 94vw; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.35); animation: advSlideDown 0.3s ease; max-height: 80vh; display: flex; flex-direction: column; }
-        @keyframes advSlideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        .adv-panel-header { background: var(--color-noble); padding: 22px 28px; border-radius: 12px 12px 0 0; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
-        .adv-panel-header h3 { font-family: var(--font-display); color: #fff; font-size: 1.2rem; margin: 0; }
-        .adv-panel-close { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 1.6rem; cursor: pointer; line-height: 1; padding: 5px; }
-        .adv-panel-close:hover { color: #fff; }
-        .adv-panel-body { padding: 25px 28px; overflow-y: auto; flex: 1; }
-        .adv-section { margin-bottom: 22px; }
-        .adv-section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-noble); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-        .adv-section-title svg { width: 14px; height: 14px; fill: var(--color-gold); flex-shrink: 0; }
-        .adv-keyword { width: 100%; padding: 12px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; font-family: var(--font-body); outline: none; transition: 0.3s; }
-        .adv-keyword:focus { border-color: var(--color-gold); box-shadow: 0 0 0 3px rgba(201,169,98,0.15); }
-        .adv-checks { display: flex; flex-wrap: wrap; gap: 8px; }
-        .adv-check { display: flex; align-items: center; gap: 6px; }
-        .adv-check input[type="checkbox"] { display: none; }
-        .adv-check label { display: flex; align-items: center; gap: 6px; padding: 7px 14px; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: #555; cursor: pointer; transition: 0.2s; user-select: none; }
-        .adv-check label:hover { border-color: var(--color-gold); color: var(--color-noble); }
-        .adv-check input:checked + label { background: var(--color-noble); color: #fff; border-color: var(--color-noble); }
-        .adv-sub-checks { margin-top: 10px; padding-left: 12px; border-left: 2px solid var(--color-gold); }
-        .adv-panel-footer { padding: 18px 28px; border-top: 1px solid #eee; display: flex; gap: 12px; justify-content: flex-end; flex-shrink: 0; background: #fff; border-radius: 0 0 12px 12px; }
-        .adv-clear-btn { background: transparent; border: 1px solid #ddd; color: #888; padding: 11px 22px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border-radius: 6px; font-family: var(--font-body); transition: 0.2s; }
-        .adv-clear-btn:hover { border-color: #999; color: #333; }
-        .adv-search-submit { background: var(--color-noble); color: #fff; border: none; padding: 11px 30px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; border-radius: 6px; font-family: var(--font-body); transition: 0.2s; }
-        .adv-search-submit:hover { background: #1a252f; }
-        /* Search results grouped */
-        .search-group { margin-bottom: 35px; }
-        .search-group-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-noble); padding-bottom: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--color-gold); display: inline-block; }
-        .search-group-count { font-family: var(--font-body); font-size: 0.8rem; color: #999; font-weight: 400; margin-left: 8px; }
+        .search-form { display: contents; }
+        .search-box { display: flex; gap: 0; background: rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; }
+        .search-box input { background: transparent; border: none; padding: 10px 18px; color: #fff; font-size: 0.9rem; width: 180px; outline: none; }
+        .search-box input::placeholder { color: rgba(255,255,255,0.5); }
+        .search-box button { background: var(--color-gold); border: none; padding: 10px 18px; color: var(--color-noble); font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .search-box button:hover { background: #d4b366; }
         .search-results-section { padding: 40px 20px; max-width: var(--site-max-width); margin: 0 auto; }
         .search-results-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-noble); margin-bottom: 30px; text-align: center; }
         .search-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
@@ -105,7 +66,36 @@
         .pl-title { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-gold); margin-bottom: 20px; }
         .pl-btn { display: inline-block; background: var(--color-gold); color: #000; padding: 15px 40px; text-decoration: none; font-weight: 700; border-radius: 4px; }
         .footer { background: #000; color: #999; padding: 70px 40px; border-top: 1px solid #333; }
-        .footer-grid { max-width: var(--site-max-width); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 6rem; }
+        .footer-grid { max-width: var(--site-max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4rem; }
+        .footer h4 { color: var(--color-gold); font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
+        .footer p { font-size: 0.85rem; line-height: 1.8; color: #888; }
+        .footer ul { list-style: none; }
+        .footer ul li { margin-bottom: 10px; font-size: 0.85rem; line-height: 1.6; }
+        .footer ul li strong { color: #bbb; }
+        .footer a { color: #888; text-decoration: none; transition: 0.3s; }
+        .footer a:hover { color: var(--color-gold); }
+        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #222; font-size: 0.8rem; color: #444; }
+        .footer-links { display: flex; flex-direction: column; gap: 10px; }
+        .footer-links a { display: flex; align-items: center; gap: 8px; }
+        .footer-links svg { width: 14px; height: 14px; fill: var(--color-gold); flex-shrink: 0; }
+        .footer-service-list { list-style: none; }
+        .footer-service-list li { padding-left: 18px; position: relative; margin-bottom: 8px; font-size: 0.85rem; color: #888; }
+        .footer-service-list li::before { content: '›'; position: absolute; left: 0; color: var(--color-gold); font-weight: 700; }
+        .tc-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 6000; overflow-y: auto; }
+        .tc-overlay.visible { display: block; }
+        .tc-container { max-width: 860px; margin: 40px auto; padding: 50px; background: #fff; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.4); position: relative; }
+        .tc-close { position: fixed; top: 20px; right: 30px; background: rgba(0,0,0,0.6); border: none; color: #fff; width: 44px; height: 44px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; z-index: 6001; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .tc-close:hover { background: var(--color-gold); color: var(--color-noble); }
+        .tc-container h1 { font-family: var(--font-display); font-size: 2rem; color: var(--color-noble); margin-bottom: 5px; }
+        .tc-container .tc-subtitle { color: var(--color-gold); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+        .tc-container .tc-updated { color: #999; font-size: 0.8rem; margin-bottom: 30px; }
+        .tc-container h2 { font-family: var(--font-display); font-size: 1.2rem; color: var(--color-noble); margin: 30px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #eee; }
+        .tc-container p, .tc-container li { font-size: 0.9rem; line-height: 1.8; color: #555; }
+        .tc-container ul { padding-left: 20px; margin: 8px 0; }
+        .tc-container li { margin-bottom: 6px; }
+        .tc-contact { background: var(--color-noble); color: #fff; padding: 25px 30px; border-radius: 8px; margin-top: 30px; }
+        .tc-contact strong { color: var(--color-gold); }
+        @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 30px; } .tc-container { margin: 15px; padding: 30px 20px; } .tc-close { top: 10px; right: 15px; } }
         .float-cart { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #25D366; color: #fff; padding: 12px 20px; border-radius: 50px; font-weight: 700; display: none; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: none; cursor: pointer; font-family: var(--font-body); font-size: 1rem; }
         .float-cart:hover { background: #1da851; transform: scale(1.05); }
         .badges { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
@@ -131,12 +121,8 @@
         @media (max-width: 768px) {
             .header-inner { padding: 0 15px; }
             .logo-row { flex-wrap: wrap; gap: 10px; }
-            .search-expand.open { max-width: 200px; }
-            .search-expand input { width: 120px; }
-            .adv-search-btn { font-size: 0.6rem; padding: 6px 10px; }
-            .adv-panel { width: 100%; max-width: 100%; border-radius: 0; max-height: 100vh; }
-            .adv-panel-header { border-radius: 0; }
-            .adv-panel-footer { border-radius: 0; }
+            .search-box { order: 3; width: 100%; margin-top: 10px; }
+            .search-box input { flex: 1; width: auto; }
             .nav-list { gap: 10px; justify-content: center; } .nav-list a { font-size: 0.75rem; padding: 5px; }
             .grid { padding: 20px 10px; gap: 15px; grid-template-columns: 1fr 1fr; }
             .modal-content { display: flex; flex-direction: column; height: 100%; overflow-y: scroll; }
@@ -232,15 +218,12 @@
     <header class="header"><div class="header-inner">
         <div class="logo-row">
             <a href="index.html" class="logo">PAGUS</a>
-            <div class="search-area" role="search">
-                <div class="search-expand" id="searchExpand">
+            <!-- FIX #13: role="search" wrapper for accessibility -->
+            <div role="search" class="search-form">
+                <div class="search-box">
                     <input type="text" id="siteSearch" placeholder="Search products..." aria-label="Search products" onkeypress="if(event.key==='Enter')doSiteSearch()">
-                    <button class="search-go" onclick="doSiteSearch()" aria-label="Search"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+                    <button onclick="doSiteSearch()" aria-label="Search">&#128269;</button>
                 </div>
-                <button class="search-icon-btn" onclick="toggleSearchBar()" aria-label="Search" title="Search">
-                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                </button>
-                <button class="adv-search-btn" onclick="openAdvancedSearch()">Advanced Search</button>
             </div>
             <div class="soc-icons">
                 <!-- Auth UI: shows login btn or user greeting -->
@@ -263,34 +246,6 @@
                 <li><a href="?category=Children">Children</a></li>
         </ul></nav>
     </div></header>
-
-    <!-- Advanced Search Panel -->
-    <div class="adv-panel-overlay" id="advPanelOverlay" onclick="if(event.target===this)closeAdvancedSearch()">
-        <div class="adv-panel">
-            <div class="adv-panel-header">
-                <h3>Advanced Search</h3>
-                <button class="adv-panel-close" onclick="closeAdvancedSearch()">&times;</button>
-            </div>
-            <div class="adv-panel-body">
-                <div class="adv-section">
-                    <div class="adv-section-title"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>Product Code / Keyword</div>
-                    <input type="text" class="adv-keyword" id="advKeyword" placeholder="e.g. 15057, smoking, mandarin..." onkeypress="if(event.key==='Enter')runAdvancedSearch()">
-                </div>
-                <div class="adv-section">
-                    <div class="adv-section-title"><svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 12H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm10-12h-6c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 12h-6c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2z"/></svg>Categories</div>
-                    <div class="adv-checks" id="advCategoryChecks"></div>
-                </div>
-                <div class="adv-section" id="advSubSection" style="display:none;">
-                    <div class="adv-section-title"><svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>Subcategories</div>
-                    <div class="adv-checks adv-sub-checks" id="advSubChecks"></div>
-                </div>
-            </div>
-            <div class="adv-panel-footer">
-                <button class="adv-clear-btn" onclick="clearAdvancedSearch()">Clear All</button>
-                <button class="adv-search-submit" onclick="runAdvancedSearch()">Search</button>
-            </div>
-        </div>
-    </div>
 
     <!-- FIX #1: Carousel HTML elements - were completely missing -->
     <section class="carousel-section" id="carouselSection" style="display:none;">
@@ -434,9 +389,112 @@
     </div>
     <!-- FIX #14: Replaced document.write with span + JS textContent -->
     <footer class="footer"><div class="footer-grid">
-        <div><h4>ABOUT PAGUS MENSWEAR</h4><p>PAGUS Menswear is established with a single mission: to provide world-class textile solutions.</p></div>
-        <div><h4>B2B CONTACT</h4><ul><li><strong>WhatsApp:</strong> <span id="footerWa"></span></li><li><strong>Location:</strong> Izmir, Turkey</li><li><a href="payment.html" style="color:#999; text-decoration:none;">Secure Payment &amp; Bank Accounts</a></li></ul></div>
-    </div><div style="text-align:center; margin-top:50px; font-size:0.8rem; color:#444;">&copy; <span id="footerYear"></span> Pagus Menswear. All Rights Reserved.</div></footer>
+        <div>
+            <h4>Why Pagus</h4>
+            <p><strong style="color:#ccc;">15+ years</strong> of excellence in premium menswear manufacturing. From wedding suits to formal business attire, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.</p>
+        </div>
+        <div>
+            <h4>B2B Contact</h4>
+            <ul>
+                <li><strong>WhatsApp:</strong> <span id="footerWa"></span></li>
+                <li><strong>Location:</strong> İzmir, Turkey</li>
+                <li><strong>Email:</strong> info@pagusmenswear.com</li>
+            </ul>
+            <ul class="footer-service-list" style="margin-top:15px;">
+                <li>Minimum order: 50 pieces</li>
+                <li>Private label &amp; custom branding</li>
+                <li>Direct factory pricing</li>
+                <li>Worldwide shipping &amp; export docs</li>
+                <li>Dedicated account manager</li>
+            </ul>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <div class="footer-links">
+                <a href="javascript:void(0)" onclick="openTerms()"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>Terms &amp; Conditions</a>
+                <a href="javascript:void(0)" onclick="openTerms()"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg>Privacy &amp; GDPR</a>
+                <a href="payment.html"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>Secure Payment &amp; Bank Accounts</a>
+            </div>
+        </div>
+    </div><div class="footer-bottom">&copy; <span id="footerYear"></span> Pagus Menswear. All Rights Reserved. &nbsp;|&nbsp; <a href="javascript:void(0)" onclick="openTerms()" style="color:#666;">Terms &amp; Conditions</a></div></footer>
+
+    <!-- Terms & Conditions Overlay -->
+    <div class="tc-overlay" id="tcOverlay" onclick="if(event.target===this)closeTerms()">
+        <button class="tc-close" onclick="closeTerms()" aria-label="Close">&times;</button>
+        <div class="tc-container">
+            <h1>Terms and Conditions</h1>
+            <div class="tc-subtitle">Wholesale Terms and Conditions of Sale</div>
+            <div class="tc-updated">Last updated: February 2026</div>
+            <h2>1. Definitions</h2>
+            <ul><li><strong>"Seller"</strong> refers to PAGUS Menswear, located in İzmir, Turkey.</li><li><strong>"Buyer"</strong> refers to any business entity placing a wholesale order.</li><li><strong>"Goods"</strong> refers to all menswear products offered for sale.</li><li><strong>"Order"</strong> refers to any purchase order submitted by the Buyer.</li><li><strong>"Website"</strong> refers to pagusmenswear.com and all its subdomains.</li></ul>
+            <h2>2. Scope and Application</h2>
+            <p>2.1. These Terms and Conditions ("T&amp;Cs") apply to all wholesale orders placed with PAGUS Menswear through the Website, email, WhatsApp, or any other channel.</p>
+            <p>2.2. By placing an order, the Buyer agrees to be bound by these T&amp;Cs. Any conflicting terms proposed by the Buyer shall not apply unless expressly agreed in writing.</p>
+            <p>2.3. These T&amp;Cs are intended for business-to-business (B2B) transactions only. PAGUS Menswear does not sell directly to consumers.</p>
+            <h2>3. Orders and Minimum Quantities</h2>
+            <p>3.1. The minimum order quantity (MOQ) is 50 pieces per order, unless otherwise agreed in writing.</p>
+            <p>3.2. Orders may be placed via the Website inquiry form, email, or WhatsApp. An order is confirmed only upon written acknowledgement by PAGUS Menswear.</p>
+            <p>3.3. PAGUS Menswear reserves the right to refuse any order at its sole discretion without being required to provide a reason.</p>
+            <p>3.4. Product availability is subject to stock levels at the time of order confirmation. Colours and fabric compositions may vary slightly between production batches.</p>
+            <h2>4. Prices and Payment</h2>
+            <p>4.1. All prices are quoted in Euros (EUR) or US Dollars (USD) as indicated, and are exclusive of shipping, insurance, customs duties, and applicable taxes.</p>
+            <p>4.2. Prices are valid for 30 days from the date of quotation unless otherwise specified.</p>
+            <p>4.3. Payment terms shall be agreed upon in the order confirmation. Standard payment terms are:</p>
+            <ul><li>50% deposit upon order confirmation</li><li>50% balance before shipment</li></ul>
+            <p>4.4. Payment may be made by bank transfer (SWIFT/IBAN) or other methods agreed in writing. All bank charges are borne by the Buyer.</p>
+            <p>4.5. PAGUS Menswear reserves the right to suspend or cancel orders in case of late or incomplete payment.</p>
+            <h2>5. Shipping and Delivery</h2>
+            <p>5.1. Delivery terms shall be specified in each order confirmation using Incoterms&reg; 2020 (e.g., EXW, FOB, CIF).</p>
+            <p>5.2. Estimated delivery times are indicative and not binding. PAGUS Menswear shall not be liable for delays caused by circumstances beyond its reasonable control.</p>
+            <p>5.3. Risk of loss or damage to the Goods passes to the Buyer in accordance with the agreed Incoterm.</p>
+            <p>5.4. The Buyer is responsible for all import duties, customs clearance, and local taxes applicable in the destination country.</p>
+            <h2>6. Quality and Inspection</h2>
+            <p>6.1. PAGUS Menswear warrants that all Goods are manufactured to professional quality standards consistent with the garment industry.</p>
+            <p>6.2. The Buyer must inspect the Goods upon delivery and notify PAGUS Menswear of any visible defects or discrepancies within 7 (seven) business days of receipt.</p>
+            <p>6.3. Failure to notify within this period shall constitute acceptance of the Goods.</p>
+            <p>6.4. Minor variations in colour, texture, or measurements (within industry tolerances) shall not constitute a defect.</p>
+            <h2>7. Returns and Claims</h2>
+            <p>7.1. Returns are only accepted for manufacturing defects or incorrect items shipped, subject to prior written approval from PAGUS Menswear.</p>
+            <p>7.2. Approved returns must be shipped back in original packaging within 14 days of approval. Return shipping costs are borne by the Buyer unless the defect is attributable to PAGUS Menswear.</p>
+            <p>7.3. Upon inspection and confirmation of the defect, PAGUS Menswear shall, at its sole discretion, either replace the defective Goods or issue a credit note.</p>
+            <p>7.4. Goods that have been altered, washed, worn, or damaged by the Buyer are not eligible for return.</p>
+            <h2>8. Private Label and Customisation</h2>
+            <p>8.1. PAGUS Menswear offers private label manufacturing and custom branding services subject to separate written agreements.</p>
+            <p>8.2. Custom or private label orders are non-cancellable and non-refundable once production has commenced.</p>
+            <p>8.3. The Buyer warrants that any logos, trademarks, or designs provided for private label production do not infringe any third-party intellectual property rights.</p>
+            <h2>9. Intellectual Property</h2>
+            <p>9.1. All product designs, photographs, catalogue imagery, and content on the Website are the exclusive property of PAGUS Menswear and are protected under applicable intellectual property laws.</p>
+            <p>9.2. The Buyer may use product images provided by PAGUS Menswear solely for the purpose of reselling the purchased Goods. Any other use requires prior written consent.</p>
+            <h2>10. Data Protection (GDPR Compliance)</h2>
+            <p>10.1. PAGUS Menswear collects and processes personal data (such as contact names, email addresses, phone numbers, and business addresses) solely for the purposes of:</p>
+            <ul><li>Processing and fulfilling orders</li><li>Communicating with Buyers regarding orders and inquiries</li><li>Providing customer support</li><li>Sending relevant B2B marketing communications (with consent or legitimate interest)</li></ul>
+            <p>10.2. In accordance with the EU General Data Protection Regulation (GDPR) and applicable Turkish data protection legislation (KVKK), the Buyer has the right to:</p>
+            <ul><li>Access, rectify, or erase personal data held by PAGUS Menswear</li><li>Object to or restrict processing of personal data</li><li>Request data portability</li><li>Withdraw consent at any time</li></ul>
+            <p>10.3. Personal data shall not be shared with third parties except as necessary for order fulfilment (e.g., shipping companies, payment processors).</p>
+            <p>10.4. For data protection inquiries or requests, please contact: info@pagusmenswear.com.</p>
+            <p>10.5. PAGUS Menswear implements appropriate technical and organisational measures to protect personal data against unauthorised access, loss, or destruction.</p>
+            <h2>11. Cookies and Website Usage</h2>
+            <p>11.1. The Website uses cookies and similar technologies to enhance user experience, analyse traffic, and store user preferences (such as language settings and login sessions).</p>
+            <p>11.2. By using the Website, the Buyer consents to the use of cookies as described. Cookies can be managed or disabled through browser settings.</p>
+            <p>11.3. Essential cookies required for Website functionality (e.g., authentication, cart) cannot be disabled without impacting the service.</p>
+            <h2>12. Limitation of Liability</h2>
+            <p>12.1. To the maximum extent permitted by applicable law, PAGUS Menswear's total liability arising from or in connection with any order shall not exceed the total value of the specific order giving rise to the claim.</p>
+            <p>12.2. PAGUS Menswear shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, revenue, or business opportunities.</p>
+            <p>12.3. Nothing in these T&amp;Cs shall limit liability for fraud, wilful misconduct, or any liability that cannot be excluded under applicable law.</p>
+            <h2>13. Force Majeure</h2>
+            <p>13.1. PAGUS Menswear shall not be liable for any failure or delay in performing its obligations due to events beyond its reasonable control, including but not limited to natural disasters, pandemics, war, government regulations, trade embargoes, strikes, or supply chain disruptions.</p>
+            <h2>14. Governing Law and Dispute Resolution</h2>
+            <p>14.1. These T&amp;Cs shall be governed by and construed in accordance with the laws of the Republic of Turkey.</p>
+            <p>14.2. Any dispute arising from or in connection with these T&amp;Cs that cannot be resolved amicably shall be submitted to the exclusive jurisdiction of the İzmir Courts and Enforcement Offices.</p>
+            <p>14.3. For Buyers within the European Union, nothing in this clause shall prevent the Buyer from asserting mandatory consumer or B2B protection rights available under the laws of their country of residence, to the extent applicable.</p>
+            <h2>15. Modifications</h2>
+            <p>15.1. PAGUS Menswear reserves the right to modify these T&amp;Cs at any time. The updated version shall be published on the Website with the effective date.</p>
+            <p>15.2. Continued use of the Website or placement of orders after such changes constitutes acceptance of the modified T&amp;Cs.</p>
+            <h2>16. Contact Information</h2>
+            <div class="tc-contact"><strong>PAGUS Menswear</strong><br>İzmir, Turkey<br>Email: info@pagusmenswear.com<br>WhatsApp: Available on the Website</div>
+            <p style="margin-top:20px; color:#999; font-size:0.8rem; font-style:italic;">These Terms and Conditions are effective as of the date stated above.</p>
+        </div>
+    </div>
     <script src="inventory.js?v=1771500808"></script>
     <!-- Firebase SDK (Compat for single-file usage) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -793,6 +851,18 @@
         // FIX #14: Footer year without document.write
         document.getElementById('footerYear').textContent=new Date().getFullYear();
 
+        function openTerms(){
+            document.getElementById('tcOverlay').classList.add('visible');
+            document.body.style.overflow='hidden';
+        }
+        function closeTerms(){
+            document.getElementById('tcOverlay').classList.remove('visible');
+            document.body.style.overflow='';
+        }
+        document.addEventListener('keydown',function(e){
+            if(e.key==='Escape'&&document.getElementById('tcOverlay').classList.contains('visible')) closeTerms();
+        });
+
         // ===================== UTILITY FUNCTIONS =====================
 
         function escapeHTML(s){
@@ -916,7 +986,7 @@
             var sr=document.getElementById('searchResults');
             var floatCartBtn=document.getElementById('floatCart');
             var privLabel=document.getElementById('privateLabelSection');
-            var searchArea=document.querySelector('.search-area');
+            var searchBox=document.querySelector('.search-box');
 
             // FIX #2: Every element access guarded with null check
             if(!FEATURES.hero&&hero)hero.style.display='none';
@@ -924,20 +994,20 @@
             if(!FEATURES.carousel&&carousel)carousel.style.display='none';
             if(!FEATURES.whatsappFloat&&floatCartBtn)floatCartBtn.style.display='none';
             if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';
-            if(!FEATURES.search&&searchArea)searchArea.style.display='none';
+            if(!FEATURES.search&&searchBox)searchBox.style.display='none';
             if(!FEATURES.favorites){
                 document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});
                 document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});
             }
 
-            if(urlParams.get('search')||urlParams.get('adv_cats')||urlParams.get('adv_subs')){
+            if(urlParams.get('search')){
                 if(hero)hero.style.display='none';
                 if(showcase)showcase.style.display='none';
                 if(carousel)carousel.style.display='none';
                 if(pta)pta.style.display='none';
                 if(sr)sr.style.display='block';
                 document.getElementById('pGrid').style.display='none';
-                doSearchDisplay(urlParams.get('search')||'');
+                doSearchDisplay(urlParams.get('search'));
             }else if(urlParams.get('category')||urlParams.get('subcategory')){
                 if(hero)hero.style.display='none';
                 if(showcase)showcase.style.display='none';
@@ -957,24 +1027,15 @@
         }
 
         // ===================== SEARCH =====================
-
-        function toggleSearchBar(){
-            var exp=document.getElementById('searchExpand');
-            exp.classList.toggle('open');
-            if(exp.classList.contains('open')){
-                setTimeout(function(){ document.getElementById('siteSearch').focus(); },350);
-            }
-        }
-        document.addEventListener('click',function(e){
-            var area=document.querySelector('.search-area');
-            if(area&&!area.contains(e.target)){
-                document.getElementById('searchExpand').classList.remove('open');
-            }
-        });
+        // FIX #11: Toast instead of alert, with i18n
+        // FIX #5: safeFocalY in search results
 
         function doSiteSearch(){
             var q=document.getElementById('siteSearch').value.trim();
-            if(q.length<2){ showToast(t('search_min')); return; }
+            if(q.length<2){
+                showToast(t('search_min'));
+                return;
+            }
             window.location.href='?search='+encodeURIComponent(q);
         }
 
@@ -984,166 +1045,35 @@
             openModal(r.id,r.id,r.path);
         }
 
-        // --- Advanced Search ---
-        function buildAdvancedSearchUI(){
-            if(typeof productsDB==='undefined')return;
-
-            // Collect main categories with counts
-            var cats={}, subs={};
-            productsDB.forEach(function(p){
-                var mc=p.mainCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category);
-                if(!cats[mc])cats[mc]=0;
-                cats[mc]++;
-                var sc=p.subCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:'General');
-                if(sc&&sc!=='General'){
-                    if(!subs[sc])subs[sc]={count:0,parent:mc};
-                    subs[sc].count++;
-                }
-            });
-
-            // Build category checkboxes
-            var html='';
-            Object.keys(cats).forEach(function(cat,i){
-                html+='<div class="adv-check"><input type="checkbox" id="advCat'+i+'" value="'+escapeAttr(cat)+'" onchange="onAdvCatChange()">'
-                    +'<label for="advCat'+i+'">'+escapeHTML(cat)+' <span style="opacity:0.5;font-size:0.7rem">('+cats[cat]+')</span></label></div>';
-            });
-            document.getElementById('advCategoryChecks').innerHTML=html;
-
-            // Build subcategory checkboxes
-            var subKeys=Object.keys(subs);
-            if(subKeys.length>0){
-                var shtml='';
-                subKeys.forEach(function(sub,i){
-                    shtml+='<div class="adv-check" data-parent="'+escapeAttr(subs[sub].parent)+'"><input type="checkbox" id="advSub'+i+'" value="'+escapeAttr(sub)+'">'
-                        +'<label for="advSub'+i+'">'+escapeHTML(sub)+' <span style="opacity:0.5;font-size:0.7rem">('+subs[sub].count+')</span></label></div>';
-                });
-                document.getElementById('advSubChecks').innerHTML=shtml;
-                document.getElementById('advSubSection').style.display='block';
-            }else{
-                document.getElementById('advSubSection').style.display='none';
-            }
-        }
-
-        function onAdvCatChange(){
-            // Show/hide subcategories based on selected parent cats
-            var selectedCats=[];
-            document.querySelectorAll('#advCategoryChecks input:checked').forEach(function(cb){ selectedCats.push(cb.value); });
-            document.querySelectorAll('#advSubChecks .adv-check').forEach(function(el){
-                var parent=el.getAttribute('data-parent');
-                if(selectedCats.length===0||selectedCats.indexOf(parent)>-1){
-                    el.style.display='';
-                }else{
-                    el.style.display='none';
-                    el.querySelector('input').checked=false;
-                }
-            });
-        }
-
-        function openAdvancedSearch(){
-            buildAdvancedSearchUI();
-            document.getElementById('advPanelOverlay').classList.add('visible');
-            document.body.style.overflow='hidden';
-            setTimeout(function(){ var kw=document.getElementById('advKeyword'); if(kw)kw.focus(); },300);
-        }
-
-        function closeAdvancedSearch(){
-            document.getElementById('advPanelOverlay').classList.remove('visible');
-            document.body.style.overflow='';
-        }
-
-        function clearAdvancedSearch(){
-            document.getElementById('advKeyword').value='';
-            document.querySelectorAll('#advCategoryChecks input, #advSubChecks input').forEach(function(cb){cb.checked=false;});
-            onAdvCatChange();
-        }
-
-        function runAdvancedSearch(){
-            var keyword=(document.getElementById('advKeyword').value||'').trim().toLowerCase();
-            var selectedCats=[];
-            document.querySelectorAll('#advCategoryChecks input:checked').forEach(function(cb){ selectedCats.push(cb.value.toLowerCase()); });
-            var selectedSubs=[];
-            document.querySelectorAll('#advSubChecks input:checked').forEach(function(cb){ selectedSubs.push(cb.value.toLowerCase()); });
-
-            closeAdvancedSearch();
-
-            var params=[];
-            if(keyword) params.push('search='+encodeURIComponent(keyword));
-            if(selectedCats.length) params.push('adv_cats='+encodeURIComponent(selectedCats.join('|')));
-            if(selectedSubs.length) params.push('adv_subs='+encodeURIComponent(selectedSubs.join('|')));
-
-            if(params.length===0){
-                showToast('Please enter a keyword or select at least one filter.');
-                return;
-            }
-            window.location.href='?'+params.join('&');
-        }
-
         function doSearchDisplay(q){
-            var urlP=new URLSearchParams(window.location.search);
-            var advCats=(urlP.get('adv_cats')||'').toLowerCase().split('|').filter(Boolean);
-            var advSubs=(urlP.get('adv_subs')||'').toLowerCase().split('|').filter(Boolean);
-            var qLower=(q||'').toLowerCase();
-            var isAdvanced=advCats.length>0||advSubs.length>0;
-
             var results=[];
+            var qLower=q.toLowerCase();
             for(var i=0;i<productsDB.length;i++){
                 var p=productsDB[i];
-                var pMainCat=(p.mainCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category)).toLowerCase();
-                var pSubCat=(p.subCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:'General')).toLowerCase();
-
-                // Keyword: match against id OR full category string
-                var matchKw=!qLower||p.id.toLowerCase().indexOf(qLower)>-1||p.category.toLowerCase().indexOf(qLower)>-1;
-
-                // Category filter: if subs selected, use sub match; else use cat match
-                var matchCat=true;
-                if(advSubs.length>0){
-                    matchCat=advSubs.indexOf(pSubCat)>-1;
-                }else if(advCats.length>0){
-                    matchCat=advCats.indexOf(pMainCat)>-1;
+                if(p.id.toLowerCase().indexOf(qLower)>-1||p.category.toLowerCase().indexOf(qLower)>-1){
+                    results.push(p);
                 }
-
-                if(matchKw&&matchCat) results.push(p);
-            }
-
-            // Group results by subcategory
-            var groups={};
-            var groupOrder=[];
-            for(var j=0;j<results.length;j++){
-                var r=results[j];
-                var groupName=r.subCat||r.mainCat||r.category;
-                if(!groups[groupName]){groups[groupName]=[];groupOrder.push(groupName);}
-                groups[groupName].push({item:r,globalIdx:j});
             }
 
             var container=document.getElementById('searchResults');
-            var safeQ=escapeHTML(q||'');
-            var titleText=results.length+' result'+(results.length!==1?'s':'')+' found';
-            if(safeQ) titleText+=' for "'+safeQ+'"';
-            if(isAdvanced) titleText+=' (filtered)';
-
-            var html='<div class="search-results-section">';
-            html+='<h2 class="search-results-title">'+titleText+'</h2>';
+            var safeQ=escapeHTML(q);
+            var html='<div class="search-results-section"><h2 class="search-results-title">'+results.length+' results for "'+safeQ+'"</h2>';
 
             if(results.length===0){
-                html+='<p style="text-align:center;color:#999;padding:50px;">No results found. Try different keywords or filters.</p>';
+                html+='<p style="text-align:center;color:#999;padding:50px;">No results found</p>';
             }else{
-                for(var g=0;g<groupOrder.length;g++){
-                    var gName=groupOrder[g];
-                    var items=groups[gName];
-                    html+='<div class="search-group">';
-                    html+='<h3 class="search-group-title">'+escapeHTML(gName)+'<span class="search-group-count">('+items.length+')</span></h3>';
-                    html+='<div class="search-results-grid">';
-                    for(var k=0;k<items.length;k++){
-                        var ri=items[k].item;
-                        var gi=items[k].globalIdx;
-                        var fy=safeFocalY(ri.focalY||ri.focal_y);
-                        html+='<div class="search-result-card" onclick="openSearchResult('+gi+')">';
-                        html+='<img src="'+escapeAttr(ri.path)+'/1.webp" style="object-position:center '+fy+'%;" alt="'+escapeAttr(ri.id)+'" loading="lazy">';
-                        html+='<div class="info"><h4>'+escapeHTML(ri.id)+'</h4><span>'+escapeHTML(gName)+'</span>'
-                            +'<div data-price-id="'+escapeAttr(ri.id)+'" style="margin-top:5px;"></div></div></div>';
-                    }
-                    html+='</div></div>';
+                html+='<div class="search-results-grid">';
+                for(var j=0;j<results.length;j++){
+                    var r=results[j];
+                    var sub=r.category.indexOf(' > ')>-1?r.category.split(' > ')[1]:r.category;
+                    // FIX #5: safeFocalY instead of raw parseInt
+                    var fy=safeFocalY(r.focalY||r.focal_y);
+                    html+='<div class="search-result-card" data-idx="'+j+'" onclick="openSearchResult('+j+')">';
+                    html+='<img src="'+escapeAttr(r.path)+'/1.webp" style="object-position:center '+fy+'%;" alt="'+escapeAttr(r.id)+'">';
+                    html+='<div class="info"><h4>'+escapeHTML(r.id)+'</h4><span>'+escapeHTML(sub)+'</span>'
+                        +'<div data-price-id="'+escapeAttr(r.id)+'" style="margin-top:5px;"></div></div></div>';
                 }
+                html+='</div>';
             }
             html+='</div>';
             container.innerHTML=html;
