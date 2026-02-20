@@ -1346,14 +1346,15 @@
                 document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});
             }
 
-            if(urlParams.get('search')){
+            if(urlParams.get('search')||urlParams.get('adv_cats')||urlParams.get('adv_subs')){
                 if(hero)hero.style.display='none';
                 if(showcase)showcase.style.display='none';
                 if(carousel)carousel.style.display='none';
                 if(pta)pta.style.display='none';
                 if(sr)sr.style.display='block';
                 document.getElementById('pGrid').style.display='none';
-                doSearchDisplay(urlParams.get('search'));
+                if(privLabel)privLabel.style.display='none';
+                doSearchDisplay(urlParams.get('search')||'');
             }else if(urlParams.get('category')||urlParams.get('subcategory')){
                 if(hero)hero.style.display='none';
                 if(showcase)showcase.style.display='none';
