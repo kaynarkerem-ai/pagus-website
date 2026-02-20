@@ -68,9 +68,8 @@
         
         /* LANGUAGE BAR */
         .lang-bar { background: var(--color-noble); text-align: center; padding: 6px 0; border-bottom: 1px solid rgba(201,169,98,0.2); }
-        .lang-bar button { background: none; border: 2px solid transparent; border-radius: 4px; cursor: pointer; padding: 2px; margin: 0 4px; opacity: 0.6; transition: 0.3s; vertical-align: middle; line-height: 1; }
+        .lang-bar button { background: none; border: 2px solid transparent; border-radius: 4px; cursor: pointer; padding: 3px 6px; margin: 0 3px; opacity: 0.6; transition: 0.3s; vertical-align: middle; font-size: 1.3rem; line-height: 1; }
         .lang-bar button:hover, .lang-bar button.active { opacity: 1; border-color: var(--color-gold); }
-        .lang-bar button img { width: 26px; height: 18px; display: block; border-radius: 2px; }
 
         .footer { background: #000; color: #999; padding: 70px 40px; border-top: 1px solid #333; }
         .footer-grid { max-width: var(--site-max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4rem; }
@@ -226,11 +225,11 @@
 <body>
     <!-- LANGUAGE BAR -->
     <div class="lang-bar" id="langBar">
-        <button onclick="setLang('en')" id="langBtn_en" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></button>
-        <button onclick="setLang('it')" id="langBtn_it" title="Italiano"><img src="https://flagcdn.com/w40/it.png" alt="IT"></button>
-        <button onclick="setLang('fr')" id="langBtn_fr" title="Français"><img src="https://flagcdn.com/w40/fr.png" alt="FR"></button>
-        <button onclick="setLang('de')" id="langBtn_de" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE"></button>
-        <button onclick="setLang('es')" id="langBtn_es" title="Español"><img src="https://flagcdn.com/w40/es.png" alt="ES"></button>
+        <button onclick="setLang('en')" id="langBtn_en" title="English">🇬🇧</button>
+        <button onclick="setLang('it')" id="langBtn_it" title="Italiano">🇮🇹</button>
+        <button onclick="setLang('fr')" id="langBtn_fr" title="Français">🇫🇷</button>
+        <button onclick="setLang('de')" id="langBtn_de" title="Deutsch">🇩🇪</button>
+        <button onclick="setLang('es')" id="langBtn_es" title="Español">🇪🇸</button>
     </div>
     <header class="header"><div class="header-inner">
         <div class="logo-row">
