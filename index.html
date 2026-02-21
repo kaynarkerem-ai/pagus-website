@@ -267,15 +267,15 @@
         }
         /* SHOWCASE */
         .showcase-section { width: 100%; background: #FAFAFA; padding: 30px 0; }
-        .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px; }
+        .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px; max-width: var(--site-max-width); margin: 0 auto; }
         .showcase-item { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; border-radius: 6px; }
         .showcase-item:focus-visible { outline: 3px solid var(--color-gold); outline-offset: -3px; }
-        .showcase-item img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease; }
-        .showcase-item:hover img { transform: scale(1.05); }
-        .showcase-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 40px 20px 25px; }
+        .showcase-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 1s ease, transform 0.5s ease; opacity: 0; }
+        .showcase-item img.active { opacity: 1; }
+        .showcase-item:hover img.active { transform: scale(1.05); }
+        .showcase-overlay { position: absolute; top: 0; left: 0; right: 0; background: linear-gradient(rgba(0,0,0,0.7), transparent); padding: 20px 20px 40px; z-index: 2; }
         .showcase-overlay span { color: #fff; font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
-        .showcase-hero-img { width: calc(100% - 40px); display: block; max-height: 600px; object-fit: cover; object-position: center; border-radius: 6px; margin: 20px auto 0; }
-        @media (max-width: 768px) { .showcase-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; } .showcase-hero-img { width: calc(100% - 24px); margin: 12px auto 0; max-height: 300px; } .showcase-overlay span { font-size: 0.8rem; letter-spacing: 1px; } .showcase-overlay { padding: 25px 15px 15px; } }
+        @media (max-width: 768px) { .showcase-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; } .showcase-overlay span { font-size: 0.8rem; letter-spacing: 1px; } .showcase-overlay { padding: 15px 15px 30px; } }
     </style>
 </head>
 <body>
@@ -334,7 +334,6 @@
 
     <!-- SHOWCASE -->
     <section class="showcase-section" id="showcaseSection">
-        <img src="images/showcase_hero.webp" alt="PAGUS Collection" class="showcase-hero-img">
         <div class="showcase-grid" id="showcaseGrid"></div>
     </section>
     
@@ -1307,6 +1306,7 @@
                 items.push({cat:mainCat,subCat:scName,path:randProd.path});
             }
 
+            var photoNums=[1,3,4];
             var html='';
             for(var k=0;k<items.length;k++){
                 var it=items[k];
@@ -1314,10 +1314,33 @@
                 html+='<div class="showcase-item" tabindex="0" role="link" data-cat="'+escapeAttr(it.cat)+'"'
                     +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)"'
                     +' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat);}">';
-                html+='<img src="'+escapeAttr(it.path)+'/1.webp" alt="'+escapeAttr(displayName)+'" onerror="this.parentElement.style.display=\'none\'">';
+                for(var pi=0;pi<photoNums.length;pi++){
+                    html+='<img src="'+escapeAttr(it.path)+'/'+photoNums[pi]+'.webp" alt="'+escapeAttr(displayName)+'"'
+                        +(pi===0?' class="active"':'')
+                        +' onerror="this.style.display=\'none\'">';
+                }
                 html+='<div class="showcase-overlay"><span>'+escapeHTML(displayName).toUpperCase()+'</span></div></div>';
             }
             grid.innerHTML=html;
+
+            // Auto-cycle images every 3 seconds
+            var showcaseItems=grid.querySelectorAll('.showcase-item');
+            showcaseItems.forEach(function(item,idx){
+                var imgs=item.querySelectorAll('img');
+                if(imgs.length<2)return;
+                var cur=0;
+                setInterval(function(){
+                    imgs[cur].classList.remove('active');
+                    cur=(cur+1)%imgs.length;
+                    // Skip hidden (errored) images
+                    var tries=0;
+                    while(imgs[cur].style.display==='none'&&tries<imgs.length){
+                        cur=(cur+1)%imgs.length;
+                        tries++;
+                    }
+                    imgs[cur].classList.add('active');
+                },3000+idx*500);
+            });
         }
 
         // ===================== MAIN INIT =====================
