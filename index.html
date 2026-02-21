@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagus Menswear Turkey</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232C3E50'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Playfair Display,Georgia,serif' font-weight='700' font-size='44' fill='%23C9A962'%3EP%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232c3e50'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Playfair Display,Georgia,serif' font-weight='700' font-size='44' fill='%23C9A962'%3EP%3C/text%3E%3C/svg%3E">
     <meta name="description" content="Premium wholesale menswear from Turkey. Ceremonial, Formal & Casual Wear.">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.googleusercontent.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; frame-src https://*.firebaseapp.com https://accounts.google.com;">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,34 +13,34 @@
     <style>
         :root { --color-black: #1a1a1a; --color-gold: #c9a962; --color-noble: #2c3e50; --font-display: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --site-max-width: 1400px; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: var(--font-body); color: var(--color-black); background: #1a1a1a; overflow-x: hidden; }
-        .header { position: sticky; top: 0; width: 100%; z-index: 900; background: var(--color-noble); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        body { font-family: var(--font-body); color: var(--color-black); background: #FAFAFA; overflow-x: hidden; }
+        .header { position: sticky; top: 0; width: 100%; z-index: 900; background: #FFFFFF; box-shadow: 0 2px 15px rgba(0,0,0,0.06); }
         .header-inner { max-width: var(--site-max-width); margin: 0 auto; padding: 0 40px; }
-        .brand-bar { text-align: center; padding: 16px 0 10px; border-bottom: 1px solid rgba(201,169,98,0.12); }
-        .brand-bar a { font-family: var(--font-display); font-size: 1.8rem; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 6px; text-decoration: none; }
+        .brand-bar { text-align: center; padding: 16px 0 10px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .brand-bar a { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-noble); font-weight: 700; text-transform: uppercase; letter-spacing: 6px; text-decoration: none; }
         .brand-bar a .brand-p { font-size: 110%; }
         .toolbar-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
         .toolbar-right { display: flex; gap: 12px; align-items: center; }
         .soc-icons { display: flex; gap: 12px; align-items: center; }
         .soc-icons .social-icon { display: flex; align-items: center; justify-content: center; }
-        .soc-icons .social-icon svg { width: 18px; height: 18px; fill: rgba(255,255,255,0.6); transition: 0.3s; }
+        .soc-icons .social-icon svg { width: 18px; height: 18px; fill: rgba(0,0,0,0.35); transition: 0.3s; }
         .soc-icons .social-icon:hover svg { fill: var(--color-gold); }
-        .nav-list { display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; width: 100%; justify-content: center; flex-wrap: wrap; }
-        .nav-list a { color: #fff; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-decoration: none; white-space: nowrap; padding: 10px 5px; }
+        .nav-list { display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(0,0,0,0.06); padding-top: 12px; width: 100%; justify-content: center; flex-wrap: wrap; }
+        .nav-list a { color: var(--color-noble); font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-decoration: none; white-space: nowrap; padding: 10px 5px; }
         .nav-list a:hover { color: var(--color-gold); }
         .search-area { display: flex; align-items: center; gap: 8px; position: relative; }
-        .search-icon-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.12); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; flex-shrink: 0; }
+        .search-icon-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.05); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; flex-shrink: 0; }
         .search-icon-btn:hover { background: var(--color-gold); }
-        .search-icon-btn svg { width: 20px; height: 20px; fill: #fff; transition: 0.3s; }
-        .search-icon-btn:hover svg { fill: var(--color-noble); }
-        .search-expand { display: flex; align-items: center; background: rgba(255,255,255,0.1); border-radius: 25px; overflow: hidden; max-width: 0; opacity: 0; transition: max-width 0.35s ease, opacity 0.25s ease, padding 0.3s; padding: 0; }
+        .search-icon-btn svg { width: 20px; height: 20px; fill: var(--color-noble); transition: 0.3s; }
+        .search-icon-btn:hover svg { fill: #fff; }
+        .search-expand { display: flex; align-items: center; background: rgba(0,0,0,0.04); border-radius: 25px; overflow: hidden; max-width: 0; opacity: 0; transition: max-width 0.35s ease, opacity 0.25s ease, padding 0.3s; padding: 0; }
         .search-expand.open { max-width: 280px; opacity: 1; padding: 0 0 0 15px; }
-        .search-expand input { background: transparent; border: none; color: #fff; font-size: 0.9rem; width: 180px; outline: none; padding: 10px 0; font-family: var(--font-body); }
-        .search-expand input::placeholder { color: rgba(255,255,255,0.5); }
+        .search-expand input { background: transparent; border: none; color: var(--color-noble); font-size: 0.9rem; width: 180px; outline: none; padding: 10px 0; font-family: var(--font-body); }
+        .search-expand input::placeholder { color: rgba(0,0,0,0.35); }
         .search-expand .search-go { background: var(--color-gold); border: none; padding: 10px 16px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; border-radius: 0 25px 25px 0; }
         .search-expand .search-go:hover { background: #d4b366; }
         .search-expand .search-go svg { width: 16px; height: 16px; fill: var(--color-noble); }
-        .adv-search-btn { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); padding: 8px 14px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 20px; white-space: nowrap; }
+        .adv-search-btn { background: transparent; border: 1px solid rgba(0,0,0,0.15); color: rgba(0,0,0,0.5); padding: 8px 14px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 20px; white-space: nowrap; }
         .adv-search-btn:hover { border-color: var(--color-gold); color: var(--color-gold); }
         /* Advanced Search Panel */
         .adv-panel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 3000; }
@@ -73,20 +73,20 @@
         .search-group-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-noble); padding-bottom: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--color-gold); display: inline-block; }
         .search-group-count { font-family: var(--font-body); font-size: 0.8rem; color: #999; font-weight: 400; margin-left: 8px; }
 
-        .search-results-section { padding: 40px 20px; max-width: var(--site-max-width); margin: 0 auto; background: #fff; }
+        .search-results-section { padding: 40px 20px; max-width: var(--site-max-width); margin: 0 auto; background: #FAFAFA; }
         .search-results-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-noble); margin-bottom: 30px; text-align: center; }
         .search-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
-        .search-result-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); cursor: pointer; transition: 0.3s; }
+        .search-result-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); cursor: pointer; transition: 0.3s; }
         .search-result-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
         .search-result-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
         .search-result-card .info { padding: 15px; text-align: center; }
         .search-result-card h4 { font-family: var(--font-display); font-size: 1rem; color: var(--color-noble); margin: 0 0 5px; }
         .search-result-card span { font-size: 0.8rem; color: var(--color-gold); }
-        .page-title-area { background: #f9f9f9; padding: 40px 0 20px; text-align: center; border-bottom: 1px solid #eee; }
+        .page-title-area { background: #FAFAFA; padding: 40px 0 20px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.06); }
         .cat-title { font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; color: var(--color-noble); margin-bottom: 20px; }
         .back-btn { display: inline-block; color: var(--color-gold); font-weight: 700; margin-bottom: 15px; cursor: pointer; border: 1px solid var(--color-gold); padding: 6px 18px; font-size: 0.8rem; transition: 0.3s; }
         .info-guide { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; max-width: 600px; margin: 0 auto 20px; padding: 15px; border-radius: 8px; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 10px; width: 90%; }
-        .grid { max-width: var(--site-max-width); margin: 0 auto; padding: 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; min-height: 400px; background: #fff; }
+        .grid { max-width: var(--site-max-width); margin: 0 auto; padding: 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; min-height: 400px; background: #FAFAFA; }
         .card { cursor: pointer; text-align: center; position: relative; }
         .img-box { aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 15px; position: relative; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0; animation: fadeIn 0.5s forwards; }
@@ -105,27 +105,27 @@
         .img-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; pointer-events: none; }
         .side-info { background: #fff; padding: 60px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow-y: auto; }
         .close { position: absolute; top: 25px; right: 35px; font-size: 45px; color: #fff; cursor: pointer; line-height: 1; z-index: 2020; }
-        .private-label { background: var(--color-noble); padding: 80px 40px; text-align: center; color: #fff; margin-top: 60px; }
-        .pl-title { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-gold); margin-bottom: 20px; }
-        .pl-btn { display: inline-block; background: var(--color-gold); color: #000; padding: 15px 40px; text-decoration: none; font-weight: 700; border-radius: 4px; }
+        .private-label { background: #F0F0F0; padding: 80px 40px; text-align: center; color: var(--color-noble); margin-top: 0; }
+        .pl-title { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-noble); margin-bottom: 20px; }
+        .pl-btn { display: inline-block; background: var(--color-noble); color: #fff; padding: 15px 40px; text-decoration: none; font-weight: 700; border-radius: 4px; }
         
         /* LANGUAGE SWITCH */
-        .lang-switch { display: flex; align-items: center; gap: 2px; margin-right: 12px; padding-right: 12px; border-right: 1px solid rgba(255,255,255,0.15); }
-        .lang-switch button { background: none; border: none; cursor: pointer; padding: 3px 5px; color: rgba(255,255,255,0.35); font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 1.5px; transition: 0.3s; border-radius: 2px; }
+        .lang-switch { display: flex; align-items: center; gap: 2px; margin-right: 12px; padding-right: 12px; border-right: 1px solid rgba(0,0,0,0.1); }
+        .lang-switch button { background: none; border: none; cursor: pointer; padding: 3px 5px; color: rgba(0,0,0,0.3); font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 1.5px; transition: 0.3s; border-radius: 2px; }
         .lang-switch button:hover { color: var(--color-gold); }
         .lang-switch button.active { color: var(--color-gold); background: rgba(201,169,98,0.12); }
 
-        .footer { background: #000; color: #999; padding: 70px 40px; border-top: 1px solid #333; }
+        .footer { background: #FFFFFF; color: #666; padding: 70px 40px; border-top: 1px solid #eee; }
         .footer-grid { max-width: var(--site-max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4rem; }
         /* FOOTER 3-COL */
-        .footer h4 { color: var(--color-gold); font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
-        .footer p { font-size: 0.85rem; line-height: 1.8; color: #888; }
+        .footer h4 { color: var(--color-noble); font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
+        .footer p { font-size: 0.85rem; line-height: 1.8; color: #777; }
         .footer ul { list-style: none; }
         .footer ul li { margin-bottom: 10px; font-size: 0.85rem; line-height: 1.6; }
-        .footer ul li strong { color: #bbb; }
-        .footer a { color: #888; text-decoration: none; transition: 0.3s; }
+        .footer ul li strong { color: #555; }
+        .footer a { color: #777; text-decoration: none; transition: 0.3s; }
         .footer a:hover { color: var(--color-gold); }
-        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #222; font-size: 0.8rem; color: #444; }
+        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee; font-size: 0.8rem; color: #888; }
         .footer-links { display: flex; flex-direction: column; gap: 10px; }
         .footer-links a { display: flex; align-items: center; gap: 8px; }
         .footer-links svg { width: 14px; height: 14px; fill: var(--color-gold); flex-shrink: 0; }
@@ -197,7 +197,7 @@
             .ss-slide img { max-height: 350px; }
         }
         /* HERO SECTION */
-        .hero { background: linear-gradient(135deg, var(--color-noble) 0%, #1a252f 100%); color: #fff; padding: 40px 20px; text-align: center; position: relative; }
+        .hero { background: linear-gradient(135deg, #F0F0F0 0%, #E8E8E8 100%); color: var(--color-noble); padding: 40px 20px; text-align: center; position: relative; }
         .hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
         .hero h2 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
         .hero-tagline { color: var(--color-gold); font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; font-weight: 600; }
@@ -205,14 +205,14 @@
         .hero-stats { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-top: 20px; }
         .stat-item { text-align: center; }
         .stat-num { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-gold); display: block; }
-        .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-top: 3px; }
+        .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-top: 3px; }
         @media (max-width: 768px) { .hero { padding: 30px 15px; } .hero h2 { font-size: 1.4rem; } .hero-stats { gap: 25px; } .stat-num { font-size: 1.5rem; } }
         /* AUTH UI */
-        .auth-btn { background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold); padding: 8px 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 3px; white-space: nowrap; }
-        .auth-btn:hover { background: var(--color-gold); color: var(--color-noble); }
+        .auth-btn { background: transparent; border: 1px solid var(--color-noble); color: var(--color-noble); padding: 8px 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 3px; white-space: nowrap; }
+        .auth-btn:hover { background: var(--color-noble); color: #fff; }
         .user-menu { display: flex; align-items: center; gap: 12px; }
-        .user-greeting { color: var(--color-gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .logout-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 14px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 3px; }
+        .user-greeting { color: var(--color-noble); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .logout-btn { background: transparent; border: 1px solid rgba(0,0,0,0.15); color: var(--color-noble); padding: 6px 14px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 3px; }
         .logout-btn:hover { border-color: #e74c3c; color: #e74c3c; }
         /* AUTH MODAL */
         .auth-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 5000; justify-content: center; align-items: center; }
@@ -253,11 +253,11 @@
         .modal-price-hint:hover { color: var(--color-gold); }
         .price-tier { font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
         /* COOKIE BANNER */
-        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--color-noble); color: #fff; padding: 18px 25px; z-index: 8000; display: none; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; box-shadow: 0 -4px 20px rgba(0,0,0,0.3); font-size: 0.85rem; }
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #FFFFFF; color: var(--color-noble); padding: 18px 25px; z-index: 8000; display: none; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; box-shadow: 0 -2px 15px rgba(0,0,0,0.08); font-size: 0.85rem; }
         .cookie-banner.visible { display: flex; }
-        .cookie-banner p { max-width: 700px; line-height: 1.5; color: rgba(255,255,255,0.8); }
-        .cookie-banner a { color: var(--color-gold); }
-        .cookie-accept { background: var(--color-gold); color: var(--color-noble); border: none; padding: 10px 25px; font-weight: 700; font-size: 0.85rem; cursor: pointer; border-radius: 3px; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+        .cookie-banner p { max-width: 700px; line-height: 1.5; color: #555; }
+        .cookie-banner a { color: var(--color-noble); }
+        .cookie-accept { background: var(--color-noble); color: #fff; border: none; padding: 10px 25px; font-weight: 700; font-size: 0.85rem; cursor: pointer; border-radius: 3px; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
         .cookie-accept:hover { background: #d4b366; }
         @media (max-width: 768px) {
             .auth-card { width: 100%; max-width: 100%; border-radius: 0; min-height: 100vh; display: flex; flex-direction: column; }
@@ -266,7 +266,7 @@
             .auth-btn { padding: 6px 12px; font-size: 0.7rem; }
         }
         /* SHOWCASE */
-        .showcase-section { width: 100%; background: #1a1a1a; padding: 30px 0; }
+        .showcase-section { width: 100%; background: #FAFAFA; padding: 30px 0; }
         .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px; }
         .showcase-item { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; border-radius: 6px; }
         .showcase-item:focus-visible { outline: 3px solid var(--color-gold); outline-offset: -3px; }
@@ -361,7 +361,7 @@
     <div id="searchResults" style="display:none;"></div>
     <section class="private-label" id="privateLabelSection"><div class="pl-content">
         <h2 class="pl-title" data-t="pl_title">YOUR BRAND, OUR PRODUCTION</h2>
-        <p style="color:#ddd; margin-bottom:35px;" data-t="pl_desc">Looking for a manufacturing partner? Pagus offers specialized Private Label services.</p>
+        <p style="color:#777; margin-bottom:35px;" data-t="pl_desc">Looking for a manufacturing partner? Pagus offers specialized Private Label services.</p>
         <a href="#" id="plWaLink" target="_blank" class="pl-btn" data-t="pl_btn">START PRODUCTION</a>
     </div></section>
     <button id="floatCart" class="float-cart" onclick="sendListToWhatsapp()">
@@ -479,7 +479,7 @@
     <footer class="footer"><div class="footer-grid">
         <div>
             <h4 data-t="ft_why">Why Pagus</h4>
-            <p data-t="ft_why_text"><strong style="color:#ccc;">15+</strong> years of excellence in premium menswear manufacturing. Specializing in ceremonial, formal &amp; casual wear, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.</p>
+            <p data-t="ft_why_text"><strong style="color:var(--color-noble);">15+</strong> years of excellence in premium menswear manufacturing. Specializing in ceremonial, formal &amp; casual wear, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.</p>
         </div>
         <div>
             <h4 data-t="ft_contact">B2B Contact</h4>
@@ -995,7 +995,7 @@
             accept_btn:{en:'ACCEPT',it:'ACCETTO',fr:'ACCEPTER',de:'AKZEPTIEREN',es:'ACEPTAR'},
             // FOOTER
             ft_why:{en:'Why Pagus',it:'Perché Pagus',fr:'Pourquoi Pagus',de:'Warum Pagus',es:'¿Por Qué Pagus?'},
-            ft_why_text:{en:'<strong style="color:#ccc;">15+</strong> years of excellence in premium menswear manufacturing. Specializing in ceremonial, formal & casual wear, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.',it:'<strong style="color:#ccc;">15+</strong> anni di eccellenza nella produzione di abbigliamento maschile premium. Specializzati in abbigliamento cerimoniale, formale e casual, offriamo artigianalità di qualità europea a prezzi competitivi. Affidabili per rivenditori in Italia, Germania, Francia e oltre.',fr:'<strong style="color:#ccc;">15+</strong> ans d\'excellence dans la fabrication de mode masculine premium. Spécialisés dans les tenues de cérémonie, formelles et décontractées, nous offrons un savoir-faire de qualité européenne à des prix de gros compétitifs. Approuvé par des détaillants en Italie, Allemagne, France et au-delà.',de:'<strong style="color:#ccc;">15+</strong> Jahre Exzellenz in der Premium-Herrenmode-Fertigung. Spezialisiert auf festliche, formelle und lässige Kleidung, liefern wir europäische Handwerksqualität zu wettbewerbsfähigen Großhandelspreisen. Vertraut von Einzelhändlern in Italien, Deutschland, Frankreich und darüber hinaus.',es:'<strong style="color:#ccc;">15+</strong> años de excelencia en la fabricación de moda masculina premium. Especializados en ropa de ceremonia, formal y casual, ofrecemos artesanía de calidad europea a precios mayoristas competitivos. Confianza de minoristas en Italia, Alemania, Francia y más.'},
+            ft_why_text:{en:'<strong style="color:var(--color-gold);">15+</strong> years of excellence in premium menswear manufacturing. Specializing in ceremonial, formal & casual wear, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.',it:'<strong style="color:var(--color-gold);">15+</strong> anni di eccellenza nella produzione di abbigliamento maschile premium. Specializzati in abbigliamento cerimoniale, formale e casual, offriamo artigianalità di qualità europea a prezzi competitivi. Affidabili per rivenditori in Italia, Germania, Francia e oltre.',fr:'<strong style="color:var(--color-gold);">15+</strong> ans d\'excellence dans la fabrication de mode masculine premium. Spécialisés dans les tenues de cérémonie, formelles et décontractées, nous offrons un savoir-faire de qualité européenne à des prix de gros compétitifs. Approuvé par des détaillants en Italie, Allemagne, France et au-delà.',de:'<strong style="color:var(--color-gold);">15+</strong> Jahre Exzellenz in der Premium-Herrenmode-Fertigung. Spezialisiert auf festliche, formelle und lässige Kleidung, liefern wir europäische Handwerksqualität zu wettbewerbsfähigen Großhandelspreisen. Vertraut von Einzelhändlern in Italien, Deutschland, Frankreich und darüber hinaus.',es:'<strong style="color:var(--color-gold);">15+</strong> años de excelencia en la fabricación de moda masculina premium. Especializados en ropa de ceremonia, formal y casual, ofrecemos artesanía de calidad europea a precios mayoristas competitivos. Confianza de minoristas en Italia, Alemania, Francia y más.'},
             ft_contact:{en:'B2B Contact',it:'Contatto B2B',fr:'Contact B2B',de:'B2B Kontakt',es:'Contacto B2B'},
             ft_location:{en:'Location:',it:'Sede:',fr:'Siège :',de:'Standort:',es:'Ubicación:'},
             ft_moq:{en:'Minimum order: 50 pieces',it:'Ordine minimo: 50 pezzi',fr:'Commande minimum : 50 pièces',de:'Mindestbestellung: 50 Stück',es:'Pedido mínimo: 50 piezas'},
