@@ -265,9 +265,9 @@
             .auth-btn { padding: 6px 12px; font-size: 0.7rem; }
         }
         /* SHOWCASE */
-        .showcase-section { width: 100%; background: #1a1a1a; }
-        .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
-        .showcase-item { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; }
+        .showcase-section { width: 100%; background: #1a1a1a; padding: 40px 0; }
+        .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; max-width: var(--site-max-width); margin: 0 auto; padding: 0 20px; }
+        .showcase-item { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; border-radius: 6px; }
         .showcase-item:focus-visible { outline: 3px solid var(--color-gold); outline-offset: -3px; }
         .showcase-item img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease; }
         .showcase-item:hover img { transform: scale(1.05); }
@@ -1281,34 +1281,40 @@
             if(!grid)return;
             if(typeof productsDB==='undefined'||!productsDB||productsDB.length===0){grid.innerHTML='';return;}
 
-            var catProducts={};
+            // Group products by subcategory
+            var subCatProducts={};
             for(var i=0;i<productsDB.length;i++){
                 var p=productsDB[i];
-                var mainCat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;
-                if(!catProducts[mainCat])catProducts[mainCat]=[];
-                catProducts[mainCat].push(p);
+                var sc=p.subCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:p.category);
+                if(!subCatProducts[sc])subCatProducts[sc]=[];
+                subCatProducts[sc].push(p);
+            }
+
+            // Shuffle subcategories and pick 4 unique ones
+            var subCats=Object.keys(subCatProducts);
+            for(var s=subCats.length-1;s>0;s--){
+                var r=Math.floor(Math.random()*(s+1));
+                var tmp=subCats[s]; subCats[s]=subCats[r]; subCats[r]=tmp;
             }
 
             var items=[];
-            var cats=Object.keys(catProducts);
-            for(var c=0;c<cats.length&&items.length<4;c++){
-                var catName=cats[c];
-                var prods=catProducts[catName];
-                for(var j=0;j<prods.length&&items.length<4;j++){
-                    if(items.length<4){items.push({cat:catName,path:prods[j].path});}
-                    if(cats.length<4&&items.length<4&&j<prods.length-1){items.push({cat:catName,path:prods[j+1].path});break;}
-                }
+            for(var c=0;c<subCats.length&&items.length<4;c++){
+                var scName=subCats[c];
+                var prods=subCatProducts[scName];
+                var randProd=prods[Math.floor(Math.random()*prods.length)];
+                var mainCat=randProd.mainCat||(randProd.category.indexOf(' > ')>-1?randProd.category.split(' > ')[0]:randProd.category);
+                items.push({cat:mainCat,subCat:scName,path:randProd.path});
             }
 
             var html='';
             for(var k=0;k<items.length;k++){
                 var it=items[k];
-                // FIX #13: Added tabindex="0", role="link", and onkeydown for keyboard nav
+                var displayName=CAT_DISPLAY_NAMES[it.subCat]||it.subCat;
                 html+='<div class="showcase-item" tabindex="0" role="link" data-cat="'+escapeAttr(it.cat)+'"'
                     +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)"'
                     +' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat);}">';
-                html+='<img src="'+escapeAttr(it.path)+'/1.webp" alt="'+escapeAttr(it.cat)+'" onerror="this.parentElement.style.display=\'none\'">';
-                html+='<div class="showcase-overlay"><span>'+escapeHTML(CAT_DISPLAY_NAMES[it.cat]||it.cat).toUpperCase()+'</span></div></div>';
+                html+='<img src="'+escapeAttr(it.path)+'/1.webp" alt="'+escapeAttr(displayName)+'" onerror="this.parentElement.style.display=\'none\'">';
+                html+='<div class="showcase-overlay"><span>'+escapeHTML(displayName).toUpperCase()+'</span></div></div>';
             }
             grid.innerHTML=html;
         }
