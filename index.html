@@ -401,7 +401,7 @@
                     <div class="auth-divider" data-t="or_divider">or</div>
                     <button class="google-btn" onclick="doGoogleLogin()">
                         <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                        Continue with Google
+                        <span data-t="google_btn">Continue with Google</span>
                     </button>
                 </div>
                 <!-- FORGOT PASSWORD FORM -->
@@ -436,7 +436,7 @@
                     <div class="auth-divider" data-t="or_divider">or</div>
                     <button class="google-btn" onclick="doGoogleLogin()">
                         <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                        Continue with Google
+                        <span data-t="google_btn">Continue with Google</span>
                     </button>
                 </div>
             </div>
@@ -461,7 +461,7 @@
                 <span style="color:var(--color-gold); font-weight:700; font-size:0.8rem; letter-spacing:2px;" data-t="wholesale_mfr">WHOLESALE MANUFACTURER</span>
                 <h2 id="mCode" style="font-family:var(--font-display); font-size:2.5rem; margin:15px 0 10px;">CODE</h2>
                 <div id="modalPriceArea" style="margin-bottom:15px;"></div>
-                <div class="badges"><div class="badge-item"><span class="badge-icon">🧵</span data-t="badge_fabric">Premium Fabric</div><div class="badge-item"><span class="badge-icon">🇹🇷</span data-t="badge_turkey">Made in Turkey</div><div class="badge-item"><span class="badge-icon">📦</span data-t="badge_wholesale">Wholesale Only</div></div>
+                <div class="badges"><div class="badge-item"><span class="badge-icon">🧵</span><span data-t="badge_fabric">Premium Fabric</span></div><div class="badge-item"><span class="badge-icon">🇹🇷</span><span data-t="badge_turkey">Made in Turkey</span></div><div class="badge-item"><span class="badge-icon">📦</span><span data-t="badge_wholesale">Wholesale Only</span></div></div>
                 <p style="color:#555; margin-bottom:40px; font-size:1rem;" data-t="modal_desc">Premium quality fabric available for bulk orders.</p>
                 <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700; letter-spacing:1px; border-radius:4px; box-shadow: 0 10px 20px rgba(201,169,98,0.3); text-decoration:none;" data-t="ask_wa">ASK PRICE VIA WHATSAPP</a>
             </div>
@@ -601,7 +601,7 @@
             var name = _currentUser.displayName || _currentUser.email.split('@')[0];
             area.innerHTML = '<div class="user-menu">'
                 + '<span class="user-greeting">' + escapeHTML(name) + '</span>'
-                + '<button class="logout-btn" onclick="doLogout()">Logout</button>'
+                + '<button class="logout-btn" onclick="doLogout()">' + t('logout_btn') + '</button>'
                 + '</div>';
         } else {
             area.innerHTML = '<button class="auth-btn" onclick="openAuthModal(\'login\')">LOGIN</button>';
@@ -648,23 +648,23 @@
     }
 
     function doLogin(){
-        if(!auth){ showAuthError('Firebase not configured.'); return; }
+        if(!auth){ showAuthError(t('firebase_error')); return; }
         var email = document.getElementById('loginEmail').value.trim();
         var pass = document.getElementById('loginPass').value;
-        if(!email || !pass){ showAuthError('Please fill in all fields.'); return; }
+        if(!email || !pass){ showAuthError(t('fill_all_fields')); return; }
 
         var btn = document.getElementById('loginBtn');
-        btn.disabled = true; btn.textContent = 'LOGGING IN...';
+        btn.disabled = true; btn.textContent = t('logging_in_text');
 
         auth.signInWithEmailAndPassword(email, pass)
             .then(function(){
                 closeAuthModal();
-                showToast('Welcome back!');
+                showToast(t('welcome_back'));
             })
             .catch(function(e){
-                var msg = 'Login failed.';
-                if(e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') msg = 'Invalid email or password.';
-                if(e.code === 'auth/too-many-requests') msg = 'Too many attempts. Try again later.';
+                var msg = t('login_failed');
+                if(e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') msg = t('invalid_credentials');
+                if(e.code === 'auth/too-many-requests') msg = t('too_many_login');
                 showAuthError(msg);
             })
             .finally(function(){ btn.disabled = false; btn.textContent = t('login'); });
@@ -687,7 +687,7 @@
     }
 
     function doForgotPassword(){
-        if(!auth){ showAuthError('Firebase not configured.'); return; }
+        if(!auth){ showAuthError(t('firebase_error')); return; }
         var email=document.getElementById('forgotEmail').value.trim();
         if(!email){ showAuthError(t('forgot_empty')); return; }
 
@@ -711,18 +711,18 @@
     }
 
     function doRegister(){
-        if(!auth){ showAuthError('Firebase not configured.'); return; }
+        if(!auth){ showAuthError(t('firebase_error')); return; }
         var name = document.getElementById('regName').value.trim();
         var email = document.getElementById('regEmail').value.trim();
         var pass = document.getElementById('regPass').value;
         var pass2 = document.getElementById('regPass2').value;
 
-        if(!name || !email || !pass){ showAuthError('Please fill in all fields.'); return; }
-        if(pass.length < 6){ showAuthError('Password must be at least 6 characters.'); return; }
-        if(pass !== pass2){ showAuthError('Passwords do not match.'); return; }
+        if(!name || !email || !pass){ showAuthError(t('fill_all_fields')); return; }
+        if(pass.length < 6){ showAuthError(t('pw_min6')); return; }
+        if(pass !== pass2){ showAuthError(t('pw_no_match')); return; }
 
         var btn = document.getElementById('regBtn');
-        btn.disabled = true; btn.textContent = 'CREATING...';
+        btn.disabled = true; btn.textContent = t('creating_text');
 
         auth.createUserWithEmailAndPassword(email, pass)
             .then(function(cred){
@@ -742,29 +742,29 @@
             .then(function(){
                 closeAuthModal();
                 updateAuthUI();
-                showToast('Account created! Welcome, ' + name);
+                showToast(t('account_created') + name);
             })
             .catch(function(e){
-                var msg = 'Registration failed.';
-                if(e.code === 'auth/email-already-in-use') msg = 'Email already registered. Try logging in.';
-                if(e.code === 'auth/weak-password') msg = 'Password is too weak.';
-                if(e.code === 'auth/invalid-email') msg = 'Invalid email address.';
+                var msg = t('reg_failed');
+                if(e.code === 'auth/email-already-in-use') msg = t('email_in_use');
+                if(e.code === 'auth/weak-password') msg = t('pw_weak');
+                if(e.code === 'auth/invalid-email') msg = t('invalid_email_addr');
                 showAuthError(msg);
             })
-            .finally(function(){ btn.disabled = false; btn.textContent = 'CREATE ACCOUNT'; });
+            .finally(function(){ btn.disabled = false; btn.textContent = t('create_account'); });
     }
 
     function doLogout(){
         if(!auth) return;
         auth.signOut().then(function(){
-            showToast('Logged out.');
+            showToast(t('logged_out'));
             updateAuthUI();
             refreshPriceDisplays();
         });
     }
 
     function doGoogleLogin(){
-        if(!auth){ showAuthError('Firebase not configured.'); return; }
+        if(!auth){ showAuthError(t('firebase_error')); return; }
         var provider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(provider)
             .then(function(result){
@@ -779,15 +779,15 @@
                     });
                 }
                 closeAuthModal();
-                showToast('Welcome, ' + (user.displayName || 'there') + '!');
+                showToast(t('welcome_user') + (user.displayName || '') + '!');
             })
             .catch(function(e){
                 if(e.code === 'auth/popup-closed-by-user') return;
                 if(e.code === 'auth/popup-blocked'){
-                    showAuthError('Popup blocked. Please allow popups for this site.');
+                    showAuthError(t('popup_blocked_auth'));
                     return;
                 }
-                showAuthError('Google login failed: ' + e.message);
+                showAuthError(t('google_fail'));
             });
     }
 
@@ -826,12 +826,12 @@
                 var price = getPrice(pid);
                 if(price){
                     el.innerHTML = '<span class="price-tag">' + formatPrice(price) + '</span>'
-                        + '<span class="price-tier">' + escapeHTML(_userRole) + ' price</span>';
+                        + '<span class="price-tier">' + escapeHTML(_userRole) + ' ' + t('price_tier_suffix') + '</span>';
                 } else {
-                    el.innerHTML = '<span class="price-tag" style="font-size:0.85rem;color:#999;">Price on request</span>';
+                    el.innerHTML = '<span class="price-tag" style="font-size:0.85rem;color:#999;">'+t('price_on_request')+'</span>';
                 }
             } else {
-                el.innerHTML = '<span class="price-login-hint" onclick="event.stopPropagation();openAuthModal(\'login\')">Login to see prices</span>';
+                el.innerHTML = '<span class="price-login-hint" onclick="event.stopPropagation();openAuthModal(\'login\')">'+t('login_see_prices')+'</span>';
             }
         });
 
@@ -842,12 +842,12 @@
                 var mp = getPrice(activeCode);
                 if(mp){
                     modalPrice.innerHTML = '<div class="modal-price">' + formatPrice(mp) + '</div>'
-                        + '<span class="price-tier">' + escapeHTML(_userRole) + ' price</span>';
+                        + '<span class="price-tier">' + escapeHTML(_userRole) + ' ' + t('price_tier_suffix') + '</span>';
                 } else {
-                    modalPrice.innerHTML = '<div class="modal-price" style="font-size:1.2rem;color:#999;">Price on request</div>';
+                    modalPrice.innerHTML = '<div class="modal-price" style="font-size:1.2rem;color:#999;">'+t('price_on_request')+'</div>';
                 }
             } else {
-                modalPrice.innerHTML = '<span class="modal-price-hint" onclick="openAuthModal(\'login\')">Login to see wholesale prices →</span>';
+                modalPrice.innerHTML = '<span class="modal-price-hint" onclick="openAuthModal(\'login\')">'+t('login_wholesale')+'</span>';
             }
         }
     }
@@ -914,7 +914,36 @@
 
         var FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
         var WHATSAPP_NUMBER='905511748907';
-        var CAT_DISPLAY_NAMES={"Çıkma Yaka":"Detachable Collar","Wedding Suits":"Ceremonial Suits"};
+        var CAT_DISPLAY_NAMES_I18N={
+            "Çıkma Yaka":{en:"Detachable Collar",it:"Colletto Staccabile",fr:"Col Détachable",de:"Abnehmbarer Kragen",es:"Cuello Desmontable"},
+            "Wedding Suits":{en:"Ceremonial Suits",it:"Abiti da Cerimonia",fr:"Costumes de Cérémonie",de:"Festliche Anzüge",es:"Trajes de Ceremonia"},
+            "Formal Suits":{en:"Formal Suits",it:"Abiti Formali",fr:"Costumes Formels",de:"Formelle Anzüge",es:"Trajes Formales"},
+            "Jackets":{en:"Jackets",it:"Giacche",fr:"Vestes",de:"Jacken",es:"Chaquetas"},
+            "Shirts":{en:"Shirts",it:"Camicie",fr:"Chemises",de:"Hemden",es:"Camisas"},
+            "Shoes":{en:"Shoes",it:"Scarpe",fr:"Chaussures",de:"Schuhe",es:"Zapatos"},
+            "Accessories":{en:"Accessories",it:"Accessori",fr:"Accessoires",de:"Accessoires",es:"Accesorios"},
+            "Children":{en:"Children",it:"Bambini",fr:"Enfants",de:"Kinder",es:"Niños"},
+            // Common subcategories
+            "Slim Fit":{en:"Slim Fit",it:"Slim Fit",fr:"Coupe Slim",de:"Slim Fit",es:"Slim Fit"},
+            "Regular Fit":{en:"Regular Fit",it:"Vestibilità Regolare",fr:"Coupe Classique",de:"Regular Fit",es:"Corte Regular"},
+            "Classic":{en:"Classic",it:"Classico",fr:"Classique",de:"Klassisch",es:"Clásico"},
+            "Modern":{en:"Modern",it:"Moderno",fr:"Moderne",de:"Modern",es:"Moderno"},
+            "Tuxedo":{en:"Tuxedo",it:"Smoking",fr:"Smoking",de:"Smoking",es:"Esmoquin"},
+            "Vest":{en:"Vest",it:"Gilet",fr:"Gilet",de:"Weste",es:"Chaleco"},
+            "Vests":{en:"Vests",it:"Gilet",fr:"Gilets",de:"Westen",es:"Chalecos"},
+            "Bow Tie":{en:"Bow Tie",it:"Papillon",fr:"Nœud Papillon",de:"Fliege",es:"Pajarita"},
+            "Bow Ties":{en:"Bow Ties",it:"Papillon",fr:"Nœuds Papillon",de:"Fliegen",es:"Pajaritas"},
+            "Tie":{en:"Tie",it:"Cravatta",fr:"Cravate",de:"Krawatte",es:"Corbata"},
+            "Ties":{en:"Ties",it:"Cravatte",fr:"Cravates",de:"Krawatten",es:"Corbatas"},
+            "Belt":{en:"Belt",it:"Cintura",fr:"Ceinture",de:"Gürtel",es:"Cinturón"},
+            "Belts":{en:"Belts",it:"Cinture",fr:"Ceintures",de:"Gürtel",es:"Cinturones"},
+            "Suspenders":{en:"Suspenders",it:"Bretelle",fr:"Bretelles",de:"Hosenträger",es:"Tirantes"},
+            "Cufflinks":{en:"Cufflinks",it:"Gemelli",fr:"Boutons de Manchette",de:"Manschettenknöpfe",es:"Gemelos"},
+            "Pocket Square":{en:"Pocket Square",it:"Pochette",fr:"Pochette",de:"Einstecktuch",es:"Pañuelo de Bolsillo"},
+            "General":{en:"General",it:"Generale",fr:"Général",de:"Allgemein",es:"General"}
+        };
+        function getCatDisplayName(key){var obj=CAT_DISPLAY_NAMES_I18N[key];if(!obj)return key;return obj[LANG]||obj['en']||key;}
+        var CAT_DISPLAY_NAMES={}; // Legacy compat — use getCatDisplayName() instead
 
         // i18n helper — single source of truth for language detection & texts
         // ===================== i18n SYSTEM =====================
@@ -938,6 +967,7 @@
             nav_accessories:{en:'Accessories',it:'Accessori',fr:'Accessoires',de:'Accessoires',es:'Accesorios'},
             nav_children:{en:'Children',it:'Bambini',fr:'Enfants',de:'Kinder',es:'Niños'},
             login:{en:'LOGIN',it:'ACCEDI',fr:'CONNEXION',de:'ANMELDEN',es:'INICIAR SESIÓN'},
+            logout_btn:{en:'Logout',it:'Esci',fr:'Déconnexion',de:'Abmelden',es:'Cerrar Sesión'},
             // SEARCH
             search_placeholder:{en:'Search products...',it:'Cerca prodotti...',fr:'Rechercher...',de:'Produkte suchen...',es:'Buscar productos...'},
             // HERO
@@ -1025,7 +1055,41 @@
             adv_search_btn:{en:'SEARCH',it:'CERCA',fr:'RECHERCHER',de:'SUCHEN',es:'BUSCAR'},
             adv_clear:{en:'Clear',it:'Cancella',fr:'Effacer',de:'Löschen',es:'Borrar'},
             adv_no_results:{en:'No results found',it:'Nessun risultato',fr:'Aucun résultat',de:'Keine Ergebnisse',es:'Sin resultados'},
-            adv_results:{en:'results for',it:'risultati per',fr:'résultats pour',de:'Ergebnisse für',es:'resultados para'}
+            adv_results:{en:'results for',it:'risultati per',fr:'résultats pour',de:'Ergebnisse für',es:'resultados para'},
+            // UI TEXTS
+            view_collection:{en:'VIEW COLLECTION',it:'VEDI COLLEZIONE',fr:'VOIR LA COLLECTION',de:'KOLLEKTION ANSEHEN',es:'VER COLECCIÓN'},
+            collection_updating:{en:'Collection is being updated...',it:'La collezione è in aggiornamento...',fr:'La collection est en cours de mise à jour...',de:'Kollektion wird aktualisiert...',es:'La colección se está actualizando...'},
+            no_products:{en:'No products found.',it:'Nessun prodotto trovato.',fr:'Aucun produit trouvé.',de:'Keine Produkte gefunden.',es:'No se encontraron productos.'},
+            result_singular:{en:'result found',it:'risultato trovato',fr:'résultat trouvé',de:'Ergebnis gefunden',es:'resultado encontrado'},
+            results_plural:{en:'results found',it:'risultati trovati',fr:'résultats trouvés',de:'Ergebnisse gefunden',es:'resultados encontrados'},
+            results_for:{en:'for',it:'per',fr:'pour',de:'für',es:'para'},
+            filtered_label:{en:'(filtered)',it:'(filtrato)',fr:'(filtré)',de:'(gefiltert)',es:'(filtrado)'},
+            // PRICES
+            price_on_request:{en:'Price on request',it:'Prezzo su richiesta',fr:'Prix sur demande',de:'Preis auf Anfrage',es:'Precio bajo consulta'},
+            login_see_prices:{en:'Login to see prices',it:'Accedi per vedere i prezzi',fr:'Connectez-vous pour voir les prix',de:'Anmelden um Preise zu sehen',es:'Inicie sesión para ver precios'},
+            login_wholesale:{en:'Login to see wholesale prices →',it:'Accedi per i prezzi all\'ingrosso →',fr:'Connectez-vous pour les prix de gros →',de:'Anmelden für Großhandelspreise →',es:'Inicie sesión para precios mayoristas →'},
+            price_tier_suffix:{en:'price',it:'prezzo',fr:'prix',de:'Preis',es:'precio'},
+            // AUTH MESSAGES
+            welcome_back:{en:'Welcome back!',it:'Bentornato!',fr:'Bon retour !',de:'Willkommen zurück!',es:'¡Bienvenido de nuevo!'},
+            account_created:{en:'Account created! Welcome, ',it:'Account creato! Benvenuto, ',fr:'Compte créé ! Bienvenue, ',de:'Konto erstellt! Willkommen, ',es:'¡Cuenta creada! Bienvenido, '},
+            logged_out:{en:'Logged out.',it:'Disconnesso.',fr:'Déconnecté.',de:'Abgemeldet.',es:'Sesión cerrada.'},
+            welcome_user:{en:'Welcome, ',it:'Benvenuto, ',fr:'Bienvenue, ',de:'Willkommen, ',es:'Bienvenido, '},
+            fill_all_fields:{en:'Please fill in all fields.',it:'Compila tutti i campi.',fr:'Veuillez remplir tous les champs.',de:'Bitte alle Felder ausfüllen.',es:'Complete todos los campos.'},
+            invalid_credentials:{en:'Invalid email or password.',it:'Email o password non validi.',fr:'Email ou mot de passe invalide.',de:'Ungültige E-Mail oder Passwort.',es:'Correo o contraseña inválidos.'},
+            too_many_login:{en:'Too many attempts. Try again later.',it:'Troppi tentativi. Riprova più tardi.',fr:'Trop de tentatives. Réessayez plus tard.',de:'Zu viele Versuche. Später erneut versuchen.',es:'Demasiados intentos. Inténtelo más tarde.'},
+            pw_min6:{en:'Password must be at least 6 characters.',it:'La password deve avere almeno 6 caratteri.',fr:'Le mot de passe doit contenir au moins 6 caractères.',de:'Passwort muss mindestens 6 Zeichen haben.',es:'La contraseña debe tener al menos 6 caracteres.'},
+            pw_no_match:{en:'Passwords do not match.',it:'Le password non corrispondono.',fr:'Les mots de passe ne correspondent pas.',de:'Passwörter stimmen nicht überein.',es:'Las contraseñas no coinciden.'},
+            creating_text:{en:'CREATING...',it:'CREAZIONE...',fr:'CRÉATION...',de:'WIRD ERSTELLT...',es:'CREANDO...'},
+            logging_in_text:{en:'LOGGING IN...',it:'ACCESSO...',fr:'CONNEXION...',de:'ANMELDUNG...',es:'INICIANDO...'},
+            reg_failed:{en:'Registration failed.',it:'Registrazione fallita.',fr:'Échec de l\'inscription.',de:'Registrierung fehlgeschlagen.',es:'Registro fallido.'},
+            email_in_use:{en:'Email already registered. Try logging in.',it:'Email già registrata. Prova ad accedere.',fr:'Email déjà enregistré. Connectez-vous.',de:'E-Mail bereits registriert. Versuchen Sie sich anzumelden.',es:'Correo ya registrado. Intente iniciar sesión.'},
+            pw_weak:{en:'Password is too weak.',it:'La password è troppo debole.',fr:'Le mot de passe est trop faible.',de:'Passwort ist zu schwach.',es:'La contraseña es muy débil.'},
+            invalid_email_addr:{en:'Invalid email address.',it:'Indirizzo email non valido.',fr:'Adresse email invalide.',de:'Ungültige E-Mail-Adresse.',es:'Dirección de correo inválida.'},
+            popup_blocked_auth:{en:'Popup blocked. Please allow popups.',it:'Popup bloccato. Consenti i popup.',fr:'Popup bloqué. Autorisez les popups.',de:'Popup blockiert. Bitte Popups erlauben.',es:'Popup bloqueado. Permita los popups.'},
+            google_fail:{en:'Google login failed.',it:'Accesso Google fallito.',fr:'Échec connexion Google.',de:'Google-Anmeldung fehlgeschlagen.',es:'Error de inicio con Google.'},
+            firebase_error:{en:'Service not available.',it:'Servizio non disponibile.',fr:'Service non disponible.',de:'Dienst nicht verfügbar.',es:'Servicio no disponible.'},
+            login_failed:{en:'Login failed.',it:'Accesso fallito.',fr:'Échec de connexion.',de:'Anmeldung fehlgeschlagen.',es:'Error de inicio de sesión.'},
+            error_inventory:{en:'Error: inventory.js not found.',it:'Errore: inventory.js non trovato.',fr:'Erreur : inventory.js introuvable.',de:'Fehler: inventory.js nicht gefunden.',es:'Error: inventory.js no encontrado.'}
         };
 
         // Compat: old t() function
@@ -1188,6 +1252,19 @@
             LANG=lang;
             localStorage.setItem('pagusLang',lang);
             applyLanguage();
+            // Refresh dynamic JS-rendered content
+            if(typeof refreshPriceDisplays==='function') refreshPriceDisplays();
+            // Re-render current view if on a category/subcategory page
+            var up=new URLSearchParams(window.location.search);
+            if(up.get('search')||up.get('adv_cats')||up.get('adv_subs')){
+                doSearchDisplay(up.get('search')||'');
+            } else if(up.get('subcategory')){
+                showProducts();
+            } else if(up.get('category')){
+                showSubs();
+            } else if(typeof renderShowcase==='function'){
+                renderShowcase();
+            }
         }
 
         function openTerms(){
@@ -1254,7 +1331,7 @@
         // ===================== PRODUCT DATA INIT =====================
 
         if(typeof productsDB==='undefined'){
-            document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>Error: inventory.js not found.</div>";
+            document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>"+t('error_inventory')+"</div>";
         }else{
             productsDB.forEach(function(p){
                 if(p.category&&p.category.includes(' > ')){
@@ -1312,7 +1389,7 @@
             var html='';
             for(var k=0;k<items.length;k++){
                 var it=items[k];
-                var displayName=CAT_DISPLAY_NAMES[it.subCat]||it.subCat;
+                var displayName=getCatDisplayName(it.subCat)||it.subCat;
                 html+='<div class="showcase-item" tabindex="0" role="link" data-cat="'+escapeAttr(it.cat)+'"'
                     +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)"'
                     +' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat);}">';
@@ -1452,16 +1529,18 @@
             });
             var html='';
             Object.keys(cats).forEach(function(cat,i){
+                var catDisplay=getCatDisplayName(cat)||cat;
                 html+='<div class="adv-check"><input type="checkbox" id="advCat'+i+'" value="'+escapeAttr(cat)+'" onchange="onAdvCatChange()">'
-                    +'<label for="advCat'+i+'">'+escapeHTML(cat)+' <span style="opacity:0.5;font-size:0.7rem">('+cats[cat]+')</span></label></div>';
+                    +'<label for="advCat'+i+'">'+escapeHTML(catDisplay)+' <span style="opacity:0.5;font-size:0.7rem">('+cats[cat]+')</span></label></div>';
             });
             document.getElementById('advCategoryChecks').innerHTML=html;
             var subKeys=Object.keys(subs);
             if(subKeys.length>0){
                 var shtml='';
                 subKeys.forEach(function(sub,i){
+                    var subDisplay=getCatDisplayName(sub)||sub;
                     shtml+='<div class="adv-check" data-parent="'+escapeAttr(subs[sub].parent)+'"><input type="checkbox" id="advSub'+i+'" value="'+escapeAttr(sub)+'">'
-                        +'<label for="advSub'+i+'">'+escapeHTML(sub)+' <span style="opacity:0.5;font-size:0.7rem">('+subs[sub].count+')</span></label></div>';
+                        +'<label for="advSub'+i+'">'+escapeHTML(subDisplay)+' <span style="opacity:0.5;font-size:0.7rem">('+subs[sub].count+')</span></label></div>';
                 });
                 document.getElementById('advSubChecks').innerHTML=shtml;
                 document.getElementById('advSubSection').style.display='block';
@@ -1535,23 +1614,24 @@
             }
             var container=document.getElementById('searchResults');
             var safeQ=escapeHTML(q||'');
-            var titleText=results.length+' result'+(results.length!==1?'s':'')+' found';
-            if(safeQ) titleText+=' for "'+safeQ+'"';
-            if(isAdvanced) titleText+=' (filtered)';
+            var titleText=results.length+' '+(results.length===1?t('result_singular'):t('results_plural'));
+            if(safeQ) titleText+=' '+t('results_for')+' "'+safeQ+'"';
+            if(isAdvanced) titleText+=' '+t('filtered_label');
             var html='<div class="search-results-section"><h2 class="search-results-title">'+titleText+'</h2>';
             if(results.length===0){
                 html+='<p style="text-align:center;color:#999;padding:50px;">'+t('adv_no_results')+'</p>';
             }else{
                 for(var g=0;g<groupOrder.length;g++){
                     var gName=groupOrder[g]; var items=groups[gName];
-                    html+='<div class="search-group"><h3 class="search-group-title">'+escapeHTML(gName)+'<span class="search-group-count">('+items.length+')</span></h3>';
+                    var gDisplay=getCatDisplayName(gName)||gName;
+                    html+='<div class="search-group"><h3 class="search-group-title">'+escapeHTML(gDisplay)+'<span class="search-group-count">('+items.length+')</span></h3>';
                     html+='<div class="search-results-grid">';
                     for(var k=0;k<items.length;k++){
                         var ri=items[k].item; var gi=items[k].globalIdx;
                         var fy=safeFocalY(ri.focalY||ri.focal_y);
                         html+='<div class="search-result-card" onclick="openSearchResult('+gi+')">';
                         html+='<img src="'+escapeAttr(ri.path)+'/1.webp" style="object-position:center '+fy+'%;" alt="'+escapeAttr(ri.id)+'" loading="lazy">';
-                        html+='<div class="info"><h4>'+escapeHTML(ri.id)+'</h4><span>'+escapeHTML(gName)+'</span>'
+                        html+='<div class="info"><h4>'+escapeHTML(ri.id)+'</h4><span>'+escapeHTML(gDisplay)+'</span>'
                             +'<div data-price-id="'+escapeAttr(ri.id)+'" style="margin-top:5px;"></div></div></div>';
                     }
                     html+='</div></div>';
@@ -1572,7 +1652,7 @@
             document.getElementById('pGrid').style.display='grid';
             var cd=productsDB.find(function(p){return p.mainCat.toLowerCase()===curCat.toLowerCase();});
             var dc=cd?cd.mainCat:curCat;
-            document.getElementById('pTitle').textContent=CAT_DISPLAY_NAMES[dc]||dc;
+            document.getElementById('pTitle').textContent=getCatDisplayName(dc)||dc;
             document.getElementById('back').style.display="none";
             document.getElementById('infoGuide').style.display="none";
 
@@ -1581,26 +1661,26 @@
             }).map(function(p){return p.subCat;}))];
 
             if(ss.length===0){
-                document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">Collection is being updated...</div>';
+                document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">'+t('collection_updating')+'</div>';
                 return;
             }
 
             document.getElementById('pGrid').innerHTML=ss.map(function(s){
                 var cv=productsDB.find(function(p){return p.subCat===s;});
-                var ss2=escapeHTML(s);
+                var ss2=escapeHTML(getCatDisplayName(s)||s);
                 var ip=escapeAttr(cv.folderPath)+'/1.webp';
                 var fy=safeFocalY(cv.focalY);
                 return '<div class="card" data-cat="'+escapeAttr(curCat)+'" data-sub="'+escapeAttr(s)+'"'
                     +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)+\'&subcategory=\'+encodeURIComponent(this.dataset.sub)">'
                     +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(s)+'"></div>'
                     +'<div class="info-box"><h3 class="info-title">'+ss2+'</h3>'
-                    +'<span style="color:var(--color-gold);font-size:0.7rem;font-weight:700;">VIEW COLLECTION</span></div></div>';
+                    +'<span style="color:var(--color-gold);font-size:0.7rem;font-weight:700;">'+t('view_collection')+'</span></div></div>';
             }).join('');
         }
 
         function showProducts(){
             document.getElementById('pGrid').style.display='grid';
-            document.getElementById('pTitle').textContent=curSub;
+            document.getElementById('pTitle').textContent=getCatDisplayName(curSub)||curSub;
             document.getElementById('back').style.display="inline-block";
             document.getElementById('infoGuide').style.display="flex";
 
@@ -1609,7 +1689,7 @@
             });
 
             if(ps.length===0){
-                document.getElementById('pGrid').innerHTML='<div style="text-align:center;width:100%;">No products found.</div>';
+                document.getElementById('pGrid').innerHTML='<div style="text-align:center;width:100%;">'+t('no_products')+'</div>';
                 return;
             }
 
