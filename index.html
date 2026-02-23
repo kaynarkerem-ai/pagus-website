@@ -262,6 +262,22 @@
         /* COOKIE BANNER */
         .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #FFFFFF; color: var(--color-noble); padding: 18px 25px; z-index: 8000; display: none; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; box-shadow: 0 -2px 15px rgba(0,0,0,0.08); font-size: 0.85rem; }
         .cookie-banner.visible { display: flex; }
+        .promo-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 7000; justify-content: center; align-items: center; }
+        .promo-overlay.visible { display: flex; }
+        .promo-card { background: #fff; width: 440px; max-width: 92vw; border-radius: 10px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.4); animation: authSlideUp 0.4s ease; text-align: center; position: relative; }
+        .promo-top { background: linear-gradient(135deg, var(--color-noble) 0%, #1a1a2e 100%); padding: 35px 30px 25px; }
+        .promo-top h3 { font-family: var(--font-display); color: var(--color-gold); font-size: 2rem; margin-bottom: 5px; }
+        .promo-top p { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+        .promo-body { padding: 30px; }
+        .promo-body p { color: #555; font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; }
+        .promo-input { width: 100%; padding: 14px 16px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.95rem; font-family: var(--font-body); margin-bottom: 12px; transition: border-color 0.3s; }
+        .promo-input:focus { outline: none; border-color: var(--color-gold); }
+        .promo-submit { width: 100%; padding: 14px; background: var(--color-gold); color: #fff; border: none; border-radius: 4px; font-size: 0.9rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); transition: 0.3s; }
+        .promo-submit:hover { background: #b8963a; }
+        .promo-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: rgba(255,255,255,0.5); font-size: 1.5rem; cursor: pointer; transition: 0.3s; z-index: 1; }
+        .promo-close:hover { color: #fff; }
+        .promo-skip { display: block; margin-top: 12px; color: #999; font-size: 0.8rem; cursor: pointer; background: none; border: none; font-family: var(--font-body); }
+        .promo-skip:hover { color: #666; }
         .cookie-banner p { max-width: 700px; line-height: 1.5; color: #555; }
         .cookie-banner a { color: var(--color-noble); }
         .cookie-accept { background: var(--color-noble); color: #fff; border: none; padding: 10px 25px; font-weight: 700; font-size: 0.85rem; cursor: pointer; border-radius: 3px; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
@@ -447,6 +463,23 @@
                         <span data-t="google_btn">Continue with Google</span>
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMO POPUP -->
+    <div class="promo-overlay" id="promoOverlay" onclick="if(event.target===this)closePromo()">
+        <div class="promo-card">
+            <button class="promo-close" onclick="closePromo()">&times;</button>
+            <div class="promo-top">
+                <h3 data-t="promo_discount">5% OFF</h3>
+                <p data-t="promo_subtitle">Your First Order</p>
+            </div>
+            <div class="promo-body">
+                <p data-t="promo_desc">Register now and get 5% discount on your first wholesale order.</p>
+                <input type="email" class="promo-input" id="promoEmail" placeholder="your@email.com" onkeypress="if(event.key==='Enter')submitPromo()">
+                <button class="promo-submit" onclick="submitPromo()" data-t="promo_btn">REGISTER & GET DISCOUNT</button>
+                <button class="promo-skip" onclick="closePromo()" data-t="promo_skip">No thanks, maybe later</button>
             </div>
         </div>
     </div>
@@ -919,6 +952,45 @@
     }
 
     initCookieBanner();
+
+    // ===================== PROMO POPUP =====================
+
+    function showPromo(){
+        document.getElementById('promoOverlay').classList.add('visible');
+    }
+
+    function closePromo(){
+        document.getElementById('promoOverlay').classList.remove('visible');
+        try { sessionStorage.setItem('pagus_promo_closed','1'); } catch(e){}
+    }
+
+    function submitPromo(){
+        var email=document.getElementById('promoEmail').value.trim();
+        if(!email||email.indexOf('@')===-1){
+            document.getElementById('promoEmail').style.borderColor='#e74c3c';
+            return;
+        }
+        closePromo();
+        openAuthModal('register');
+        setTimeout(function(){
+            var regEmail=document.getElementById('regEmail');
+            if(regEmail){ regEmail.value=email; }
+        },100);
+    }
+
+    // Show promo after 3 seconds if not logged in and not previously closed
+    function initPromo(){
+        try {
+            if(sessionStorage.getItem('pagus_promo_closed')) return;
+        } catch(e){}
+        setTimeout(function(){
+            if(!_currentUser){
+                showPromo();
+            }
+        },3000);
+    }
+
+    initPromo();
     </script>
     <script>
         // ============================================================
@@ -1040,6 +1112,12 @@
             // COOKIE
             cookie_text:{en:'We use essential cookies and local storage to improve your experience. By continuing, you accept our <a href="privacy.html">Privacy Policy</a>.',it:'Utilizziamo cookie essenziali e archiviazione locale per migliorare la tua esperienza. Continuando, accetti la nostra <a href="privacy.html">Informativa sulla Privacy</a>.',fr:'Nous utilisons des cookies essentiels et le stockage local pour améliorer votre expérience. En continuant, vous acceptez notre <a href="privacy.html">Politique de Confidentialité</a>.',de:'Wir verwenden essentielle Cookies und lokalen Speicher, um Ihr Erlebnis zu verbessern. Durch die weitere Nutzung akzeptieren Sie unsere <a href="privacy.html">Datenschutzrichtlinie</a>.',es:'Utilizamos cookies esenciales y almacenamiento local para mejorar su experiencia. Al continuar, acepta nuestra <a href="privacy.html">Política de Privacidad</a>.'},
             accept_btn:{en:'ACCEPT',it:'ACCETTO',fr:'ACCEPTER',de:'AKZEPTIEREN',es:'ACEPTAR'},
+            // PROMO POPUP
+            promo_discount:{en:'5% OFF',it:'5% DI SCONTO',fr:'5% DE RÉDUCTION',de:'5% RABATT',es:'5% DESCUENTO'},
+            promo_subtitle:{en:'Your First Order',it:'Il Vostro Primo Ordine',fr:'Votre Première Commande',de:'Ihre Erste Bestellung',es:'Su Primer Pedido'},
+            promo_desc:{en:'Register now and get 5% discount on your first wholesale order.',it:'Registratevi ora e ottenete il 5% di sconto sul vostro primo ordine all\'ingrosso.',fr:'Inscrivez-vous maintenant et bénéficiez de 5% de réduction sur votre première commande en gros.',de:'Registrieren Sie sich jetzt und erhalten Sie 5% Rabatt auf Ihre erste Großhandelsbestellung.',es:'Regístrese ahora y obtenga un 5% de descuento en su primer pedido mayorista.'},
+            promo_btn:{en:'REGISTER & GET DISCOUNT',it:'REGISTRATI E OTTIENI LO SCONTO',fr:'INSCRIVEZ-VOUS ET OBTENEZ LA RÉDUCTION',de:'REGISTRIEREN & RABATT ERHALTEN',es:'REGÍSTRESE Y OBTENGA EL DESCUENTO'},
+            promo_skip:{en:'No thanks, maybe later',it:'No grazie, forse dopo',fr:'Non merci, peut-être plus tard',de:'Nein danke, vielleicht später',es:'No gracias, quizás después'},
             // FOOTER
             ft_why:{en:'Why Pagus',it:'Perché Pagus',fr:'Pourquoi Pagus',de:'Warum Pagus',es:'¿Por Qué Pagus?'},
             ft_why_text:{en:'<strong style="color:var(--color-gold);">15+</strong> years of excellence in premium menswear manufacturing. Specializing in ceremonial, formal & casual wear, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.',it:'<strong style="color:var(--color-gold);">15+</strong> anni di eccellenza nella produzione di abbigliamento maschile premium. Specializzati in abbigliamento cerimoniale, formale e casual, offriamo artigianalità di qualità europea a prezzi competitivi. Affidabili per rivenditori in Italia, Germania, Francia e oltre.',fr:'<strong style="color:var(--color-gold);">15+</strong> ans d\'excellence dans la fabrication de mode masculine premium. Spécialisés dans les tenues de cérémonie, formelles et décontractées, nous offrons un savoir-faire de qualité européenne à des prix de gros compétitifs. Approuvé par des détaillants en Italie, Allemagne, France et au-delà.',de:'<strong style="color:var(--color-gold);">15+</strong> Jahre Exzellenz in der Premium-Herrenmode-Fertigung. Spezialisiert auf festliche, formelle und lässige Kleidung, liefern wir europäische Handwerksqualität zu wettbewerbsfähigen Großhandelspreisen. Vertraut von Einzelhändlern in Italien, Deutschland, Frankreich und darüber hinaus.',es:'<strong style="color:var(--color-gold);">15+</strong> años de excelencia en la fabricación de moda masculina premium. Especializados en ropa de ceremonia, formal y casual, ofrecemos artesanía de calidad europea a precios mayoristas competitivos. Confianza de minoristas en Italia, Alemania, Francia y más.'},
