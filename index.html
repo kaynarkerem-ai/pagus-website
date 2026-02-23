@@ -2097,4 +2097,11 @@
                 window.CAROUSEL_INDEX+=dir;
                 if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
                 if(window.CAROUSEL_INDEX<0)window.CAROUSEL_INDEX=window.CAROUSEL_TOTAL-1;
+                attempts++;
+            }while(all[window.CAROUSEL_INDEX]&&all[window.CAROUSEL_INDEX].classList.contains('ss-broken')&&attempts<window.CAROUSEL_TOTAL);
+            carouselShow();
+        }
+    </script>
+</body>
+</html>
    
