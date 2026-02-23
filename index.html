@@ -93,6 +93,8 @@
         @keyframes fadeIn { to { opacity: 1; } }
         .card:hover img { transform: scale(1.05); }
         .info-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px; color: var(--color-noble); }
+        .card-highlight { outline: 3px solid var(--color-gold); outline-offset: -3px; box-shadow: 0 0 20px rgba(201,169,98,0.4); animation: highlightPulse 2s ease-in-out; }
+        @keyframes highlightPulse { 0%,100%{ box-shadow: 0 0 20px rgba(201,169,98,0.4); } 50%{ box-shadow: 0 0 35px rgba(201,169,98,0.7); } }
         .heart-btn { position: absolute; top: 10px; right: 10px; width: 35px; height: 35px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #ccc; cursor: pointer; z-index: 10; border: none; }
         .heart-btn.active { color: #e74c3c; }
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(5px); }
@@ -1398,7 +1400,7 @@
                 var prods=subCatProducts[scName];
                 var randProd=prods[Math.floor(Math.random()*prods.length)];
                 var mainCat=randProd.mainCat||(randProd.category.indexOf(' > ')>-1?randProd.category.split(' > ')[0]:randProd.category);
-                items.push({cat:mainCat,subCat:scName,path:randProd.path});
+                items.push({cat:mainCat,subCat:scName,path:randProd.path,prodId:randProd.id});
             }
 
             var photoNums=[1,3,4];
@@ -1406,9 +1408,9 @@
             for(var k=0;k<items.length;k++){
                 var it=items[k];
                 var displayName=getCatDisplayName(it.subCat)||it.subCat;
-                html+='<div class="showcase-item" tabindex="0" role="link" data-cat="'+escapeAttr(it.cat)+'"'
-                    +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)"'
-                    +' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat);}">';
+                html+='<div class="showcase-item" tabindex="0" role="link" data-cat="'+escapeAttr(it.cat)+'" data-sub="'+escapeAttr(it.subCat)+'" data-highlight="'+escapeAttr(it.prodId)+'"'
+                    +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)+\'&subcategory=\'+encodeURIComponent(this.dataset.sub)+\'&highlight=\'+encodeURIComponent(this.dataset.highlight)"'
+                    +' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)+\'&subcategory=\'+encodeURIComponent(this.dataset.sub)+\'&highlight=\'+encodeURIComponent(this.dataset.highlight);}">';
                 for(var pi=0;pi<photoNums.length;pi++){
                     html+='<img src="'+escapeAttr(it.path)+'/'+photoNums[pi]+'.webp" alt="'+escapeAttr(displayName)+'"'
                         +(pi===0?' class="active"':'')
@@ -1718,13 +1720,18 @@
                 var h=f?'\u2665':'\u2661';
                 // FIX #13: aria-label on heart buttons
                 var ariaLabel=f?'Remove '+escapeAttr(p.realCode)+' from list':'Add '+escapeAttr(p.realCode)+' to list';
-                return '<div class="card" data-pidx="'+i+'" onclick="openProductByIdx('+i+')">'
+                var hlClass=urlParams.get('highlight')===p.realCode?' card-highlight':'';
+                return '<div class="card'+hlClass+'" data-pidx="'+i+'" data-code="'+escapeAttr(p.realCode)+'" onclick="openProductByIdx('+i+')">'
                     +'<button class="heart-btn '+f+'" data-code="'+escapeAttr(p.realCode)+'" onclick="toggleCartSafe(event,this)" aria-label="'+ariaLabel+'">'+h+'</button>'
                     +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(p.realCode)+'"></div>'
                     +'<h3 class="info-title">'+escapeHTML(p.realCode)+'</h3>'
                     +'<div data-price-id="'+escapeAttr(p.realCode)+'"></div></div>';
             }).join('');
             if(typeof refreshPriceDisplays==='function') refreshPriceDisplays();
+
+            // Scroll to highlighted product
+            var hlEl=document.querySelector('.card-highlight');
+            if(hlEl){ setTimeout(function(){ hlEl.scrollIntoView({behavior:'smooth',block:'center'}); },300); }
         }
 
         function openProductByIdx(i){
