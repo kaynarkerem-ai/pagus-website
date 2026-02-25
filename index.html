@@ -326,7 +326,6 @@
             <div class="toolbar-right">
                 <div class="lang-switch" id="langBar">
                     <button onclick="setLang('en')" id="langBtn_en" title="English">EN</button>
-                    <button onclick="setLang('tr')" id="langBtn_tr" title="Türkçe">TR</button>
                     <button onclick="setLang('it')" id="langBtn_it" title="Italiano">IT</button>
                     <button onclick="setLang('de')" id="langBtn_de" title="Deutsch">DE</button>
                     <button onclick="setLang('fr')" id="langBtn_fr" title="Français">FR</button>
@@ -343,12 +342,14 @@
             </div>
         </div>
         <nav><ul class="nav-list">
-                <li><a href="?category=Wedding Suits">Wedding Suits</a></li>
-                <li><a href="?category=Formal Suits">Formal Suits</a></li>
-                <li><a href="?category=Shirts">Shirts</a></li>
-                <li><a href="?category=Children">Children</a></li>
-                <li><a href="?category=Jackets">Jackets</a></li>
-                <li><a href="?category=Discounted Products">Discounted Products</a></li>
+                <li><a href="?category=Wedding Suits" data-t="nav_wedding">Ceremonial Wear</a></li>
+                <li><a href="?category=Formal Suits" data-t="nav_formal">Formal Wear</a></li>
+                <li><a href="?category=Casual Wear" data-t="nav_casual">Casual Wear</a></li>
+                <li><a href="?category=Jackets" data-t="nav_jackets">Jackets</a></li>
+                <li><a href="?category=Shirts" data-t="nav_shirts">Shirts</a></li>
+                <li><a href="?category=Shoes" data-t="nav_shoes">Shoes</a></li>
+                <li><a href="?category=Accessories" data-t="nav_accessories">Accessories</a></li>
+                <li><a href="?category=Children" data-t="nav_children">Children</a></li>
         </ul></nav>
     </div></header>
 
@@ -1038,7 +1039,7 @@
 
         // i18n helper — single source of truth for language detection & texts
         // ===================== i18n SYSTEM =====================
-        var SUPPORTED_LANGS=['en','tr','it','de','fr'];
+        var SUPPORTED_LANGS=['en','it','de','fr'];
         function detectLang(){
             var saved=localStorage.getItem('pagusLang');
             if(saved&&SUPPORTED_LANGS.indexOf(saved)!==-1) return saved;
@@ -1050,147 +1051,147 @@
 
         var I18N={
             // NAV
-            nav_wedding:{en:'Ceremonial Wear',it:'Abbigliamento da Cerimonia',fr:'Tenues de Cérémonie',de:'Festliche Kleidung',tr:'Merasim Giyim'},
-            nav_formal:{en:'Formal Wear',it:'Abbigliamento Formale',fr:'Tenues Formelles',de:'Formelle Kleidung',tr:'Resmi Giyim'},
-            nav_casual:{en:'Casual Wear',it:'Abbigliamento Casual',fr:'Tenues Décontractées',de:'Freizeitkleidung',tr:'Günlük Giyim'},
-            nav_jackets:{en:'Jackets',it:'Giacche',fr:'Vestes',de:'Jacken',tr:'Ceketler'},
-            nav_shirts:{en:'Shirts',it:'Camicie',fr:'Chemises',de:'Hemden',tr:'Gömlekler'},
-            nav_shoes:{en:'Shoes',it:'Scarpe',fr:'Chaussures',de:'Schuhe',tr:'Ayakkabılar'},
-            nav_accessories:{en:'Accessories',it:'Accessori',fr:'Accessoires',de:'Accessoires',tr:'Aksesuarlar'},
-            nav_children:{en:'Children',it:'Bambini',fr:'Enfants',de:'Kinder',tr:'Çocuk'},
-            login:{en:'LOGIN',it:'ACCEDI',fr:'CONNEXION',de:'ANMELDEN',tr:'GİRİŞ'},
-            logout_btn:{en:'Logout',it:'Esci',fr:'Déconnexion',de:'Abmelden',tr:'Çıkış'},
+            nav_wedding:{en:'Ceremonial Wear',it:'Abbigliamento da Cerimonia',fr:'Tenues de Cérémonie',de:'Festliche Kleidung'},
+            nav_formal:{en:'Formal Wear',it:'Abbigliamento Formale',fr:'Tenues Formelles',de:'Formelle Kleidung'},
+            nav_casual:{en:'Casual Wear',it:'Abbigliamento Casual',fr:'Tenues Décontractées',de:'Freizeitkleidung'},
+            nav_jackets:{en:'Jackets',it:'Giacche',fr:'Vestes',de:'Jacken'},
+            nav_shirts:{en:'Shirts',it:'Camicie',fr:'Chemises',de:'Hemden'},
+            nav_shoes:{en:'Shoes',it:'Scarpe',fr:'Chaussures',de:'Schuhe'},
+            nav_accessories:{en:'Accessories',it:'Accessori',fr:'Accessoires',de:'Accessoires'},
+            nav_children:{en:'Children',it:'Bambini',fr:'Enfants',de:'Kinder'},
+            login:{en:'LOGIN',it:'ACCEDI',fr:'CONNEXION',de:'ANMELDEN'},
+            logout_btn:{en:'Logout',it:'Esci',fr:'Déconnexion',de:'Abmelden'},
             // SEARCH
-            search_placeholder:{en:'Search products...',it:'Cerca prodotti...',fr:'Rechercher...',de:'Produkte suchen...',tr:'Ürün ara...'},
+            search_placeholder:{en:'Search products...',it:'Cerca prodotti...',fr:'Rechercher...',de:'Produkte suchen...'},
             // HERO
-            hero_tagline:{en:'B2B Wholesale Menswear',it:'Abbigliamento Uomo B2B all\'Ingrosso',fr:'Mode Homme B2B en Gros',de:'B2B Herrenmode Großhandel',tr:'B2B Toptan Erkek Giyim'},
-            hero_title:{en:'Ceremonial, Formal & Casual Wear',it:'Abbigliamento Cerimoniale, Formale & Casual',fr:'Tenues de Cérémonie, Formelles & Décontractées',de:'Festliche, Formelle & Freizeitkleidung',tr:'Merasim, Resmi & Günlük Giyim'},
-            hero_desc:{en:'Direct from manufacturer in İzmir, Turkey. Pagus specializes in ceremonial, formal & casual menswear for retailers and wholesalers worldwide. Minimum order: 50 pieces.',it:'Direttamente dal produttore a İzmir, Turchia. Pagus è specializzata in abbigliamento maschile cerimoniale, formale e casual per rivenditori e grossisti in tutto il mondo. Ordine minimo: 50 pezzi.',fr:'Directement du fabricant à İzmir, Turquie. Pagus se spécialise dans la mode masculine cérémonielle, formelle et décontractée pour détaillants et grossistes du monde entier. Commande minimum : 50 pièces.',de:'Direkt vom Hersteller in İzmir, Türkei. Pagus ist spezialisiert auf festliche, formelle und lässige Herrenmode für Einzelhändler und Großhändler weltweit. Mindestbestellung: 50 Stück.',tr:'İzmir, Türkiye\'den doğrudan üreticiden. Pagus, dünya genelindeki perakendeciler ve toptancılar için merasim, resmi ve günlük erkek giyiminde uzmanlaşmıştır. Minimum sipariş: 50 adet.'},
-            stat_years:{en:'Years Experience',it:'Anni di Esperienza',fr:'Ans d\'Expérience',de:'Jahre Erfahrung',tr:'Yıllık Deneyim'},
-            stat_countries:{en:'Countries',it:'Paesi',fr:'Pays',de:'Länder',tr:'Ülke'},
-            stat_partners:{en:'Active Partners',it:'Partner Attivi',fr:'Partenaires Actifs',de:'Aktive Partner',tr:'Aktif Partner'},
+            hero_tagline:{en:'B2B Wholesale Menswear',it:'Abbigliamento Uomo B2B all\'Ingrosso',fr:'Mode Homme B2B en Gros',de:'B2B Herrenmode Großhandel'},
+            hero_title:{en:'Ceremonial, Formal & Casual Wear',it:'Abbigliamento Cerimoniale, Formale & Casual',fr:'Tenues de Cérémonie, Formelles & Décontractées',de:'Festliche, Formelle & Freizeitkleidung'},
+            hero_desc:{en:'Direct from manufacturer in İzmir, Turkey. Pagus specializes in ceremonial, formal & casual menswear for retailers and wholesalers worldwide. Minimum order: 50 pieces.',it:'Direttamente dal produttore a İzmir, Turchia. Pagus è specializzata in abbigliamento maschile cerimoniale, formale e casual per rivenditori e grossisti in tutto il mondo. Ordine minimo: 50 pezzi.',fr:'Directement du fabricant à İzmir, Turquie. Pagus se spécialise dans la mode masculine cérémonielle, formelle et décontractée pour détaillants et grossistes du monde entier. Commande minimum : 50 pièces.',de:'Direkt vom Hersteller in İzmir, Türkei. Pagus ist spezialisiert auf festliche, formelle und lässige Herrenmode für Einzelhändler und Großhändler weltweit. Mindestbestellung: 50 Stück.'},
+            stat_years:{en:'Years Experience',it:'Anni di Esperienza',fr:'Ans d\'Expérience',de:'Jahre Erfahrung'},
+            stat_countries:{en:'Countries',it:'Paesi',fr:'Pays',de:'Länder'},
+            stat_partners:{en:'Active Partners',it:'Partner Attivi',fr:'Partenaires Actifs',de:'Aktive Partner'},
             // PAGE
-            back_btn:{en:'BACK',it:'INDIETRO',fr:'RETOUR',de:'ZURÜCK',tr:'GERİ'},
-            collection:{en:'COLLECTION',it:'COLLEZIONE',fr:'COLLECTION',de:'KOLLEKTION',tr:'KOLEKSİYON'},
-            guide_tap:{en:'Tap heart to create list.',it:'Tocca il cuore per creare la lista.',fr:'Appuyez sur le cœur pour créer votre liste.',de:'Tippen Sie auf das Herz, um eine Liste zu erstellen.',tr:'Liste oluşturmak için kalbe dokun.'},
-            loading:{en:'Loading Collection...',it:'Caricamento Collezione...',fr:'Chargement de la Collection...',de:'Kollektion wird geladen...',tr:'Koleksiyon Yükleniyor...'},
+            back_btn:{en:'BACK',it:'INDIETRO',fr:'RETOUR',de:'ZURÜCK'},
+            collection:{en:'COLLECTION',it:'COLLEZIONE',fr:'COLLECTION',de:'KOLLEKTION'},
+            guide_tap:{en:'Tap heart to create list.',it:'Tocca il cuore per creare la lista.',fr:'Appuyez sur le cœur pour créer votre liste.',de:'Tippen Sie auf das Herz, um eine Liste zu erstellen.'},
+            loading:{en:'Loading Collection...',it:'Caricamento Collezione...',fr:'Chargement de la Collection...',de:'Kollektion wird geladen...'},
             // PRIVATE LABEL
-            pl_title:{en:'YOUR BRAND, OUR PRODUCTION',it:'IL VOSTRO MARCHIO, LA NOSTRA PRODUZIONE',fr:'VOTRE MARQUE, NOTRE PRODUCTION',de:'IHRE MARKE, UNSERE PRODUKTION',tr:'SİZİN MARKANIZ, BİZİM ÜRETİMİMİZ'},
-            pl_desc:{en:'Behind every suit that carries your name, there\'s a story of craftsmanship that begins in İzmir — Turkey\'s textile heartland. For over 15 years, Pagus Menswear has been the silent force behind some of Europe\'s most respected menswear labels, engineering confidence into every lapel, seam, and stitch. Our Private Label service is a true partnership. You define the design, fabric, fit, and finishing — we handle everything else. Our in-house pattern makers and master tailors work as a dedicated extension of your brand, combining traditional tailoring techniques with modern production capacity. From ceremonial suits and tuxedos to business wear and smart-casual blazers, every production run follows rigorous quality protocols. We source premium fabrics from certified Turkish and Italian mills, and deliver your garments labeled, packaged, and retail-ready. No hidden fees. No compromise. Your labels, your packaging, your identity — backed by decades of textile mastery and trusted by partners across Italy, Germany, France, and beyond.',it:'Dietro ogni abito che porta il vostro nome, c\'è una storia di artigianalità che inizia a Smirne — il cuore tessile della Turchia. Da oltre 15 anni, Pagus Menswear è la forza silenziosa dietro alcuni dei marchi di moda maschile più rispettati d\'Europa, infondendo sicurezza in ogni revers, cucitura e punto. Il nostro servizio Private Label è una vera partnership. Voi definite il design, il tessuto, la vestibilità e le finiture — noi ci occupiamo di tutto il resto. I nostri modellisti interni e i sarti maestri lavorano come un\'estensione dedicata del vostro marchio, combinando tecniche sartoriali tradizionali con una capacità produttiva moderna. Dagli abiti da cerimonia e smoking all\'abbigliamento business e ai blazer smart-casual, ogni produzione segue rigorosi protocolli di qualità. Utilizziamo tessuti premium da stabilimenti turchi e italiani certificati, e consegniamo i vostri capi etichettati, confezionati e pronti per la vendita. Nessun costo nascosto. Nessun compromesso. Le vostre etichette, il vostro packaging, la vostra identità — supportati da decenni di maestria tessile e dalla fiducia di partner in Italia, Germania, Francia e oltre.',fr:'Derrière chaque costume qui porte votre nom, il y a une histoire de savoir-faire qui commence à Izmir — le cœur textile de la Turquie. Depuis plus de 15 ans, Pagus Menswear est la force silencieuse derrière certaines des marques de mode masculine les plus respectées d\'Europe, insufflant confiance dans chaque revers, couture et point. Notre service Private Label est un véritable partenariat. Vous définissez le design, le tissu, la coupe et les finitions — nous nous occupons de tout le reste. Nos modélistes internes et maîtres tailleurs travaillent comme une extension dédiée de votre marque, alliant techniques de couture traditionnelles et capacité de production moderne. Des costumes de cérémonie et smokings aux tenues business et blazers smart-casual, chaque production suit des protocoles de qualité rigoureux. Nous utilisons des tissus premium provenant de manufactures turques et italiennes certifiées, et livrons vos vêtements étiquetés, emballés et prêts à la vente. Aucun frais caché. Aucun compromis. Vos étiquettes, votre packaging, votre identité — soutenus par des décennies de maîtrise textile et la confiance de partenaires en Italie, Allemagne, France et au-delà.',de:'Hinter jedem Anzug, der Ihren Namen trägt, steckt eine Geschichte der Handwerkskunst, die in Izmir beginnt — dem textilen Herzen der Türkei. Seit über 15 Jahren ist Pagus Menswear die stille Kraft hinter einigen der angesehensten Herrenmode-Marken Europas und verleiht jedem Revers, jeder Naht und jedem Stich Vertrauen. Unser Private-Label-Service ist eine echte Partnerschaft. Sie bestimmen Design, Stoff, Passform und Verarbeitung — wir kümmern uns um alles andere. Unsere hauseigenen Schnitttechniker und Meisterschneider arbeiten als dedizierte Erweiterung Ihrer Marke und verbinden traditionelle Schneiderkunst mit moderner Produktionskapazität. Von Festanzügen und Smokings bis hin zu Businesskleidung und Smart-Casual-Blazern folgt jede Produktion strengen Qualitätsprotokollen. Wir verwenden Premium-Stoffe aus zertifizierten türkischen und italienischen Webereien und liefern Ihre Kleidungsstücke etikettiert, verpackt und verkaufsfertig. Keine versteckten Kosten. Keine Kompromisse. Ihre Etiketten, Ihre Verpackung, Ihre Identität — gestützt durch Jahrzehnte textiler Meisterschaft und das Vertrauen von Partnern in Italien, Deutschland, Frankreich und darüber hinaus.',tr:'Adınızı taşıyan her takımın arkasında, İzmir\'de — Türkiye\'nin tekstil kalbinde — başlayan bir ustalık hikayesi vardır. 15 yılı aşkın süredir Pagus Menswear, Avrupa\'nın en saygın erkek giyim markalarının arkasındaki sessiz güç olmuştur; her yaka, dikiş ve ilmeğe güven işlemektedir. Private Label hizmetimiz gerçek bir ortaklıktır. Siz tasarımı, kumaşı, kalıbı ve bitişi belirlersiniz — gerisini biz hallederiz. Şirket içi kalıpçılarımız ve usta terzilerimiz, geleneksel terzilik tekniklerini modern üretim kapasitesiyle birleştirerek markanızın özel bir uzantısı olarak çalışır. Merasim takımları ve smokinlerden iş giyimine ve smart-casual blazerlere kadar her üretim, titiz kalite protokollerini takip eder. Sertifikalı Türk ve İtalyan fabrikalarından premium kumaşlar temin ediyor, giysilerinizi etiketli, paketli ve satışa hazır teslim ediyoruz. Gizli masraf yok. Taviz yok. Sizin etiketleriniz, sizin ambalajınız, sizin kimliğiniz — onlarca yıllık tekstil ustalığı ve İtalya, Almanya, Fransa ve ötesindeki ortakların güveniyle desteklenmektedir.'},
-            pl_btn:{en:'START PRODUCTION',it:'AVVIA PRODUZIONE',fr:'LANCER LA PRODUCTION',de:'PRODUKTION STARTEN',tr:'ÜRETİME BAŞLA'},
+            pl_title:{en:'YOUR BRAND, OUR PRODUCTION',it:'IL VOSTRO MARCHIO, LA NOSTRA PRODUZIONE',fr:'VOTRE MARQUE, NOTRE PRODUCTION',de:'IHRE MARKE, UNSERE PRODUKTION'},
+            pl_desc:{en:'Behind every suit that carries your name, there\'s a story of craftsmanship that begins in İzmir — Turkey\'s textile heartland. For over 15 years, Pagus Menswear has been the silent force behind some of Europe\'s most respected menswear labels, engineering confidence into every lapel, seam, and stitch. Our Private Label service is a true partnership. You define the design, fabric, fit, and finishing — we handle everything else. Our in-house pattern makers and master tailors work as a dedicated extension of your brand, combining traditional tailoring techniques with modern production capacity. From ceremonial suits and tuxedos to business wear and smart-casual blazers, every production run follows rigorous quality protocols. We source premium fabrics from certified Turkish and Italian mills, and deliver your garments labeled, packaged, and retail-ready. No hidden fees. No compromise. Your labels, your packaging, your identity — backed by decades of textile mastery and trusted by partners across Italy, Germany, France, and beyond.',it:'Dietro ogni abito che porta il vostro nome, c\'è una storia di artigianalità che inizia a Smirne — il cuore tessile della Turchia. Da oltre 15 anni, Pagus Menswear è la forza silenziosa dietro alcuni dei marchi di moda maschile più rispettati d\'Europa, infondendo sicurezza in ogni revers, cucitura e punto. Il nostro servizio Private Label è una vera partnership. Voi definite il design, il tessuto, la vestibilità e le finiture — noi ci occupiamo di tutto il resto. I nostri modellisti interni e i sarti maestri lavorano come un\'estensione dedicata del vostro marchio, combinando tecniche sartoriali tradizionali con una capacità produttiva moderna. Dagli abiti da cerimonia e smoking all\'abbigliamento business e ai blazer smart-casual, ogni produzione segue rigorosi protocolli di qualità. Utilizziamo tessuti premium da stabilimenti turchi e italiani certificati, e consegniamo i vostri capi etichettati, confezionati e pronti per la vendita. Nessun costo nascosto. Nessun compromesso. Le vostre etichette, il vostro packaging, la vostra identità — supportati da decenni di maestria tessile e dalla fiducia di partner in Italia, Germania, Francia e oltre.',fr:'Derrière chaque costume qui porte votre nom, il y a une histoire de savoir-faire qui commence à Izmir — le cœur textile de la Turquie. Depuis plus de 15 ans, Pagus Menswear est la force silencieuse derrière certaines des marques de mode masculine les plus respectées d\'Europe, insufflant confiance dans chaque revers, couture et point. Notre service Private Label est un véritable partenariat. Vous définissez le design, le tissu, la coupe et les finitions — nous nous occupons de tout le reste. Nos modélistes internes et maîtres tailleurs travaillent comme une extension dédiée de votre marque, alliant techniques de couture traditionnelles et capacité de production moderne. Des costumes de cérémonie et smokings aux tenues business et blazers smart-casual, chaque production suit des protocoles de qualité rigoureux. Nous utilisons des tissus premium provenant de manufactures turques et italiennes certifiées, et livrons vos vêtements étiquetés, emballés et prêts à la vente. Aucun frais caché. Aucun compromis. Vos étiquettes, votre packaging, votre identité — soutenus par des décennies de maîtrise textile et la confiance de partenaires en Italie, Allemagne, France et au-delà.',de:'Hinter jedem Anzug, der Ihren Namen trägt, steckt eine Geschichte der Handwerkskunst, die in Izmir beginnt — dem textilen Herzen der Türkei. Seit über 15 Jahren ist Pagus Menswear die stille Kraft hinter einigen der angesehensten Herrenmode-Marken Europas und verleiht jedem Revers, jeder Naht und jedem Stich Vertrauen. Unser Private-Label-Service ist eine echte Partnerschaft. Sie bestimmen Design, Stoff, Passform und Verarbeitung — wir kümmern uns um alles andere. Unsere hauseigenen Schnitttechniker und Meisterschneider arbeiten als dedizierte Erweiterung Ihrer Marke und verbinden traditionelle Schneiderkunst mit moderner Produktionskapazität. Von Festanzügen und Smokings bis hin zu Businesskleidung und Smart-Casual-Blazern folgt jede Produktion strengen Qualitätsprotokollen. Wir verwenden Premium-Stoffe aus zertifizierten türkischen und italienischen Webereien und liefern Ihre Kleidungsstücke etikettiert, verpackt und verkaufsfertig. Keine versteckten Kosten. Keine Kompromisse. Ihre Etiketten, Ihre Verpackung, Ihre Identität — gestützt durch Jahrzehnte textiler Meisterschaft und das Vertrauen von Partnern in Italien, Deutschland, Frankreich und darüber hinaus.'},
+            pl_btn:{en:'START PRODUCTION',it:'AVVIA PRODUZIONE',fr:'LANCER LA PRODUCTION',de:'PRODUKTION STARTEN'},
             // FLOAT CART
-            send_text:{en:'SEND',it:'INVIA',fr:'ENVOYER',de:'SENDEN',tr:'GÖNDER'},
+            send_text:{en:'SEND',it:'INVIA',fr:'ENVOYER',de:'SENDEN'},
             // MODAL
-            wholesale_mfr:{en:'WHOLESALE MANUFACTURER',it:'PRODUTTORE ALL\'INGROSSO',fr:'FABRICANT EN GROS',de:'GROSSHANDEL-HERSTELLER',tr:'TOPTAN ÜRETİCİ'},
-            badge_fabric:{en:'Premium Fabric',it:'Tessuto Premium',fr:'Tissu Premium',de:'Premium-Stoff',tr:'Premium Kumaş'},
-            badge_turkey:{en:'Made in Turkey',it:'Prodotto in Turchia',fr:'Fabriqué en Turquie',de:'Hergestellt in der Türkei',tr:'Türkiye Üretimi'},
-            badge_wholesale:{en:'Wholesale Only',it:'Solo Ingrosso',fr:'Grossiste Uniquement',de:'Nur Großhandel',tr:'Sadece Toptan'},
-            modal_desc:{en:'Premium quality fabric available for bulk orders.',it:'Tessuto di qualità premium disponibile per ordini all\'ingrosso.',fr:'Tissu de qualité premium disponible pour commandes en gros.',de:'Premium-Qualitätsstoff für Großbestellungen verfügbar.',tr:'Toptan siparişler için premium kalite kumaş.'},
-            ask_wa:{en:'ASK PRICE VIA WHATSAPP',it:'CHIEDI IL PREZZO SU WHATSAPP',fr:'DEMANDER LE PRIX VIA WHATSAPP',de:'PREIS ÜBER WHATSAPP ANFRAGEN',tr:'WHATSAPP İLE FİYAT SOR'},
+            wholesale_mfr:{en:'WHOLESALE MANUFACTURER',it:'PRODUTTORE ALL\'INGROSSO',fr:'FABRICANT EN GROS',de:'GROSSHANDEL-HERSTELLER'},
+            badge_fabric:{en:'Premium Fabric',it:'Tessuto Premium',fr:'Tissu Premium',de:'Premium-Stoff'},
+            badge_turkey:{en:'Made in Turkey',it:'Prodotto in Turchia',fr:'Fabriqué en Turquie',de:'Hergestellt in der Türkei'},
+            badge_wholesale:{en:'Wholesale Only',it:'Solo Ingrosso',fr:'Grossiste Uniquement',de:'Nur Großhandel'},
+            modal_desc:{en:'Premium quality fabric available for bulk orders.',it:'Tessuto di qualità premium disponibile per ordini all\'ingrosso.',fr:'Tissu de qualité premium disponible pour commandes en gros.',de:'Premium-Qualitätsstoff für Großbestellungen verfügbar.'},
+            ask_wa:{en:'ASK PRICE VIA WHATSAPP',it:'CHIEDI IL PREZZO SU WHATSAPP',fr:'DEMANDER LE PRIX VIA WHATSAPP',de:'PREIS ÜBER WHATSAPP ANFRAGEN'},
             // AUTH
-            auth_subtitle:{en:'B2B Wholesale Portal',it:'Portale B2B Ingrosso',fr:'Portail B2B Grossiste',de:'B2B Großhandel-Portal',tr:'B2B Toptan Portal'},
-            login_tab:{en:'Login',it:'Accedi',fr:'Connexion',de:'Anmelden',tr:'Giriş'},
-            register_tab:{en:'Register',it:'Registrati',fr:'S\'inscrire',de:'Registrieren',tr:'Kayıt Ol'},
-            email_label:{en:'Email',it:'Email',fr:'Email',de:'E-Mail',tr:'E-posta'},
-            password_label:{en:'Password',it:'Password',fr:'Mot de passe',de:'Passwort',tr:'Şifre'},
-            or_divider:{en:'or',it:'oppure',fr:'ou',de:'oder',tr:'veya'},
-            google_btn:{en:'Continue with Google',it:'Continua con Google',fr:'Continuer avec Google',de:'Mit Google fortfahren',tr:'Google ile Devam Et'},
-            company_label:{en:'Company / Name',it:'Azienda / Nome',fr:'Entreprise / Nom',de:'Firma / Name',tr:'Firma / İsim'},
-            company_ph:{en:'Your company or full name',it:'Nome della vostra azienda',fr:'Nom de votre entreprise',de:'Ihr Firmenname',tr:'Firma adınız veya tam adınız'},
-            min6_ph:{en:'Min. 6 characters',it:'Min. 6 caratteri',fr:'Min. 6 caractères',de:'Min. 6 Zeichen',tr:'En az 6 karakter'},
-            confirm_pw:{en:'Confirm Password',it:'Conferma Password',fr:'Confirmer le mot de passe',de:'Passwort bestätigen',tr:'Şifre Tekrar'},
-            repeat_ph:{en:'Repeat password',it:'Ripeti la password',fr:'Répéter le mot de passe',de:'Passwort wiederholen',tr:'Şifreyi tekrar girin'},
-            create_account:{en:'CREATE ACCOUNT',it:'CREA ACCOUNT',fr:'CRÉER UN COMPTE',de:'KONTO ERSTELLEN',tr:'HESAP OLUŞTUR'},
+            auth_subtitle:{en:'B2B Wholesale Portal',it:'Portale B2B Ingrosso',fr:'Portail B2B Grossiste',de:'B2B Großhandel-Portal'},
+            login_tab:{en:'Login',it:'Accedi',fr:'Connexion',de:'Anmelden'},
+            register_tab:{en:'Register',it:'Registrati',fr:'S\'inscrire',de:'Registrieren'},
+            email_label:{en:'Email',it:'Email',fr:'Email',de:'E-Mail'},
+            password_label:{en:'Password',it:'Password',fr:'Mot de passe',de:'Passwort'},
+            or_divider:{en:'or',it:'oppure',fr:'ou',de:'oder'},
+            google_btn:{en:'Continue with Google',it:'Continua con Google',fr:'Continuer avec Google',de:'Mit Google fortfahren'},
+            company_label:{en:'Company / Name',it:'Azienda / Nome',fr:'Entreprise / Nom',de:'Firma / Name'},
+            company_ph:{en:'Your company or full name',it:'Nome della vostra azienda',fr:'Nom de votre entreprise',de:'Ihr Firmenname'},
+            min6_ph:{en:'Min. 6 characters',it:'Min. 6 caratteri',fr:'Min. 6 caractères',de:'Min. 6 Zeichen'},
+            confirm_pw:{en:'Confirm Password',it:'Conferma Password',fr:'Confirmer le mot de passe',de:'Passwort bestätigen'},
+            repeat_ph:{en:'Repeat password',it:'Ripeti la password',fr:'Répéter le mot de passe',de:'Passwort wiederholen'},
+            create_account:{en:'CREATE ACCOUNT',it:'CREA ACCOUNT',fr:'CRÉER UN COMPTE',de:'KONTO ERSTELLEN'},
             // FORGOT PASSWORD
-            forgot_pw:{en:'Forgot your password?',it:'Password dimenticata?',fr:'Mot de passe oublié ?',de:'Passwort vergessen?',tr:'Şifrenizi mi unuttunuz?'},
-            forgot_desc:{en:'Enter your email address and we\'ll send you a link to reset your password.',it:'Inserisci il tuo indirizzo email e ti invieremo un link per reimpostare la password.',fr:'Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.',de:'Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.',tr:'E-posta adresinizi girin, şifre sıfırlama bağlantısı göndereceğiz.'},
-            send_reset:{en:'SEND RESET LINK',it:'INVIA LINK DI RESET',fr:'ENVOYER LE LIEN',de:'LINK SENDEN',tr:'SIFIRLAMA LİNKİ GÖNDER'},
-            back_to_login:{en:'← Back to Login',it:'← Torna al Login',fr:'← Retour à la Connexion',de:'← Zurück zur Anmeldung',tr:'← Girişe Dön'},
-            sending:{en:'SENDING...',it:'INVIO...',fr:'ENVOI...',de:'WIRD GESENDET...',tr:'GÖNDERİLİYOR...'},
-            reset_sent:{en:'Reset link sent! Check your email inbox.',it:'Link di reset inviato! Controlla la tua casella email.',fr:'Lien envoyé ! Vérifiez votre boîte mail.',de:'Link gesendet! Überprüfen Sie Ihr E-Mail-Postfach.',tr:'Sıfırlama linki gönderildi! E-posta kutunuzu kontrol edin.'},
-            reset_error:{en:'Could not send reset email. Please try again.',it:'Impossibile inviare l\'email di reset. Riprova.',fr:'Impossible d\'envoyer l\'email. Veuillez réessayer.',de:'E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',tr:'Sıfırlama e-postası gönderilemedi. Lütfen tekrar deneyin.'},
-            reset_not_found:{en:'No account found with this email address.',it:'Nessun account trovato con questa email.',fr:'Aucun compte trouvé avec cette adresse email.',de:'Kein Konto mit dieser E-Mail-Adresse gefunden.',tr:'Bu e-posta adresine ait hesap bulunamadı.'},
-            reset_invalid:{en:'Please enter a valid email address.',it:'Inserisci un indirizzo email valido.',fr:'Veuillez entrer une adresse email valide.',de:'Bitte geben Sie eine gültige E-Mail-Adresse ein.',tr:'Lütfen geçerli bir e-posta adresi girin.'},
-            reset_too_many:{en:'Too many attempts. Please try again later.',it:'Troppi tentativi. Riprova più tardi.',fr:'Trop de tentatives. Réessayez plus tard.',de:'Zu viele Versuche. Bitte versuchen Sie es später erneut.',tr:'Çok fazla deneme. Lütfen daha sonra tekrar deneyin.'},
-            forgot_empty:{en:'Please enter your email address.',it:'Inserisci il tuo indirizzo email.',fr:'Veuillez entrer votre adresse email.',de:'Bitte geben Sie Ihre E-Mail-Adresse ein.',tr:'Lütfen e-posta adresinizi girin.'},
+            forgot_pw:{en:'Forgot your password?',it:'Password dimenticata?',fr:'Mot de passe oublié ?',de:'Passwort vergessen?'},
+            forgot_desc:{en:'Enter your email address and we\'ll send you a link to reset your password.',it:'Inserisci il tuo indirizzo email e ti invieremo un link per reimpostare la password.',fr:'Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.',de:'Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.'},
+            send_reset:{en:'SEND RESET LINK',it:'INVIA LINK DI RESET',fr:'ENVOYER LE LIEN',de:'LINK SENDEN'},
+            back_to_login:{en:'← Back to Login',it:'← Torna al Login',fr:'← Retour à la Connexion',de:'← Zurück zur Anmeldung'},
+            sending:{en:'SENDING...',it:'INVIO...',fr:'ENVOI...',de:'WIRD GESENDET...'},
+            reset_sent:{en:'Reset link sent! Check your email inbox.',it:'Link di reset inviato! Controlla la tua casella email.',fr:'Lien envoyé ! Vérifiez votre boîte mail.',de:'Link gesendet! Überprüfen Sie Ihr E-Mail-Postfach.'},
+            reset_error:{en:'Could not send reset email. Please try again.',it:'Impossibile inviare l\'email di reset. Riprova.',fr:'Impossible d\'envoyer l\'email. Veuillez réessayer.',de:'E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es erneut.'},
+            reset_not_found:{en:'No account found with this email address.',it:'Nessun account trovato con questa email.',fr:'Aucun compte trouvé avec cette adresse email.',de:'Kein Konto mit dieser E-Mail-Adresse gefunden.'},
+            reset_invalid:{en:'Please enter a valid email address.',it:'Inserisci un indirizzo email valido.',fr:'Veuillez entrer une adresse email valide.',de:'Bitte geben Sie eine gültige E-Mail-Adresse ein.'},
+            reset_too_many:{en:'Too many attempts. Please try again later.',it:'Troppi tentativi. Riprova più tardi.',fr:'Trop de tentatives. Réessayez plus tard.',de:'Zu viele Versuche. Bitte versuchen Sie es später erneut.'},
+            forgot_empty:{en:'Please enter your email address.',it:'Inserisci il tuo indirizzo email.',fr:'Veuillez entrer votre adresse email.',de:'Bitte geben Sie Ihre E-Mail-Adresse ein.'},
             // COOKIE
-            cookie_text:{en:'We use essential cookies and local storage to improve your experience. By continuing, you accept our <a href="privacy.html">Privacy Policy</a>.',it:'Utilizziamo cookie essenziali e archiviazione locale per migliorare la tua esperienza. Continuando, accetti la nostra <a href="privacy.html">Informativa sulla Privacy</a>.',fr:'Nous utilisons des cookies essentiels et le stockage local pour améliorer votre expérience. En continuant, vous acceptez notre <a href="privacy.html">Politique de Confidentialité</a>.',de:'Wir verwenden essentielle Cookies und lokalen Speicher, um Ihr Erlebnis zu verbessern. Durch die weitere Nutzung akzeptieren Sie unsere <a href="privacy.html">Datenschutzrichtlinie</a>.',tr:'Deneyiminizi geliştirmek için temel çerezler ve yerel depolama kullanıyoruz. Devam ederek <a href="privacy.html">Gizlilik Politikamızı</a> kabul etmiş olursunuz.'},
-            accept_btn:{en:'ACCEPT',it:'ACCETTO',fr:'ACCEPTER',de:'AKZEPTIEREN',tr:'KABUL ET'},
+            cookie_text:{en:'We use essential cookies and local storage to improve your experience. By continuing, you accept our <a href="privacy.html">Privacy Policy</a>.',it:'Utilizziamo cookie essenziali e archiviazione locale per migliorare la tua esperienza. Continuando, accetti la nostra <a href="privacy.html">Informativa sulla Privacy</a>.',fr:'Nous utilisons des cookies essentiels et le stockage local pour améliorer votre expérience. En continuant, vous acceptez notre <a href="privacy.html">Politique de Confidentialité</a>.',de:'Wir verwenden essentielle Cookies und lokalen Speicher, um Ihr Erlebnis zu verbessern. Durch die weitere Nutzung akzeptieren Sie unsere <a href="privacy.html">Datenschutzrichtlinie</a>.'},
+            accept_btn:{en:'ACCEPT',it:'ACCETTO',fr:'ACCEPTER',de:'AKZEPTIEREN'},
             // PROMO POPUP
-            promo_discount:{en:'5% OFF',it:'5% DI SCONTO',fr:'5% DE RÉDUCTION',de:'5% RABATT',tr:'%5 İNDİRİM'},
-            promo_subtitle:{en:'Your First Order',it:'Il Vostro Primo Ordine',fr:'Votre Première Commande',de:'Ihre Erste Bestellung',tr:'İlk Siparişinize'},
-            promo_desc:{en:'Register now and get 5% discount on your first wholesale order.',it:'Registratevi ora e ottenete il 5% di sconto sul vostro primo ordine all\'ingrosso.',fr:'Inscrivez-vous maintenant et bénéficiez de 5% de réduction sur votre première commande en gros.',de:'Registrieren Sie sich jetzt und erhalten Sie 5% Rabatt auf Ihre erste Großhandelsbestellung.',tr:'Şimdi kayıt olun ve ilk toptan siparişinizde %5 indirim kazanın.'},
-            promo_btn:{en:'REGISTER & GET DISCOUNT',it:'REGISTRATI E OTTIENI LO SCONTO',fr:'INSCRIVEZ-VOUS ET OBTENEZ LA RÉDUCTION',de:'REGISTRIEREN & RABATT ERHALTEN',tr:'KAYIT OL & İNDİRİM KAZAN'},
-            promo_skip:{en:'No thanks, maybe later',it:'No grazie, forse dopo',fr:'Non merci, peut-être plus tard',de:'Nein danke, vielleicht später',tr:'Hayır teşekkürler, belki sonra'},
-            promo_badge:{en:'Limited Offer',it:'Offerta Limitata',fr:'Offre Limitée',de:'Begrenztes Angebot',tr:'Sınırlı Teklif'},
+            promo_discount:{en:'5% OFF',it:'5% DI SCONTO',fr:'5% DE RÉDUCTION',de:'5% RABATT'},
+            promo_subtitle:{en:'Your First Order',it:'Il Vostro Primo Ordine',fr:'Votre Première Commande',de:'Ihre Erste Bestellung'},
+            promo_desc:{en:'Register now and get 5% discount on your first wholesale order.',it:'Registratevi ora e ottenete il 5% di sconto sul vostro primo ordine all\'ingrosso.',fr:'Inscrivez-vous maintenant et bénéficiez de 5% de réduction sur votre première commande en gros.',de:'Registrieren Sie sich jetzt und erhalten Sie 5% Rabatt auf Ihre erste Großhandelsbestellung.'},
+            promo_btn:{en:'REGISTER & GET DISCOUNT',it:'REGISTRATI E OTTIENI LO SCONTO',fr:'INSCRIVEZ-VOUS ET OBTENEZ LA RÉDUCTION',de:'REGISTRIEREN & RABATT ERHALTEN'},
+            promo_skip:{en:'No thanks, maybe later',it:'No grazie, forse dopo',fr:'Non merci, peut-être plus tard',de:'Nein danke, vielleicht später'},
+            promo_badge:{en:'Limited Offer',it:'Offerta Limitata',fr:'Offre Limitée',de:'Begrenztes Angebot'},
             // FOOTER
-            ft_why:{en:'Why Pagus',it:'Perché Pagus',fr:'Pourquoi Pagus',de:'Warum Pagus',tr:'Neden Pagus'},
-            ft_why_text:{en:'<strong style="color:var(--color-gold);">15+</strong> years of excellence in premium menswear manufacturing. Specializing in ceremonial, formal & casual wear, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.',it:'<strong style="color:var(--color-gold);">15+</strong> anni di eccellenza nella produzione di abbigliamento maschile premium. Specializzati in abbigliamento cerimoniale, formale e casual, offriamo artigianalità di qualità europea a prezzi competitivi. Affidabili per rivenditori in Italia, Germania, Francia e oltre.',fr:'<strong style="color:var(--color-gold);">15+</strong> ans d\'excellence dans la fabrication de mode masculine premium. Spécialisés dans les tenues de cérémonie, formelles et décontractées, nous offrons un savoir-faire de qualité européenne à des prix de gros compétitifs. Approuvé par des détaillants en Italie, Allemagne, France et au-delà.',de:'<strong style="color:var(--color-gold);">15+</strong> Jahre Exzellenz in der Premium-Herrenmode-Fertigung. Spezialisiert auf festliche, formelle und lässige Kleidung, liefern wir europäische Handwerksqualität zu wettbewerbsfähigen Großhandelspreisen. Vertraut von Einzelhändlern in Italien, Deutschland, Frankreich und darüber hinaus.',tr:'<strong style="color:var(--color-gold);">15+</strong> yıllık premium erkek giyim üretiminde mükemmellik. Merasim, resmi ve günlük giyimde uzmanlaşarak, rekabetçi toptan fiyatlarla Avrupa kalitesinde işçilik sunuyoruz. İtalya, Almanya, Fransa ve ötesindeki perakendecilerin güvendiği marka.'},
-            ft_contact:{en:'B2B Contact',it:'Contatto B2B',fr:'Contact B2B',de:'B2B Kontakt',tr:'B2B İletişim'},
-            ft_location:{en:'Location:',it:'Sede:',fr:'Siège :',de:'Standort:',tr:'Konum:'},
-            ft_moq:{en:'Minimum order: 50 pieces',it:'Ordine minimo: 50 pezzi',fr:'Commande minimum : 50 pièces',de:'Mindestbestellung: 50 Stück',tr:'Minimum sipariş: 50 adet'},
-            ft_pl:{en:'Private label & custom branding',it:'Private label & personalizzazione del marchio',fr:'Marque privée & personnalisation',de:'Private Label & individuelle Markengestaltung',tr:'Özel marka & kişiselleştirme'},
-            ft_price:{en:'Direct factory pricing',it:'Prezzi diretti di fabbrica',fr:'Prix usine direct',de:'Direkte Fabrikpreise',tr:'Fabrika direkt fiyat'},
-            ft_ship:{en:'Worldwide shipping & export docs',it:'Spedizione mondiale & documentazione export',fr:'Expédition mondiale & documents d\'exportation',de:'Weltweiter Versand & Exportdokumente',tr:'Dünya geneli kargo & ihracat belgeleri'},
-            ft_mgr:{en:'Dedicated account manager',it:'Account manager dedicato',fr:'Gestionnaire de compte dédié',de:'Dedizierter Kundenbetreuer',tr:'Özel müşteri temsilcisi'},
-            ft_links:{en:'Quick Links',it:'Link Utili',fr:'Liens Rapides',de:'Schnelllinks',tr:'Hızlı Linkler'},
-            ft_follow:{en:'Follow Us',it:'Seguici',fr:'Suivez-nous',de:'Folgen Sie uns',tr:'Bizi Takip Edin'},
-            ft_tc:{en:'Terms & Conditions',it:'Termini e Condizioni',fr:'Conditions Générales',de:'Allgemeine Geschäftsbedingungen',tr:'Şartlar & Koşullar'},
-            ft_privacy:{en:'Privacy & GDPR',it:'Privacy & GDPR',fr:'Confidentialité & RGPD',de:'Datenschutz & DSGVO',tr:'Gizlilik & KVKK'},
-            ft_payment:{en:'Secure Payment & Bank Accounts',it:'Pagamento Sicuro & Conti Bancari',fr:'Paiement Sécurisé & Comptes Bancaires',de:'Sichere Zahlung & Bankkonten',tr:'Güvenli Ödeme & Banka Hesapları'},
-            ft_rights:{en:'All Rights Reserved.',it:'Tutti i Diritti Riservati.',fr:'Tous Droits Réservés.',de:'Alle Rechte vorbehalten.',tr:'Tüm Hakları Saklıdır.'},
-            ft_shipping:{en:'Worldwide shipping via DHL, FedEx & UPS.',it:'Spedizione mondiale tramite DHL, FedEx e UPS.',fr:'Expédition mondiale via DHL, FedEx et UPS.',de:'Weltweiter Versand über DHL, FedEx & UPS.',tr:'DHL, FedEx & UPS ile dünya genelinde kargo.'},
+            ft_why:{en:'Why Pagus',it:'Perché Pagus',fr:'Pourquoi Pagus',de:'Warum Pagus'},
+            ft_why_text:{en:'<strong style="color:var(--color-gold);">15+</strong> years of excellence in premium menswear manufacturing. Specializing in ceremonial, formal & casual wear, we deliver European-quality craftsmanship at competitive wholesale prices. Trusted by retailers across Italy, Germany, France, and beyond.',it:'<strong style="color:var(--color-gold);">15+</strong> anni di eccellenza nella produzione di abbigliamento maschile premium. Specializzati in abbigliamento cerimoniale, formale e casual, offriamo artigianalità di qualità europea a prezzi competitivi. Affidabili per rivenditori in Italia, Germania, Francia e oltre.',fr:'<strong style="color:var(--color-gold);">15+</strong> ans d\'excellence dans la fabrication de mode masculine premium. Spécialisés dans les tenues de cérémonie, formelles et décontractées, nous offrons un savoir-faire de qualité européenne à des prix de gros compétitifs. Approuvé par des détaillants en Italie, Allemagne, France et au-delà.',de:'<strong style="color:var(--color-gold);">15+</strong> Jahre Exzellenz in der Premium-Herrenmode-Fertigung. Spezialisiert auf festliche, formelle und lässige Kleidung, liefern wir europäische Handwerksqualität zu wettbewerbsfähigen Großhandelspreisen. Vertraut von Einzelhändlern in Italien, Deutschland, Frankreich und darüber hinaus.'},
+            ft_contact:{en:'B2B Contact',it:'Contatto B2B',fr:'Contact B2B',de:'B2B Kontakt'},
+            ft_location:{en:'Location:',it:'Sede:',fr:'Siège :',de:'Standort:'},
+            ft_moq:{en:'Minimum order: 50 pieces',it:'Ordine minimo: 50 pezzi',fr:'Commande minimum : 50 pièces',de:'Mindestbestellung: 50 Stück'},
+            ft_pl:{en:'Private label & custom branding',it:'Private label & personalizzazione del marchio',fr:'Marque privée & personnalisation',de:'Private Label & individuelle Markengestaltung'},
+            ft_price:{en:'Direct factory pricing',it:'Prezzi diretti di fabbrica',fr:'Prix usine direct',de:'Direkte Fabrikpreise'},
+            ft_ship:{en:'Worldwide shipping & export docs',it:'Spedizione mondiale & documentazione export',fr:'Expédition mondiale & documents d\'exportation',de:'Weltweiter Versand & Exportdokumente'},
+            ft_mgr:{en:'Dedicated account manager',it:'Account manager dedicato',fr:'Gestionnaire de compte dédié',de:'Dedizierter Kundenbetreuer'},
+            ft_links:{en:'Quick Links',it:'Link Utili',fr:'Liens Rapides',de:'Schnelllinks'},
+            ft_follow:{en:'Follow Us',it:'Seguici',fr:'Suivez-nous',de:'Folgen Sie uns'},
+            ft_tc:{en:'Terms & Conditions',it:'Termini e Condizioni',fr:'Conditions Générales',de:'Allgemeine Geschäftsbedingungen'},
+            ft_privacy:{en:'Privacy & GDPR',it:'Privacy & GDPR',fr:'Confidentialité & RGPD',de:'Datenschutz & DSGVO'},
+            ft_payment:{en:'Secure Payment & Bank Accounts',it:'Pagamento Sicuro & Conti Bancari',fr:'Paiement Sécurisé & Comptes Bancaires',de:'Sichere Zahlung & Bankkonten'},
+            ft_rights:{en:'All Rights Reserved.',it:'Tutti i Diritti Riservati.',fr:'Tous Droits Réservés.',de:'Alle Rechte vorbehalten.'},
+            ft_shipping:{en:'Worldwide shipping via DHL, FedEx & UPS.',it:'Spedizione mondiale tramite DHL, FedEx e UPS.',fr:'Expédition mondiale via DHL, FedEx et UPS.',de:'Weltweiter Versand über DHL, FedEx & UPS.'},
             // EXISTING TEXTS
-            search_min:{en:'Please enter at least 2 characters',it:'Inserisci almeno 2 caratteri',fr:'Veuillez entrer au moins 2 caractères',de:'Bitte mindestens 2 Zeichen eingeben',tr:'Lütfen en az 2 karakter girin'},
-            wa_list_header:{en:'Hi Pagus, I am interested in the prices for these models:',it:'Salve Pagus, sono interessato ai prezzi di questi modelli:',fr:'Bonjour Pagus, je suis intéressé par les prix de ces modèles :',de:'Hallo Pagus, ich interessiere mich für die Preise dieser Modelle:',tr:'Merhaba Pagus, şu modellerin fiyatlarıyla ilgileniyorum:'},
-            wa_list_footer:{en:'Thanks.',it:'Grazie.',fr:'Merci.',de:'Danke.',tr:'Teşekkürler.'},
-            wa_inquiry:{en:'Hi, inquiring about: ',it:'Salve, vorrei ricevere informazioni sul modello: ',fr:'Bonjour, je souhaite me renseigner sur : ',de:'Hallo, Anfrage zu: ',tr:'Merhaba, şu ürün hakkında bilgi almak istiyorum: '},
-            popup_blocked:{en:'Popup blocked. Please allow popups for WhatsApp.',it:'Popup bloccato. Consenti i popup per WhatsApp.',fr:'Popup bloqué. Veuillez autoriser les popups pour WhatsApp.',de:'Popup blockiert. Bitte erlauben Sie Popups für WhatsApp.',tr:'Popup engellendi. Lütfen WhatsApp için popuplara izin verin.'},
+            search_min:{en:'Please enter at least 2 characters',it:'Inserisci almeno 2 caratteri',fr:'Veuillez entrer au moins 2 caractères',de:'Bitte mindestens 2 Zeichen eingeben'},
+            wa_list_header:{en:'Hi Pagus, I am interested in the prices for these models:',it:'Salve Pagus, sono interessato ai prezzi di questi modelli:',fr:'Bonjour Pagus, je suis intéressé par les prix de ces modèles :',de:'Hallo Pagus, ich interessiere mich für die Preise dieser Modelle:'},
+            wa_list_footer:{en:'Thanks.',it:'Grazie.',fr:'Merci.',de:'Danke.'},
+            wa_inquiry:{en:'Hi, inquiring about: ',it:'Salve, vorrei ricevere informazioni sul modello: ',fr:'Bonjour, je souhaite me renseigner sur : ',de:'Hallo, Anfrage zu: '},
+            popup_blocked:{en:'Popup blocked. Please allow popups for WhatsApp.',it:'Popup bloccato. Consenti i popup per WhatsApp.',fr:'Popup bloqué. Veuillez autoriser les popups pour WhatsApp.',de:'Popup blockiert. Bitte erlauben Sie Popups für WhatsApp.'},
             // ADV SEARCH
-            adv_search:{en:'Advanced Search',it:'Ricerca Avanzata',fr:'Recherche Avancée',de:'Erweiterte Suche',tr:'Gelişmiş Arama'},
-            adv_keyword:{en:'Keyword',it:'Parola Chiave',fr:'Mot-clé',de:'Stichwort',tr:'Anahtar Kelime'},
-            adv_category:{en:'Category',it:'Categoria',fr:'Catégorie',de:'Kategorie',tr:'Kategori'},
-            adv_subcat:{en:'Subcategory',it:'Sottocategoria',fr:'Sous-catégorie',de:'Unterkategorie',tr:'Alt Kategori'},
-            adv_all_cats:{en:'All Categories',it:'Tutte le Categorie',fr:'Toutes les Catégories',de:'Alle Kategorien',tr:'Tüm Kategoriler'},
-            adv_all_subcats:{en:'All Subcategories',it:'Tutte le Sottocategorie',fr:'Toutes les Sous-catégories',de:'Alle Unterkategorien',tr:'Tüm Alt Kategoriler'},
-            adv_search_btn:{en:'SEARCH',it:'CERCA',fr:'RECHERCHER',de:'SUCHEN',tr:'ARA'},
-            adv_clear:{en:'Clear',it:'Cancella',fr:'Effacer',de:'Löschen',tr:'Temizle'},
-            adv_no_results:{en:'No results found',it:'Nessun risultato',fr:'Aucun résultat',de:'Keine Ergebnisse',tr:'Sonuç bulunamadı'},
-            adv_results:{en:'results for',it:'risultati per',fr:'résultats pour',de:'Ergebnisse für',tr:'sonuç bulundu:'},
+            adv_search:{en:'Advanced Search',it:'Ricerca Avanzata',fr:'Recherche Avancée',de:'Erweiterte Suche'},
+            adv_keyword:{en:'Keyword',it:'Parola Chiave',fr:'Mot-clé',de:'Stichwort'},
+            adv_category:{en:'Category',it:'Categoria',fr:'Catégorie',de:'Kategorie'},
+            adv_subcat:{en:'Subcategory',it:'Sottocategoria',fr:'Sous-catégorie',de:'Unterkategorie'},
+            adv_all_cats:{en:'All Categories',it:'Tutte le Categorie',fr:'Toutes les Catégories',de:'Alle Kategorien'},
+            adv_all_subcats:{en:'All Subcategories',it:'Tutte le Sottocategorie',fr:'Toutes les Sous-catégories',de:'Alle Unterkategorien'},
+            adv_search_btn:{en:'SEARCH',it:'CERCA',fr:'RECHERCHER',de:'SUCHEN'},
+            adv_clear:{en:'Clear',it:'Cancella',fr:'Effacer',de:'Löschen'},
+            adv_no_results:{en:'No results found',it:'Nessun risultato',fr:'Aucun résultat',de:'Keine Ergebnisse'},
+            adv_results:{en:'results for',it:'risultati per',fr:'résultats pour',de:'Ergebnisse für'},
             // UI TEXTS
-            view_collection:{en:'VIEW COLLECTION',it:'VEDI COLLEZIONE',fr:'VOIR LA COLLECTION',de:'KOLLEKTION ANSEHEN',tr:'KOLEKSİYONU GÖR'},
-            collection_updating:{en:'Collection is being updated...',it:'La collezione è in aggiornamento...',fr:'La collection est en cours de mise à jour...',de:'Kollektion wird aktualisiert...',tr:'Koleksiyon güncelleniyor...'},
-            no_products:{en:'No products found.',it:'Nessun prodotto trovato.',fr:'Aucun produit trouvé.',de:'Keine Produkte gefunden.',tr:'Ürün bulunamadı.'},
-            result_singular:{en:'result found',it:'risultato trovato',fr:'résultat trouvé',de:'Ergebnis gefunden',tr:'sonuç bulundu'},
-            results_plural:{en:'results found',it:'risultati trovati',fr:'résultats trouvés',de:'Ergebnisse gefunden',tr:'sonuç bulundu'},
-            results_for:{en:'for',it:'per',fr:'pour',de:'für',tr:'için'},
-            filtered_label:{en:'(filtered)',it:'(filtrato)',fr:'(filtré)',de:'(gefiltert)',tr:'(filtrelenmiş)'},
+            view_collection:{en:'VIEW COLLECTION',it:'VEDI COLLEZIONE',fr:'VOIR LA COLLECTION',de:'KOLLEKTION ANSEHEN'},
+            collection_updating:{en:'Collection is being updated...',it:'La collezione è in aggiornamento...',fr:'La collection est en cours de mise à jour...',de:'Kollektion wird aktualisiert...'},
+            no_products:{en:'No products found.',it:'Nessun prodotto trovato.',fr:'Aucun produit trouvé.',de:'Keine Produkte gefunden.'},
+            result_singular:{en:'result found',it:'risultato trovato',fr:'résultat trouvé',de:'Ergebnis gefunden'},
+            results_plural:{en:'results found',it:'risultati trovati',fr:'résultats trouvés',de:'Ergebnisse gefunden'},
+            results_for:{en:'for',it:'per',fr:'pour',de:'für'},
+            filtered_label:{en:'(filtered)',it:'(filtrato)',fr:'(filtré)',de:'(gefiltert)'},
             // PRICES
-            price_on_request:{en:'Price on request',it:'Prezzo su richiesta',fr:'Prix sur demande',de:'Preis auf Anfrage',tr:'Fiyat talep üzerine'},
-            login_see_prices:{en:'Login to see prices',it:'Accedi per vedere i prezzi',fr:'Connectez-vous pour voir les prix',de:'Anmelden um Preise zu sehen',tr:'Fiyatları görmek için giriş yapın'},
-            login_wholesale:{en:'Login to see wholesale prices →',it:'Accedi per i prezzi all\'ingrosso →',fr:'Connectez-vous pour les prix de gros →',de:'Anmelden für Großhandelspreise →',tr:'Toptan fiyatlar için giriş yapın →'},
-            price_tier_suffix:{en:'price',it:'prezzo',fr:'prix',de:'Preis',tr:'fiyat'},
+            price_on_request:{en:'Price on request',it:'Prezzo su richiesta',fr:'Prix sur demande',de:'Preis auf Anfrage'},
+            login_see_prices:{en:'Login to see prices',it:'Accedi per vedere i prezzi',fr:'Connectez-vous pour voir les prix',de:'Anmelden um Preise zu sehen'},
+            login_wholesale:{en:'Login to see wholesale prices →',it:'Accedi per i prezzi all\'ingrosso →',fr:'Connectez-vous pour les prix de gros →',de:'Anmelden für Großhandelspreise →'},
+            price_tier_suffix:{en:'price',it:'prezzo',fr:'prix',de:'Preis'},
             // AUTH MESSAGES
-            welcome_back:{en:'Welcome back!',it:'Bentornato!',fr:'Bon retour !',de:'Willkommen zurück!',tr:'Tekrar hoş geldiniz!'},
-            account_created:{en:'Account created! Welcome, ',it:'Account creato! Benvenuto, ',fr:'Compte créé ! Bienvenue, ',de:'Konto erstellt! Willkommen, ',tr:'Hesap oluşturuldu! Hoş geldiniz, '},
-            logged_out:{en:'Logged out.',it:'Disconnesso.',fr:'Déconnecté.',de:'Abgemeldet.',tr:'Çıkış yapıldı.'},
-            welcome_user:{en:'Welcome, ',it:'Benvenuto, ',fr:'Bienvenue, ',de:'Willkommen, ',tr:'Hoş geldiniz, '},
-            fill_all_fields:{en:'Please fill in all fields.',it:'Compila tutti i campi.',fr:'Veuillez remplir tous les champs.',de:'Bitte alle Felder ausfüllen.',tr:'Lütfen tüm alanları doldurun.'},
-            invalid_credentials:{en:'Invalid email or password.',it:'Email o password non validi.',fr:'Email ou mot de passe invalide.',de:'Ungültige E-Mail oder Passwort.',tr:'Geçersiz e-posta veya şifre.'},
-            too_many_login:{en:'Too many attempts. Try again later.',it:'Troppi tentativi. Riprova più tardi.',fr:'Trop de tentatives. Réessayez plus tard.',de:'Zu viele Versuche. Später erneut versuchen.',tr:'Çok fazla deneme. Daha sonra tekrar deneyin.'},
-            pw_min6:{en:'Password must be at least 6 characters.',it:'La password deve avere almeno 6 caratteri.',fr:'Le mot de passe doit contenir au moins 6 caractères.',de:'Passwort muss mindestens 6 Zeichen haben.',tr:'Şifre en az 6 karakter olmalıdır.'},
-            pw_no_match:{en:'Passwords do not match.',it:'Le password non corrispondono.',fr:'Les mots de passe ne correspondent pas.',de:'Passwörter stimmen nicht überein.',tr:'Şifreler eşleşmiyor.'},
-            creating_text:{en:'CREATING...',it:'CREAZIONE...',fr:'CRÉATION...',de:'WIRD ERSTELLT...',tr:'OLUŞTURULUYOR...'},
-            logging_in_text:{en:'LOGGING IN...',it:'ACCESSO...',fr:'CONNEXION...',de:'ANMELDUNG...',tr:'GİRİŞ YAPILIYOR...'},
-            reg_failed:{en:'Registration failed.',it:'Registrazione fallita.',fr:'Échec de l\'inscription.',de:'Registrierung fehlgeschlagen.',tr:'Kayıt başarısız.'},
-            email_in_use:{en:'Email already registered. Try logging in.',it:'Email già registrata. Prova ad accedere.',fr:'Email déjà enregistré. Connectez-vous.',de:'E-Mail bereits registriert. Versuchen Sie sich anzumelden.',tr:'Bu e-posta zaten kayıtlı. Giriş yapmayı deneyin.'},
-            pw_weak:{en:'Password is too weak.',it:'La password è troppo debole.',fr:'Le mot de passe est trop faible.',de:'Passwort ist zu schwach.',tr:'Şifre çok zayıf.'},
-            invalid_email_addr:{en:'Invalid email address.',it:'Indirizzo email non valido.',fr:'Adresse email invalide.',de:'Ungültige E-Mail-Adresse.',tr:'Geçersiz e-posta adresi.'},
-            popup_blocked_auth:{en:'Popup blocked. Please allow popups.',it:'Popup bloccato. Consenti i popup.',fr:'Popup bloqué. Autorisez les popups.',de:'Popup blockiert. Bitte Popups erlauben.',tr:'Popup engellendi. Lütfen popuplara izin verin.'},
-            google_fail:{en:'Google login failed.',it:'Accesso Google fallito.',fr:'Échec connexion Google.',de:'Google-Anmeldung fehlgeschlagen.',tr:'Google ile giriş başarısız.'},
-            firebase_error:{en:'Service not available.',it:'Servizio non disponibile.',fr:'Service non disponible.',de:'Dienst nicht verfügbar.',tr:'Hizmet kullanılamıyor.'},
-            login_failed:{en:'Login failed.',it:'Accesso fallito.',fr:'Échec de connexion.',de:'Anmeldung fehlgeschlagen.',tr:'Giriş başarısız.'},
-            error_inventory:{en:'Error: inventory.js not found.',it:'Errore: inventory.js non trovato.',fr:'Erreur : inventory.js introuvable.',de:'Fehler: inventory.js nicht gefunden.',tr:'Hata: inventory.js bulunamadı.'}
+            welcome_back:{en:'Welcome back!',it:'Bentornato!',fr:'Bon retour !',de:'Willkommen zurück!'},
+            account_created:{en:'Account created! Welcome, ',it:'Account creato! Benvenuto, ',fr:'Compte créé ! Bienvenue, ',de:'Konto erstellt! Willkommen, '},
+            logged_out:{en:'Logged out.',it:'Disconnesso.',fr:'Déconnecté.',de:'Abgemeldet.'},
+            welcome_user:{en:'Welcome, ',it:'Benvenuto, ',fr:'Bienvenue, ',de:'Willkommen, '},
+            fill_all_fields:{en:'Please fill in all fields.',it:'Compila tutti i campi.',fr:'Veuillez remplir tous les champs.',de:'Bitte alle Felder ausfüllen.'},
+            invalid_credentials:{en:'Invalid email or password.',it:'Email o password non validi.',fr:'Email ou mot de passe invalide.',de:'Ungültige E-Mail oder Passwort.'},
+            too_many_login:{en:'Too many attempts. Try again later.',it:'Troppi tentativi. Riprova più tardi.',fr:'Trop de tentatives. Réessayez plus tard.',de:'Zu viele Versuche. Später erneut versuchen.'},
+            pw_min6:{en:'Password must be at least 6 characters.',it:'La password deve avere almeno 6 caratteri.',fr:'Le mot de passe doit contenir au moins 6 caractères.',de:'Passwort muss mindestens 6 Zeichen haben.'},
+            pw_no_match:{en:'Passwords do not match.',it:'Le password non corrispondono.',fr:'Les mots de passe ne correspondent pas.',de:'Passwörter stimmen nicht überein.'},
+            creating_text:{en:'CREATING...',it:'CREAZIONE...',fr:'CRÉATION...',de:'WIRD ERSTELLT...'},
+            logging_in_text:{en:'LOGGING IN...',it:'ACCESSO...',fr:'CONNEXION...',de:'ANMELDUNG...'},
+            reg_failed:{en:'Registration failed.',it:'Registrazione fallita.',fr:'Échec de l\'inscription.',de:'Registrierung fehlgeschlagen.'},
+            email_in_use:{en:'Email already registered. Try logging in.',it:'Email già registrata. Prova ad accedere.',fr:'Email déjà enregistré. Connectez-vous.',de:'E-Mail bereits registriert. Versuchen Sie sich anzumelden.'},
+            pw_weak:{en:'Password is too weak.',it:'La password è troppo debole.',fr:'Le mot de passe est trop faible.',de:'Passwort ist zu schwach.'},
+            invalid_email_addr:{en:'Invalid email address.',it:'Indirizzo email non valido.',fr:'Adresse email invalide.',de:'Ungültige E-Mail-Adresse.'},
+            popup_blocked_auth:{en:'Popup blocked. Please allow popups.',it:'Popup bloccato. Consenti i popup.',fr:'Popup bloqué. Autorisez les popups.',de:'Popup blockiert. Bitte Popups erlauben.'},
+            google_fail:{en:'Google login failed.',it:'Accesso Google fallito.',fr:'Échec connexion Google.',de:'Google-Anmeldung fehlgeschlagen.'},
+            firebase_error:{en:'Service not available.',it:'Servizio non disponibile.',fr:'Service non disponible.',de:'Dienst nicht verfügbar.'},
+            login_failed:{en:'Login failed.',it:'Accesso fallito.',fr:'Échec de connexion.',de:'Anmeldung fehlgeschlagen.'},
+            error_inventory:{en:'Error: inventory.js not found.',it:'Errore: inventory.js non trovato.',fr:'Erreur : inventory.js introuvable.',de:'Fehler: inventory.js nicht gefunden.'}
         };
 
         // Compat: old t() function
@@ -1289,29 +1290,6 @@
                     {t:'14. Anwendbares Recht',c:'<p>14.1. Es gilt das Recht der Republik Türkei.</p><p>14.2. Streitigkeiten unterliegen der ausschließlichen Zuständigkeit der Gerichte in İzmir.</p><p>14.3. EU-Käufer können zwingende Schutzrechte ihres Wohnsitzlandes geltend machen.</p>'},
                     {t:'15. Änderungen',c:'<p>15.1. PAGUS Menswear kann diese AGB jederzeit ändern.</p><p>15.2. Die fortgesetzte Nutzung gilt als Akzeptanz der geänderten AGB.</p>'},
                     {t:'16. Kontakt',c:'<div class="tc-contact"><strong>PAGUS Menswear</strong><br>İzmir, Türkei<br>E-Mail: info@pagusmenswear.com<br>WhatsApp: Auf der Website verfügbar</div>'}
-                ]
-            },
-tr:{
-                h1:'Şartlar ve Koşullar',
-                sub:'Toptan Satış Şartları ve Koşulları',
-                upd:'Son güncelleme: Şubat 2026',
-                s:[
-                    {t:'1. Tanımlar',c:'<ul><li><strong>"Satıcı"</strong> İzmir, Türkiye merkezli PAGUS Menswear\'ı ifade eder.</li><li><strong>"Alıcı"</strong> toptan sipariş veren herhangi bir ticari kuruluşu ifade eder.</li><li><strong>"Ürünler"</strong> satışa sunulan tüm erkek giyim ürünlerini ifade eder.</li><li><strong>"Sipariş"</strong> Alıcı tarafından verilen herhangi bir satın alma siparişini ifade eder.</li><li><strong>"Web Sitesi"</strong> pagusmenswear.com ve tüm alt alan adlarını ifade eder.</li></ul>'},
-                    {t:'2. Kapsam ve Uygulama',c:'<p>2.1. Bu Şartlar ve Koşullar, PAGUS Menswear ile Web Sitesi, e-posta, WhatsApp veya herhangi bir kanal üzerinden yapılan tüm toptan siparişlere uygulanır.</p><p>2.2. Sipariş vererek Alıcı bu Şartları kabul etmiş olur. Alıcı tarafından önerilen çelişen koşullar, yazılı olarak açıkça kabul edilmedikçe geçerli olmaz.</p><p>2.3. Bu Şartlar yalnızca işletmeler arası (B2B) işlemler içindir. PAGUS Menswear doğrudan tüketicilere satış yapmaz.</p>'},
-                    {t:'3. Siparişler ve Minimum Miktarlar',c:'<p>3.1. Minimum sipariş miktarı (MOQ) sipariş başına 50 adettir, aksi yazılı olarak kararlaştırılmadıkça.</p><p>3.2. Siparişler Web Sitesi talep formu, e-posta veya WhatsApp üzerinden verilebilir. Bir sipariş ancak PAGUS Menswear\'ın yazılı onayı ile kesinleşir.</p><p>3.3. PAGUS Menswear herhangi bir siparişi kendi takdirine bağlı olarak reddetme hakkını saklı tutar.</p><p>3.4. Ürün bulunabilirliği, sipariş onayı anındaki stok düzeylerine bağlıdır. Renkler ve kumaş kompozisyonları üretim partileri arasında hafif farklılık gösterebilir.</p>'},
-                    {t:'4. Fiyatlar ve Ödeme',c:'<p>4.1. Tüm fiyatlar Euro (EUR) veya ABD Doları (USD) cinsinden belirtilir ve nakliye, sigorta, gümrük vergileri ve geçerli vergiler hariçtir.</p><p>4.2. Fiyatlar teklif tarihinden itibaren 30 gün geçerlidir.</p><p>4.3. Standart ödeme koşulları:</p><ul><li>Sipariş onayında %50 depozito</li><li>Sevkiyattan önce %50 bakiye</li></ul><p>4.4. Banka havalesi ile ödeme (SWIFT/IBAN). Tüm banka masrafları Alıcıya aittir.</p><p>4.5. PAGUS Menswear, geç veya eksik ödeme durumunda siparişleri askıya alma veya iptal etme hakkını saklı tutar.</p>'},
-                    {t:'5. Nakliye ve Teslimat',c:'<p>5.1. Teslimat koşulları Incoterms® 2020 kullanılarak belirlenir (ör. EXW, FOB, CIF).</p><p>5.2. Tahmini teslimat süreleri gösterge niteliğindedir ve bağlayıcı değildir.</p><p>5.3. Kayıp riski, kararlaştırılan Incoterm\'e göre Alıcıya geçer.</p><p>5.4. Alıcı, tüm ithalat vergileri, gümrük işlemleri ve yerel vergilerden sorumludur.</p>'},
-                    {t:'6. Kalite ve Muayene',c:'<p>6.1. Tüm Ürünler profesyonel kalite standartlarına göre üretilir.</p><p>6.2. Alıcı, teslimat sırasında Ürünleri incelemeli ve 7 iş günü içinde herhangi bir kusuru bildirmelidir.</p><p>6.3. Bildirimde bulunulmaması kabul anlamına gelir.</p><p>6.4. Endüstri toleransları dahilindeki renk, doku veya ölçü farklılıkları kusur sayılmaz.</p>'},
-                    {t:'7. İadeler ve Talepler',c:'<p>7.1. İadeler yalnızca üretim kusurları veya yanlış ürünler için, önceden yazılı onay ile kabul edilir.</p><p>7.2. Onaylanan iadeler 14 gün içinde orijinal ambalajında geri gönderilmelidir.</p><p>7.3. PAGUS Menswear kusurlu Ürünleri değiştirebilir veya alacak dekontu düzenleyebilir.</p><p>7.4. Değiştirilmiş, yıkanmış, giyilmiş veya hasar görmüş Ürünler iade edilemez.</p>'},
-                    {t:'8. Özel Marka ve Kişiselleştirme',c:'<p>8.1. Özel marka ve kişiselleştirme hizmetleri ayrı anlaşmalar kapsamında sunulmaktadır.</p><p>8.2. Özel siparişler üretim başladıktan sonra iptal edilemez.</p><p>8.3. Alıcı, sağlanan tasarımların üçüncü taraf fikri mülkiyet haklarını ihlal etmediğini garanti eder.</p>'},
-                    {t:'9. Fikri Mülkiyet',c:'<p>9.1. Tüm tasarımlar, fotoğraflar ve içerikler PAGUS Menswear\'ın münhasır mülkiyetindedir.</p><p>9.2. Ürün görselleri yalnızca satın alınan Ürünlerin yeniden satışı amacıyla kullanılabilir.</p>'},
-                    {t:'10. Veri Koruma (KVKK)',c:'<p>10.1. PAGUS Menswear kişisel verileri yalnızca şu amaçlarla toplar:</p><ul><li>Siparişlerin işlenmesi ve yerine getirilmesi</li><li>Siparişler ve sorularla ilgili iletişim</li><li>Müşteri desteği</li><li>B2B pazarlama iletişimleri (onay veya meşru menfaat ile)</li></ul><p>10.2. KVKK ve GDPR kapsamında Alıcı; verilere erişim, düzeltme, silme, kısıtlama, taşınabilirlik ve onay geri çekme haklarına sahiptir.</p><p>10.3. Veriler, sipariş yerine getirme dışında üçüncü taraflarla paylaşılmaz.</p><p>10.4. İletişim: info@pagusmenswear.com</p>'},
-                    {t:'11. Çerezler',c:'<p>11.1. Web Sitesi, kullanıcı deneyimini geliştirmek ve trafiği analiz etmek için çerezler kullanır.</p><p>11.2. Çerezler tarayıcı ayarlarından yönetilebilir.</p><p>11.3. Temel çerezler işlevselliği etkilemeden devre dışı bırakılamaz.</p>'},
-                    {t:'12. Sorumluluk Sınırlaması',c:'<p>12.1. Toplam sorumluluk, ilgili siparişin değerini aşamaz.</p><p>12.2. Dolaylı, arızi veya sonuç olarak ortaya çıkan zararlar için sorumluluk kabul edilmez.</p><p>12.3. Hiçbir şey dolandırıcılık veya kasıtlı suistimal için sorumluluğu sınırlamaz.</p>'},
-                    {t:'13. Mücbir Sebepler',c:'<p>13.1. Doğal afetler, pandemiler, savaş, ticaret ambargoları veya tedarik zinciri kesintileri dahil makul kontrol dışındaki olaylardan kaynaklanan aksaklıklardan sorumluluk kabul edilmez.</p>'},
-                    {t:'14. Uygulanacak Hukuk',c:'<p>14.1. Türkiye Cumhuriyeti kanunlarına tabidir.</p><p>14.2. Uyuşmazlıklar İzmir Mahkemeleri ve İcra Dairelerine sunulur.</p><p>14.3. AB\'deki Alıcılar, kendi yerel yasaları kapsamındaki zorunlu koruma haklarını ileri sürebilir.</p>'},
-                    {t:'15. Değişiklikler',c:'<p>15.1. PAGUS Menswear bu Şartları herhangi bir zamanda değiştirebilir.</p><p>15.2. Kullanımın devam etmesi, değiştirilmiş Şartların kabulü anlamına gelir.</p>'},
-                    {t:'16. İletişim',c:'<div class="tc-contact"><strong>PAGUS Menswear</strong><br>İzmir, Türkiye<br>E-posta: info@pagusmenswear.com<br>WhatsApp: Web Sitesinde mevcuttur</div>'}
                 ]
             }
         };
