@@ -21,7 +21,7 @@ const productsDB = [
         "id": "10022-01",
         "category": "Formal Suits",
         "path": "images/Formal Suits/10022-01",
-        "focal_y": 12
+        "focal_y": 23
     },
     {
         "id": "10022-03",
@@ -99,7 +99,7 @@ const productsDB = [
         "id": "15095-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15095-02",
-        "focal_y": 50
+        "focal_y": 27
     },
     {
         "id": "15095-03",
@@ -129,7 +129,7 @@ const productsDB = [
         "id": "15095-17",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15095-17",
-        "focal_y": 50
+        "focal_y": 29
     },
     {
         "id": "15095-24",
@@ -207,7 +207,7 @@ const productsDB = [
         "id": "15103-04",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15103-04",
-        "focal_y": 16
+        "focal_y": 28
     },
     {
         "id": "15104-03",
@@ -267,7 +267,7 @@ const productsDB = [
         "id": "15117-4",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15117-4",
-        "focal_y": 49
+        "focal_y": 18
     },
     {
         "id": "15118-01",
@@ -513,7 +513,7 @@ const productsDB = [
         "id": "15130-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15130-02",
-        "focal_y": 23
+        "focal_y": 50
     },
     {
         "id": "15130-03",
@@ -543,7 +543,7 @@ const productsDB = [
         "id": "15131-06",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15131-06",
-        "focal_y": 50
+        "focal_y": 17
     },
     {
         "id": "15131-43",
@@ -597,7 +597,7 @@ const productsDB = [
         "id": "15138-17",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15138-17",
-        "focal_y": 18
+        "focal_y": 44
     },
     {
         "id": "15140-01",
@@ -849,7 +849,7 @@ const productsDB = [
         "id": "15157-17",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15157-17",
-        "focal_y": 50
+        "focal_y": 19
     },
     {
         "id": "15158-02",
@@ -951,7 +951,7 @@ const productsDB = [
         "id": "15170-02",
         "category": "Formal Suits",
         "path": "images/Formal Suits/15170-02",
-        "focal_y": 15
+        "focal_y": 26
     },
     {
         "id": "15170-04",
@@ -1006,18 +1006,6 @@ const productsDB = [
         "category": "Formal Suits",
         "path": "images/Formal Suits/20010-24",
         "focal_y": 44
-    },
-    {
-        "id": "Detachable lapel suits",
-        "category": "Wedding Suits",
-        "path": "images/Wedding Suits/Detachable lapel suits",
-        "focal_y": 20
-    },
-    {
-        "id": "Double Breasted",
-        "category": "Wedding Suits",
-        "path": "images/Wedding Suits/Double Breasted",
-        "focal_y": 20
     },
     {
         "id": "50005-01",
@@ -1155,13 +1143,13 @@ const productsDB = [
         "id": "50206-02",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50206-02",
-        "focal_y": 50
+        "focal_y": 21
     },
     {
         "id": "AGM1142-02",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/AGM1142-02",
-        "focal_y": 50
+        "focal_y": 21
     },
     {
         "id": "AGM1203-07",
@@ -1233,7 +1221,7 @@ const productsDB = [
         "id": "50072-03",
         "category": "Wedding Suits > Peak Lapel Smokings",
         "path": "images/Wedding Suits/Peak Lapel Smokings/50072-03",
-        "focal_y": 16
+        "focal_y": 45
     },
     {
         "id": "50073-06",
@@ -1281,13 +1269,13 @@ const productsDB = [
         "id": "50129-22",
         "category": "Wedding Suits > Peak Lapel Smokings",
         "path": "images/Wedding Suits/Peak Lapel Smokings/50129-22",
-        "focal_y": 30
+        "focal_y": 50
     },
     {
         "id": "50130-01",
         "category": "Wedding Suits > Peak Lapel Smokings",
         "path": "images/Wedding Suits/Peak Lapel Smokings/50130-01",
-        "focal_y": 17
+        "focal_y": 50
     },
     {
         "id": "50130-02",
@@ -1317,7 +1305,7 @@ const productsDB = [
         "id": "50113-6",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50113-6",
-        "focal_y": 10
+        "focal_y": 25
     },
     {
         "id": "50114-3",
@@ -1347,19 +1335,19 @@ const productsDB = [
         "id": "50125-2",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50125-2",
-        "focal_y": 50
+        "focal_y": 13
     },
     {
         "id": "50127-1",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50127-1",
-        "focal_y": 50
+        "focal_y": 25
     },
     {
         "id": "50127-10",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50127-10",
-        "focal_y": 11
+        "focal_y": 50
     },
     {
         "id": "50127-13",
@@ -1371,7 +1359,7 @@ const productsDB = [
         "id": "50127-17",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50127-17",
-        "focal_y": 11
+        "focal_y": 50
     },
     {
         "id": "50127-2",
