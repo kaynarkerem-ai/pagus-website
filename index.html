@@ -894,9 +894,9 @@
 
         // Update modal price if open
         var modalPrice = document.getElementById('modalPriceArea');
-        if(modalPrice && activeCode){
+        if(modalPrice && PAGUS.state.activeCode){
             if(PAGUS.state.currentUser){
-                var mp = getPrice(activeCode);
+                var mp = getPrice(PAGUS.state.activeCode);
                 if(mp){
                     modalPrice.innerHTML = '<div class="modal-price">' + formatPrice(mp) + '</div>'
                         + '<span class="price-tier">' + escapeHTML(PAGUS.state.userRole) + ' ' + t('price_tier_suffix') + '</span>';
@@ -1886,27 +1886,29 @@
         // FIX #4: probeImageCount race condition — session tracking
         // FIX #13: Focus trap for accessibility
 
-        var activeCode="",activePath="";
-        var idx=1,maxIdx=1;
-        var _probeSession=0;  // FIX #4: Track probe sessions
-        var _modalOpen=false;  // FIX #3: Track modal state
+        PAGUS.state.activeCode="";
+        PAGUS.state.activePath="";
+        PAGUS.state.modalIdx=1;
+        PAGUS.state.modalMaxIdx=1;
+        PAGUS.state.probeSession=0;  // FIX #4: Track probe sessions
+        PAGUS.state.modalOpen=false;  // FIX #3: Track modal state
 
         // FIX #4: Probe with session tracking to prevent stale callbacks
         function probeImageCount(basePath,cb){
-            _probeSession++;
-            var session=_probeSession;
+            PAGUS.state.probeSession++;
+            var session=PAGUS.state.probeSession;
             var count=1;
             function check(n){
                 if(n>20){cb(count);return;}
-                if(session!==_probeSession)return; // FIX #4: Abort stale probe
+                if(session!==PAGUS.state.probeSession)return; // FIX #4: Abort stale probe
                 var img=new Image();
                 img.onload=function(){
-                    if(session!==_probeSession)return;
+                    if(session!==PAGUS.state.probeSession)return;
                     count=n;
                     check(n+1);
                 };
                 img.onerror=function(){
-                    if(session!==_probeSession)return;
+                    if(session!==PAGUS.state.probeSession)return;
                     cb(count);
                 };
                 img.src=basePath+'/'+n+'.webp';
@@ -1915,9 +1917,9 @@
         }
 
         function openModal(c,r,f){
-            activeCode=c;
-            activePath=f;
-            idx=1;
+            PAGUS.state.activeCode=c;
+            PAGUS.state.activePath=f;
+            PAGUS.state.modalIdx=1;
 
             // FIX #15: Use imageCount from inventory.js if available, probe as fallback
             var knownCount=0;
@@ -1931,24 +1933,24 @@
             }
 
             if(knownCount>0){
-                maxIdx=knownCount;
-                document.getElementById('imgCount').textContent='1/'+maxIdx;
+                PAGUS.state.modalMaxIdx=knownCount;
+                document.getElementById('imgCount').textContent='1/'+PAGUS.state.modalMaxIdx;
             }else{
-                maxIdx=1;
+                PAGUS.state.modalMaxIdx=1;
                 document.getElementById('imgCount').textContent='1/...';
                 // Fallback: probe if imageCount not in inventory.js
                 probeImageCount(f,function(n){
-                    maxIdx=n;
-                    if(idx>maxIdx) idx=maxIdx;
-                    document.getElementById('imgCount').textContent=idx+'/'+maxIdx;
+                    PAGUS.state.modalMaxIdx=n;
+                    if(PAGUS.state.modalIdx>PAGUS.state.modalMaxIdx) PAGUS.state.modalIdx=PAGUS.state.modalMaxIdx;
+                    document.getElementById('imgCount').textContent=PAGUS.state.modalIdx+'/'+PAGUS.state.modalMaxIdx;
                 });
             }
 
             // FIX #3: Only push state if modal isn't already open
-            if(!_modalOpen){
+            if(!PAGUS.state.modalOpen){
                 history.pushState({modal:true},null,"");
             }
-            _modalOpen=true;
+            PAGUS.state.modalOpen=true;
 
             var m=document.getElementById('pModal');
             m.style.display="block";
@@ -1971,10 +1973,10 @@
             var m=document.getElementById('pModal');
             if(m.style.display==="none")return;
             m.style.display="none";
-            _probeSession++; // FIX #4: Invalidate running probe
+            PAGUS.state.probeSession++; // FIX #4: Invalidate running probe
 
-            if(_modalOpen){
-                _modalOpen=false;
+            if(PAGUS.state.modalOpen){
+                PAGUS.state.modalOpen=false;
                 if(history.state&&history.state.modal){
                     history.back();
                 }
@@ -2033,7 +2035,7 @@
         function openFullscreen(src){
             var o=document.getElementById('fullscreenOverlay');
             document.getElementById('fullscreenImg').src=src;
-            fsIdx=idx;
+            fsIdx=PAGUS.state.modalIdx;
             updateFsCounter();
             fsResetZoom();
             o.style.display='flex';
@@ -2054,17 +2056,17 @@
 
         function moveFullscreen(d){
             fsIdx+=d;
-            if(fsIdx<1)fsIdx=maxIdx;
-            if(fsIdx>maxIdx)fsIdx=1;
+            if(fsIdx<1)fsIdx=PAGUS.state.modalMaxIdx;
+            if(fsIdx>PAGUS.state.modalMaxIdx)fsIdx=1;
             var img=document.getElementById('fullscreenImg');
-            img.src=activePath+'/'+fsIdx+'.webp';
-            img.onerror=function(){fsIdx=1;img.src=activePath+'/1.webp';updateFsCounter();};
+            img.src=PAGUS.state.activePath+'/'+fsIdx+'.webp';
+            img.onerror=function(){fsIdx=1;img.src=PAGUS.state.activePath+'/1.webp';updateFsCounter();};
             fsResetZoom();
             updateFsCounter();
         }
 
         function updateFsCounter(){
-            document.getElementById('fullscreenCounter').textContent=fsIdx+'/'+maxIdx;
+            document.getElementById('fullscreenCounter').textContent=fsIdx+'/'+PAGUS.state.modalMaxIdx;
         }
 
         // --- MOUSE WHEEL ZOOM (Desktop) ---
@@ -2267,11 +2269,11 @@
 
         // FIX #3: Proper popstate handler — full state cleanup
         window.onpopstate=function(){
-            if(_modalOpen){
+            if(PAGUS.state.modalOpen){
                 var m=document.getElementById('pModal');
                 m.style.display="none";
-                _modalOpen=false;
-                _probeSession++; // FIX #4: Invalidate probe
+                PAGUS.state.modalOpen=false;
+                PAGUS.state.probeSession++; // FIX #4: Invalidate probe
                 removeFocusTrap(); // FIX #13
             }
         };
@@ -2285,20 +2287,20 @@
 
         // FIX #4: move() clamps to maxIdx safely
         function move(d){
-            idx+=d;
-            if(idx<1)idx=maxIdx;
-            if(idx>maxIdx)idx=1;
-            document.getElementById('imgCount').textContent=idx+'/'+maxIdx;
+            PAGUS.state.modalIdx+=d;
+            if(PAGUS.state.modalIdx<1)PAGUS.state.modalIdx=PAGUS.state.modalMaxIdx;
+            if(PAGUS.state.modalIdx>PAGUS.state.modalMaxIdx)PAGUS.state.modalIdx=1;
+            document.getElementById('imgCount').textContent=PAGUS.state.modalIdx+'/'+PAGUS.state.modalMaxIdx;
             update();
         }
 
         function update(){
             var img=document.getElementById('mImg');
             img.style.opacity=0;
-            img.src=activePath+'/'+idx+'.webp';
+            img.src=PAGUS.state.activePath+'/'+PAGUS.state.modalIdx+'.webp';
             img.onload=function(){img.style.opacity=1;};
             img.onerror=function(){
-                if(idx>1){idx=1;update();}
+                if(PAGUS.state.modalIdx>1){PAGUS.state.modalIdx=1;update();}
                 else{img.style.opacity=1;img.parentElement.style.background='#333';}
             };
         }
