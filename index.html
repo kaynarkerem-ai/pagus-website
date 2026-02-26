@@ -89,8 +89,8 @@
         .grid { max-width: var(--site-max-width); margin: 0 auto; padding: 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; min-height: 400px; background: #FAFAFA; }
         .card { cursor: pointer; text-align: center; position: relative; }
         .img-box { aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 15px; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0; animation: fadeIn 0.5s forwards; }
-        @keyframes fadeIn { to { opacity: 1; } }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease, transform 0.5s ease; opacity: 0; }
+        .img-box img.loaded { opacity: 1; }
         .card:hover img { transform: scale(1.05); }
         .info-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px; color: var(--color-noble); }
         .card-highlight { outline: 3px solid var(--color-gold); outline-offset: -3px; box-shadow: 0 0 20px rgba(201,169,98,0.4); animation: highlightPulse 2s ease-in-out; }
@@ -1771,7 +1771,7 @@
                 var fy=safeFocalY(cv.focalY);
                 return '<div class="card" data-cat="'+escapeAttr(PAGUS.state.curCat)+'" data-sub="'+escapeAttr(s)+'"'
                     +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)+\'&subcategory=\'+encodeURIComponent(this.dataset.sub)">'
-                    +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(s)+'"></div>'
+                    +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(s)+'"></div>'
                     +'<div class="info-box"><h3 class="info-title">'+ss2+'</h3>'
                     +'<span style="color:var(--color-gold);font-size:0.7rem;font-weight:700;">'+t('view_collection')+'</span></div></div>';
             }).join('');
@@ -1802,9 +1802,9 @@
                 // FIX #13: aria-label on heart buttons
                 var ariaLabel=f?'Remove '+escapeAttr(p.realCode)+' from list':'Add '+escapeAttr(p.realCode)+' to list';
                 var hlClass=urlParams.get('highlight')===p.realCode?' card-highlight':'';
-                return '<div class="card'+hlClass+'" data-pidx="'+i+'" data-code="'+escapeAttr(p.realCode)+'" onclick="openProductByIdx('+i+')">'
+                return '<div class="card'+hlClass+'" data-pidx="'+i+'" data-code="'+escapeAttr(p.realCode)+'" onclick="openProductByIdx('+i+')" onmouseenter="preloadImage(\''+escapeAttr(p.folderPath)+'/1.webp\');preloadImage(\''+escapeAttr(p.folderPath)+'/2.webp\');preloadImage(\''+escapeAttr(p.folderPath)+'/3.webp\')">'
                     +'<button class="heart-btn '+f+'" data-code="'+escapeAttr(p.realCode)+'" onclick="toggleCartSafe(event,this)" aria-label="'+ariaLabel+'">'+h+'</button>'
-                    +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(p.realCode)+'"></div>'
+                    +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(p.realCode)+'"></div>'
                     +'<h3 class="info-title">'+escapeHTML(p.realCode)+'</h3>'
                     +'<div data-price-id="'+escapeAttr(p.realCode)+'"></div></div>';
             }).join('');
@@ -1960,6 +1960,11 @@
 
             var msg=t('wa_inquiry')+r;
             document.getElementById('wp').href='https://wa.me/'+PAGUS.config.whatsappNumber+'?text='+encodeURIComponent(msg);
+
+            // Preload first 3 images for instant display
+            for(var pi=1;pi<=Math.min(3,PAGUS.state.modalMaxIdx||3);pi++){
+                preloadImage(f+'/'+pi+'.webp');
+            }
 
             update();
 
@@ -2297,11 +2302,30 @@
             update();
         }
 
+        // ===================== IMAGE PRELOAD HELPER =====================
+        var _preloadCache={};
+        function preloadImage(src){
+            if(_preloadCache[src])return _preloadCache[src];
+            var img=new Image();
+            img.src=src;
+            _preloadCache[src]=img;
+            return img;
+        }
+        function preloadNeighbors(){
+            if(!PAGUS.state.activePath||PAGUS.state.modalMaxIdx<=1)return;
+            var next=PAGUS.state.modalIdx+1;
+            var prev=PAGUS.state.modalIdx-1;
+            if(next>PAGUS.state.modalMaxIdx)next=1;
+            if(prev<1)prev=PAGUS.state.modalMaxIdx;
+            preloadImage(PAGUS.state.activePath+'/'+next+'.webp');
+            preloadImage(PAGUS.state.activePath+'/'+prev+'.webp');
+        }
+
         function update(){
             var img=document.getElementById('mImg');
             img.style.opacity=0;
             img.src=PAGUS.state.activePath+'/'+PAGUS.state.modalIdx+'.webp';
-            img.onload=function(){img.style.opacity=1;};
+            img.onload=function(){img.style.opacity=1; preloadNeighbors();};
             img.onerror=function(){
                 if(PAGUS.state.modalIdx>1){PAGUS.state.modalIdx=1;update();}
                 else{img.style.opacity=1;img.parentElement.style.background='#333';}
