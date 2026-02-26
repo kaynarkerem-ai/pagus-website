@@ -9,7 +9,9 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.googleusercontent.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; frame-src https://*.firebaseapp.com https://accounts.google.com;">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
     <style>
         :root { --color-black: #1a1a1a; --color-gold: #c9a962; --color-noble: #2c3e50; --font-display: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --site-max-width: 1400px; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -308,6 +310,13 @@
     </style>
 </head>
 <body>
+    <!-- SVG SPRITE — single source for social icons -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+        <symbol id="ico-instagram" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></symbol>
+        <symbol id="ico-whatsapp" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+        <symbol id="ico-linkedin" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+        <symbol id="ico-facebook" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
+    </svg>
     <header class="header"><div class="header-inner">
         <div class="brand-bar">
             <a href="index.html"><span class="brand-p">P</span>AGUS MENSWEAR</a>
@@ -334,10 +343,10 @@
                     <button class="auth-btn" onclick="openAuthModal('login')" data-t="login">LOGIN</button>
                 </div>
                 <div class="soc-icons">
-<a href="https://www.instagram.com/pagus_menswear/" target="_blank" rel="noopener" class="social-icon" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-<a href="#" id="waLink" target="_blank" rel="noopener" class="social-icon" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-<a href="https://www.linkedin.com/company/pagusmenswear/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-<a href="https://www.facebook.com/pagusmenswear/" target="_blank" rel="noopener" class="social-icon" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+<a href="https://www.instagram.com/pagus_menswear/" target="_blank" rel="noopener" class="social-icon" title="Instagram"><svg viewBox="0 0 24 24"><use href="#ico-instagram"/></svg></a>
+<a href="#" id="waLink" target="_blank" rel="noopener" class="social-icon" title="WhatsApp"><svg viewBox="0 0 24 24"><use href="#ico-whatsapp"/></svg></a>
+<a href="https://www.linkedin.com/company/pagusmenswear/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn"><svg viewBox="0 0 24 24"><use href="#ico-linkedin"/></svg></a>
+<a href="https://www.facebook.com/pagusmenswear/" target="_blank" rel="noopener" class="social-icon" title="Facebook"><svg viewBox="0 0 24 24"><use href="#ico-facebook"/></svg></a>
                 </div>
             </div>
         </div>
@@ -552,10 +561,10 @@
             </div>
             <h4 style="margin-top:25px;" data-t="ft_follow">Follow Us</h4>
             <div class="footer-social">
-                <a href="https://www.instagram.com/pagus_menswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
-                <a href="https://wa.me/905511748907" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
-                <a href="https://www.linkedin.com/company/pagusmenswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
-                <a href="https://www.facebook.com/pagusmenswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</a>
+                <a href="https://www.instagram.com/pagus_menswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#ico-instagram"/></svg>Instagram</a>
+                <a href="https://wa.me/905511748907" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#ico-whatsapp"/></svg>WhatsApp</a>
+                <a href="https://www.linkedin.com/company/pagusmenswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#ico-linkedin"/></svg>LinkedIn</a>
+                <a href="https://www.facebook.com/pagusmenswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#ico-facebook"/></svg>Facebook</a>
             </div>
         </div>
     </div><div class="footer-bottom">&copy; <span id="footerYear"></span> Pagus Menswear. <span data-t="ft_rights">All Rights Reserved.</span> &nbsp;|&nbsp; <a href="javascript:void(0)" onclick="openTerms()" style="color:#666;" data-t="ft_tc">Terms &amp; Conditions</a><br><span style="color:#aaa; font-size:0.75rem;" data-t="ft_shipping">Worldwide shipping via DHL, FedEx &amp; UPS.</span></div></footer>
@@ -1055,7 +1064,6 @@
             "General":{en:"General",it:"Generale",fr:"Général",de:"Allgemein",es:"General"}
         };
         function getCatDisplayName(key){var obj=CAT_DISPLAY_NAMES_I18N[key];if(!obj)return key;return obj[LANG]||obj['en']||key;}
-        var CAT_DISPLAY_NAMES={}; // Legacy compat — use getCatDisplayName() instead
 
         // i18n helper — single source of truth for language detection & texts
         // ===================== i18n SYSTEM =====================
@@ -1214,8 +1222,6 @@
             error_inventory:{en:'Error: inventory.js not found.',it:'Errore: inventory.js non trovato.',fr:'Erreur : inventory.js introuvable.',de:'Fehler: inventory.js nicht gefunden.'}
         };
 
-        // Compat: old t() function
-        var TEXTS=I18N;
         function t(key){return(I18N[key]&&I18N[key][LANG])||((I18N[key]&&I18N[key]['en'])||key);}
 
         // ===================== T&C TRANSLATIONS =====================
@@ -1374,9 +1380,6 @@
             document.getElementById('tcOverlay').classList.remove('visible');
             document.body.style.overflow='';
         }
-        document.addEventListener('keydown',function(e){
-            if(e.key==='Escape'&&document.getElementById('tcOverlay').classList.contains('visible')) closeTerms();
-        });
         var urlParams=new URLSearchParams(window.location.search);
         PAGUS.state.curCat=urlParams.get('category')||"Wedding Suits";
         PAGUS.state.curSub=urlParams.get('subcategory');
@@ -1406,6 +1409,14 @@
             });
         }
 
+        // Category parser — single source of truth for mainCat/subCat extraction
+        function parseCat(p){
+            return {
+                main: p.mainCat || (p.category.indexOf(' > ')>-1 ? p.category.split(' > ')[0] : p.category),
+                sub:  p.subCat  || (p.category.indexOf(' > ')>-1 ? p.category.split(' > ')[1] : 'General')
+            };
+        }
+
         // FIX #5: Strict focal-y sanitizer — only allows integer 0-100, prevents XSS via inline style
         function safeFocalY(val){
             var n=parseInt(val,10);
@@ -1421,10 +1432,6 @@
             t.classList.add('visible');
             clearTimeout(PAGUS.state.toastTimer);
             PAGUS.state.toastTimer=setTimeout(function(){t.classList.remove('visible');},duration);
-        }
-
-        function setLanguage(){
-            applyLanguage();
         }
 
         // ===================== PRODUCT DATA INIT =====================
@@ -1446,7 +1453,19 @@
                 p.folderPath=p.path;
                 p.focalY=p.focal_y||20;
             });
-            setLanguage();
+
+            // Build lookup indexes — O(1) access instead of O(n) scans
+            PAGUS.index={byMainCat:{},bySubCat:{},byPath:{}};
+            productsDB.forEach(function(p){
+                var mc=p.mainCat.toLowerCase();
+                if(!PAGUS.index.byMainCat[mc])PAGUS.index.byMainCat[mc]=[];
+                PAGUS.index.byMainCat[mc].push(p);
+                if(!PAGUS.index.bySubCat[p.subCat])PAGUS.index.bySubCat[p.subCat]=[];
+                PAGUS.index.bySubCat[p.subCat].push(p);
+                PAGUS.index.byPath[p.path]=p;
+            });
+
+            applyLanguage();
             init();
             updateCartUI();
         }
@@ -1457,15 +1476,26 @@
         function renderShowcase(){
             var grid=document.getElementById('showcaseGrid');
             if(!grid)return;
+
+            // Clear previous showcase intervals to prevent leak on re-render
+            if(PAGUS.state.showcaseTimers){
+                PAGUS.state.showcaseTimers.forEach(function(tid){clearInterval(tid);});
+            }
+            PAGUS.state.showcaseTimers=[];
+
             if(typeof productsDB==='undefined'||!productsDB||productsDB.length===0){grid.innerHTML='';return;}
 
-            // Group products by subcategory
-            var subCatProducts={};
-            for(var i=0;i<productsDB.length;i++){
-                var p=productsDB[i];
-                var sc=p.subCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:p.category);
-                if(!subCatProducts[sc])subCatProducts[sc]=[];
-                subCatProducts[sc].push(p);
+            // Group products by subcategory — use index
+            var subCatProducts=PAGUS.index?PAGUS.index.bySubCat:{};
+            if(!PAGUS.index||Object.keys(subCatProducts).length===0){
+                // Fallback if index not ready
+                subCatProducts={};
+                for(var i=0;i<productsDB.length;i++){
+                    var p=productsDB[i];
+                    var sc=parseCat(p).sub;
+                    if(!subCatProducts[sc])subCatProducts[sc]=[];
+                    subCatProducts[sc].push(p);
+                }
             }
 
             // Shuffle subcategories and pick 4 unique ones
@@ -1480,7 +1510,7 @@
                 var scName=subCats[c];
                 var prods=subCatProducts[scName];
                 var randProd=prods[Math.floor(Math.random()*prods.length)];
-                var mainCat=randProd.mainCat||(randProd.category.indexOf(' > ')>-1?randProd.category.split(' > ')[0]:randProd.category);
+                var mainCat=parseCat(randProd).main;
                 items.push({cat:mainCat,subCat:scName,path:randProd.path,prodId:randProd.id});
             }
 
@@ -1507,7 +1537,7 @@
                 var imgs=item.querySelectorAll('img');
                 if(imgs.length<2)return;
                 var cur=0;
-                setInterval(function(){
+                var tid=setInterval(function(){
                     imgs[cur].classList.remove('active');
                     cur=(cur+1)%imgs.length;
                     // Skip hidden (errored) images
@@ -1518,6 +1548,7 @@
                     }
                     imgs[cur].classList.add('active');
                 },3000+idx*500);
+                PAGUS.state.showcaseTimers.push(tid);
             });
         }
 
@@ -1620,12 +1651,17 @@
         function buildAdvancedSearchUI(){
             if(typeof productsDB==='undefined')return;
             var cats={}, subs={};
-            productsDB.forEach(function(p){
-                var mc=p.mainCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category);
-                if(!cats[mc])cats[mc]=0; cats[mc]++;
-                var sc=p.subCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:'General');
-                if(sc&&sc!=='General'){ if(!subs[sc])subs[sc]={count:0,parent:mc}; subs[sc].count++; }
-            });
+            if(PAGUS.index){
+                Object.keys(PAGUS.index.byMainCat).forEach(function(mcKey){
+                    var prods=PAGUS.index.byMainCat[mcKey];
+                    var mc=prods[0].mainCat; // original case
+                    cats[mc]=prods.length;
+                    prods.forEach(function(p){
+                        var sc=p.subCat;
+                        if(sc&&sc!=='General'){ if(!subs[sc])subs[sc]={count:0,parent:mc}; subs[sc].count++; }
+                    });
+                });
+            }
             var html='';
             Object.keys(cats).forEach(function(cat,i){
                 var catDisplay=getCatDisplayName(cat)||cat;
@@ -1683,9 +1719,6 @@
             if(params.length===0){ showToast(t('search_min')); return; }
             window.location.href='?'+params.join('&');
         }
-        document.addEventListener('keydown',function(e){
-            if(e.key==='Escape'&&document.getElementById('advPanelOverlay').classList.contains('visible')) closeAdvancedSearch();
-        });
 
         function doSearchDisplay(q){
             var urlP=new URLSearchParams(window.location.search);
@@ -1696,8 +1729,9 @@
             var results=[];
             for(var i=0;i<productsDB.length;i++){
                 var p=productsDB[i];
-                var pMainCat=(p.mainCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category)).toLowerCase();
-                var pSubCat=(p.subCat||(p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:'General')).toLowerCase();
+                var pc=parseCat(p);
+                var pMainCat=pc.main.toLowerCase();
+                var pSubCat=pc.sub.toLowerCase();
                 var matchKw=!qLower||p.id.toLowerCase().indexOf(qLower)>-1||p.category.toLowerCase().indexOf(qLower)>-1;
                 var matchCat=true;
                 if(advSubs.length>0){ matchCat=advSubs.indexOf(pSubCat)>-1; }
@@ -1749,15 +1783,14 @@
 
         function showSubs(){
             document.getElementById('pGrid').style.display='grid';
-            var cd=productsDB.find(function(p){return p.mainCat.toLowerCase()===PAGUS.state.curCat.toLowerCase();});
-            var dc=cd?cd.mainCat:PAGUS.state.curCat;
+            var catKey=PAGUS.state.curCat.toLowerCase();
+            var catProducts=PAGUS.index.byMainCat[catKey]||[];
+            var dc=catProducts.length>0?catProducts[0].mainCat:PAGUS.state.curCat;
             document.getElementById('pTitle').textContent=getCatDisplayName(dc)||dc;
             document.getElementById('back').style.display="none";
             document.getElementById('infoGuide').style.display="none";
 
-            var ss=[...new Set(productsDB.filter(function(p){
-                return p.mainCat.toLowerCase()===PAGUS.state.curCat.toLowerCase();
-            }).map(function(p){return p.subCat;}))];
+            var ss=[...new Set(catProducts.map(function(p){return p.subCat;}))];
 
             if(ss.length===0){
                 document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">'+t('collection_updating')+'</div>';
@@ -1765,7 +1798,7 @@
             }
 
             document.getElementById('pGrid').innerHTML=ss.map(function(s){
-                var cv=productsDB.find(function(p){return p.subCat===s;});
+                var cv=(PAGUS.index.bySubCat[s]||[])[0];
                 var ss2=escapeHTML(getCatDisplayName(s)||s);
                 var ip=escapeAttr(cv.folderPath)+'/1.webp';
                 var fy=safeFocalY(cv.focalY);
@@ -1783,8 +1816,8 @@
             document.getElementById('back').style.display="inline-block";
             document.getElementById('infoGuide').style.display="flex";
 
-            var ps=productsDB.filter(function(p){
-                return p.mainCat.toLowerCase()===PAGUS.state.curCat.toLowerCase()&&p.subCat===PAGUS.state.curSub;
+            var ps=(PAGUS.index.bySubCat[PAGUS.state.curSub]||[]).filter(function(p){
+                return p.mainCat.toLowerCase()===PAGUS.state.curCat.toLowerCase();
             });
 
             if(ps.length===0){
@@ -1925,13 +1958,9 @@
 
             // FIX #15: Use imageCount from inventory.js if available, probe as fallback
             var knownCount=0;
-            if(typeof productsDB!=='undefined'){
-                for(var i=0;i<productsDB.length;i++){
-                    if(productsDB[i].path===f&&productsDB[i].imageCount){
-                        knownCount=productsDB[i].imageCount;
-                        break;
-                    }
-                }
+            var pathProduct=PAGUS.index&&PAGUS.index.byPath?PAGUS.index.byPath[f]:null;
+            if(pathProduct&&pathProduct.imageCount){
+                knownCount=pathProduct.imageCount;
             }
 
             if(knownCount>0){
@@ -2243,17 +2272,24 @@
 
         document.addEventListener('keydown',function(e){
             if(e.key==='Tab')return; // Let focus trap handle Tab
+            if(e.key==='Escape'){
+                // Priority order: fullscreen > modal > advSearch > T&C
+                var o=document.getElementById('fullscreenOverlay');
+                if(o&&o.style.display==='flex'){closeFullscreen();return;}
+                if(document.getElementById('pModal').style.display==='block'){closeModal();return;}
+                if(document.getElementById('advPanelOverlay').classList.contains('visible')){closeAdvancedSearch();return;}
+                if(document.getElementById('tcOverlay').classList.contains('visible')){closeTerms();return;}
+                return;
+            }
             var o=document.getElementById('fullscreenOverlay');
-            if(o.style.display==='flex'){
-                if(e.key==='Escape')closeFullscreen();
+            if(o&&o.style.display==='flex'){
                 if(e.key==='ArrowLeft')moveFullscreen(-1);
                 if(e.key==='ArrowRight')moveFullscreen(1);
                 return;
             }
-            if(document.getElementById('pModal').style.display==="block"){
-                if(e.key==="Escape")closeModal();
-                if(e.key==="ArrowLeft")move(-1);
-                if(e.key==="ArrowRight")move(1);
+            if(document.getElementById('pModal').style.display==='block'){
+                if(e.key==='ArrowLeft')move(-1);
+                if(e.key==='ArrowRight')move(1);
             }
         });
 
@@ -2345,9 +2381,8 @@
             var slides=[];
             for(var i=0;i<productsDB.length;i++){
                 var p=productsDB[i];
-                var sub=p.category.indexOf(' > ')>-1?p.category.split(' > ')[1]:p.category;
-                var cat=p.category.indexOf(' > ')>-1?p.category.split(' > ')[0]:p.category;
-                slides.push({img:p.path+'/1.webp',title:p.id,sub:sub,cat:cat,path:p.path});
+                var pc=parseCat(p);
+                slides.push({img:p.path+'/1.webp',title:p.id,sub:pc.sub,cat:pc.main,path:p.path});
             }
 
             // Shuffle
@@ -2367,10 +2402,12 @@
             }
             track.innerHTML=html;
 
+            // Cache DOM references — avoid repeated querySelectorAll
+            PAGUS.state.carouselSlideEls=document.querySelectorAll('.ss-slide');
             var validSlides=document.querySelectorAll('.ss-slide:not(.ss-broken)');
             counter.innerHTML='<span class="ss-counter">1 / '+validSlides.length+'</span>';
             PAGUS.state.carouselIndex=0;
-            PAGUS.state.carouselTotal=document.querySelectorAll('.ss-slide').length;
+            PAGUS.state.carouselTotal=PAGUS.state.carouselSlideEls.length;
 
             if(PAGUS.state.carouselTimer)clearInterval(PAGUS.state.carouselTimer);
             PAGUS.state.carouselTimer=setInterval(carouselNext,5000);
@@ -2383,7 +2420,7 @@
         }
 
         function carouselNext(){
-            var all=document.querySelectorAll('.ss-slide');
+            var all=PAGUS.state.carouselSlideEls;
             if(!all||all.length===0)return;
             var attempts=0;
             do{
@@ -2395,7 +2432,7 @@
         }
 
         function carouselShow(){
-            var all=document.querySelectorAll('.ss-slide');
+            var all=PAGUS.state.carouselSlideEls;
             if(!all||all.length===0)return;
             for(var i=0;i<all.length;i++){
                 all[i].className=all[i].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide';
@@ -2413,7 +2450,7 @@
         }
 
         function ssMove(dir){
-            var all=document.querySelectorAll('.ss-slide');
+            var all=PAGUS.state.carouselSlideEls;
             if(!all||all.length===0)return;
             var attempts=0;
             do{
