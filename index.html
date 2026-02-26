@@ -2013,31 +2013,32 @@
 
         // ===================== FULLSCREEN + ZOOM =====================
 
-        var fsIdx=1;
-        var fsZoom=1, fsPanX=0, fsPanY=0;
-        var fsDragging=false, fsDragStartX=0, fsDragStartY=0, fsPanStartX=0, fsPanStartY=0;
-        var fsMinZoom=1, fsMaxZoom=5;
+        // ===================== FULLSCREEN STATE =====================
+        PAGUS.state.fsIdx=1;
+        PAGUS.state.fsZoom=1; PAGUS.state.fsPanX=0; PAGUS.state.fsPanY=0;
+        PAGUS.state.fsDragging=false; PAGUS.state.fsDragStartX=0; PAGUS.state.fsDragStartY=0; PAGUS.state.fsPanStartX=0; PAGUS.state.fsPanStartY=0;
+        PAGUS.state.fsMinZoom=1; PAGUS.state.fsMaxZoom=5;
         // Pinch state
-        var fsPinchStartDist=0, fsPinchStartZoom=1;
+        PAGUS.state.fsPinchStartDist=0; PAGUS.state.fsPinchStartZoom=1;
 
         function fsApplyTransform(){
             var img=document.getElementById('fullscreenImg');
             if(!img)return;
             // Clamp pan so image doesn't fly away
-            if(fsZoom<=1){ fsPanX=0; fsPanY=0; }
-            img.style.transform='translate('+fsPanX+'px,'+fsPanY+'px) scale('+fsZoom+')';
-            img.style.cursor=fsZoom>1?'grab':'zoom-in';
+            if(PAGUS.state.fsZoom<=1){ PAGUS.state.fsPanX=0; PAGUS.state.fsPanY=0; }
+            img.style.transform='translate('+PAGUS.state.fsPanX+'px,'+PAGUS.state.fsPanY+'px) scale('+PAGUS.state.fsZoom+')';
+            img.style.cursor=PAGUS.state.fsZoom>1?'grab':'zoom-in';
         }
 
         function fsResetZoom(){
-            fsZoom=1; fsPanX=0; fsPanY=0;
+            PAGUS.state.fsZoom=1; PAGUS.state.fsPanX=0; PAGUS.state.fsPanY=0;
             fsApplyTransform();
         }
 
         function openFullscreen(src){
             var o=document.getElementById('fullscreenOverlay');
             document.getElementById('fullscreenImg').src=src;
-            fsIdx=PAGUS.state.modalIdx;
+            PAGUS.state.fsIdx=PAGUS.state.modalIdx;
             updateFsCounter();
             fsResetZoom();
             o.style.display='flex';
@@ -2057,18 +2058,18 @@
         }
 
         function moveFullscreen(d){
-            fsIdx+=d;
-            if(fsIdx<1)fsIdx=PAGUS.state.modalMaxIdx;
-            if(fsIdx>PAGUS.state.modalMaxIdx)fsIdx=1;
+            PAGUS.state.fsIdx+=d;
+            if(PAGUS.state.fsIdx<1)PAGUS.state.fsIdx=PAGUS.state.modalMaxIdx;
+            if(PAGUS.state.fsIdx>PAGUS.state.modalMaxIdx)PAGUS.state.fsIdx=1;
             var img=document.getElementById('fullscreenImg');
-            img.src=PAGUS.state.activePath+'/'+fsIdx+'.webp';
-            img.onerror=function(){fsIdx=1;img.src=PAGUS.state.activePath+'/1.webp';updateFsCounter();};
+            img.src=PAGUS.state.activePath+'/'+PAGUS.state.fsIdx+'.webp';
+            img.onerror=function(){PAGUS.state.fsIdx=1;img.src=PAGUS.state.activePath+'/1.webp';updateFsCounter();};
             fsResetZoom();
             updateFsCounter();
         }
 
         function updateFsCounter(){
-            document.getElementById('fullscreenCounter').textContent=fsIdx+'/'+PAGUS.state.modalMaxIdx;
+            document.getElementById('fullscreenCounter').textContent=PAGUS.state.fsIdx+'/'+PAGUS.state.modalMaxIdx;
         }
 
         // --- MOUSE WHEEL ZOOM (Desktop) ---
@@ -2082,43 +2083,43 @@
                 var mouseX=e.clientX-rect.left-rect.width/2;
                 var mouseY=e.clientY-rect.top-rect.height/2;
 
-                var oldZoom=fsZoom;
+                var oldZoom=PAGUS.state.fsZoom;
                 var delta=e.deltaY>0?-0.15:0.15;
-                fsZoom=Math.min(fsMaxZoom,Math.max(fsMinZoom,fsZoom+delta*fsZoom));
+                PAGUS.state.fsZoom=Math.min(PAGUS.state.fsMaxZoom,Math.max(PAGUS.state.fsMinZoom,PAGUS.state.fsZoom+delta*PAGUS.state.fsZoom));
 
                 // Zoom towards mouse position
-                var ratio=fsZoom/oldZoom;
-                fsPanX=mouseX-(mouseX-fsPanX)*ratio;
-                fsPanY=mouseY-(mouseY-fsPanY)*ratio;
+                var ratio=PAGUS.state.fsZoom/oldZoom;
+                PAGUS.state.fsPanX=mouseX-(mouseX-PAGUS.state.fsPanX)*ratio;
+                PAGUS.state.fsPanY=mouseY-(mouseY-PAGUS.state.fsPanY)*ratio;
 
-                if(fsZoom<=1){fsPanX=0;fsPanY=0;}
+                if(PAGUS.state.fsZoom<=1){PAGUS.state.fsPanX=0;PAGUS.state.fsPanY=0;}
                 fsApplyTransform();
             },{passive:false});
 
             // --- MOUSE DRAG PAN (Desktop) ---
             container.addEventListener('mousedown',function(e){
-                if(fsZoom<=1)return;
+                if(PAGUS.state.fsZoom<=1)return;
                 e.preventDefault();
-                fsDragging=true;
-                fsDragStartX=e.clientX;
-                fsDragStartY=e.clientY;
-                fsPanStartX=fsPanX;
-                fsPanStartY=fsPanY;
+                PAGUS.state.fsDragging=true;
+                PAGUS.state.fsDragStartX=e.clientX;
+                PAGUS.state.fsDragStartY=e.clientY;
+                PAGUS.state.fsPanStartX=PAGUS.state.fsPanX;
+                PAGUS.state.fsPanStartY=PAGUS.state.fsPanY;
                 document.getElementById('fullscreenImg').style.cursor='grabbing';
             });
 
             window.addEventListener('mousemove',function(e){
-                if(!fsDragging)return;
-                fsPanX=fsPanStartX+(e.clientX-fsDragStartX);
-                fsPanY=fsPanStartY+(e.clientY-fsDragStartY);
+                if(!PAGUS.state.fsDragging)return;
+                PAGUS.state.fsPanX=PAGUS.state.fsPanStartX+(e.clientX-PAGUS.state.fsDragStartX);
+                PAGUS.state.fsPanY=PAGUS.state.fsPanStartY+(e.clientY-PAGUS.state.fsDragStartY);
                 fsApplyTransform();
             });
 
             window.addEventListener('mouseup',function(){
-                if(fsDragging){
-                    fsDragging=false;
+                if(PAGUS.state.fsDragging){
+                    PAGUS.state.fsDragging=false;
                     var img=document.getElementById('fullscreenImg');
-                    if(img)img.style.cursor=fsZoom>1?'grab':'zoom-in';
+                    if(img)img.style.cursor=PAGUS.state.fsZoom>1?'grab':'zoom-in';
                 }
             });
 
@@ -2126,22 +2127,22 @@
             container.addEventListener('dblclick',function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                if(fsZoom>1){
+                if(PAGUS.state.fsZoom>1){
                     fsResetZoom();
                 }else{
                     var rect=container.getBoundingClientRect();
                     var mouseX=e.clientX-rect.left-rect.width/2;
                     var mouseY=e.clientY-rect.top-rect.height/2;
-                    fsZoom=2.5;
-                    fsPanX=-mouseX*1.5;
-                    fsPanY=-mouseY*1.5;
+                    PAGUS.state.fsZoom=2.5;
+                    PAGUS.state.fsPanX=-mouseX*1.5;
+                    PAGUS.state.fsPanY=-mouseY*1.5;
                     fsApplyTransform();
                 }
             });
 
             // --- Click background to close (only when not zoomed) ---
             document.getElementById('fullscreenBg').addEventListener('click',function(e){
-                if(fsZoom<=1)closeFullscreen();
+                if(PAGUS.state.fsZoom<=1)closeFullscreen();
             });
 
             // --- PINCH TO ZOOM (Mobile) ---
@@ -2161,17 +2162,17 @@
                 if(keys.length===2){
                     // Start pinch
                     var t1=activeTouches[keys[0]],t2=activeTouches[keys[1]];
-                    fsPinchStartDist=getTouchDist(t1,t2);
-                    fsPinchStartZoom=fsZoom;
-                    fsPanStartX=fsPanX;
-                    fsPanStartY=fsPanY;
-                }else if(keys.length===1 && fsZoom>1){
+                    PAGUS.state.fsPinchStartDist=getTouchDist(t1,t2);
+                    PAGUS.state.fsPinchStartZoom=PAGUS.state.fsZoom;
+                    PAGUS.state.fsPanStartX=PAGUS.state.fsPanX;
+                    PAGUS.state.fsPanStartY=PAGUS.state.fsPanY;
+                }else if(keys.length===1 && PAGUS.state.fsZoom>1){
                     // Start drag
-                    fsDragging=true;
-                    fsDragStartX=activeTouches[keys[0]].clientX;
-                    fsDragStartY=activeTouches[keys[0]].clientY;
-                    fsPanStartX=fsPanX;
-                    fsPanStartY=fsPanY;
+                    PAGUS.state.fsDragging=true;
+                    PAGUS.state.fsDragStartX=activeTouches[keys[0]].clientX;
+                    PAGUS.state.fsDragStartY=activeTouches[keys[0]].clientY;
+                    PAGUS.state.fsPanStartX=PAGUS.state.fsPanX;
+                    PAGUS.state.fsPanStartY=PAGUS.state.fsPanY;
                 }
             },{passive:true});
 
@@ -2186,17 +2187,17 @@
                     e.preventDefault();
                     var t1=activeTouches[keys[0]],t2=activeTouches[keys[1]];
                     var dist=getTouchDist(t1,t2);
-                    if(fsPinchStartDist>0){
-                        var newZoom=fsPinchStartZoom*(dist/fsPinchStartDist);
-                        fsZoom=Math.min(fsMaxZoom,Math.max(fsMinZoom,newZoom));
-                        if(fsZoom<=1){fsPanX=0;fsPanY=0;}
+                    if(PAGUS.state.fsPinchStartDist>0){
+                        var newZoom=PAGUS.state.fsPinchStartZoom*(dist/PAGUS.state.fsPinchStartDist);
+                        PAGUS.state.fsZoom=Math.min(PAGUS.state.fsMaxZoom,Math.max(PAGUS.state.fsMinZoom,newZoom));
+                        if(PAGUS.state.fsZoom<=1){PAGUS.state.fsPanX=0;PAGUS.state.fsPanY=0;}
                         fsApplyTransform();
                     }
-                }else if(keys.length===1 && fsDragging && fsZoom>1){
+                }else if(keys.length===1 && PAGUS.state.fsDragging && PAGUS.state.fsZoom>1){
                     e.preventDefault();
                     var t=activeTouches[keys[0]];
-                    fsPanX=fsPanStartX+(t.clientX-fsDragStartX);
-                    fsPanY=fsPanStartY+(t.clientY-fsDragStartY);
+                    PAGUS.state.fsPanX=PAGUS.state.fsPanStartX+(t.clientX-PAGUS.state.fsDragStartX);
+                    PAGUS.state.fsPanY=PAGUS.state.fsPanStartY+(t.clientY-PAGUS.state.fsDragStartY);
                     fsApplyTransform();
                 }
             },{passive:false});
@@ -2206,8 +2207,8 @@
                     delete activeTouches[e.changedTouches[i].identifier];
                 }
                 var keys=Object.keys(activeTouches);
-                if(keys.length<2){ fsPinchStartDist=0; }
-                if(keys.length===0){ fsDragging=false; }
+                if(keys.length<2){ PAGUS.state.fsPinchStartDist=0; }
+                if(keys.length===0){ PAGUS.state.fsDragging=false; }
             }
             container.addEventListener('touchend',touchEnd,{passive:true});
             container.addEventListener('touchcancel',touchEnd,{passive:true});
@@ -2219,10 +2220,10 @@
                 var now=Date.now();
                 if(now-lastTap<300){
                     e.preventDefault();
-                    if(fsZoom>1){
+                    if(PAGUS.state.fsZoom>1){
                         fsResetZoom();
                     }else{
-                        fsZoom=2.5;
+                        PAGUS.state.fsZoom=2.5;
                         fsApplyTransform();
                     }
                     lastTap=0;
