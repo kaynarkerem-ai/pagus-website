@@ -614,34 +614,38 @@
         appId: "1:181201607827:web:7872bded476390a6754166"
     };
 
-    var _firebaseReady = false;
-    var _currentUser = null;
-    var _userRole = 'standard';
-    var _priceCache = {};  // productId -> {standard, premium, vip, currency}
+    // ===================== GLOBAL NAMESPACE (early init) =====================
+    window.PAGUS = window.PAGUS || {};
+    PAGUS.state = PAGUS.state || {};
+
+    PAGUS.state.firebaseReady = false;
+    PAGUS.state.currentUser = null;
+    PAGUS.state.userRole = 'standard';
+    PAGUS.state.priceCache = {};  // productId -> {standard, premium, vip, currency}
 
     try {
         firebase.initializeApp(firebaseConfig);
-        _firebaseReady = true;
+        PAGUS.state.firebaseReady = true;
     } catch(e) {
         console.warn('Firebase init failed:', e.message);
     }
 
-    var db = _firebaseReady ? firebase.firestore() : null;
-    var auth = _firebaseReady ? firebase.auth() : null;
+    var db = PAGUS.state.firebaseReady ? firebase.firestore() : null;
+    var auth = PAGUS.state.firebaseReady ? firebase.auth() : null;
 
     // ===================== AUTH STATE =====================
 
     if(auth){
         auth.onAuthStateChanged(function(user){
-            _currentUser = user;
+            PAGUS.state.currentUser = user;
             updateAuthUI();
             if(user){
                 loadUserRole(user.uid);
                 syncFavoritesFromFirestore(user.uid);
                 loadAllPrices();
             } else {
-                _userRole = 'standard';
-                _priceCache = {};
+                PAGUS.state.userRole = 'standard';
+                PAGUS.state.priceCache = {};
                 refreshPriceDisplays();
             }
         });
@@ -650,8 +654,8 @@
     function updateAuthUI(){
         var area = document.getElementById('authArea');
         if(!area) return;
-        if(_currentUser){
-            var name = _currentUser.displayName || _currentUser.email.split('@')[0];
+        if(PAGUS.state.currentUser){
+            var name = PAGUS.state.currentUser.displayName || PAGUS.state.currentUser.email.split('@')[0];
             area.innerHTML = '<div class="user-menu">'
                 + '<span class="user-greeting">' + escapeHTML(name) + '</span>'
                 + '<button class="logout-btn" onclick="doLogout()">' + t('logout_btn') + '</button>'
@@ -665,7 +669,7 @@
         if(!db) return;
         db.collection('users').doc(uid).get().then(function(doc){
             if(doc.exists){
-                _userRole = doc.data().role || 'standard';
+                PAGUS.state.userRole = doc.data().role || 'standard';
             }
             refreshPriceDisplays();
         }).catch(function(e){ console.warn('Role load error:', e); });
@@ -847,20 +851,20 @@
     // ===================== PRICING =====================
 
     function loadAllPrices(){
-        if(!db || !_currentUser) return;
+        if(!db || !PAGUS.state.currentUser) return;
         db.collection('pricing').get().then(function(snap){
-            _priceCache = {};
+            PAGUS.state.priceCache = {};
             snap.forEach(function(doc){
-                _priceCache[doc.id] = doc.data();
+                PAGUS.state.priceCache[doc.id] = doc.data();
             });
             refreshPriceDisplays();
         }).catch(function(e){ console.warn('Price load error:', e); });
     }
 
     function getPrice(productId){
-        var p = _priceCache[productId];
+        var p = PAGUS.state.priceCache[productId];
         if(!p) return null;
-        var val = p[_userRole] || p['standard'] || null;
+        var val = p[PAGUS.state.userRole] || p['standard'] || null;
         if(val === null || val === undefined) return null;
         var currency = p.currency || 'EUR';
         return { value: val, currency: currency };
@@ -875,11 +879,11 @@
         // Update price tags on product cards
         document.querySelectorAll('[data-price-id]').forEach(function(el){
             var pid = el.dataset.priceId;
-            if(_currentUser){
+            if(PAGUS.state.currentUser){
                 var price = getPrice(pid);
                 if(price){
                     el.innerHTML = '<span class="price-tag">' + formatPrice(price) + '</span>'
-                        + '<span class="price-tier">' + escapeHTML(_userRole) + ' ' + t('price_tier_suffix') + '</span>';
+                        + '<span class="price-tier">' + escapeHTML(PAGUS.state.userRole) + ' ' + t('price_tier_suffix') + '</span>';
                 } else {
                     el.innerHTML = '<span class="price-tag" style="font-size:0.85rem;color:#999;">'+t('price_on_request')+'</span>';
                 }
@@ -891,11 +895,11 @@
         // Update modal price if open
         var modalPrice = document.getElementById('modalPriceArea');
         if(modalPrice && activeCode){
-            if(_currentUser){
+            if(PAGUS.state.currentUser){
                 var mp = getPrice(activeCode);
                 if(mp){
                     modalPrice.innerHTML = '<div class="modal-price">' + formatPrice(mp) + '</div>'
-                        + '<span class="price-tier">' + escapeHTML(_userRole) + ' ' + t('price_tier_suffix') + '</span>';
+                        + '<span class="price-tier">' + escapeHTML(PAGUS.state.userRole) + ' ' + t('price_tier_suffix') + '</span>';
                 } else {
                     modalPrice.innerHTML = '<div class="modal-price" style="font-size:1.2rem;color:#999;">'+t('price_on_request')+'</div>';
                 }
@@ -931,8 +935,8 @@
     }
 
     function saveFavToFirestore(code, add){
-        if(!db || !_currentUser) return;
-        var ref = db.collection('users').doc(_currentUser.uid).collection('favorites').doc(code);
+        if(!db || !PAGUS.state.currentUser) return;
+        var ref = db.collection('users').doc(PAGUS.state.currentUser.uid).collection('favorites').doc(code);
         if(add){
             ref.set({ addedAt: firebase.firestore.FieldValue.serverTimestamp() }).catch(function(){});
         } else {
@@ -990,7 +994,7 @@
             if(sessionStorage.getItem('pagus_promo_closed')) return;
         } catch(e){}
         setTimeout(function(){
-            if(!_currentUser){
+            if(!PAGUS.state.currentUser){
                 showPromo();
             }
         },3000);
@@ -1009,7 +1013,7 @@
         // ===================== GLOBAL NAMESPACE =====================
         // All shared state under one roof — prevents global pollution
         var PAGUS = window.PAGUS || {};
-        PAGUS.state = {
+        PAGUS.state = Object.assign(PAGUS.state || {}, {
             carouselSlides: null,
             carouselIndex: 0,
             carouselTotal: 0,
@@ -1017,7 +1021,7 @@
             searchResults: null,
             currentProducts: null,
             toastTimer: null
-        };
+        });
         var WHATSAPP_NUMBER='905511748907';
         var CAT_DISPLAY_NAMES_I18N={
             "Çıkma Yaka":{en:"Detachable Collar",it:"Colletto Staccabile",fr:"Col Détachable",de:"Abnehmbarer Kragen",es:"Cuello Desmontable"},
