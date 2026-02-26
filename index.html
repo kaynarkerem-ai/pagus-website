@@ -918,9 +918,9 @@
             snap.forEach(function(doc){ firestoreFavs.push(doc.id); });
 
             // Merge: localStorage + Firestore (union)
-            var merged = [...new Set([...cart, ...firestoreFavs])];
-            cart = merged;
-            if(lsAvailable) localStorage.setItem('pagusCart', JSON.stringify(cart));
+            var merged = [...new Set([...PAGUS.state.cart, ...firestoreFavs])];
+            PAGUS.state.cart = merged;
+            if(PAGUS.state.lsAvailable) localStorage.setItem('pagusCart', JSON.stringify(PAGUS.state.cart));
             updateCartUI();
 
             // Save merged back to Firestore
@@ -1008,11 +1008,14 @@
         // All 14 issues resolved (see FIX comments throughout)
         // ============================================================
 
-        var FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
+        // ===================== CONFIG (read-only settings) =====================
+        PAGUS.config = {
+            features: {carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true},
+            whatsappNumber: '905511748907'
+        };
 
         // ===================== GLOBAL NAMESPACE =====================
         // All shared state under one roof — prevents global pollution
-        var PAGUS = window.PAGUS || {};
         PAGUS.state = Object.assign(PAGUS.state || {}, {
             carouselSlides: null,
             carouselIndex: 0,
@@ -1022,7 +1025,6 @@
             currentProducts: null,
             toastTimer: null
         });
-        var WHATSAPP_NUMBER='905511748907';
         var CAT_DISPLAY_NAMES_I18N={
             "Çıkma Yaka":{en:"Detachable Collar",it:"Colletto Staccabile",fr:"Col Détachable",de:"Abnehmbarer Kragen",es:"Cuello Desmontable"},
             "Wedding Suits":{en:"Ceremonial Wear",it:"Abbigliamento da Cerimonia",fr:"Tenues de Cérémonie",de:"Festliche Kleidung",es:"Ropa de Ceremonia"},
@@ -1376,12 +1378,12 @@
             if(e.key==='Escape'&&document.getElementById('tcOverlay').classList.contains('visible')) closeTerms();
         });
         var urlParams=new URLSearchParams(window.location.search);
-        var curCat=urlParams.get('category')||"Wedding Suits";
-        var curSub=urlParams.get('subcategory');
+        PAGUS.state.curCat=urlParams.get('category')||"Wedding Suits";
+        PAGUS.state.curSub=urlParams.get('subcategory');
 
-        var cart=[];
-        var lsAvailable=true;
-        try{localStorage.setItem('_test','1');localStorage.removeItem('_test');cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){lsAvailable=false;cart=[];}
+        PAGUS.state.cart=[];
+        PAGUS.state.lsAvailable=true;
+        try{localStorage.setItem('_test','1');localStorage.removeItem('_test');PAGUS.state.cart=JSON.parse(localStorage.getItem('pagusCart'))||[];}catch(e){PAGUS.state.lsAvailable=false;PAGUS.state.cart=[];}
 
         // FIX #14: Footer year without document.write
         document.getElementById('footerYear').textContent=new Date().getFullYear();
@@ -1523,13 +1525,13 @@
         // FIX #2: Null-safe element access throughout
 
         function init(){
-            var waUrl='https://wa.me/'+WHATSAPP_NUMBER;
+            var waUrl='https://wa.me/'+PAGUS.config.whatsappNumber;
             var wl=document.getElementById('waLink');
             if(wl)wl.href=waUrl;
             var pl=document.getElementById('plWaLink');
             if(pl)pl.href=waUrl;
             var fw=document.getElementById('footerWa');
-            if(fw)fw.textContent='+'+WHATSAPP_NUMBER;
+            if(fw)fw.textContent='+'+PAGUS.config.whatsappNumber;
 
             var hero=document.getElementById('heroSection');
             var showcase=document.getElementById('showcaseSection');
@@ -1541,13 +1543,13 @@
             var searchBox=document.querySelector('.search-area');
 
             // FIX #2: Every element access guarded with null check
-            if(!FEATURES.hero&&hero)hero.style.display='none';
-            if(!FEATURES.showcase&&showcase)showcase.style.display='none';
-            if(!FEATURES.carousel&&carousel)carousel.style.display='none';
-            if(!FEATURES.whatsappFloat&&floatCartBtn)floatCartBtn.style.display='none';
-            if(!FEATURES.privateLabel&&privLabel)privLabel.style.display='none';
-            if(!FEATURES.search&&searchBox)searchBox.style.display='none';
-            if(!FEATURES.favorites){
+            if(!PAGUS.config.features.hero&&hero)hero.style.display='none';
+            if(!PAGUS.config.features.showcase&&showcase)showcase.style.display='none';
+            if(!PAGUS.config.features.carousel&&carousel)carousel.style.display='none';
+            if(!PAGUS.config.features.whatsappFloat&&floatCartBtn)floatCartBtn.style.display='none';
+            if(!PAGUS.config.features.privateLabel&&privLabel)privLabel.style.display='none';
+            if(!PAGUS.config.features.search&&searchBox)searchBox.style.display='none';
+            if(!PAGUS.config.features.favorites){
                 document.querySelectorAll('.heart-btn').forEach(function(b){b.style.display='none';});
                 document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});
             }
@@ -1567,12 +1569,12 @@
                 if(carousel)carousel.style.display='none';
                 if(sr)sr.style.display='none';
                 if(pta)pta.style.display='block';
-                if(curSub) showProducts(); else showSubs();
+                if(PAGUS.state.curSub) showProducts(); else showSubs();
             }else{
-                if(FEATURES.hero&&hero)hero.style.display='block';
-                if(FEATURES.showcase&&showcase){showcase.style.display='block';renderShowcase();}
+                if(PAGUS.config.features.hero&&hero)hero.style.display='block';
+                if(PAGUS.config.features.showcase&&showcase){showcase.style.display='block';renderShowcase();}
                 // FIX #1: Carousel init with proper HTML
-                if(FEATURES.carousel&&carousel){carousel.style.display='block';startCarousel();}
+                if(PAGUS.config.features.carousel&&carousel){carousel.style.display='block';startCarousel();}
                 if(pta)pta.style.display='none';
                 if(sr)sr.style.display='none';
                 document.getElementById('pGrid').style.display='none';
@@ -1747,14 +1749,14 @@
 
         function showSubs(){
             document.getElementById('pGrid').style.display='grid';
-            var cd=productsDB.find(function(p){return p.mainCat.toLowerCase()===curCat.toLowerCase();});
-            var dc=cd?cd.mainCat:curCat;
+            var cd=productsDB.find(function(p){return p.mainCat.toLowerCase()===PAGUS.state.curCat.toLowerCase();});
+            var dc=cd?cd.mainCat:PAGUS.state.curCat;
             document.getElementById('pTitle').textContent=getCatDisplayName(dc)||dc;
             document.getElementById('back').style.display="none";
             document.getElementById('infoGuide').style.display="none";
 
             var ss=[...new Set(productsDB.filter(function(p){
-                return p.mainCat.toLowerCase()===curCat.toLowerCase();
+                return p.mainCat.toLowerCase()===PAGUS.state.curCat.toLowerCase();
             }).map(function(p){return p.subCat;}))];
 
             if(ss.length===0){
@@ -1767,7 +1769,7 @@
                 var ss2=escapeHTML(getCatDisplayName(s)||s);
                 var ip=escapeAttr(cv.folderPath)+'/1.webp';
                 var fy=safeFocalY(cv.focalY);
-                return '<div class="card" data-cat="'+escapeAttr(curCat)+'" data-sub="'+escapeAttr(s)+'"'
+                return '<div class="card" data-cat="'+escapeAttr(PAGUS.state.curCat)+'" data-sub="'+escapeAttr(s)+'"'
                     +' onclick="window.location.href=\'?category=\'+encodeURIComponent(this.dataset.cat)+\'&subcategory=\'+encodeURIComponent(this.dataset.sub)">'
                     +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(s)+'"></div>'
                     +'<div class="info-box"><h3 class="info-title">'+ss2+'</h3>'
@@ -1777,12 +1779,12 @@
 
         function showProducts(){
             document.getElementById('pGrid').style.display='grid';
-            document.getElementById('pTitle').textContent=getCatDisplayName(curSub)||curSub;
+            document.getElementById('pTitle').textContent=getCatDisplayName(PAGUS.state.curSub)||PAGUS.state.curSub;
             document.getElementById('back').style.display="inline-block";
             document.getElementById('infoGuide').style.display="flex";
 
             var ps=productsDB.filter(function(p){
-                return p.mainCat.toLowerCase()===curCat.toLowerCase()&&p.subCat===curSub;
+                return p.mainCat.toLowerCase()===PAGUS.state.curCat.toLowerCase()&&p.subCat===PAGUS.state.curSub;
             });
 
             if(ps.length===0){
@@ -1795,7 +1797,7 @@
             document.getElementById('pGrid').innerHTML=ps.map(function(p,i){
                 var ip=escapeAttr(p.folderPath)+'/1.webp';
                 var fy=safeFocalY(p.focalY);
-                var f=cart.includes(p.realCode)?'active':'';
+                var f=PAGUS.state.cart.includes(p.realCode)?'active':'';
                 var h=f?'\u2665':'\u2661';
                 // FIX #13: aria-label on heart buttons
                 var ariaLabel=f?'Remove '+escapeAttr(p.realCode)+' from list':'Add '+escapeAttr(p.realCode)+' to list';
@@ -1823,29 +1825,29 @@
         function toggleCartSafe(e,btn){
             e.stopPropagation();
             var c=btn.dataset.code;
-            if(cart.includes(c)){
-                cart=cart.filter(function(i){return i!==c;});
+            if(PAGUS.state.cart.includes(c)){
+                PAGUS.state.cart=PAGUS.state.cart.filter(function(i){return i!==c;});
                 btn.innerText='\u2661';
                 btn.classList.remove('active');
                 btn.setAttribute('aria-label','Add '+c+' to list');
             }else{
-                cart.push(c);
+                PAGUS.state.cart.push(c);
                 btn.innerText='\u2665';
                 btn.classList.add('active');
                 btn.setAttribute('aria-label','Remove '+c+' from list');
             }
-            if(lsAvailable)localStorage.setItem('pagusCart',JSON.stringify(cart));
-            if(typeof saveFavToFirestore==='function') saveFavToFirestore(c, cart.includes(c));
+            if(PAGUS.state.lsAvailable)localStorage.setItem('pagusCart',JSON.stringify(PAGUS.state.cart));
+            if(typeof saveFavToFirestore==='function') saveFavToFirestore(c, PAGUS.state.cart.includes(c));
             updateCartUI();
         }
 
-        function goBack(){window.location.href='?category='+encodeURIComponent(curCat);}
+        function goBack(){window.location.href='?category='+encodeURIComponent(PAGUS.state.curCat);}
 
         function updateCartUI(){
             var b=document.getElementById('floatCart');
             var c=document.getElementById('cartCount');
-            c.innerText=cart.length;
-            b.style.display=cart.length>0?"flex":"none";
+            c.innerText=PAGUS.state.cart.length;
+            b.style.display=PAGUS.state.cart.length>0?"flex":"none";
         }
 
         // ===================== WHATSAPP CART =====================
@@ -1853,19 +1855,19 @@
         // Uses visibilitychange instead of blind setTimeout
 
         function sendListToWhatsapp(){
-            if(cart.length===0)return;
-            var c=cart.join(", ");
+            if(PAGUS.state.cart.length===0)return;
+            var c=PAGUS.state.cart.join(", ");
             var m=t('wa_list_header')+"\n\n"+c+"\n\n"+t('wa_list_footer');
 
-            var waWindow=window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(m),'_blank');
+            var waWindow=window.open('https://wa.me/'+PAGUS.config.whatsappNumber+'?text='+encodeURIComponent(m),'_blank');
 
             if(waWindow){
                 // FIX #7: Clear cart when user returns from WhatsApp tab
                 var clearOnReturn=function(){
                     if(document.visibilityState==='visible'){
                         document.removeEventListener('visibilitychange',clearOnReturn);
-                        cart=[];
-                        if(lsAvailable)localStorage.removeItem('pagusCart');
+                        PAGUS.state.cart=[];
+                        if(PAGUS.state.lsAvailable)localStorage.removeItem('pagusCart');
                         updateCartUI();
                         document.querySelectorAll('.heart-btn').forEach(function(b){
                             b.innerText='\u2661';
@@ -1957,7 +1959,7 @@
             document.getElementById('mCode').textContent=r;
 
             var msg=t('wa_inquiry')+r;
-            document.getElementById('wp').href='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(msg);
+            document.getElementById('wp').href='https://wa.me/'+PAGUS.config.whatsappNumber+'?text='+encodeURIComponent(msg);
 
             update();
 
