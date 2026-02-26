@@ -78,7 +78,7 @@
         .search-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
         .search-result-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); cursor: pointer; transition: 0.3s; }
         .search-result-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
-        .search-result-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; image-rendering: -webkit-optimize-contrast; }
+        .search-result-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
         .search-result-card .info { padding: 15px; text-align: center; }
         .search-result-card h4 { font-family: var(--font-display); font-size: 1rem; color: var(--color-noble); margin: 0 0 5px; }
         .search-result-card span { font-size: 0.8rem; color: var(--color-gold); }
@@ -89,7 +89,7 @@
         .grid { max-width: var(--site-max-width); margin: 0 auto; padding: 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; min-height: 400px; background: #FAFAFA; }
         .card { cursor: pointer; text-align: center; position: relative; }
         .img-box { aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 15px; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0; animation: fadeIn 0.5s forwards; image-rendering: -webkit-optimize-contrast; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0; animation: fadeIn 0.5s forwards; }
         @keyframes fadeIn { to { opacity: 1; } }
         .card:hover img { transform: scale(1.05); }
         .info-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px; color: var(--color-noble); }
@@ -100,7 +100,7 @@
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(5px); }
         .modal-content { height: 100vh; display: grid; grid-template-columns: 3fr 1fr; }
         .slider { position: relative; background: #000; display: flex; align-items: center; justify-content: center; height: 100%; user-select: none; }
-        .main-img { max-height: 90vh; max-width: 95%; object-fit: contain; image-rendering: -webkit-optimize-contrast; }
+        .main-img { max-height: 90vh; max-width: 95%; object-fit: contain; }
         .arrow { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 4rem; cursor: pointer; padding: 20px; opacity: 0.7; z-index: 2010; text-shadow: 0 0 10px rgba(0,0,0,0.5); background: transparent; border: none; }
         .arrow:hover { opacity: 1; color: var(--color-gold); }
         .prev { left: 0; } .next { right: 0; }
@@ -168,7 +168,7 @@
         .ss-slide { display: none; position: relative; cursor: pointer; }
         .ss-slide.active { display: block; }
         .ss-slide.ss-broken { display: none !important; }
-        .ss-slide img { width: 100%; max-height: 500px; object-fit: cover; object-position: center top; image-rendering: -webkit-optimize-contrast; }
+        .ss-slide img { width: 100%; max-height: 500px; object-fit: cover; object-position: center top; }
         .ss-slide-info { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 30px 20px 20px; text-align: center; }
         .ss-slide-info h4 { color: #fff; font-family: var(--font-display); font-size: 1.2rem; }
         .ss-slide-info span { color: var(--color-gold); font-size: 0.8rem; }
@@ -298,7 +298,7 @@
         .showcase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px; max-width: var(--site-max-width); margin: 0 auto; }
         .showcase-item { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; border-radius: 6px; }
         .showcase-item:focus-visible { outline: 3px solid var(--color-gold); outline-offset: -3px; }
-        .showcase-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 1s ease, transform 0.5s ease; opacity: 0; image-rendering: -webkit-optimize-contrast; }
+        .showcase-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 1s ease, transform 0.5s ease; opacity: 0; }
         .showcase-item img.active { opacity: 1; }
         .showcase-item:hover img.active { transform: scale(1.05); }
         .showcase-overlay { position: absolute; top: 0; left: 0; right: 0; background: linear-gradient(rgba(0,0,0,0.7), transparent); padding: 20px 20px 40px; z-index: 2; }
@@ -1005,6 +1005,19 @@
         // ============================================================
 
         var FEATURES={carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true};
+
+        // ===================== GLOBAL NAMESPACE =====================
+        // All shared state under one roof — prevents global pollution
+        var PAGUS = window.PAGUS || {};
+        PAGUS.state = {
+            carouselSlides: null,
+            carouselIndex: 0,
+            carouselTotal: 0,
+            carouselTimer: null,
+            searchResults: null,
+            currentProducts: null,
+            toastTimer: null
+        };
         var WHATSAPP_NUMBER='905511748907';
         var CAT_DISPLAY_NAMES_I18N={
             "Çıkma Yaka":{en:"Detachable Collar",it:"Colletto Staccabile",fr:"Col Détachable",de:"Abnehmbarer Kragen",es:"Cuello Desmontable"},
@@ -1400,8 +1413,8 @@
             var t=document.getElementById('toastNotification');
             t.textContent=msg;
             t.classList.add('visible');
-            clearTimeout(window._toastTimer);
-            window._toastTimer=setTimeout(function(){t.classList.remove('visible');},duration);
+            clearTimeout(PAGUS.state.toastTimer);
+            PAGUS.state.toastTimer=setTimeout(function(){t.classList.remove('visible');},duration);
         }
 
         function setLanguage(){
@@ -1592,8 +1605,8 @@
         }
 
         function openSearchResult(resultIdx){
-            if(!window._searchResults||!window._searchResults[resultIdx])return;
-            var r=window._searchResults[resultIdx];
+            if(!PAGUS.state.searchResults||!PAGUS.state.searchResults[resultIdx])return;
+            var r=PAGUS.state.searchResults[resultIdx];
             openModal(r.id,r.id,r.path);
         }
 
@@ -1719,7 +1732,7 @@
             }
             html+='</div>';
             container.innerHTML=html;
-            window._searchResults=results;
+            PAGUS.state.searchResults=results;
             if(typeof refreshPriceDisplays==='function') refreshPriceDisplays();
         }
 
@@ -1773,7 +1786,7 @@
                 return;
             }
 
-            window._currentProducts=ps;
+            PAGUS.state.currentProducts=ps;
 
             document.getElementById('pGrid').innerHTML=ps.map(function(p,i){
                 var ip=escapeAttr(p.folderPath)+'/1.webp';
@@ -1797,8 +1810,8 @@
         }
 
         function openProductByIdx(i){
-            if(!window._currentProducts||!window._currentProducts[i])return;
-            var p=window._currentProducts[i];
+            if(!PAGUS.state.currentProducts||!PAGUS.state.currentProducts[i])return;
+            var p=PAGUS.state.currentProducts[i];
             openModal(p.code,p.realCode,p.folderPath);
         }
 
@@ -2310,7 +2323,7 @@
                 var t=slides[j];slides[j]=slides[k];slides[k]=t;
             }
 
-            window._carouselSlides=slides;
+            PAGUS.state.carouselSlides=slides;
             var html='';
             for(var m=0;m<slides.length;m++){
                 var s=slides[m];
@@ -2323,16 +2336,16 @@
 
             var validSlides=document.querySelectorAll('.ss-slide:not(.ss-broken)');
             counter.innerHTML='<span class="ss-counter">1 / '+validSlides.length+'</span>';
-            window.CAROUSEL_INDEX=0;
-            window.CAROUSEL_TOTAL=document.querySelectorAll('.ss-slide').length;
+            PAGUS.state.carouselIndex=0;
+            PAGUS.state.carouselTotal=document.querySelectorAll('.ss-slide').length;
 
-            if(window.CAROUSEL_TIMER)clearInterval(window.CAROUSEL_TIMER);
-            window.CAROUSEL_TIMER=setInterval(carouselNext,5000);
+            if(PAGUS.state.carouselTimer)clearInterval(PAGUS.state.carouselTimer);
+            PAGUS.state.carouselTimer=setInterval(carouselNext,5000);
         }
 
         function openFromCarouselSafe(carIdx){
-            if(!window._carouselSlides||!window._carouselSlides[carIdx])return;
-            var s=window._carouselSlides[carIdx];
+            if(!PAGUS.state.carouselSlides||!PAGUS.state.carouselSlides[carIdx])return;
+            var s=PAGUS.state.carouselSlides[carIdx];
             openModal(s.title,s.title,s.path);
         }
 
@@ -2341,10 +2354,10 @@
             if(!all||all.length===0)return;
             var attempts=0;
             do{
-                window.CAROUSEL_INDEX++;
-                if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
+                PAGUS.state.carouselIndex++;
+                if(PAGUS.state.carouselIndex>=PAGUS.state.carouselTotal)PAGUS.state.carouselIndex=0;
                 attempts++;
-            }while(all[window.CAROUSEL_INDEX]&&all[window.CAROUSEL_INDEX].classList.contains('ss-broken')&&attempts<window.CAROUSEL_TOTAL);
+            }while(all[PAGUS.state.carouselIndex]&&all[PAGUS.state.carouselIndex].classList.contains('ss-broken')&&attempts<PAGUS.state.carouselTotal);
             carouselShow();
         }
 
@@ -2354,12 +2367,12 @@
             for(var i=0;i<all.length;i++){
                 all[i].className=all[i].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide';
             }
-            if(all[window.CAROUSEL_INDEX]){
-                all[window.CAROUSEL_INDEX].className=all[window.CAROUSEL_INDEX].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide active';
+            if(all[PAGUS.state.carouselIndex]){
+                all[PAGUS.state.carouselIndex].className=all[PAGUS.state.carouselIndex].classList.contains('ss-broken')?'ss-slide ss-broken':'ss-slide active';
             }
             var valid=document.querySelectorAll('.ss-slide:not(.ss-broken)').length;
             var current=0;
-            for(var j=0;j<=window.CAROUSEL_INDEX;j++){
+            for(var j=0;j<=PAGUS.state.carouselIndex;j++){
                 if(all[j]&&!all[j].classList.contains('ss-broken'))current++;
             }
             var c=document.querySelector('.ss-counter');
@@ -2371,11 +2384,11 @@
             if(!all||all.length===0)return;
             var attempts=0;
             do{
-                window.CAROUSEL_INDEX+=dir;
-                if(window.CAROUSEL_INDEX>=window.CAROUSEL_TOTAL)window.CAROUSEL_INDEX=0;
-                if(window.CAROUSEL_INDEX<0)window.CAROUSEL_INDEX=window.CAROUSEL_TOTAL-1;
+                PAGUS.state.carouselIndex+=dir;
+                if(PAGUS.state.carouselIndex>=PAGUS.state.carouselTotal)PAGUS.state.carouselIndex=0;
+                if(PAGUS.state.carouselIndex<0)PAGUS.state.carouselIndex=PAGUS.state.carouselTotal-1;
                 attempts++;
-            }while(all[window.CAROUSEL_INDEX]&&all[window.CAROUSEL_INDEX].classList.contains('ss-broken')&&attempts<window.CAROUSEL_TOTAL);
+            }while(all[PAGUS.state.carouselIndex]&&all[PAGUS.state.carouselIndex].classList.contains('ss-broken')&&attempts<PAGUS.state.carouselTotal);
             carouselShow();
         }
     </script>
