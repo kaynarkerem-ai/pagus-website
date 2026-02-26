@@ -511,13 +511,16 @@
         </div>
     </div>
     <!-- FIX #9: Fullscreen lightbox - separated background click layer from image -->
-    <div id="fullscreenOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;justify-content:center;align-items:center;">
-        <div id="fullscreenBg" onclick="closeFullscreen()" style="position:absolute;inset:0;cursor:zoom-out;"></div>
-        <button onclick="event.stopPropagation();moveFullscreen(-1)" aria-label="Previous image" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:2;">&#8249;</button>
-        <img id="fullscreenImg" src="" alt="Product detail fullscreen" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px;position:relative;z-index:1;">
-        <button onclick="event.stopPropagation();moveFullscreen(1)" aria-label="Next image" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:2;">&#8250;</button>
-        <button onclick="closeFullscreen()" aria-label="Close fullscreen" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:2;">&times;</button>
-        <div id="fullscreenCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#888;font-size:0.9rem;z-index:2;">1/4</div>
+    <div id="fullscreenOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;justify-content:center;align-items:center;overflow:hidden;touch-action:none;">
+        <div id="fullscreenBg" style="position:absolute;inset:0;"></div>
+        <div id="fsZoomContainer" style="position:relative;z-index:1;width:90vw;height:90vh;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;">
+            <img id="fullscreenImg" src="" alt="Product detail fullscreen" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;transform-origin:center center;transition:none;will-change:transform;user-select:none;-webkit-user-drag:none;pointer-events:auto;">
+        </div>
+        <button onclick="event.stopPropagation();moveFullscreen(-1)" aria-label="Previous image" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:3;">&#8249;</button>
+        <button onclick="event.stopPropagation();moveFullscreen(1)" aria-label="Next image" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:3;">&#8250;</button>
+        <button onclick="closeFullscreen()" aria-label="Close fullscreen" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:3;">&times;</button>
+        <div id="fullscreenCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#888;font-size:0.9rem;z-index:3;">1/4</div>
+        <div id="fsZoomHint" style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:0.75rem;z-index:3;pointer-events:none;transition:opacity 0.5s;text-align:center;">🔍 Scroll to zoom · Double-click to reset</div>
     </div>
     <!-- FIX #14: Replaced document.write with span + JS textContent -->
     <footer class="footer"><div class="footer-grid">
@@ -1987,21 +1990,49 @@
             }
         }
 
-        // ===================== FULLSCREEN =====================
-        // FIX #9: Clean event propagation — background layer handles close
+        // ===================== FULLSCREEN + ZOOM =====================
 
         var fsIdx=1;
+        var fsZoom=1, fsPanX=0, fsPanY=0;
+        var fsDragging=false, fsDragStartX=0, fsDragStartY=0, fsPanStartX=0, fsPanStartY=0;
+        var fsMinZoom=1, fsMaxZoom=5;
+        // Pinch state
+        var fsPinchStartDist=0, fsPinchStartZoom=1;
+
+        function fsApplyTransform(){
+            var img=document.getElementById('fullscreenImg');
+            if(!img)return;
+            // Clamp pan so image doesn't fly away
+            if(fsZoom<=1){ fsPanX=0; fsPanY=0; }
+            img.style.transform='translate('+fsPanX+'px,'+fsPanY+'px) scale('+fsZoom+')';
+            img.style.cursor=fsZoom>1?'grab':'zoom-in';
+        }
+
+        function fsResetZoom(){
+            fsZoom=1; fsPanX=0; fsPanY=0;
+            fsApplyTransform();
+        }
 
         function openFullscreen(src){
             var o=document.getElementById('fullscreenOverlay');
             document.getElementById('fullscreenImg').src=src;
             fsIdx=idx;
             updateFsCounter();
+            fsResetZoom();
             o.style.display='flex';
+            // Show hint briefly
+            var hint=document.getElementById('fsZoomHint');
+            if(hint){
+                var isMobile='ontouchstart' in window;
+                hint.textContent=isMobile?'👌 Pinch to zoom · Double-tap to reset':'🔍 Scroll to zoom · Double-click to reset';
+                hint.style.opacity='1';
+                setTimeout(function(){hint.style.opacity='0';},2500);
+            }
         }
 
         function closeFullscreen(){
             document.getElementById('fullscreenOverlay').style.display='none';
+            fsResetZoom();
         }
 
         function moveFullscreen(d){
@@ -2011,12 +2042,175 @@
             var img=document.getElementById('fullscreenImg');
             img.src=activePath+'/'+fsIdx+'.webp';
             img.onerror=function(){fsIdx=1;img.src=activePath+'/1.webp';updateFsCounter();};
+            fsResetZoom();
             updateFsCounter();
         }
 
         function updateFsCounter(){
             document.getElementById('fullscreenCounter').textContent=fsIdx+'/'+maxIdx;
         }
+
+        // --- MOUSE WHEEL ZOOM (Desktop) ---
+        (function(){
+            var container=document.getElementById('fsZoomContainer');
+            if(!container)return;
+
+            container.addEventListener('wheel',function(e){
+                e.preventDefault();
+                var rect=container.getBoundingClientRect();
+                var mouseX=e.clientX-rect.left-rect.width/2;
+                var mouseY=e.clientY-rect.top-rect.height/2;
+
+                var oldZoom=fsZoom;
+                var delta=e.deltaY>0?-0.15:0.15;
+                fsZoom=Math.min(fsMaxZoom,Math.max(fsMinZoom,fsZoom+delta*fsZoom));
+
+                // Zoom towards mouse position
+                var ratio=fsZoom/oldZoom;
+                fsPanX=mouseX-(mouseX-fsPanX)*ratio;
+                fsPanY=mouseY-(mouseY-fsPanY)*ratio;
+
+                if(fsZoom<=1){fsPanX=0;fsPanY=0;}
+                fsApplyTransform();
+            },{passive:false});
+
+            // --- MOUSE DRAG PAN (Desktop) ---
+            container.addEventListener('mousedown',function(e){
+                if(fsZoom<=1)return;
+                e.preventDefault();
+                fsDragging=true;
+                fsDragStartX=e.clientX;
+                fsDragStartY=e.clientY;
+                fsPanStartX=fsPanX;
+                fsPanStartY=fsPanY;
+                document.getElementById('fullscreenImg').style.cursor='grabbing';
+            });
+
+            window.addEventListener('mousemove',function(e){
+                if(!fsDragging)return;
+                fsPanX=fsPanStartX+(e.clientX-fsDragStartX);
+                fsPanY=fsPanStartY+(e.clientY-fsDragStartY);
+                fsApplyTransform();
+            });
+
+            window.addEventListener('mouseup',function(){
+                if(fsDragging){
+                    fsDragging=false;
+                    var img=document.getElementById('fullscreenImg');
+                    if(img)img.style.cursor=fsZoom>1?'grab':'zoom-in';
+                }
+            });
+
+            // --- DOUBLE CLICK TO RESET/ZOOM (Desktop) ---
+            container.addEventListener('dblclick',function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                if(fsZoom>1){
+                    fsResetZoom();
+                }else{
+                    var rect=container.getBoundingClientRect();
+                    var mouseX=e.clientX-rect.left-rect.width/2;
+                    var mouseY=e.clientY-rect.top-rect.height/2;
+                    fsZoom=2.5;
+                    fsPanX=-mouseX*1.5;
+                    fsPanY=-mouseY*1.5;
+                    fsApplyTransform();
+                }
+            });
+
+            // --- Click background to close (only when not zoomed) ---
+            document.getElementById('fullscreenBg').addEventListener('click',function(e){
+                if(fsZoom<=1)closeFullscreen();
+            });
+
+            // --- PINCH TO ZOOM (Mobile) ---
+            var activeTouches={};
+
+            function getTouchDist(t1,t2){
+                var dx=t1.clientX-t2.clientX;
+                var dy=t1.clientY-t2.clientY;
+                return Math.sqrt(dx*dx+dy*dy);
+            }
+
+            container.addEventListener('touchstart',function(e){
+                for(var i=0;i<e.changedTouches.length;i++){
+                    activeTouches[e.changedTouches[i].identifier]=e.changedTouches[i];
+                }
+                var keys=Object.keys(activeTouches);
+                if(keys.length===2){
+                    // Start pinch
+                    var t1=activeTouches[keys[0]],t2=activeTouches[keys[1]];
+                    fsPinchStartDist=getTouchDist(t1,t2);
+                    fsPinchStartZoom=fsZoom;
+                    fsPanStartX=fsPanX;
+                    fsPanStartY=fsPanY;
+                }else if(keys.length===1 && fsZoom>1){
+                    // Start drag
+                    fsDragging=true;
+                    fsDragStartX=activeTouches[keys[0]].clientX;
+                    fsDragStartY=activeTouches[keys[0]].clientY;
+                    fsPanStartX=fsPanX;
+                    fsPanStartY=fsPanY;
+                }
+            },{passive:true});
+
+            container.addEventListener('touchmove',function(e){
+                var keys=Object.keys(activeTouches);
+                // Update touches
+                for(var i=0;i<e.changedTouches.length;i++){
+                    activeTouches[e.changedTouches[i].identifier]=e.changedTouches[i];
+                }
+                keys=Object.keys(activeTouches);
+                if(keys.length===2){
+                    e.preventDefault();
+                    var t1=activeTouches[keys[0]],t2=activeTouches[keys[1]];
+                    var dist=getTouchDist(t1,t2);
+                    if(fsPinchStartDist>0){
+                        var newZoom=fsPinchStartZoom*(dist/fsPinchStartDist);
+                        fsZoom=Math.min(fsMaxZoom,Math.max(fsMinZoom,newZoom));
+                        if(fsZoom<=1){fsPanX=0;fsPanY=0;}
+                        fsApplyTransform();
+                    }
+                }else if(keys.length===1 && fsDragging && fsZoom>1){
+                    e.preventDefault();
+                    var t=activeTouches[keys[0]];
+                    fsPanX=fsPanStartX+(t.clientX-fsDragStartX);
+                    fsPanY=fsPanStartY+(t.clientY-fsDragStartY);
+                    fsApplyTransform();
+                }
+            },{passive:false});
+
+            function touchEnd(e){
+                for(var i=0;i<e.changedTouches.length;i++){
+                    delete activeTouches[e.changedTouches[i].identifier];
+                }
+                var keys=Object.keys(activeTouches);
+                if(keys.length<2){ fsPinchStartDist=0; }
+                if(keys.length===0){ fsDragging=false; }
+            }
+            container.addEventListener('touchend',touchEnd,{passive:true});
+            container.addEventListener('touchcancel',touchEnd,{passive:true});
+
+            // --- DOUBLE TAP TO RESET/ZOOM (Mobile) ---
+            var lastTap=0;
+            container.addEventListener('touchend',function(e){
+                if(Object.keys(activeTouches).length>0)return;
+                var now=Date.now();
+                if(now-lastTap<300){
+                    e.preventDefault();
+                    if(fsZoom>1){
+                        fsResetZoom();
+                    }else{
+                        fsZoom=2.5;
+                        fsApplyTransform();
+                    }
+                    lastTap=0;
+                }else{
+                    lastTap=now;
+                }
+            },{passive:false});
+
+        })();
 
         // ===================== KEYBOARD EVENTS =====================
 
@@ -2037,15 +2231,16 @@
         });
 
         // ===================== TOUCH EVENTS =====================
-
+        // Fullscreen touch events now handled by zoom container above
+        // Swipe in modal slider
         var touchStartX=0;
-        document.getElementById('fullscreenOverlay').addEventListener('touchstart',function(e){
+        document.getElementById('pModal').addEventListener('touchstart',function(e){
             touchStartX=e.changedTouches[0].screenX;
         },{passive:true});
-        document.getElementById('fullscreenOverlay').addEventListener('touchend',function(e){
+        document.getElementById('pModal').addEventListener('touchend',function(e){
             var diff=e.changedTouches[0].screenX-touchStartX;
             if(Math.abs(diff)>50){
-                if(diff>0)moveFullscreen(-1);else moveFullscreen(1);
+                if(diff>0)move(-1);else move(1);
             }
         },{passive:true});
 
