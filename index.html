@@ -1968,6 +1968,15 @@
                 return;
             }
 
+            // Auto-skip: if only 1 subcategory, go directly to products
+            if(ss.length===1){
+                PAGUS.state.curSub=ss[0];
+                var newUrl='?category='+encodeURIComponent(PAGUS.state.curCat)+'&subcategory='+encodeURIComponent(ss[0]);
+                history.replaceState(null,null,newUrl);
+                showProducts();
+                return;
+            }
+
             document.getElementById('pGrid').innerHTML=ss.map(function(s){
                 var cv=(PAGUS.index.bySubCat[s]||[])[0];
                 var ss2=escapeHTML(getCatDisplayName(s)||s);
