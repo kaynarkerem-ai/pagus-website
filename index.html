@@ -524,7 +524,7 @@
             <div class="side-info">
                 <h2 id="mCode" style="font-family:var(--font-display); font-size:2.5rem; margin:15px 0 10px;">CODE</h2>
                 <div id="modalPriceArea" style="margin-bottom:15px;"></div>
-                <div class="badges"><div class="badge-item"><span class="badge-icon">??</span><span data-t="badge_fabric">Premium Fabric</span></div><div class="badge-item"><span class="badge-icon">????</span><span data-t="badge_turkey">Made in Turkey</span></div><div class="badge-item"><span class="badge-icon">??</span><span data-t="badge_wholesale">Wholesale Only</span></div></div>
+                <div class="badges"><div class="badge-item"><span class="badge-icon">&#10022;</span><span data-t="badge_fabric">Premium Fabric</span></div><div class="badge-item"><span class="badge-icon">&#9733;</span><span data-t="badge_turkey">Made in Turkey</span></div><div class="badge-item"><span class="badge-icon">&#9670;</span><span data-t="badge_wholesale">Wholesale Only</span></div></div>
                 <p style="color:#555; margin-bottom:40px; font-size:1rem;" data-t="modal_desc">Premium quality fabric available for bulk orders.</p>
                 <a id="wp" href="#" target="_blank" style="background:var(--color-gold); color:#fff; padding:18px; text-align:center; font-weight:700; letter-spacing:1px; border-radius:4px; box-shadow: 0 10px 20px rgba(201,169,98,0.3); text-decoration:none;" data-t="ask_wa">ASK PRICE VIA WHATSAPP</a>
             </div>
@@ -540,7 +540,7 @@
         <button onclick="event.stopPropagation();moveFullscreen(1)" aria-label="Next image" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:3;">&#8250;</button>
         <button onclick="closeFullscreen()" aria-label="Close fullscreen" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:3;">&times;</button>
         <div id="fullscreenCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#888;font-size:0.9rem;z-index:3;">1/4</div>
-        <div id="fsZoomHint" style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:0.75rem;z-index:3;pointer-events:none;transition:opacity 0.5s;text-align:center;">?? Scroll to zoom · Double-click to reset</div>
+        <div id="fsZoomHint" style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:0.75rem;z-index:3;pointer-events:none;transition:opacity 0.5s;text-align:center;">Scroll to zoom · Double-click to reset</div>
     </div>
     <!-- FIX #14: Replaced document.write with span + JS textContent -->
     <footer class="footer"><div class="footer-grid">
@@ -627,7 +627,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script>
     // ================================================================
-    //  ?? FIREBASE CONFIG — Kendi project bilgilerini buraya yaz
+    //  FIREBASE CONFIG — Kendi project bilgilerini buraya yaz
     // ================================================================
     //  Firebase Console > Project Settings > General > Your Apps > Web App
     //  "firebaseConfig" objesini kopyalayıp aşağıya yapıştır.
@@ -1081,7 +1081,27 @@
             "Suspenders":{en:"Suspenders",it:"Bretelle",fr:"Bretelles",de:"Hosenträger",es:"Tirantes"},
             "Cufflinks":{en:"Cufflinks",it:"Gemelli",fr:"Boutons de Manchette",de:"Manschettenknöpfe",es:"Gemelos"},
             "Pocket Square":{en:"Pocket Square",it:"Pochette",fr:"Pochette",de:"Einstecktuch",es:"Pañuelo de Bolsillo"},
-            "General":{en:"General",it:"Generale",fr:"Général",de:"Allgemein",es:"General"}
+            "General":{en:"General",it:"Generale",fr:"Général",de:"Allgemein",es:"General"},
+            // Suit & Smoking subcategories
+            "Double Breasted Smokings":{en:"Double Breasted Smokings",it:"Smoking Doppiopetto",fr:"Smokings Croisés",de:"Zweireiher-Smokings",es:"Esmóquines Cruzados"},
+            "Mandarin Collar Suits":{en:"Mandarin Collar Suits",it:"Abiti Collo alla Coreana",fr:"Costumes Col Mao",de:"Mandarinkragen-Anzüge",es:"Trajes Cuello Mao"},
+            "Peak Lapel Smokings":{en:"Peak Lapel Smokings",it:"Smoking Rever a Punta",fr:"Smokings Revers Pointus",de:"Spitzrevers-Smokings",es:"Esmóquines Solapa Pico"},
+            "Shawl Collar Smokings":{en:"Shawl Collar Smokings",it:"Smoking Collo a Scialle",fr:"Smokings Col Châle",de:"Schalkragen-Smokings",es:"Esmóquines Cuello Chal"},
+            "Notch Lapel":{en:"Notch Lapel",it:"Rever a Tacca",fr:"Revers Cranté",de:"Stufenkragen",es:"Solapa Muesca"},
+            "Notch Lapel Suits":{en:"Notch Lapel Suits",it:"Abiti Rever a Tacca",fr:"Costumes Revers Cranté",de:"Stufenkragen-Anzüge",es:"Trajes Solapa Muesca"},
+            "Peak Lapel Suits":{en:"Peak Lapel Suits",it:"Abiti Rever a Punta",fr:"Costumes Revers Pointus",de:"Spitzrevers-Anzüge",es:"Trajes Solapa Pico"},
+            "Shawl Collar Suits":{en:"Shawl Collar Suits",it:"Abiti Collo a Scialle",fr:"Costumes Col Châle",de:"Schalkragen-Anzüge",es:"Trajes Cuello Chal"},
+            "Double Breasted Suits":{en:"Double Breasted Suits",it:"Abiti Doppiopetto",fr:"Costumes Croisés",de:"Zweireiher-Anzüge",es:"Trajes Cruzados"},
+            "Single Breasted Suits":{en:"Single Breasted Suits",it:"Abiti Monopetto",fr:"Costumes Droits",de:"Einreiher-Anzüge",es:"Trajes Rectos"},
+            "Three Piece Suits":{en:"Three Piece Suits",it:"Abiti Tre Pezzi",fr:"Costumes Trois Pièces",de:"Dreiteilige Anzüge",es:"Trajes de Tres Piezas"},
+            "Two Piece Suits":{en:"Two Piece Suits",it:"Abiti Due Pezzi",fr:"Costumes Deux Pièces",de:"Zweiteilige Anzüge",es:"Trajes de Dos Piezas"},
+            "Business Suits":{en:"Business Suits",it:"Abiti da Lavoro",fr:"Costumes de Travail",de:"Business-Anzüge",es:"Trajes de Negocios"},
+            "Ceremony Suits":{en:"Ceremony Suits",it:"Abiti da Cerimonia",fr:"Costumes de Cérémonie",de:"Festanzüge",es:"Trajes de Ceremonia"},
+            "Blazers":{en:"Blazers",it:"Blazer",fr:"Blazers",de:"Blazer",es:"Blazers"},
+            "Waistcoats":{en:"Waistcoats",it:"Gilet",fr:"Gilets",de:"Westen",es:"Chalecos"},
+            "Trousers":{en:"Trousers",it:"Pantaloni",fr:"Pantalons",de:"Hosen",es:"Pantalones"},
+            "Overcoats":{en:"Overcoats",it:"Cappotti",fr:"Manteaux",de:"Mäntel",es:"Abrigos"},
+            "Discounted Products":{en:"Discounted Products",it:"Prodotti Scontati",fr:"Produits Soldés",de:"Reduzierte Produkte",es:"Productos con Descuento"}
         };
         function getCatDisplayName(key){var obj=CAT_DISPLAY_NAMES_I18N[key];if(!obj)return key;return obj[LANG]||obj['en']||key;}
 
@@ -2133,7 +2153,7 @@
             var hint=document.getElementById('fsZoomHint');
             if(hint){
                 var isMobile='ontouchstart' in window;
-                hint.textContent=isMobile?'?? Pinch to zoom · Double-tap to reset':'?? Scroll to zoom · Double-click to reset';
+                hint.textContent=isMobile?'Pinch to zoom · Double-tap to reset':'Scroll to zoom · Double-click to reset';
                 hint.style.opacity='1';
                 setTimeout(function(){hint.style.opacity='0';},2500);
             }
