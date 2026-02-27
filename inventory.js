@@ -1,109 +1,109 @@
 const productsDB = [
     {
         "id": "10003-01",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10003-01",
         "focal_y": 30
     },
     {
         "id": "10003-05",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10003-05",
         "focal_y": 25
     },
     {
         "id": "10005-43",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10005-43",
         "focal_y": 31
     },
     {
         "id": "10019-01",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10019-01",
         "focal_y": 23
     },
     {
         "id": "10019-03",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10019-03",
         "focal_y": 31
     },
     {
         "id": "10019-14",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10019-14",
         "focal_y": 29
     },
     {
         "id": "10019-17",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10019-17",
         "focal_y": 25
     },
     {
         "id": "10019-24",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10019-24",
         "focal_y": 32
     },
     {
         "id": "10022-01",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10022-01",
         "focal_y": 23
     },
     {
         "id": "10022-03",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10022-03",
         "focal_y": 16
     },
     {
         "id": "10022-14",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10022-14",
         "focal_y": 30
     },
     {
         "id": "10022-24",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10022-24",
         "focal_y": 50
     },
     {
         "id": "11070-03",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/11070-03",
         "focal_y": 7
     },
     {
         "id": "15148-05",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/15148-05",
         "focal_y": 34
     },
     {
         "id": "15148-06",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/15148-06",
         "focal_y": 47
     },
     {
         "id": "15148-14",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/15148-14",
         "focal_y": 24
     },
     {
         "id": "15148-17",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/15148-17",
         "focal_y": 9
     },
     {
         "id": "15148-42",
-        "category": "Formal Suits > Casual Wear",
+        "category": "Casual Wear",
         "path": "images/Formal Suits/Casual Wear/15148-42",
         "focal_y": 28
     },
