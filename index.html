@@ -553,7 +553,7 @@
             <ul>
                 <li><strong>WhatsApp:</strong> <span id="footerWa"></span></li>
                 <li><strong data-t="ft_location">Location:</strong> İzmir, Turkey</li>
-                <li><strong>Email:</strong> <a href="#" id="footerEmailLink">info@pagusmenswear.com</a></li>
+                <li><strong>Email:</strong> <a href="#" id="footerEmailLink"><span class="__cf_email__" data-cfemail="94fdfaf2fbd4e4f5f3e1e7f9f1fae7e3f1f5e6baf7fbf9">[email&#160;protected]</span></a></li>
             </ul>
             <ul class="footer-service-list" style="margin-top:15px;">
                 <li data-t="ft_pl">Private label &amp; custom branding</li>
@@ -620,7 +620,7 @@
         <button class="tc-close" onclick="closeTerms()" aria-label="Close">&times;</button>
         <div class="tc-container" id="tcContent"></div>
     </div>
-    <script src="inventory.js?v=1771500808"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="inventory.js?v=1771500808"></script>
     <!-- Firebase SDK (Compat for single-file usage) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -1101,9 +1101,107 @@
             "Waistcoats":{en:"Waistcoats",it:"Gilet",fr:"Gilets",de:"Westen",es:"Chalecos"},
             "Trousers":{en:"Trousers",it:"Pantaloni",fr:"Pantalons",de:"Hosen",es:"Pantalones"},
             "Overcoats":{en:"Overcoats",it:"Cappotti",fr:"Manteaux",de:"Mäntel",es:"Abrigos"},
-            "Discounted Products":{en:"Discounted Products",it:"Prodotti Scontati",fr:"Produits Soldés",de:"Reduzierte Produkte",es:"Productos con Descuento"}
+            "Discounted Products":{en:"Discounted Products",it:"Prodotti Scontati",fr:"Produits Soldés",de:"Reduzierte Produkte",es:"Productos con Descuento"},
+            // Peak/Notch Lapel button variants
+            "Peak Lapel One Button":{en:"Peak Lapel One Button",it:"Rever a Punta Un Bottone",fr:"Revers Pointu Un Bouton",de:"Spitzrevers Ein Knopf",es:"Solapa Pico Un Botón"},
+            "Peak Lapel Two Buttons":{en:"Peak Lapel Two Buttons",it:"Rever a Punta Due Bottoni",fr:"Revers Pointu Deux Boutons",de:"Spitzrevers Zwei Knöpfe",es:"Solapa Pico Dos Botones"},
+            "Peak Lapel Three Buttons":{en:"Peak Lapel Three Buttons",it:"Rever a Punta Tre Bottoni",fr:"Revers Pointu Trois Boutons",de:"Spitzrevers Drei Knöpfe",es:"Solapa Pico Tres Botones"},
+            "Notch Lapel One Button":{en:"Notch Lapel One Button",it:"Rever a Tacca Un Bottone",fr:"Revers Cranté Un Bouton",de:"Stufenkragen Ein Knopf",es:"Solapa Muesca Un Botón"},
+            "Notch Lapel Two Buttons":{en:"Notch Lapel Two Buttons",it:"Rever a Tacca Due Bottoni",fr:"Revers Cranté Deux Boutons",de:"Stufenkragen Zwei Knöpfe",es:"Solapa Muesca Dos Botones"},
+            "Shawl Collar One Button":{en:"Shawl Collar One Button",it:"Collo a Scialle Un Bottone",fr:"Col Châle Un Bouton",de:"Schalkragen Ein Knopf",es:"Cuello Chal Un Botón"},
+            "Shawl Collar Two Buttons":{en:"Shawl Collar Two Buttons",it:"Collo a Scialle Due Bottoni",fr:"Col Châle Deux Boutons",de:"Schalkragen Zwei Knöpfe",es:"Cuello Chal Dos Botones"},
+            // Double Breasted variants
+            "Double Breasted":{en:"Double Breasted",it:"Doppiopetto",fr:"Croisé",de:"Zweireiher",es:"Cruzado"},
+            "Single Breasted":{en:"Single Breasted",it:"Monopetto",fr:"Droit",de:"Einreiher",es:"Recto"},
+            // Mandarin/Mao variants
+            "Mandarin Collar":{en:"Mandarin Collar",it:"Collo alla Coreana",fr:"Col Mao",de:"Mandarinkragen",es:"Cuello Mao"},
+            // Casual subcategories
+            "Casual Suits":{en:"Casual Suits",it:"Abiti Casual",fr:"Costumes Décontractés",de:"Freizeitanzüge",es:"Trajes Casuales"},
+            "Casual Blazers":{en:"Casual Blazers",it:"Blazer Casual",fr:"Blazers Décontractés",de:"Freizeit-Blazer",es:"Blazers Casuales"},
+            "Linen Suits":{en:"Linen Suits",it:"Abiti in Lino",fr:"Costumes en Lin",de:"Leinenanzüge",es:"Trajes de Lino"},
+            // Shirt subcategories
+            "Dress Shirts":{en:"Dress Shirts",it:"Camicie Eleganti",fr:"Chemises Habillées",de:"Hemden",es:"Camisas de Vestir"},
+            "Casual Shirts":{en:"Casual Shirts",it:"Camicie Casual",fr:"Chemises Décontractées",de:"Freizeithemden",es:"Camisas Casuales"},
+            "Slim Fit Shirts":{en:"Slim Fit Shirts",it:"Camicie Slim Fit",fr:"Chemises Coupe Slim",de:"Slim Fit Hemden",es:"Camisas Slim Fit"},
+            // Children subcategories
+            "Boys Suits":{en:"Boys Suits",it:"Abiti Bambino",fr:"Costumes Garçon",de:"Jungenanzüge",es:"Trajes de Niño"},
+            "Boys Shirts":{en:"Boys Shirts",it:"Camicie Bambino",fr:"Chemises Garçon",de:"Jungenhemden",es:"Hemden für Jungen"},
+            // Jacket subcategories
+            "Sport Jackets":{en:"Sport Jackets",it:"Giacche Sportive",fr:"Vestes Sport",de:"Sportjacken",es:"Chaquetas Deportivas"},
+            "Leather Jackets":{en:"Leather Jackets",it:"Giacche in Pelle",fr:"Vestes en Cuir",de:"Lederjacken",es:"Chaquetas de Cuero"},
+            // Shoe subcategories
+            "Oxford Shoes":{en:"Oxford Shoes",it:"Scarpe Oxford",fr:"Chaussures Oxford",de:"Oxford-Schuhe",es:"Zapatos Oxford"},
+            "Loafers":{en:"Loafers",it:"Mocassini",fr:"Mocassins",de:"Loafer",es:"Mocasines"},
+            "Derby Shoes":{en:"Derby Shoes",it:"Scarpe Derby",fr:"Chaussures Derby",de:"Derby-Schuhe",es:"Zapatos Derby"}
         };
-        function getCatDisplayName(key){var obj=CAT_DISPLAY_NAMES_I18N[key];if(!obj)return key;return obj[LANG]||obj['en']||key;}
+        function getCatDisplayName(key){var obj=CAT_DISPLAY_NAMES_I18N[key];if(obj) return obj[LANG]||obj['en']||key; return catFallbackTranslate(key);}
+        // Fallback: word-by-word translation for subcategories not in dictionary
+        var CAT_WORD_MAP={
+            "Peak":{it:"Punta",fr:"Pointu",de:"Spitz",es:"Pico"},
+            "Lapel":{it:"Rever",fr:"Revers",de:"Revers",es:"Solapa"},
+            "Notch":{it:"Tacca",fr:"Cranté",de:"Stufen",es:"Muesca"},
+            "Shawl":{it:"Scialle",fr:"Châle",de:"Schal",es:"Chal"},
+            "Collar":{it:"Collo",fr:"Col",de:"Kragen",es:"Cuello"},
+            "One":{it:"Un",fr:"Un",de:"Ein",es:"Un"},
+            "Two":{it:"Due",fr:"Deux",de:"Zwei",es:"Dos"},
+            "Three":{it:"Tre",fr:"Trois",de:"Drei",es:"Tres"},
+            "Button":{it:"Bottone",fr:"Bouton",de:"Knopf",es:"Botón"},
+            "Buttons":{it:"Bottoni",fr:"Boutons",de:"Knöpfe",es:"Botones"},
+            "Suits":{it:"Abiti",fr:"Costumes",de:"Anzüge",es:"Trajes"},
+            "Suit":{it:"Abito",fr:"Costume",de:"Anzug",es:"Traje"},
+            "Slim":{it:"Slim",fr:"Slim",de:"Slim",es:"Slim"},
+            "Fit":{it:"Fit",fr:"Fit",de:"Fit",es:"Fit"},
+            "Double":{it:"Doppio",fr:"Double",de:"Doppel",es:"Doble"},
+            "Breasted":{it:"Petto",fr:"Boutonnage",de:"Reiher",es:"Botonadura"},
+            "Single":{it:"Mono",fr:"Simple",de:"Einzel",es:"Simple"},
+            "Mandarin":{it:"Coreana",fr:"Mao",de:"Mandarin",es:"Mao"},
+            "Smokings":{it:"Smoking",fr:"Smokings",de:"Smokings",es:"Esmóquines"},
+            "Smoking":{it:"Smoking",fr:"Smoking",de:"Smoking",es:"Esmoquin"},
+            "Jackets":{it:"Giacche",fr:"Vestes",de:"Jacken",es:"Chaquetas"},
+            "Jacket":{it:"Giacca",fr:"Veste",de:"Jacke",es:"Chaqueta"},
+            "Shirts":{it:"Camicie",fr:"Chemises",de:"Hemden",es:"Camisas"},
+            "Shirt":{it:"Camicia",fr:"Chemise",de:"Hemd",es:"Camisa"},
+            "Classic":{it:"Classico",fr:"Classique",de:"Klassisch",es:"Clásico"},
+            "Modern":{it:"Moderno",fr:"Moderne",de:"Modern",es:"Moderno"},
+            "Regular":{it:"Regolare",fr:"Classique",de:"Regular",es:"Regular"},
+            "Casual":{it:"Casual",fr:"Décontracté",de:"Freizeit",es:"Casual"},
+            "Formal":{it:"Formale",fr:"Formel",de:"Formell",es:"Formal"},
+            "Dress":{it:"Elegante",fr:"Habillé",de:"Elegant",es:"Elegante"},
+            "Boys":{it:"Bambino",fr:"Garçon",de:"Jungen",es:"Niño"},
+            "Ceremony":{it:"Cerimonia",fr:"Cérémonie",de:"Fest",es:"Ceremonia"},
+            "Business":{it:"Lavoro",fr:"Travail",de:"Business",es:"Negocios"},
+            "Linen":{it:"Lino",fr:"Lin",de:"Leinen",es:"Lino"},
+            "Wool":{it:"Lana",fr:"Laine",de:"Wolle",es:"Lana"},
+            "Velvet":{it:"Velluto",fr:"Velours",de:"Samt",es:"Terciopelo"},
+            "Cotton":{it:"Cotone",fr:"Coton",de:"Baumwolle",es:"Algodón"},
+            "Prom":{it:"Galà",fr:"Bal",de:"Abschlussball",es:"Gala"},
+            "Wedding":{it:"Matrimonio",fr:"Mariage",de:"Hochzeit",es:"Boda"},
+            "Tuxedo":{it:"Smoking",fr:"Smoking",de:"Smoking",es:"Esmoquin"},
+            "Tuxedos":{it:"Smoking",fr:"Smokings",de:"Smokings",es:"Esmóquines"},
+            "Vests":{it:"Gilet",fr:"Gilets",de:"Westen",es:"Chalecos"},
+            "Vest":{it:"Gilet",fr:"Gilet",de:"Weste",es:"Chaleco"},
+            "Waistcoats":{it:"Gilet",fr:"Gilets",de:"Westen",es:"Chalecos"},
+            "Overcoats":{it:"Cappotti",fr:"Manteaux",de:"Mäntel",es:"Abrigos"},
+            "Trousers":{it:"Pantaloni",fr:"Pantalons",de:"Hosen",es:"Pantalones"},
+            "Blazers":{it:"Blazer",fr:"Blazers",de:"Blazer",es:"Blazers"},
+            "Accessories":{it:"Accessori",fr:"Accessoires",de:"Accessoires",es:"Accesorios"},
+            "Children":{it:"Bambini",fr:"Enfants",de:"Kinder",es:"Niños"},
+            "Discounted":{it:"Scontati",fr:"Soldés",de:"Reduziert",es:"Descuento"},
+            "Products":{it:"Prodotti",fr:"Produits",de:"Produkte",es:"Productos"},
+            "Piece":{it:"Pezzi",fr:"Pièces",de:"Teiler",es:"Piezas"},
+            "Sport":{it:"Sportive",fr:"Sport",de:"Sport",es:"Deportivas"},
+            "Leather":{it:"Pelle",fr:"Cuir",de:"Leder",es:"Cuero"},
+            "Oxford":{it:"Oxford",fr:"Oxford",de:"Oxford",es:"Oxford"},
+            "Derby":{it:"Derby",fr:"Derby",de:"Derby",es:"Derby"},
+            "Loafers":{it:"Mocassini",fr:"Mocassins",de:"Loafer",es:"Mocasines"},
+            "Shoes":{it:"Scarpe",fr:"Chaussures",de:"Schuhe",es:"Zapatos"}
+        };
+        function catFallbackTranslate(key){
+            if(LANG==='en') return key;
+            var words=key.split(/\s+/);
+            var translated=words.map(function(w){ var m=CAT_WORD_MAP[w]; return m&&m[LANG]?m[LANG]:w; });
+            return translated.join(' ');
+        }
 
         // i18n helper — single source of truth for language detection & texts
         // ===================== i18n SYSTEM =====================
@@ -2546,9 +2644,4 @@
     var pl = document.getElementById('plContactLink');
     var fe = document.getElementById('footerEmailLink');
     if(nc) nc.href = 'mai' + 'lto:' + e + '?subject=' + encodeURIComponent('Hello Pagus');
-    if(pl) pl.href = 'mai' + 'lto:' + e + '?subject=' + encodeURIComponent('I am interested in your production');
-    if(fe) fe.href = 'mai' + 'lto:' + e + '?subject=' + encodeURIComponent('Hello Pagus');
-})();
-</script>
-</body>
-</html>
+    if(pl) pl.href = 'mai' + 'lto
