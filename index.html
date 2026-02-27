@@ -2495,14 +2495,26 @@
             for(var j=0;j<=PAGUS.state.carouselIndex;j++){
                 if(all[j]&&!all[j].classList.contains('ss-broken'))current++;
             }
-            var c=document.querySelector('.ss-counter');
-            if(c)c.innerText=current+' / '+valid;
+            var counter=document.getElementById('slideshowDots');
+            if(counter)counter.innerHTML='<span class="ss-counter">'+current+' / '+valid+'</span>';
         }
 
         function ssMove(dir){
+            if(PAGUS.state.carouselTimer)clearInterval(PAGUS.state.carouselTimer);
             var all=PAGUS.state.carouselSlideEls;
             if(!all||all.length===0)return;
             var attempts=0;
             do{
                 PAGUS.state.carouselIndex+=dir;
-                if(PAGUS.state.carouselIndex>=PAGUS.state.carouselTotal
+                if(PAGUS.state.carouselIndex<0)PAGUS.state.carouselIndex=PAGUS.state.carouselTotal-1;
+                if(PAGUS.state.carouselIndex>=PAGUS.state.carouselTotal)PAGUS.state.carouselIndex=0;
+                attempts++;
+            }while(all[PAGUS.state.carouselIndex]&&all[PAGUS.state.carouselIndex].classList.contains('ss-broken')&&attempts<PAGUS.state.carouselTotal);
+            carouselShow();
+            PAGUS.state.carouselTimer=setInterval(carouselNext,5000);
+        }
+
+    </script>
+</body>
+</html>
+   
