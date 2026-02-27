@@ -2361,16 +2361,7 @@
         },{passive:true});
 
         window.addEventListener('click',function(e){
-            if(e.target==document.getElementById('pModal'))closeModal();
-        });
-
-        // FIX #3: Proper popstate handler — full state cleanup
-        window.onpopstate=function(){
-            if(PAGUS.state.modalOpen){
-                var m=document.getElementById('pModal');
-                m.style.display="none";
-                PAGUS.state.modalOpen=false;
-                PAGUS.state.probeSession++; // FIX #4: Invalidate probe
+            if(e.target==e
                 removeFocusTrap(); // FIX #13
             }
         };
@@ -2510,4 +2501,14 @@
             do{
                 PAGUS.state.carouselIndex+=dir;
                 if(PAGUS.state.carouselIndex<0)PAGUS.state.carouselIndex=PAGUS.state.carouselTotal-1;
-       
+                if(PAGUS.state.carouselIndex>=PAGUS.state.carouselTotal)PAGUS.state.carouselIndex=0;
+                attempts++;
+            }while(all[PAGUS.state.carouselIndex]&&all[PAGUS.state.carouselIndex].classList.contains('ss-broken')&&attempts<PAGUS.state.carouselTotal);
+            carouselShow();
+            PAGUS.state.carouselTimer=setInterval(carouselNext,5000);
+        }
+
+    </script>
+</body>
+</html>
+   
