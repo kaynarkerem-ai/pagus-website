@@ -2637,11 +2637,16 @@
 
     </script>
 <script>
-// MAILTO SETUP — runs independently, sets href so browser handles click natively
+// WHATSAPP CONTACT — runs independently, sets href so browser handles click natively
 (function(){
-    var e = 'info' + '@' + 'pagusmenswear.com';
+    var wa = 'https://wa.me/905511748907?text=' + encodeURIComponent('Hi Pagus');
     var nc = document.getElementById('navContactLink');
     var pl = document.getElementById('plContactLink');
     var fe = document.getElementById('footerEmailLink');
-    if(nc) nc.href = 'mai' + 'lto:' + e + '?subject=' + encodeURIComponent('Hello Pagus');
-    if(pl) pl.href = 'mai' + 'lto
+    if(nc){ nc.href = wa; nc.target = '_blank'; }
+    if(pl){ pl.href = wa; pl.target = '_blank'; }
+    if(fe){ fe.href = wa; fe.target = '_blank'; }
+})();
+</script>
+</body>
+</html>
