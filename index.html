@@ -1486,7 +1486,8 @@
             document.getElementById('pGrid').innerHTML="<div style='text-align:center;width:100%;padding:50px;color:red;'>"+t('error_inventory')+"</div>";
         }else{
             productsDB.forEach(function(p){
-                if(p.category&&p.category.includes(' > ')){
+                if(!p.category) p.category='Uncategorized';
+                if(p.category.includes(' > ')){
                     var a=p.category.split(' > ');
                     p.mainCat=a[0].trim();
                     p.subCat=a[1].trim();
@@ -1494,21 +1495,24 @@
                     p.mainCat=p.category;
                     p.subCat="General";
                 }
-                p.code=p.id;
-                p.realCode=p.id;
-                p.folderPath=p.path;
+                if(!p.mainCat) p.mainCat='Uncategorized';
+                if(!p.subCat) p.subCat='General';
+                p.code=p.id||'';
+                p.realCode=p.id||'';
+                p.folderPath=p.path||'';
                 p.focalY=p.focal_y||20;
             });
 
             // Build lookup indexes — O(1) access instead of O(n) scans
             PAGUS.index={byMainCat:{},bySubCat:{},byPath:{}};
             productsDB.forEach(function(p){
-                var mc=p.mainCat.toLowerCase();
+                var mc=(p.mainCat||'uncategorized').toLowerCase();
                 if(!PAGUS.index.byMainCat[mc])PAGUS.index.byMainCat[mc]=[];
                 PAGUS.index.byMainCat[mc].push(p);
-                if(!PAGUS.index.bySubCat[p.subCat])PAGUS.index.bySubCat[p.subCat]=[];
-                PAGUS.index.bySubCat[p.subCat].push(p);
-                PAGUS.index.byPath[p.path]=p;
+                var sc=p.subCat||'General';
+                if(!PAGUS.index.bySubCat[sc])PAGUS.index.bySubCat[sc]=[];
+                PAGUS.index.bySubCat[sc].push(p);
+                if(p.path) PAGUS.index.byPath[p.path]=p;
             });
 
             applyLanguage();
