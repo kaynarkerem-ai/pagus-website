@@ -626,8 +626,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script>
-    // ================================================================
-    //  🔥 FIREBASE CONFIG — Kendi project bilgilerini buraya yaz
+    // Stub t() — replaced by full i18n version in second script block
+    function t(key){ return window.__pagus_i18n ? window.__pagus_i18n(key) : key; }
     // ================================================================
     //  Firebase Console > Project Settings > General > Your Apps > Web App
     //  "firebaseConfig" objesini kopyalayıp aşağıya yapıştır.
@@ -1256,6 +1256,7 @@
 
         function t(key){return(I18N[key]&&I18N[key][LANG])||((I18N[key]&&I18N[key]['en'])||key);}
         window.t = t;
+        window.__pagus_i18n = t;
 
         // ===================== T&C TRANSLATIONS =====================
         var TC={
