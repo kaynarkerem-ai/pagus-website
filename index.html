@@ -97,8 +97,9 @@
         .info-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px; color: var(--color-noble); }
         .card-highlight { outline: 3px solid var(--color-gold); outline-offset: -3px; box-shadow: 0 0 20px rgba(201,169,98,0.4); animation: highlightPulse 2s ease-in-out; }
         @keyframes highlightPulse { 0%,100%{ box-shadow: 0 0 20px rgba(201,169,98,0.4); } 50%{ box-shadow: 0 0 35px rgba(201,169,98,0.7); } }
-        .heart-btn { position: absolute; top: 10px; right: 10px; width: 35px; height: 35px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #ccc; cursor: pointer; z-index: 10; border: none; }
-        .heart-btn.active { color: #e74c3c; }
+        .heart-btn { position: absolute; top: 10px; right: 10px; width: 35px; height: 35px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #2c3e50; cursor: pointer; z-index: 10; border: 1.5px solid rgba(44,62,80,0.15); transition: all 0.2s; }
+        .heart-btn:hover { background: #2c3e50; color: #fff; border-color: #2c3e50; }
+        .heart-btn.active { background: #2c3e50; color: #fff; border-color: #2c3e50; font-size: 0.75rem; font-weight: 700; letter-spacing: 0; }
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(5px); }
         .modal-content { height: 100vh; display: grid; grid-template-columns: 3fr 1fr; }
         .slider { position: relative; background: #000; display: flex; align-items: center; justify-content: center; height: 100%; user-select: none; }
@@ -1266,7 +1267,7 @@
             // PAGE
             back_btn:{en:'BACK',it:'INDIETRO',fr:'RETOUR',de:'ZURÜCK',es:'VOLVER'},
             collection:{en:'COLLECTION',it:'COLLEZIONE',fr:'COLLECTION',de:'KOLLEKTION',es:'COLECCIÓN'},
-            guide_tap:{en:'Tap heart to create list.',it:'Tocca il cuore per creare la lista.',fr:'Appuyez sur le cœur pour créer votre liste.',de:'Tippen Sie auf das Herz, um eine Liste zu erstellen.',es:'Toca el corazón para crear tu lista.'},
+            guide_tap:{en:'Click + on any product to add to your selection.',it:'Clicca + su un prodotto per aggiungerlo alla selezione.',fr:'Cliquez sur + pour ajouter un produit à votre sélection.',de:'Klicken Sie auf +, um ein Produkt zur Auswahl hinzuzufügen.',es:'Haz clic en + para añadir un producto a tu selección.'},
             loading:{en:'Loading Collection...',it:'Caricamento Collezione...',fr:'Chargement de la Collection...',de:'Kollektion wird geladen...',es:'Cargando Colección...'},
             // PRIVATE LABEL
             pl_title:{en:'YOUR BRAND, OUR PRODUCTION',it:'IL VOSTRO MARCHIO, LA NOSTRA PRODUZIONE',fr:'VOTRE MARQUE, NOTRE PRODUCTION',de:'IHRE MARKE, UNSERE PRODUKTION',es:'SU MARCA, NUESTRA PRODUCCIÓN'},
@@ -2029,7 +2030,7 @@
                 var ip=escapeAttr(p.folderPath)+'/1.webp';
                 var fy=safeFocalY(p.focalY);
                 var f=PAGUS.state.cart.includes(p.realCode)?'active':'';
-                var h=f?'\u2665':'\u2661';
+                var h=f?'✓':'+';
                 // FIX #13: aria-label on heart buttons
                 var ariaLabel=f?'Remove '+escapeAttr(p.realCode)+' from list':'Add '+escapeAttr(p.realCode)+' to list';
                 var hlClass=urlParams.get('highlight')===p.realCode?' card-highlight':'';
@@ -2058,14 +2059,16 @@
             var c=btn.dataset.code;
             if(PAGUS.state.cart.includes(c)){
                 PAGUS.state.cart=PAGUS.state.cart.filter(function(i){return i!==c;});
-                btn.innerText='\u2661';
+                btn.innerText='+';
                 btn.classList.remove('active');
                 btn.setAttribute('aria-label','Add '+c+' to list');
+                showToast('Removed from selection');
             }else{
                 PAGUS.state.cart.push(c);
-                btn.innerText='\u2665';
+                btn.innerText='✓';
                 btn.classList.add('active');
                 btn.setAttribute('aria-label','Remove '+c+' from list');
+                showToast('Added to selection ✓');
             }
             if(PAGUS.state.lsAvailable)localStorage.setItem('pagusCart',JSON.stringify(PAGUS.state.cart));
             if(typeof saveFavToFirestore==='function') saveFavToFirestore(c, PAGUS.state.cart.includes(c));
@@ -2143,7 +2146,7 @@
         function clearCartPanel(){
             PAGUS.state.cart=[];
             if(PAGUS.state.lsAvailable)localStorage.removeItem('pagusCart');
-            document.querySelectorAll('.heart-btn').forEach(function(b){b.innerText='\u2661';b.classList.remove('active');});
+            document.querySelectorAll('.heart-btn').forEach(function(b){b.innerText='+';b.classList.remove('active');});
             updateCartUI();
             renderCartPanel();
         }
