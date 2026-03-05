@@ -620,7 +620,7 @@
         <button class="tc-close" onclick="closeTerms()" aria-label="Close">&times;</button>
         <div class="tc-container" id="tcContent"></div>
     </div>
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="inventory.js?v=1771500808"></script>
+    <script src="inventory.js?v=1771500808"></script>
     <!-- Firebase SDK (Compat for single-file usage) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -628,6 +628,7 @@
     <script>
     // Stub t() — replaced by full i18n version in second script block
     function t(key){ return window.__pagus_i18n ? window.__pagus_i18n(key) : key; }
+    function escapeHTML(s){ return window.__pagus_escapeHTML ? window.__pagus_escapeHTML(s) : String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
     // ================================================================
     //  Firebase Console > Project Settings > General > Your Apps > Web App
     //  "firebaseConfig" objesini kopyalayıp aşağıya yapıştır.
@@ -1456,6 +1457,7 @@
                 return{'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t];
             });
         }
+        window.__pagus_escapeHTML = escapeHTML;
 
         // FIX #6: Removed dead escapeJS function (was defined but never called)
 
