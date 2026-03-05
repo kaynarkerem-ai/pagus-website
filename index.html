@@ -214,11 +214,30 @@ src="https://www.facebook.com/tr?id=1678419456661968&ev=PageView&noscript=1"
         .footer-social a:hover { color: var(--color-gold); }
         .footer-social a:hover svg { fill: var(--color-gold); }
         .footer-social svg { width: 18px; height: 18px; fill: #999; transition: 0.3s; flex-shrink: 0; }
-        .footer-partners { margin-top: 25px; }
-        .footer-partners h4 { color: var(--color-noble); font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; }
-        .partner-logos { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-        .partner-logo { display: flex; align-items: center; gap: 8px; color: #999; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; }
-        .partner-logo svg { height: 22px; width: auto; flex-shrink: 0; }
+        /* SHIPPING STRIP — Seçenek B */
+        .ship-strip { background: #faf7f2; border-top: 3px solid var(--color-noble); border-bottom: 1px solid #e0d8ce; }
+        .ship-strip-inner { max-width: var(--site-max-width); margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; }
+        .ship-left { background: var(--color-noble); padding: 48px 36px; display: flex; flex-direction: column; justify-content: center; gap: 14px; position: relative; }
+        .ship-left::after { content: ''; position: absolute; top: 0; right: -24px; height: 100%; width: 24px; background: var(--color-noble); clip-path: polygon(0 0, 0 100%, 100% 100%); }
+        .ship-left-eye { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--color-gold); font-weight: 600; }
+        .ship-left-title { font-family: var(--font-display); font-size: 1.35rem; color: #fff; line-height: 1.3; }
+        .ship-left-divider { width: 40px; height: 1px; background: var(--color-gold); margin: 4px 0; }
+        .ship-left-sub { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.5px; line-height: 1.7; }
+        .ship-right { padding: 48px 48px 48px 60px; display: flex; align-items: center; }
+        .ship-carrier { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px 16px; border-right: 1px solid #e0d8ce; transition: background 0.3s; cursor: default; position: relative; }
+        .ship-carrier:last-child { border-right: none; }
+        .ship-carrier::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%) scaleX(0); width: 40px; height: 2px; background: var(--color-gold); transition: transform 0.3s; }
+        .ship-carrier:hover::after { transform: translateX(-50%) scaleX(1); }
+        .ship-carrier:hover { background: rgba(44,62,80,0.03); }
+        .ship-logo-wrap { height: 38px; display: flex; align-items: center; justify-content: center; }
+        .ship-carrier-label { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: #aaa; }
+        .ship-carrier-time { font-size: 10px; color: var(--color-noble); font-weight: 700; letter-spacing: 0.5px; }
+        @media (max-width: 768px) {
+            .ship-strip-inner { grid-template-columns: 1fr; }
+            .ship-left::after { display: none; }
+            .ship-right { padding: 32px 20px; flex-wrap: wrap; justify-content: center; }
+            .ship-carrier { flex: 0 0 calc(33% - 8px); border-right: none; }
+        }
         .footer-service-list li { padding-left: 18px; position: relative; margin-bottom: 8px; font-size: 0.85rem; color: #888; }
         .footer-service-list li::before { content: '›'; position: absolute; left: 0; color: var(--color-gold); font-weight: 700; }
         /* T&C OVERLAY */
@@ -689,6 +708,42 @@ src="https://www.facebook.com/tr?id=1678419456661968&ev=PageView&noscript=1"
     </section>
     <!-- END BLOG / INSIGHTS SECTION -->
 
+    <!-- SHIPPING PARTNERS STRIP -->
+    <section class="ship-strip">
+        <div class="ship-strip-inner">
+            <div class="ship-left">
+                <span class="ship-left-eye" data-t="ship_eye">Logistics Partners</span>
+                <h2 class="ship-left-title" data-t="ship_title">Fast &amp; Reliable Worldwide Shipping</h2>
+                <div class="ship-left-divider"></div>
+                <p class="ship-left-sub" data-t="ship_sub">All wholesale orders shipped via certified express carriers with full tracking and export documentation.</p>
+            </div>
+            <div class="ship-right">
+                <div class="ship-carrier">
+                    <div class="ship-logo-wrap">
+                        <svg width="82" height="32" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="50" rx="4" fill="#FFCC00"/><text x="100" y="36" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="30" fill="#D40511" letter-spacing="2">DHL</text></svg>
+                    </div>
+                    <span class="ship-carrier-label" data-t="ship_dhl_label">Express</span>
+                    <span class="ship-carrier-time" data-t="ship_dhl_time">2–5 days EU</span>
+                </div>
+                <div class="ship-carrier">
+                    <div class="ship-logo-wrap">
+                        <svg width="90" height="32" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="50" rx="4" fill="#4D148C"/><text x="100" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="24" fill="#FF6600" letter-spacing="1">FedEx</text></svg>
+                    </div>
+                    <span class="ship-carrier-label" data-t="ship_fedex_label">International</span>
+                    <span class="ship-carrier-time" data-t="ship_fedex_time">3–7 days</span>
+                </div>
+                <div class="ship-carrier">
+                    <div class="ship-logo-wrap">
+                        <svg width="54" height="32" viewBox="0 0 120 50" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="50" rx="4" fill="#351C15"/><text x="60" y="35" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="28" fill="#FFB500" letter-spacing="3">UPS</text></svg>
+                    </div>
+                    <span class="ship-carrier-label" data-t="ship_ups_label">Worldwide</span>
+                    <span class="ship-carrier-time" data-t="ship_ups_time">3–6 days</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END SHIPPING PARTNERS STRIP -->
+
     <!-- FIX #14: Replaced document.write with span + JS textContent -->
     <footer class="footer"><div class="footer-grid">
         <div class="reveal stagger-1">
@@ -723,14 +778,7 @@ src="https://www.facebook.com/tr?id=1678419456661968&ev=PageView&noscript=1"
                 <a href="https://www.linkedin.com/company/pagusmenswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#ico-linkedin"/></svg>LinkedIn</a>
                 <a href="https://www.facebook.com/pagusmenswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#ico-facebook"/></svg>Facebook</a>
             </div>
-            <div class="footer-partners">
-                <h4 data-t="ft_partners">We Work With</h4>
-                <div class="partner-logos">
-                    <div class="partner-logo"><svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="50" rx="4" fill="#FFCC00"/><text x="100" y="34" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="28" fill="#D40511" letter-spacing="2">DHL</text></svg></div>
-                    <div class="partner-logo"><svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="50" rx="4" fill="#4D148C"/><text x="100" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="24" fill="#FF6600" letter-spacing="1">FedEx</text></svg></div>
-                    <div class="partner-logo"><svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="50" rx="4" fill="#351C15"/><text x="100" y="35" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="30" fill="#FFB500" letter-spacing="3">UPS</text></svg></div>
-                </div>
-            </div>
+
         </div>
     </div><div class="footer-bottom">&copy; <span id="footerYear"></span> Pagus Menswear. <span data-t="ft_rights">All Rights Reserved.</span> &nbsp;|&nbsp; <a href="javascript:void(0)" onclick="openTerms()" style="color:#666;" data-t="ft_tc">Terms &amp; Conditions</a><br><span style="color:#aaa; font-size:0.75rem;" data-t="ft_shipping">Worldwide shipping via DHL, FedEx &amp; UPS.</span></div></footer>
 
@@ -1467,6 +1515,16 @@ src="https://www.facebook.com/tr?id=1678419456661968&ev=PageView&noscript=1"
             ft_links:{en:'Quick Links',it:'Link Utili',fr:'Liens Rapides',de:'Schnelllinks',es:'Enlaces Rápidos'},
             ft_follow:{en:'Follow Us',it:'Seguici',fr:'Suivez-nous',de:'Folgen Sie uns',es:'Síguenos'},
             ft_partners:{en:'We Work With',it:'Collaboriamo Con',fr:'Nous Travaillons Avec',de:'Wir Arbeiten Mit',es:'Trabajamos Con'},
+            // SHIPPING STRIP
+            ship_eye:{en:'Logistics Partners',it:'Partner Logistici',fr:'Partenaires Logistiques',de:'Logistikpartner',es:'Socios Logísticos'},
+            ship_title:{en:'Fast & Reliable Worldwide Shipping',it:'Spedizione Mondiale Veloce & Affidabile',fr:'Expédition Mondiale Rapide & Fiable',de:'Schneller & Zuverlässiger Weltweiter Versand',es:'Envío Mundial Rápido y Fiable'},
+            ship_sub:{en:'All wholesale orders shipped via certified express carriers with full tracking and export documentation.',it:'Tutti gli ordini all\'ingrosso vengono spediti tramite corrieri express certificati con tracciamento completo e documentazione export.',fr:'Toutes les commandes en gros sont expédiées via des transporteurs express certifiés avec suivi complet et documentation d\'exportation.',de:'Alle Großhandelsbestellungen werden über zertifizierte Expressspediteure mit vollständiger Sendungsverfolgung und Exportdokumentation versendet.',es:'Todos los pedidos mayoristas se envían a través de transportistas express certificados con seguimiento completo y documentación de exportación.'},
+            ship_dhl_label:{en:'Express',it:'Express',fr:'Express',de:'Express',es:'Express'},
+            ship_dhl_time:{en:'2–5 days EU',it:'2–5 giorni UE',fr:'2–5 jours UE',de:'2–5 Tage EU',es:'2–5 días UE'},
+            ship_fedex_label:{en:'International',it:'Internazionale',fr:'International',de:'International',es:'Internacional'},
+            ship_fedex_time:{en:'3–7 days',it:'3–7 giorni',fr:'3–7 jours',de:'3–7 Tage',es:'3–7 días'},
+            ship_ups_label:{en:'Worldwide',it:'Mondiale',fr:'Mondial',de:'Weltweit',es:'Mundial'},
+            ship_ups_time:{en:'3–6 days',it:'3–6 giorni',fr:'3–6 jours',de:'3–6 Tage',es:'3–6 días'},
             ft_tc:{en:'Terms & Conditions',it:'Termini e Condizioni',fr:'Conditions Générales',de:'Allgemeine Geschäftsbedingungen',es:'Términos y Condiciones'},
             ft_privacy:{en:'Privacy & GDPR',it:'Privacy & GDPR',fr:'Confidentialité & RGPD',de:'Datenschutz & DSGVO',es:'Privacidad y RGPD'},
             ft_payment:{en:'Secure Payment & Bank Accounts',it:'Pagamento Sicuro & Conti Bancari',fr:'Paiement Sécurisé & Comptes Bancaires',de:'Sichere Zahlung & Bankkonten',es:'Pago Seguro y Cuentas Bancarias'},
