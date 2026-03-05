@@ -179,13 +179,14 @@
         .cart-panel-items { flex:1; overflow-y:auto; padding:6px 0; }
         .cart-panel-items::-webkit-scrollbar { width:3px; }
         .cart-panel-items::-webkit-scrollbar-thumb { background:#e8e4dc; }
-        .cart-panel-item { padding:12px 22px; display:flex; align-items:center; gap:14px; border-bottom:1px solid #f0ece4; transition:background 0.2s; }
-        .cart-panel-item:hover { background:#faf9f6; }
+        .cart-panel-item { padding:14px 22px; display:flex; align-items:center; gap:16px; border-bottom:1px solid #ede9e0; transition:background 0.2s; }
+        .cart-panel-item:hover { background:#faf8f4; }
         .cart-panel-item:last-child { border-bottom:none; }
-        .cart-panel-item-thumb { width:46px; height:56px; background:linear-gradient(135deg,#f5f3ee,#ebe8e0); border:1px solid #e8e4dc; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .cart-panel-item-thumb { width:54px; height:66px; background:linear-gradient(135deg,#f5f3ee,#e8e4da); border:1px solid #ddd9d0; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
+        .cart-panel-item-thumb img { width:100%; height:100%; object-fit:cover; object-position:center top; }
         .cart-panel-item-thumb svg { width:22px; height:22px; stroke:rgba(44,62,80,0.2); fill:none; stroke-width:1; }
-        .cart-panel-item-name { flex:1; font-family:'Playfair Display',serif; font-size:0.88rem; color:#2c3e50; }
-        .cart-panel-item-del { background:none; border:none; color:#ccc; font-size:0.9rem; cursor:pointer; padding:4px; transition:color 0.2s; }
+        .cart-panel-item-name { flex:1; font-family:'Playfair Display',serif; font-size:1rem; font-weight:600; color:#2c3e50; }
+        .cart-panel-item-del { background:none; border:none; color:#bbb; font-size:1rem; cursor:pointer; padding:6px; transition:color 0.2s; }
         .cart-panel-item-del:hover { color:#e74c3c; }
         .cart-panel-empty { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:40px; text-align:center; }
         .cart-panel-empty svg { width:44px; height:44px; stroke:#ddd; fill:none; stroke-width:1; }
@@ -1267,7 +1268,7 @@
             // PAGE
             back_btn:{en:'BACK',it:'INDIETRO',fr:'RETOUR',de:'ZURÜCK',es:'VOLVER'},
             collection:{en:'COLLECTION',it:'COLLEZIONE',fr:'COLLECTION',de:'KOLLEKTION',es:'COLECCIÓN'},
-            guide_tap:{en:'Click + on any product to add to your selection.',it:'Clicca + su un prodotto per aggiungerlo alla selezione.',fr:'Cliquez sur + pour ajouter un produit à votre sélection.',de:'Klicken Sie auf +, um ein Produkt zur Auswahl hinzuzufügen.',es:'Haz clic en + para añadir un producto a tu selección.'},
+            guide_tap:{en:'Click + on any product to add to your wish list.',it:'Clicca + su un prodotto per aggiungerlo alla wish list.',fr:'Cliquez sur + pour ajouter un produit à votre wish list.',de:'Klicken Sie auf +, um ein Produkt zur Wunschliste hinzuzufügen.',es:'Haz clic en + para añadir un producto a tu lista de deseos.'},
             loading:{en:'Loading Collection...',it:'Caricamento Collezione...',fr:'Chargement de la Collection...',de:'Kollektion wird geladen...',es:'Cargando Colección...'},
             // PRIVATE LABEL
             pl_title:{en:'YOUR BRAND, OUR PRODUCTION',it:'IL VOSTRO MARCHIO, LA NOSTRA PRODUZIONE',fr:'VOTRE MARQUE, NOTRE PRODUCTION',de:'IHRE MARKE, UNSERE PRODUKTION',es:'SU MARCA, NUESTRA PRODUCCIÓN'},
@@ -1653,7 +1654,7 @@
             });
 
             // Build lookup indexes — O(1) access instead of O(n) scans
-            PAGUS.index={byMainCat:{},bySubCat:{},byPath:{}};
+            PAGUS.index={byMainCat:{},bySubCat:{},byPath:{},byCode:{}};
             productsDB.forEach(function(p){
                 var mc=(p.mainCat||'uncategorized').toLowerCase();
                 if(!PAGUS.index.byMainCat[mc])PAGUS.index.byMainCat[mc]=[];
@@ -1662,6 +1663,7 @@
                 if(!PAGUS.index.bySubCat[sc])PAGUS.index.bySubCat[sc]=[];
                 PAGUS.index.bySubCat[sc].push(p);
                 if(p.path) PAGUS.index.byPath[p.path]=p;
+                if(p.realCode) PAGUS.index.byCode[p.realCode]=p;
             });
 
             applyLanguage();
@@ -2122,8 +2124,13 @@
                 actions.style.display='none';
             } else {
                 items.innerHTML=PAGUS.state.cart.map(function(c){
+                    var imgHtml='<svg viewBox="0 0 60 80"><rect x="10" y="5" width="40" height="55" rx="1"/><path d="M20 5 Q20 18 30 18 Q40 18 40 5"/></svg>';
+                    if(PAGUS.index && PAGUS.index.byCode && PAGUS.index.byCode[c]){
+                        var prod=PAGUS.index.byCode[c];
+                        imgHtml='<img src="'+escapeAttr(prod.folderPath)+'/1.webp" alt="'+escapeAttr(c)+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;" onerror="this.style.display=\'none\'">';
+                    }
                     return '<div class="cart-panel-item">'
-                        +'<div class="cart-panel-item-thumb"><svg viewBox="0 0 60 80"><rect x="10" y="5" width="40" height="55" rx="1"/><path d="M20 5 Q20 18 30 18 Q40 18 40 5"/></svg></div>'
+                        +'<div class="cart-panel-item-thumb">'+imgHtml+'</div>'
                         +'<div class="cart-panel-item-name">'+escapeHTML(c)+'</div>'
                         +'<button class="cart-panel-item-del" onclick="removeFromCartPanel(\''+escapeAttr(c)+'\')">✕</button>'
                         +'</div>';
@@ -2137,7 +2144,7 @@
             PAGUS.state.cart=PAGUS.state.cart.filter(function(c){return c!==code;});
             if(PAGUS.state.lsAvailable)localStorage.setItem('pagusCart',JSON.stringify(PAGUS.state.cart));
             document.querySelectorAll('.heart-btn[data-code="'+code+'"]').forEach(function(b){
-                b.innerText='\u2661'; b.classList.remove('active');
+                b.innerText='+'; b.classList.remove('active');
             });
             updateCartUI();
             renderCartPanel();
