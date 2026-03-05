@@ -2520,4 +2520,18 @@
             do{
                 PAGUS.state.carouselIndex+=dir;
                 if(PAGUS.state.carouselIndex<0)PAGUS.state.carouselIndex=PAGUS.state.carouselTotal-1;
-       
+                if(PAGUS.state.carouselIndex>=PAGUS.state.carouselTotal)PAGUS.state.carouselIndex=0;
+                attempts++;
+            }while(all[PAGUS.state.carouselIndex]&&all[PAGUS.state.carouselIndex].classList.contains('ss-broken')&&attempts<PAGUS.state.carouselTotal);
+            carouselShow();
+            PAGUS.state.carouselTimer=setInterval(carouselNext,5000);
+        }
+
+    </script>
+
+    <!-- Chatling AI Chatbot -->
+    <script>window.chtlConfig = { chatbotId: "1894737114" }</script>
+    <script async data-id="1894737114" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+
+</body>
+</html>
