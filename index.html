@@ -3,10 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagus</title>
+    <title>Pagus Menswear — Wholesale Men's Suits & Formalwear from Turkey</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%232c3e50'/%3E%3Crect x='2' y='2' width='60' height='60' rx='8' fill='none' stroke='%23C9A962' stroke-width='1.5'/%3E%3Cpath d='M22 14h12c6.627 0 12 4.477 12 10s-5.373 10-12 10H28v16h-6V14z M28 19.5v9h6c3.314 0 6-2.015 6-4.5s-2.686-4.5-6-4.5h-6z' fill='%23C9A962'/%3E%3C/svg%3E">
     <meta name="description" content="Premium wholesale menswear from Turkey. Ceremonial, Formal & Casual Wear.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pagusmenswear.com/">
+    <meta name="keywords" content="wholesale men's suits, wholesale menswear Turkey, B2B suits manufacturer, men's formalwear wholesale, Turkish suit manufacturer, private label suits, European wholesale suits, ceremony suits wholesale">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pagusmenswear.com/">
+    <meta property="og:title" content="Pagus Menswear — Wholesale Men's Suits & Formalwear from Turkey">
+    <meta property="og:description" content="Premium wholesale menswear manufacturer based in Turkey. Ceremonial, formal & casual suits for European retailers. Private label available.">
+    <meta property="og:image" content="https://pagusmenswear.com/images/pagus-og-cover.jpg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Pagus Menswear">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pagus Menswear — Wholesale Men's Suits & Formalwear from Turkey">
+    <meta name="twitter:description" content="Premium wholesale menswear manufacturer based in Turkey. Ceremonial, formal & casual suits for European retailers.">
+    <meta name="twitter:image" content="https://pagusmenswear.com/images/pagus-og-cover.jpg">
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Pagus Menswear",
+      "url": "https://pagusmenswear.com",
+      "logo": "https://pagusmenswear.com/images/pagus-logo.png",
+      "description": "Premium wholesale men's suits and formalwear manufacturer based in Izmir, Turkey. Serving European retailers with ceremonial, formal and casual menswear.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Izmir",
+        "addressCountry": "TR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+90-551-174-8907",
+        "contactType": "sales",
+        "email": "sales@pagusmenswear.com",
+        "availableLanguage": ["English", "Italian", "French", "German", "Spanish", "Turkish"]
+      },
+      "sameAs": [
+        "https://www.instagram.com/pagus_menswear/",
+        "https://www.linkedin.com/company/pagusmenswear/",
+        "https://www.facebook.com/pagusmenswear/"
+      ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap">
@@ -97,8 +141,9 @@
         .info-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px; color: var(--color-noble); }
         .card-highlight { outline: 3px solid var(--color-gold); outline-offset: -3px; box-shadow: 0 0 20px rgba(201,169,98,0.4); animation: highlightPulse 2s ease-in-out; }
         @keyframes highlightPulse { 0%,100%{ box-shadow: 0 0 20px rgba(201,169,98,0.4); } 50%{ box-shadow: 0 0 35px rgba(201,169,98,0.7); } }
-        .heart-btn { position: absolute; top: 10px; right: 10px; width: 35px; height: 35px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #ccc; cursor: pointer; z-index: 10; border: none; }
-        .heart-btn.active { color: #e74c3c; }
+        .heart-btn { position: absolute; top: 10px; right: 10px; width: 35px; height: 35px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #2c3e50; cursor: pointer; z-index: 10; border: 1.5px solid rgba(44,62,80,0.15); transition: all 0.2s; }
+        .heart-btn:hover { background: #2c3e50; color: #fff; border-color: #2c3e50; }
+        .heart-btn.active { background: #2c3e50; color: #fff; border-color: #2c3e50; font-size: 0.75rem; font-weight: 700; letter-spacing: 0; }
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(5px); }
         .modal-content { height: 100vh; display: grid; grid-template-columns: 3fr 1fr; }
         .slider { position: relative; background: #000; display: flex; align-items: center; justify-content: center; height: 100%; user-select: none; }
@@ -141,9 +186,9 @@
         .footer-social svg { width: 18px; height: 18px; fill: #999; transition: 0.3s; flex-shrink: 0; }
         .footer-partners { margin-top: 25px; }
         .footer-partners h4 { color: var(--color-noble); font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; }
-        .partner-logos { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-        .partner-logo { display: flex; align-items: center; gap: 8px; color: #999; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; }
-        .partner-logo svg { height: 22px; width: auto; flex-shrink: 0; }
+        .partner-logos { display: flex; gap: 16px; align-items: flex-start; flex-wrap: nowrap; }
+        .partner-logo { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #999; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .partner-logo svg { height: 50px; width: 120px; flex-shrink: 0; }
         .footer-service-list li { padding-left: 18px; position: relative; margin-bottom: 8px; font-size: 0.85rem; color: #888; }
         .footer-service-list li::before { content: '›'; position: absolute; left: 0; color: var(--color-gold); font-weight: 700; }
         /* T&C OVERLAY */
@@ -162,8 +207,48 @@
         .tc-contact { background: var(--color-noble); color: #fff; padding: 25px 30px; border-radius: 8px; margin-top: 30px; }
         .tc-contact strong { color: var(--color-gold); }
 
-        .float-cart { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #25D366; color: #fff; padding: 12px 20px; border-radius: 50px; font-weight: 700; display: none; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: none; cursor: pointer; font-family: var(--font-body); font-size: 1rem; }
+        .float-cart { position: fixed; bottom: 90px; right: 20px; z-index: 999; background: #25D366; color: #fff; padding: 12px 20px; border-radius: 50px; font-weight: 700; display: none; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: none; cursor: pointer; font-family: var(--font-body); font-size: 1rem; }
         .float-cart:hover { background: #1da851; transform: scale(1.05); }
+
+        /* ── CART PANEL ── */
+        .cart-panel-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:4000; backdrop-filter:blur(3px); }
+        .cart-panel-overlay.open { display:block; }
+        .cart-panel { position:fixed; top:0; right:-420px; width:400px; max-width:95vw; height:100%; background:#fff; z-index:4001; display:flex; flex-direction:column; box-shadow:-10px 0 40px rgba(0,0,0,0.15); transition:right 0.35s cubic-bezier(.4,0,.2,1); }
+        .cart-panel.open { right:0; }
+        .cart-panel-header { background:#2c3e50; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+        .cart-panel-header h2 { font-family:'Playfair Display',serif; font-size:1.15rem; color:#fff; font-weight:700; }
+        .cart-panel-header-sub { font-size:0.48rem; letter-spacing:4px; color:rgba(255,255,255,0.45); text-transform:uppercase; margin-top:2px; }
+        .cart-panel-close { width:30px; height:30px; background:rgba(255,255,255,0.1); border:none; color:rgba(255,255,255,0.8); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; flex-shrink:0; }
+        .cart-panel-close:hover { background:rgba(255,255,255,0.2); }
+        .cart-panel-items { flex:1; overflow-y:auto; padding:6px 0; }
+        .cart-panel-items::-webkit-scrollbar { width:3px; }
+        .cart-panel-items::-webkit-scrollbar-thumb { background:#e8e4dc; }
+        .cart-panel-item { padding:14px 22px; display:flex; align-items:center; gap:16px; border-bottom:1px solid #ede9e0; transition:background 0.2s; }
+        .cart-panel-item:hover { background:#faf8f4; }
+        .cart-panel-item:last-child { border-bottom:none; }
+        .cart-panel-item-thumb { width:54px; height:66px; background:linear-gradient(135deg,#f5f3ee,#e8e4da); border:1px solid #ddd9d0; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
+        .cart-panel-item-thumb img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+        .cart-panel-item-thumb svg { width:22px; height:22px; stroke:rgba(44,62,80,0.2); fill:none; stroke-width:1; }
+        .cart-panel-item-name { flex:1; font-family:'Playfair Display',serif; font-size:1rem; font-weight:600; color:#2c3e50; }
+        .cart-panel-item-del { background:none; border:none; color:#bbb; font-size:1rem; cursor:pointer; padding:6px; transition:color 0.2s; }
+        .cart-panel-item-del:hover { color:#e74c3c; }
+        .cart-panel-empty { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:40px; text-align:center; }
+        .cart-panel-empty svg { width:44px; height:44px; stroke:#ddd; fill:none; stroke-width:1; }
+        .cart-panel-empty p { font-family:'Playfair Display',serif; font-size:1rem; color:#ccc; font-style:italic; }
+        .cart-panel-empty small { font-size:0.48rem; letter-spacing:3px; color:#ddd; text-transform:uppercase; }
+        .cart-panel-note { padding:14px 22px; border-top:1px solid #f0ece4; background:#faf9f6; flex-shrink:0; }
+        .cart-panel-note label { font-size:0.48rem; letter-spacing:4px; color:#888; text-transform:uppercase; display:block; margin-bottom:8px; }
+        .cart-panel-note textarea { width:100%; background:#fff; border:1px solid #e8e4dc; color:#2c3e50; font-family:'Montserrat',sans-serif; font-size:0.78rem; padding:9px 12px; resize:none; height:52px; outline:none; transition:border 0.2s; }
+        .cart-panel-note textarea:focus { border-color:#c9a962; }
+        .cart-panel-actions { padding:16px 22px 20px; display:flex; flex-direction:column; gap:10px; flex-shrink:0; background:#fff; border-top:1px solid #f0ece4; }
+        .cart-btn-wa { display:flex; align-items:center; justify-content:center; gap:10px; background:#25D366; color:#fff; padding:13px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.58rem; letter-spacing:3px; text-transform:uppercase; border:none; cursor:pointer; transition:background 0.2s; }
+        .cart-btn-wa:hover { background:#1fba59; }
+        .cart-btn-wa svg { width:17px; height:17px; fill:#fff; flex-shrink:0; }
+        .cart-btn-email { display:flex; align-items:center; justify-content:center; gap:10px; background:none; color:#2c3e50; padding:11px; font-family:'Montserrat',sans-serif; font-weight:600; font-size:0.55rem; letter-spacing:3px; text-transform:uppercase; border:1.5px solid #e8e4dc; cursor:pointer; transition:all 0.2s; }
+        .cart-btn-email:hover { border-color:#2c3e50; }
+        .cart-btn-email svg { width:14px; height:14px; stroke:#2c3e50; fill:none; stroke-width:1.8; }
+        .cart-btn-clear { background:none; border:none; color:#ccc; font-family:'Montserrat',sans-serif; font-size:0.45rem; letter-spacing:3px; text-transform:uppercase; cursor:pointer; text-align:center; padding:2px; transition:color 0.2s; }
+        .cart-btn-clear:hover { color:#e74c3c; }
         .badges { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         .badge-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; font-size: 0.7rem; color: #666; font-weight: 600; text-transform: uppercase; }
         .badge-icon { font-size: 1.5rem; color: var(--color-noble); }
@@ -200,7 +285,8 @@
             .soc-icons .social-icon svg { width: 16px; height: 16px; }
             .nav-list { gap: 10px; justify-content: center; } .nav-list a { font-size: 0.75rem; padding: 5px; }
             .grid { padding: 20px 10px; gap: 15px; grid-template-columns: 1fr 1fr; }
-            .modal-content { display: flex; flex-direction: column; height: 100%; overflow-y: scroll; }
+            .modal-content { display: flex; flex-direction: column; height: 100%; overflow-y: scroll; padding-top: 55px; }
+            .close { top: 12px; right: 18px; font-size: 32px; }
             .slider { height: 50vh; min-height: 300px; background: #000; flex-shrink: 0; }
             .side-info { padding: 30px 20px; height: auto; display: block !important; }
             .arrow { font-size: 3rem; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
@@ -209,6 +295,20 @@
             .search-results-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
             .carousel-section { max-height: 350px; }
             .ss-slide img { max-height: 350px; }
+            /* PRIVATE LABEL mobile */
+            .private-label { padding: 40px 20px; }
+            .pl-title { font-size: 1.8rem; }
+        }
+        /* BLOG & LOGISTICS mobile overrides */
+        @media (max-width: 768px) {
+            #blogSection { padding: 40px 20px !important; }
+            #blogSection .blog-two-col { grid-template-columns: 1fr !important; gap: 24px !important; }
+            #blogSection .blog-cta-box { padding: 32px 20px !important; }
+            #logisticsSection > div { grid-template-columns: 1fr !important; }
+            #logisticsSection > div > div:first-child { padding: 28px 24px !important; }
+            #logisticsSection .logo-grid { grid-template-columns: 1fr !important; }
+            #logisticsSection .logo-grid > div { border-right: none !important; border-bottom: 1px solid rgba(44,62,80,0.08); padding: 20px !important; }
+            #logisticsSection .logo-grid > div:last-child { border-bottom: none !important; }
         }
         /* HERO SECTION */
         .hero { background: linear-gradient(135deg, #F0F0F0 0%, #E8E8E8 100%); color: var(--color-noble); padding: 40px 20px; text-align: center; position: relative; }
@@ -407,10 +507,38 @@
         <p style="color:#777; margin-bottom:35px; max-width:800px; margin-left:auto; margin-right:auto; text-align:center; line-height:1.8; font-size:0.95rem;" data-t="pl_desc">Behind every suit that carries your name, there's a story of craftsmanship that begins in İzmir — Turkey's textile heartland. For over 15 years, Pagus Menswear has been the silent force behind some of Europe's most respected menswear labels, engineering confidence into every lapel, seam, and stitch. Our Private Label service is a true partnership. You define the design, fabric, fit, and finishing — we handle everything else. Our in-house pattern makers and master tailors work as a dedicated extension of your brand, combining traditional tailoring techniques with modern production capacity. From ceremonial suits and tuxedos to business wear and smart-casual blazers, every production run follows rigorous quality protocols. We source premium fabrics from certified Turkish and Italian mills, and deliver your garments labeled, packaged, and retail-ready. No hidden fees. No compromise. Your labels, your packaging, your identity — backed by decades of textile mastery and trusted by partners across Italy, Germany, France, and beyond.</p>
         <a href="/cdn-cgi/l/email-protection#bcd5d2dad3fcccdddbc9cfd1d9d2cfcbd9ddce92dfd3d183cfc9ded6d9dfc881ebd9998e8cddced9998e8cd5d2c8d9ced9cfc8d9d8998e8cd5d2998e8cc5d3c9ce998e8cccced3d8c9dfc8d5d3d2" class="pl-btn" data-t="pl_btn">START PRODUCTION</a>
     </div></section>
-    <button id="floatCart" class="float-cart" onclick="sendListToWhatsapp()">
-        <svg style="width:20px;height:20px;fill:white;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        <span data-t="send_text">SEND</span> <span id="cartCount">0</span>
+    <button id="floatCart" class="float-cart" onclick="openCartPanel()">
+        <svg style="width:20px;height:20px;fill:white;" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6" stroke="white" stroke-width="2"/><path d="M16 10a4 4 0 01-8 0" stroke="white" stroke-width="2" fill="none"/></svg>
+        <span data-t="send_text">My Selection</span> (<span id="cartCount">0</span>)
     </button>
+
+    <!-- CART PANEL -->
+    <div class="cart-panel-overlay" id="cartOverlay" onclick="closeCartPanel()"></div>
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-panel-header">
+            <div>
+                <h2>My Selection</h2>
+                <div class="cart-panel-header-sub" id="cartPanelSub">0 models selected</div>
+            </div>
+            <button class="cart-panel-close" onclick="closeCartPanel()">×</button>
+        </div>
+        <div class="cart-panel-items" id="cartPanelItems"></div>
+        <div class="cart-panel-note" id="cartPanelNote" style="display:none;">
+            <label>Note (Optional)</label>
+            <textarea id="cartNoteText" placeholder="e.g. sizes, delivery date, custom requests..."></textarea>
+        </div>
+        <div class="cart-panel-actions" id="cartPanelActions" style="display:none;">
+            <button class="cart-btn-wa" onclick="sendCartWhatsApp()">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Send via WhatsApp
+            </button>
+            <button class="cart-btn-email" onclick="sendCartEmail()">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Send via Email
+            </button>
+            <button class="cart-btn-clear" onclick="clearCartPanel()">Clear Selection</button>
+        </div>
+    </div>
     <!-- FIX #11: Toast notification element -->
     <div id="toastNotification" class="toast-notification" role="alert" aria-live="polite"></div>
 
@@ -542,6 +670,82 @@
         <div id="fullscreenCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#888;font-size:0.9rem;z-index:3;">1/4</div>
         <div id="fsZoomHint" style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:0.75rem;z-index:3;pointer-events:none;transition:opacity 0.5s;text-align:center;">🔍 Scroll to zoom · Double-click to reset</div>
     </div>
+    <!-- BLOG / INSIGHTS SECTION -->
+    <section id="blogSection" style="background:#f8f5f0;padding:80px 40px;border-top:1px solid rgba(44,62,80,0.08);">
+      <div style="max-width:960px;margin:0 auto;">
+        <p style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#c9a84c;margin-bottom:12px;">B2B Wholesale Guide</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#0a0a0a;margin-bottom:16px;line-height:1.2;">Wholesale Mens Suits from Turkey:<br>The Complete Guide for European Retailers</h2>
+        <p style="color:#555;font-size:0.95rem;max-width:680px;margin-bottom:48px;line-height:1.8;">For European boutiques and fashion brands looking to source high-quality wholesale mens suits, Turkey has become the undisputed destination. Here is everything you need to know.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:48px;">
+          <div style="background:#fff;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:24px;">
+            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:8px;">Delivery to EU</div>
+            <div style="font-size:1.3rem;font-weight:600;color:#0a0a0a;">3–11 days</div>
+          </div>
+          <div style="background:#fff;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:24px;">
+            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:8px;">Private Label</div>
+            <div style="font-size:1.3rem;font-weight:600;color:#0a0a0a;">Available</div>
+          </div>
+          <div style="background:#fff;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:24px;">
+            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:8px;">Markets Served</div>
+            <div style="font-size:1.3rem;font-weight:600;color:#0a0a0a;">IT · DE · FR · ES</div>
+          </div>
+        </div>
+        <div class="blog-two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+          <div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#0a0a0a;margin-bottom:16px;">Why Source from Turkey?</h3>
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Geographic proximity to European markets</li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Premium wool, jacquard &amp; velvet fabrics</li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>EU customs union — reduced tariffs</li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Full private label manufacturing</li>
+              <li style="padding:10px 0 10px 20px;color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>30–45% cost savings vs domestic production</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#0a0a0a;margin-bottom:16px;">What We Manufacture</h3>
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Wedding &amp; ceremony suits</li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Tuxedos &amp; black tie formalwear</li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Prom &amp; graduation jackets</li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Business suits &amp; corporate formalwear</li>
+              <li style="padding:10px 0 10px 20px;color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Private label with custom labels &amp; packaging</li>
+            </ul>
+          </div>
+        </div>
+        <div class="blog-cta-box" style="background:#0a0a0a;border:1px solid rgba(201,168,76,0.4);border-radius:8px;padding:48px;margin-top:48px;text-align:center;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#f8f5f0;margin-bottom:12px;">Ready to Start Wholesale Sourcing?</h3>
+          <p style="color:#888;margin-bottom:28px;font-size:0.9rem;">Contact our B2B team to request a catalogue, pricing sheet, or fabric samples.</p>
+          <a href="https://wa.me/905511748907" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a0a0a;padding:14px 40px;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:2px;">Contact B2B Team</a>
+        </div>
+      </div>
+    </section>
+    <!-- END BLOG / INSIGHTS SECTION -->
+
+    <!-- LOGISTICS SECTION -->
+    <section id="logisticsSection" style="background:#f8f5f0;padding:0;border-top:1px solid rgba(44,62,80,0.08);">
+      <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;min-height:160px;">
+        <div style="background:#2c3e50;padding:32px 36px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#c9a962;margin-bottom:12px;">Logistics Partners</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px;">Fast &amp; Reliable<br>Worldwide Shipping</div>
+          <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.6;">All wholesale orders shipped via certified express carriers with full tracking and export documentation.</div>
+        </div>
+        <div class="logo-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;background:#f8f5f0;">
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;border-right:1px solid rgba(44,62,80,0.08);">
+            <svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" style="width:120px;height:30px;"><rect width="200" height="50" rx="4" fill="#FFCC00"/><text x="100" y="34" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="28" fill="#D40511" letter-spacing="2">DHL</text></svg>
+            <span style="font-size:10px;letter-spacing:3px;color:#aaa;text-transform:uppercase;">Express</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;border-right:1px solid rgba(44,62,80,0.08);">
+            <svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" style="width:120px;height:30px;"><rect width="200" height="50" rx="4" fill="#4D148C"/><text x="100" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="24" fill="#FF6600" letter-spacing="1">FedEx</text></svg>
+            <span style="font-size:10px;letter-spacing:3px;color:#aaa;text-transform:uppercase;">International</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;">
+            <svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" style="width:120px;height:30px;"><rect width="200" height="50" rx="4" fill="#351C15"/><text x="100" y="35" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="30" fill="#FFB500" letter-spacing="3">UPS</text></svg>
+            <span style="font-size:10px;letter-spacing:3px;color:#aaa;text-transform:uppercase;">Worldwide</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END LOGISTICS SECTION -->
     <!-- FIX #14: Replaced document.write with span + JS textContent -->
     <footer class="footer"><div class="footer-grid">
         <div>
@@ -575,14 +779,6 @@
                 <a href="https://wa.me/905511748907" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#ico-whatsapp"/></svg>WhatsApp</a>
                 <a href="https://www.linkedin.com/company/pagusmenswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#ico-linkedin"/></svg>LinkedIn</a>
                 <a href="https://www.facebook.com/pagusmenswear/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#ico-facebook"/></svg>Facebook</a>
-            </div>
-            <div class="footer-partners">
-                <h4 data-t="ft_partners">We Work With</h4>
-                <div class="partner-logos">
-                    <div class="partner-logo"><svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="50" rx="4" fill="#FFCC00"/><text x="100" y="34" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="28" fill="#D40511" letter-spacing="2">DHL</text></svg></div>
-                    <div class="partner-logo"><svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="50" rx="4" fill="#4D148C"/><text x="100" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="24" fill="#FF6600" letter-spacing="1">FedEx</text></svg></div>
-                    <div class="partner-logo"><svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="50" rx="4" fill="#351C15"/><text x="100" y="35" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="30" fill="#FFB500" letter-spacing="3">UPS</text></svg></div>
-                </div>
             </div>
         </div>
     </div><div class="footer-bottom">&copy; <span id="footerYear"></span> Pagus Menswear. <span data-t="ft_rights">All Rights Reserved.</span> &nbsp;|&nbsp; <a href="javascript:void(0)" onclick="openTerms()" style="color:#666;" data-t="ft_tc">Terms &amp; Conditions</a><br><span style="color:#aaa; font-size:0.75rem;" data-t="ft_shipping">Worldwide shipping via DHL, FedEx &amp; UPS.</span></div></footer>
@@ -1131,7 +1327,7 @@
             // PAGE
             back_btn:{en:'BACK',it:'INDIETRO',fr:'RETOUR',de:'ZURÜCK',es:'VOLVER'},
             collection:{en:'COLLECTION',it:'COLLEZIONE',fr:'COLLECTION',de:'KOLLEKTION',es:'COLECCIÓN'},
-            guide_tap:{en:'Tap heart to create list.',it:'Tocca il cuore per creare la lista.',fr:'Appuyez sur le cœur pour créer votre liste.',de:'Tippen Sie auf das Herz, um eine Liste zu erstellen.',es:'Toca el corazón para crear tu lista.'},
+            guide_tap:{en:'Click + on any product to add to your wish list.',it:'Clicca + su un prodotto per aggiungerlo alla wish list.',fr:'Cliquez sur + pour ajouter un produit à votre wish list.',de:'Klicken Sie auf +, um ein Produkt zur Wunschliste hinzuzufügen.',es:'Haz clic en + para añadir un producto a tu lista de deseos.'},
             loading:{en:'Loading Collection...',it:'Caricamento Collezione...',fr:'Chargement de la Collection...',de:'Kollektion wird geladen...',es:'Cargando Colección...'},
             // PRIVATE LABEL
             pl_title:{en:'YOUR BRAND, OUR PRODUCTION',it:'IL VOSTRO MARCHIO, LA NOSTRA PRODUZIONE',fr:'VOTRE MARQUE, NOTRE PRODUCTION',de:'IHRE MARKE, UNSERE PRODUKTION',es:'SU MARCA, NUESTRA PRODUCCIÓN'},
@@ -1517,7 +1713,7 @@
             });
 
             // Build lookup indexes — O(1) access instead of O(n) scans
-            PAGUS.index={byMainCat:{},bySubCat:{},byPath:{}};
+            PAGUS.index={byMainCat:{},bySubCat:{},byPath:{},byCode:{}};
             productsDB.forEach(function(p){
                 var mc=(p.mainCat||'uncategorized').toLowerCase();
                 if(!PAGUS.index.byMainCat[mc])PAGUS.index.byMainCat[mc]=[];
@@ -1526,6 +1722,7 @@
                 if(!PAGUS.index.bySubCat[sc])PAGUS.index.bySubCat[sc]=[];
                 PAGUS.index.bySubCat[sc].push(p);
                 if(p.path) PAGUS.index.byPath[p.path]=p;
+                if(p.realCode) PAGUS.index.byCode[p.realCode]=p;
             });
 
             applyLanguage();
@@ -1894,7 +2091,7 @@
                 var ip=escapeAttr(p.folderPath)+'/1.webp';
                 var fy=safeFocalY(p.focalY);
                 var f=PAGUS.state.cart.includes(p.realCode)?'active':'';
-                var h=f?'\u2665':'\u2661';
+                var h=f?'✓':'+';
                 // FIX #13: aria-label on heart buttons
                 var ariaLabel=f?'Remove '+escapeAttr(p.realCode)+' from list':'Add '+escapeAttr(p.realCode)+' to list';
                 var hlClass=urlParams.get('highlight')===p.realCode?' card-highlight':'';
@@ -1923,14 +2120,16 @@
             var c=btn.dataset.code;
             if(PAGUS.state.cart.includes(c)){
                 PAGUS.state.cart=PAGUS.state.cart.filter(function(i){return i!==c;});
-                btn.innerText='\u2661';
+                btn.innerText='+';
                 btn.classList.remove('active');
                 btn.setAttribute('aria-label','Add '+c+' to list');
+                showToast('Removed from selection');
             }else{
                 PAGUS.state.cart.push(c);
-                btn.innerText='\u2665';
+                btn.innerText='✓';
                 btn.classList.add('active');
                 btn.setAttribute('aria-label','Remove '+c+' from list');
+                showToast('Added to selection ✓');
             }
             if(PAGUS.state.lsAvailable)localStorage.setItem('pagusCart',JSON.stringify(PAGUS.state.cart));
             if(typeof saveFavToFirestore==='function') saveFavToFirestore(c, PAGUS.state.cart.includes(c));
@@ -1952,32 +2151,85 @@
 
         function sendListToWhatsapp(){
             if(PAGUS.state.cart.length===0)return;
-            var c=PAGUS.state.cart.join(", ");
-            var m=t('wa_list_header')+"\n\n"+c+"\n\n"+t('wa_list_footer');
-
+            var note=document.getElementById('cartNoteText')?document.getElementById('cartNoteText').value.trim():'';
+            var list=PAGUS.state.cart.map(function(c){return '• '+c;}).join('\n');
+            var m='Hello PAGUS Menswear,\n\nI would like to inquire about the following models:\n\n'+list+(note?'\n\nNote: '+note:'')+'\n\nPlease send me more information. Thank you.';
             var waWindow=window.open('https://wa.me/'+PAGUS.config.whatsappNumber+'?text='+encodeURIComponent(m),'_blank');
+            if(!waWindow){ showToast(t('popup_blocked')); }
+        }
 
-            if(waWindow){
-                // FIX #7: Clear cart when user returns from WhatsApp tab
-                var clearOnReturn=function(){
-                    if(document.visibilityState==='visible'){
-                        document.removeEventListener('visibilitychange',clearOnReturn);
-                        PAGUS.state.cart=[];
-                        if(PAGUS.state.lsAvailable)localStorage.removeItem('pagusCart');
-                        updateCartUI();
-                        document.querySelectorAll('.heart-btn').forEach(function(b){
-                            b.innerText='\u2661';
-                            b.classList.remove('active');
-                            b.setAttribute('aria-label','Add '+b.dataset.code+' to list');
-                        });
+        function openCartPanel(){
+            renderCartPanel();
+            document.getElementById('cartPanel').classList.add('open');
+            document.getElementById('cartOverlay').classList.add('open');
+            document.body.style.overflow='hidden';
+        }
+
+        function closeCartPanel(){
+            document.getElementById('cartPanel').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('open');
+            document.body.style.overflow='';
+        }
+
+        function renderCartPanel(){
+            var items=document.getElementById('cartPanelItems');
+            var sub=document.getElementById('cartPanelSub');
+            var note=document.getElementById('cartPanelNote');
+            var actions=document.getElementById('cartPanelActions');
+            sub.innerText=PAGUS.state.cart.length+' model'+(PAGUS.state.cart.length!==1?'s':'')+' selected';
+            if(PAGUS.state.cart.length===0){
+                items.innerHTML='<div class="cart-panel-empty"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>No items selected</p><small>Browse catalogue to add models</small></div>';
+                note.style.display='none';
+                actions.style.display='none';
+            } else {
+                items.innerHTML=PAGUS.state.cart.map(function(c){
+                    var imgHtml='<svg viewBox="0 0 60 80"><rect x="10" y="5" width="40" height="55" rx="1"/><path d="M20 5 Q20 18 30 18 Q40 18 40 5"/></svg>';
+                    if(PAGUS.index && PAGUS.index.byCode && PAGUS.index.byCode[c]){
+                        var prod=PAGUS.index.byCode[c];
+                        imgHtml='<img src="'+escapeAttr(prod.folderPath)+'/1.webp" alt="'+escapeAttr(c)+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;" onerror="this.style.display=\'none\'">';
                     }
-                };
-                document.addEventListener('visibilitychange',clearOnReturn);
-            }else{
-                // FIX #7: Popup was blocked — notify user, don't clear cart
-                showToast(t('popup_blocked'));
+                    return '<div class="cart-panel-item">'
+                        +'<div class="cart-panel-item-thumb">'+imgHtml+'</div>'
+                        +'<div class="cart-panel-item-name">'+escapeHTML(c)+'</div>'
+                        +'<button class="cart-panel-item-del" onclick="removeFromCartPanel(\''+escapeAttr(c)+'\')">✕</button>'
+                        +'</div>';
+                }).join('');
+                note.style.display='block';
+                actions.style.display='flex';
             }
         }
+
+        function removeFromCartPanel(code){
+            PAGUS.state.cart=PAGUS.state.cart.filter(function(c){return c!==code;});
+            if(PAGUS.state.lsAvailable)localStorage.setItem('pagusCart',JSON.stringify(PAGUS.state.cart));
+            document.querySelectorAll('.heart-btn[data-code="'+code+'"]').forEach(function(b){
+                b.innerText='+'; b.classList.remove('active');
+            });
+            updateCartUI();
+            renderCartPanel();
+        }
+
+        function clearCartPanel(){
+            PAGUS.state.cart=[];
+            if(PAGUS.state.lsAvailable)localStorage.removeItem('pagusCart');
+            document.querySelectorAll('.heart-btn').forEach(function(b){b.innerText='+';b.classList.remove('active');});
+            updateCartUI();
+            renderCartPanel();
+        }
+
+        function sendCartWhatsApp(){
+            sendListToWhatsapp();
+        }
+
+        function sendCartEmail(){
+            if(PAGUS.state.cart.length===0)return;
+            var note=document.getElementById('cartNoteText')?document.getElementById('cartNoteText').value.trim():'';
+            var list=PAGUS.state.cart.map(function(c){return '- '+c;}).join('%0A');
+            var subject='PAGUS Menswear — Product Inquiry';
+            var body='Hello PAGUS Menswear,%0A%0AI would like to inquire about the following models:%0A%0A'+list+(note?'%0A%0ANote: '+encodeURIComponent(note):'')+' %0A%0APlease send me more information. Thank you.';
+            window.location.href='mailto:sales@pagusmenswear.com?subject='+encodeURIComponent(subject)+'&body='+body;
+        }
+
 
         // ===================== MODAL =====================
         // FIX #3: popstate race condition — proper state tracking
@@ -2532,6 +2784,10 @@
     <!-- Chatling AI Chatbot -->
     <script>window.chtlConfig = { chatbotId: "1894737114" }</script>
     <script async data-id="1894737114" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+    <style>
+        #pagus-chat-label { position:fixed; bottom:22px; right:72px; background:#fff; color:#2c3e50; font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:7px 14px; border-radius:20px; box-shadow:0 2px 12px rgba(0,0,0,0.15); z-index:9998; pointer-events:none; white-space:nowrap; }
+    </style>
+    <div id="pagus-chat-label">PAGUS ASSISTANT</div>
 
 </body>
 </html>
