@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagus Menswear — Wholesale Men's Suits & Formalwear from Turkey</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%232c3e50'/%3E%3Crect x='2' y='2' width='60' height='60' rx='8' fill='none' stroke='%23C9A962' stroke-width='1.5'/%3E%3Cpath d='M22 14h12c6.627 0 12 4.477 12 10s-5.373 10-12 10H28v16h-6V14z M28 19.5v9h6c3.314 0 6-2.015 6-4.5s-2.686-4.5-6-4.5h-6z' fill='%23C9A962'/%3E%3C/svg%3E">
-    <meta name="description" content="Premium wholesale menswear from Turkey. Ceremonial, Formal & Casual Wear.">
+    <meta name="description" content="Pagus Menswear — Premium wholesale men's suits and formalwear manufacturer from Turkey. Ceremonial, formal & casual wear for European retailers. Private label available.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://pagusmenswear.com/">
@@ -62,18 +62,23 @@
         body { font-family: var(--font-body); color: var(--color-black); background: #FAFAFA; overflow-x: hidden; zoom: 1.1; }
         .header { position: sticky; top: 0; width: 100%; z-index: 900; background: #FFFFFF; box-shadow: 0 2px 15px rgba(0,0,0,0.06); }
         .header-inner { max-width: var(--site-max-width); margin: 0 auto; padding: 0 40px; }
-        .brand-bar { text-align: center; padding: 20px 0 14px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .brand-bar { text-align: center; padding: 20px 0 14px; border-bottom: 1px solid rgba(0,0,0,0.06); max-height: 80px; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.3s ease; opacity: 1; }
+        .header.scrolled .brand-bar { max-height: 0; padding: 0; opacity: 0; border-bottom: none; }
         .brand-bar a { font-family: var(--font-display); font-size: 2.2rem; color: var(--color-noble); font-weight: 700; text-transform: uppercase; letter-spacing: 6px; text-decoration: none; }
         .brand-bar a .brand-p { font-size: 110%; }
-        .toolbar-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; }
+        .toolbar-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; transition: padding 0.3s ease; }
+        .header.scrolled .toolbar-row { padding: 8px 0; }
         .toolbar-right { display: flex; gap: 12px; align-items: center; }
         .soc-icons { display: flex; gap: 12px; align-items: center; }
         .soc-icons .social-icon { display: flex; align-items: center; justify-content: center; }
         .soc-icons .social-icon svg { width: 22px; height: 22px; fill: rgba(0,0,0,0.35); transition: 0.3s; }
         .soc-icons .social-icon:hover svg { fill: var(--color-gold); }
-        .nav-list { display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(0,0,0,0.06); padding: 14px 0; width: 100%; justify-content: center; flex-wrap: wrap; }
+        .nav-list { display: flex; gap: 25px; list-style: none; border-top: 1px solid rgba(0,0,0,0.06); padding: 14px 0; width: 100%; justify-content: center; flex-wrap: wrap; transition: padding 0.3s ease; }
+        .header.scrolled .nav-list { padding: 8px 0; }
         .nav-list a { color: var(--color-noble); font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-decoration: none; white-space: nowrap; padding: 10px 5px; }
         .nav-list a:hover { color: var(--color-gold); }
+        .nav-list a.nav-badge { background: var(--color-gold); color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; letter-spacing: 1.5px; }
+        .nav-list a.nav-badge:hover { background: #d4b366; color: #fff; }
         .search-area { display: flex; align-items: center; gap: 8px; position: relative; }
         .search-icon-btn { width: 46px; height: 46px; border-radius: 50%; background: rgba(0,0,0,0.05); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; flex-shrink: 0; }
         .search-icon-btn:hover { background: var(--color-gold); }
@@ -283,7 +288,7 @@
             .toolbar-right { gap: 8px; }
             .soc-icons { gap: 8px; }
             .soc-icons .social-icon svg { width: 16px; height: 16px; }
-            .nav-list { gap: 10px; justify-content: center; } .nav-list a { font-size: 0.75rem; padding: 5px; }
+            .nav-list { gap: 10px; justify-content: center; } .nav-list a { font-size: 0.75rem; padding: 5px; } .nav-list a.nav-badge { padding: 4px 10px; font-size: 0.7rem; }
             .grid { padding: 20px 10px; gap: 15px; grid-template-columns: 1fr 1fr; }
             .modal-content { display: flex; flex-direction: column; height: 100%; overflow-y: scroll; padding-top: 55px; }
             .close { top: 12px; right: 18px; font-size: 32px; }
@@ -462,8 +467,8 @@
                 <li><a href="?category=Shirts" data-t="nav_shirts">Shirts</a></li>
                 <li><a href="?category=Children" data-t="nav_children">Children</a></li>
                 <li><a href="?category=Jackets" data-t="nav_jackets">Jackets</a></li>
-                <li><a href="?category=Discounted Products" data-t="nav_discounted">Discounted</a></li>
                 <li><a href="/cdn-cgi/l/email-protection#e0898e868fa090818795938d858e9397858192ce838f8ddf9395828a858394dda8858c8c8fc5d2d0b081879593" data-t="nav_contact">Contact Us</a></li>
+                <li><a href="?category=Discounted Products" class="nav-badge" data-t="nav_discounted">Discounted</a></li>
         </ul></nav>
     </div></header>
 
@@ -2779,6 +2784,28 @@
             PAGUS.state.carouselTimer=setInterval(carouselNext,5000);
         }
 
+    </script>
+
+    <!-- Header scroll shrink -->
+    <script>
+    (function(){
+        var header = document.querySelector('.header');
+        var scrollThreshold = 60;
+        var ticking = false;
+        window.addEventListener('scroll', function(){
+            if(!ticking){
+                window.requestAnimationFrame(function(){
+                    if(window.scrollY > scrollThreshold){
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    })();
     </script>
 
     <!-- Chatling AI Chatbot -->
