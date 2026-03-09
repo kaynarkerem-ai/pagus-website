@@ -15,14 +15,14 @@
     <meta property="og:url" content="https://pagusmenswear.com/">
     <meta property="og:title" content="Pagus Menswear — Wholesale Men's Suits & Formalwear from Turkey">
     <meta property="og:description" content="Premium wholesale menswear manufacturer based in Turkey. Ceremonial, formal & casual suits for European retailers. Private label available.">
-    <meta property="og:image" content="https://pagusmenswear.com/images/pagus-og-cover.jpg">
+    <meta property="og:image" content="https://pagusmenswear.com/images/showcase_hero.webp">
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Pagus Menswear">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pagus Menswear — Wholesale Men's Suits & Formalwear from Turkey">
     <meta name="twitter:description" content="Premium wholesale menswear manufacturer based in Turkey. Ceremonial, formal & casual suits for European retailers.">
-    <meta name="twitter:image" content="https://pagusmenswear.com/images/pagus-og-cover.jpg">
+    <meta name="twitter:image" content="https://pagusmenswear.com/images/showcase_hero.webp">
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
@@ -60,21 +60,19 @@
         :root { --color-black: #1a1a1a; --color-gold: #c9a962; --color-noble: #2c3e50; --font-display: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --site-max-width: 1400px; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: var(--font-body); color: var(--color-black); background: #FAFAFA; overflow-x: hidden; }
-        .header { position: sticky; top: 0; width: 100%; z-index: 900; background: #FFFFFF; box-shadow: 0 2px 15px rgba(0,0,0,0.06); }
+        .header { position: sticky; top: 0; width: 100%; z-index: 900; background: #FFFFFF; box-shadow: 0 2px 15px rgba(0,0,0,0.06); transition: top 0.3s ease; }
+        .header.scrolled { top: -52px; }
         .header-inner { max-width: var(--site-max-width); margin: 0 auto; padding: 0 40px; }
-        .brand-bar { text-align: center; padding: 14px 0 10px; border-bottom: 1px solid rgba(0,0,0,0.06); max-height: 65px; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.3s ease; opacity: 1; }
-        .header.scrolled .brand-bar { max-height: 0; padding: 0; opacity: 0; border-bottom: none; }
+        .brand-bar { text-align: center; padding: 14px 0 10px; border-bottom: 1px solid rgba(0,0,0,0.06); }
         .brand-bar a { font-family: var(--font-display); font-size: 1.7rem; color: var(--color-noble); font-weight: 700; text-transform: uppercase; letter-spacing: 5px; text-decoration: none; }
         .brand-bar a .brand-p { font-size: 110%; }
-        .toolbar-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; transition: padding 0.3s ease; }
-        .header.scrolled .toolbar-row { padding: 6px 0; }
+        .toolbar-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
         .toolbar-right { display: flex; gap: 12px; align-items: center; }
         .soc-icons { display: flex; gap: 12px; align-items: center; }
         .soc-icons .social-icon { display: flex; align-items: center; justify-content: center; }
         .soc-icons .social-icon svg { width: 22px; height: 22px; fill: rgba(0,0,0,0.35); transition: 0.3s; }
         .soc-icons .social-icon:hover svg { fill: var(--color-gold); }
-        .nav-list { display: flex; gap: 22px; list-style: none; border-top: 1px solid rgba(0,0,0,0.06); padding: 10px 0; width: 100%; justify-content: center; flex-wrap: wrap; transition: padding 0.3s ease; }
-        .header.scrolled .nav-list { padding: 6px 0; }
+        .nav-list { display: flex; gap: 22px; list-style: none; border-top: 1px solid rgba(0,0,0,0.06); padding: 10px 0; width: 100%; justify-content: center; flex-wrap: wrap; }
         .nav-list a { color: var(--color-noble); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; text-decoration: none; white-space: nowrap; padding: 8px 4px; }
         .nav-list a:hover { color: var(--color-gold); }
         .nav-list a.nav-badge { background: var(--color-gold); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; letter-spacing: 1.5px; }
@@ -2790,15 +2788,18 @@
     <script>
     (function(){
         var header = document.querySelector('.header');
-        var scrollThreshold = 60;
+        var isScrolled = false;
         var ticking = false;
         window.addEventListener('scroll', function(){
             if(!ticking){
                 window.requestAnimationFrame(function(){
-                    if(window.scrollY > scrollThreshold){
+                    var y = window.scrollY;
+                    if(!isScrolled && y > 80){
                         header.classList.add('scrolled');
-                    } else {
+                        isScrolled = true;
+                    } else if(isScrolled && y < 20){
                         header.classList.remove('scrolled');
+                        isScrolled = false;
                     }
                     ticking = false;
                 });
