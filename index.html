@@ -1014,6 +1014,41 @@
             return;
         }
         errEl.style.display='none';
+        var data={email:email,phone:phone,note:note,timestamp:new Date().toISOString(),lang:PAGUS.state.lang||'en'};
+
+        // 1) Firebase Firestore — arşiv
+        try{
+            if(db){
+                db.collection('contactRequests').add({
+                    email:email,phone:phone,note:note,lang:data.lang,
+                    createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                    status:'new'
+                }).catch(function(e){console.warn('Firestore write failed:',e);});
+            }
+        }catch(e){console.warn('Firestore error:',e);}
+
+        // 2) Vercel Serverless → Resend Email
+        try{
+            fetch('/api/contact-form',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify(data)
+            }).catch(function(e){console.warn('Email API failed:',e);});
+        }catch(e){console.warn('Email fetch error:',e);}
+
+        // 3) Google Sheets
+        try{
+            if(PAGUS.config.googleSheetsUrl){
+                fetch(PAGUS.config.googleSheetsUrl,{
+                    method:'POST',
+                    mode:'no-cors',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify(data)
+                }).catch(function(e){console.warn('Sheets API failed:',e);});
+            }
+        }catch(e){console.warn('Sheets error:',e);}
+
+        // 4) WhatsApp
         var msg='📩 *New Contact Request*%0A';
         if(email) msg+='✉️ Email: '+encodeURIComponent(email)+'%0A';
         if(phone) msg+='📞 Phone: '+encodeURIComponent(phone)+'%0A';
@@ -1354,7 +1389,8 @@
         // ===================== CONFIG (read-only settings) =====================
         PAGUS.config = {
             features: {carousel:false,hero:true,search:true,favorites:true,whatsappFloat:true,privateLabel:true,showcase:true},
-            whatsappNumber: '905511748907'
+            whatsappNumber: '905511748907',
+            googleSheetsUrl: 'https://script.google.com/macros/s/AKfycbxf4S13zPNFI7KQzJDOt1VVX7cYXQkN01tLHhXg2PAn80yvlOjeMFCOa-mCZJ7MQlba/exec'
         };
 
         // ===================== GLOBAL NAMESPACE =====================
