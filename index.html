@@ -420,8 +420,8 @@
         .contact-field textarea { resize: vertical; min-height: 80px; }
         .contact-field .field-hint { font-size: 0.7rem; color: #aaa; margin-top: 4px; }
         .contact-error { background: #fff5f5; border: 1px solid #fed7d7; color: #c53030; padding: 10px 15px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 15px; display: none; }
-        .contact-submit { width: 100%; padding: 14px; background: #25D366; color: #fff; border: none; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .contact-submit:hover { background: #1da851; }
+        .contact-submit { width: 100%; padding: 14px; background: var(--color-noble); color: #fff; border: none; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .contact-submit:hover { background: #1a252f; }
         .contact-submit svg { width: 20px; height: 20px; fill: #fff; }
         .contact-info-box { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
         .contact-info-box h4 { font-family: var(--font-display); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-noble); margin-bottom: 14px; }
@@ -698,8 +698,8 @@
                     <textarea id="cfNote" rows="3" data-tp="cf_note_placeholder" placeholder="Tell us about your needs..."></textarea>
                 </div>
                 <button class="contact-submit" onclick="submitContactForm()">
-                    <svg viewBox="0 0 24 24"><use href="#ico-whatsapp"/></svg>
-                    <span data-t="cf_send">SEND VIA WHATSAPP</span>
+                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff"/></svg>
+                    <span data-t="cf_send">SEND MESSAGE</span>
                 </button>
                 <div class="contact-info-box">
                     <h4 data-t="cf_info">Our Information</h4>
@@ -1048,14 +1048,9 @@
             }
         }catch(e){console.warn('Sheets error:',e);}
 
-        // 4) WhatsApp
-        var msg='📩 *New Contact Request*%0A';
-        if(email) msg+='✉️ Email: '+encodeURIComponent(email)+'%0A';
-        if(phone) msg+='📞 Phone: '+encodeURIComponent(phone)+'%0A';
-        if(note) msg+='📝 Note: '+encodeURIComponent(note);
-        var url='https://wa.me/'+PAGUS.config.whatsappNumber+'?text='+msg;
-        window.open(url,'_blank');
+        // 4) Success feedback
         closeContactModal();
+        showToast('✅ ' + t('cf_success'), 3000);
     }
 
     function switchAuthTab(tab){
@@ -1468,7 +1463,8 @@
             cf_note:{en:'Your Message',it:'Il tuo Messaggio',fr:'Votre Message',de:'Ihre Nachricht',es:'Su Mensaje'},
             cf_note_placeholder:{en:'Tell us about your needs...',it:'Raccontaci le tue esigenze...',fr:'Parlez-nous de vos besoins...',de:'Erzählen Sie uns von Ihren Anforderungen...',es:'Cuéntenos sobre sus necesidades...'},
             cf_required:{en:'Please enter email or phone',it:'Inserisci email o telefono',fr:'Veuillez saisir un email ou téléphone',de:'Bitte E-Mail oder Telefon eingeben',es:'Ingrese email o teléfono'},
-            cf_send:{en:'SEND VIA WHATSAPP',it:'INVIA VIA WHATSAPP',fr:'ENVOYER VIA WHATSAPP',de:'ÜBER WHATSAPP SENDEN',es:'ENVIAR POR WHATSAPP'},
+            cf_send:{en:'SEND MESSAGE',it:'INVIA MESSAGGIO',fr:'ENVOYER LE MESSAGE',de:'NACHRICHT SENDEN',es:'ENVIAR MENSAJE'},
+            cf_success:{en:'Message sent! We\'ll get back to you soon.',it:'Messaggio inviato! Ti risponderemo presto.',fr:'Message envoyé ! Nous reviendrons vers vous bientôt.',de:'Nachricht gesendet! Wir melden uns bald.',es:'¡Mensaje enviado! Nos pondremos en contacto pronto.'},
             cf_info:{en:'Our Information',it:'Le Nostre Informazioni',fr:'Nos Informations',de:'Unsere Informationen',es:'Nuestra Información'},
             cf_address:{en:'Address',it:'Indirizzo',fr:'Adresse',de:'Adresse',es:'Dirección'},
             cf_taxid:{en:'Tax ID',it:'Partita IVA',fr:'N° fiscal',de:'Steuernummer',es:'NIF'},
