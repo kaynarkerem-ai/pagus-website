@@ -403,16 +403,24 @@
             .user-greeting { max-width: 80px; font-size: 0.7rem; }
             .auth-btn { padding: 6px 12px; font-size: 0.7rem; }
         }
-        /* CONTACT MODAL */
-        .contact-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 5000; justify-content: center; align-items: center; }
-        .contact-overlay.visible { display: flex; }
-        .contact-card { background: #fff; width: 480px; max-width: 92vw; border-radius: 8px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.4); animation: authSlideUp 0.3s ease; max-height: 90vh; display: flex; flex-direction: column; }
-        .contact-header { background: var(--color-noble); padding: 28px 30px; text-align: center; position: relative; }
-        .contact-header h3 { font-family: var(--font-display); color: #fff; font-size: 1.4rem; margin-bottom: 4px; }
-        .contact-header p { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
-        .contact-close { position: absolute; top: 14px; right: 18px; background: none; border: none; color: rgba(255,255,255,0.6); font-size: 1.8rem; cursor: pointer; z-index: 1; line-height: 1; }
-        .contact-close:hover { color: #fff; }
-        .contact-body { padding: 28px 30px; overflow-y: auto; flex: 1; }
+        /* CONTACT PAGE */
+        .contact-page { display: none; max-width: var(--site-max-width); margin: 0 auto; padding: 60px 40px 80px; background: #FAFAFA; }
+        .contact-page.visible { display: block; }
+        .contact-page-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        /* LEFT: Get in Touch */
+        .contact-left h2 { font-family: var(--font-display); font-size: 2.2rem; color: var(--color-noble); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
+        .contact-left .contact-subtitle { color: #999; font-size: 0.9rem; margin-bottom: 40px; }
+        .contact-option { display: flex; align-items: center; padding: 22px 0; border-bottom: 1px solid #e8e8e8; transition: 0.2s; }
+        .contact-option:first-of-type { border-top: 1px solid #e8e8e8; }
+        .contact-option-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .contact-option-icon svg { width: 24px; height: 24px; fill: var(--color-noble); }
+        .contact-option-label { font-weight: 700; font-size: 0.9rem; color: var(--color-noble); min-width: 100px; }
+        .contact-option-desc { flex: 1; color: #888; font-size: 0.88rem; }
+        .contact-option-action { color: var(--color-noble); font-size: 0.85rem; font-weight: 700; text-decoration: none; white-space: nowrap; display: flex; align-items: center; gap: 4px; transition: 0.3s; }
+        .contact-option-action:hover { color: var(--color-gold); }
+        /* Contact form */
+        .contact-form-section { margin-top: 40px; padding-top: 32px; }
+        .contact-form-section h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--color-noble); margin-bottom: 20px; }
         .contact-field { margin-bottom: 16px; }
         .contact-field label { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 6px; }
         .contact-field input, .contact-field textarea { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.95rem; font-family: var(--font-body); transition: 0.3s; outline: none; box-sizing: border-box; }
@@ -422,16 +430,23 @@
         .contact-error { background: #fff5f5; border: 1px solid #fed7d7; color: #c53030; padding: 10px 15px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 15px; display: none; }
         .contact-submit { width: 100%; padding: 14px; background: var(--color-noble); color: #fff; border: none; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; font-family: var(--font-body); border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .contact-submit:hover { background: #1a252f; }
-        .contact-submit svg { width: 20px; height: 20px; fill: #fff; }
-        .contact-info-box { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
-        .contact-info-box h4 { font-family: var(--font-display); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-noble); margin-bottom: 14px; }
-        .contact-info-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 0.85rem; color: #555; line-height: 1.5; }
-        .contact-info-item svg { width: 16px; height: 16px; fill: var(--color-gold); flex-shrink: 0; margin-top: 2px; }
-        .contact-info-item a { color: #555; text-decoration: none; transition: 0.3s; }
-        .contact-info-item a:hover { color: var(--color-gold); }
+        .contact-submit svg { width: 18px; height: 18px; fill: #fff; }
+        /* RIGHT: Legal Notice */
+        .contact-right { background: #fff; border: 1px solid #e8e8e8; border-radius: 8px; padding: 36px; }
+        .legal-block { margin-bottom: 28px; }
+        .legal-block:last-child { margin-bottom: 0; }
+        .legal-block h4 { font-family: var(--font-display); font-size: 1rem; color: var(--color-noble); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--color-gold); display: inline-block; }
+        .legal-block p, .legal-block a { font-size: 0.88rem; color: #555; line-height: 1.8; }
+        .legal-block a { color: var(--color-gold); text-decoration: none; transition: 0.3s; }
+        .legal-block a:hover { color: var(--color-noble); }
+        .legal-block strong { color: var(--color-noble); font-weight: 700; }
         @media (max-width: 768px) {
-            .contact-card { width: 100%; max-width: 100%; border-radius: 0; max-height: 100vh; }
-            .contact-body { padding: 24px 20px; }
+            .contact-page { padding: 30px 20px 60px; }
+            .contact-page-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-left h2 { font-size: 1.6rem; }
+            .contact-option { flex-wrap: wrap; gap: 8px; }
+            .contact-option-desc { min-width: 100%; order: 4; padding-left: 44px; }
+            .contact-right { padding: 28px 24px; }
         }
         /* SHOWCASE */
         .showcase-section { width: 100%; background: #FAFAFA; padding: 30px 0; }
@@ -495,7 +510,7 @@
                 <li><a href="?category=Shirts" data-t="nav_shirts">Shirts</a></li>
                 <li><a href="?category=Children" data-t="nav_children">Children</a></li>
                 <li><a href="?category=Jackets" data-t="nav_jackets">Jackets</a></li>
-                <li><a href="javascript:void(0)" onclick="openContactModal()" data-t="nav_contact">Contact</a></li>
+                <li><a href="?page=contact" data-t="nav_contact">Contact</a></li>
                 <li><a href="?category=Discounted Products" class="nav-badge" data-t="nav_discounted">Discounted</a></li>
         </ul></nav>
     </div></header>
@@ -674,52 +689,6 @@
         <button class="cookie-accept" onclick="acceptCookies()" data-t="accept_btn">ACCEPT</button>
     </div>
 
-    <!-- CONTACT MODAL -->
-    <div class="contact-overlay" id="contactOverlay" onclick="if(event.target===this)closeContactModal()">
-        <div class="contact-card">
-            <div class="contact-header">
-                <button class="contact-close" onclick="closeContactModal()" aria-label="Close">&times;</button>
-                <h3 data-t="cf_title">Contact Us</h3>
-                <p data-t="cf_subtitle">We'd love to hear from you</p>
-            </div>
-            <div class="contact-body">
-                <div class="contact-error" id="contactError"></div>
-                <div class="contact-field">
-                    <label data-t="cf_email">Email</label>
-                    <input type="email" id="cfEmail" placeholder="your@email.com">
-                </div>
-                <div class="contact-field">
-                    <label data-t="cf_phone">Phone</label>
-                    <input type="tel" id="cfPhone" placeholder="+39 333 123 4567">
-                    <div class="field-hint" data-t="cf_required">Please enter email or phone</div>
-                </div>
-                <div class="contact-field">
-                    <label data-t="cf_note">Your Message</label>
-                    <textarea id="cfNote" rows="3" data-tp="cf_note_placeholder" placeholder="Tell us about your needs..."></textarea>
-                </div>
-                <button class="contact-submit" onclick="submitContactForm()">
-                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff"/></svg>
-                    <span data-t="cf_send">SEND MESSAGE</span>
-                </button>
-                <div class="contact-info-box">
-                    <h4 data-t="cf_info">Our Information</h4>
-                    <div class="contact-info-item">
-                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        <a href="https://wa.me/905511748907" target="_blank">+90 551 174 89 07</a>
-                    </div>
-                    <div class="contact-info-item">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                        <span data-t="cf_address">Address</span>:&nbsp;Kemalpaşa, 7407/4. Sk. No:4, 35060 Bornova/İzmir, Turkey
-                    </div>
-                    <div class="contact-info-item">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-                        <span data-t="cf_taxid">Tax ID</span>:&nbsp;5400194847
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div id="pModal" class="modal" role="dialog" aria-modal="true" aria-label="Product detail">
         <span class="close" onclick="closeModal()" role="button" aria-label="Close modal" tabindex="0">&#215;</span>
         <div class="modal-content">
@@ -750,6 +719,91 @@
         <div id="fullscreenCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#888;font-size:0.9rem;z-index:3;">1/4</div>
         <div id="fsZoomHint" style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:0.75rem;z-index:3;pointer-events:none;transition:opacity 0.5s;text-align:center;">🔍 Scroll to zoom · Double-click to reset</div>
     </div>
+
+    <!-- CONTACT PAGE -->
+    <div class="contact-page" id="contactPage">
+        <div style="margin-bottom:20px;"><span class="back-btn" onclick="window.history.back()" data-t="back_btn">&#8592; BACK</span></div>
+        <div class="contact-page-grid">
+            <!-- LEFT SIDE -->
+            <div class="contact-left">
+                <h2 data-t="cf_title">GET IN TOUCH</h2>
+                <p class="contact-subtitle" data-t="cf_subtitle">Select your preferred mode</p>
+
+                <div class="contact-option">
+                    <div class="contact-option-icon"><svg viewBox="0 0 24 24"><use href="#ico-whatsapp"/></svg></div>
+                    <div class="contact-option-label">WhatsApp</div>
+                    <div class="contact-option-desc" data-t="cf_wa_desc">Contact us via WhatsApp</div>
+                    <a href="https://wa.me/905511748907" target="_blank" class="contact-option-action" data-t="cf_wa_action">Start chat &rsaquo;</a>
+                </div>
+
+                <div class="contact-option">
+                    <div class="contact-option-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+                    <div class="contact-option-label" data-t="cf_callus">Call us</div>
+                    <div class="contact-option-desc" data-t="cf_call_desc">Mon–Fri, 9 AM – 6 PM (GMT+3)</div>
+                    <a href="tel:+902324781419" class="contact-option-action" data-t="cf_call_action">Call now &rsaquo;</a>
+                </div>
+
+                <div class="contact-option">
+                    <div class="contact-option-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+                    <div class="contact-option-label">Email</div>
+                    <div class="contact-option-desc" data-t="cf_email_desc">Contact us via email or fill out the form below</div>
+                    <a href="mailto:info@pagusmenswear.com" class="contact-option-action" data-t="cf_email_action">Contact us &rsaquo;</a>
+                </div>
+
+                <!-- CONTACT FORM -->
+                <div class="contact-form-section">
+                    <h3 data-t="cf_form_title">Send us a message</h3>
+                    <div class="contact-error" id="contactError"></div>
+                    <div class="contact-field">
+                        <label data-t="cf_email">Email</label>
+                        <input type="email" id="cfEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="contact-field">
+                        <label data-t="cf_phone">Phone</label>
+                        <input type="tel" id="cfPhone" placeholder="+39 333 123 4567">
+                        <div class="field-hint" data-t="cf_required">Please enter email or phone</div>
+                    </div>
+                    <div class="contact-field">
+                        <label data-t="cf_note">Your Message</label>
+                        <textarea id="cfNote" rows="4" data-tp="cf_note_placeholder" placeholder="Tell us about your needs..."></textarea>
+                    </div>
+                    <button class="contact-submit" onclick="submitContactForm()">
+                        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                        <span data-t="cf_send">SEND MESSAGE</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE: Legal Notice -->
+            <div class="contact-right">
+                <div class="legal-block">
+                    <h4>Legal Notice</h4>
+                    <p>
+                        Engin KAYNAR<br>
+                        <strong>PAGUS MENSWEAR</strong><br>
+                        Kemalpaşa Mah. 7407/4 Sk. No: 4<br>
+                        Bornova / İzmir – Turkiye
+                    </p>
+                </div>
+                <div class="legal-block">
+                    <h4 data-t="cf_contact_title">Contact</h4>
+                    <p>
+                        <strong>Tel:</strong> <a href="tel:+902324781419">+90 232 478 14 19</a><br>
+                        <strong>WhatsApp:</strong> <a href="https://wa.me/905511748907">+90 551 174 89 07</a><br>
+                        <strong>E-Mail:</strong> <a href="mailto:info@pagusmenswear.com">info@pagusmenswear.com</a>
+                    </p>
+                </div>
+                <div class="legal-block">
+                    <h4>Financial ID</h4>
+                    <p>
+                        <strong data-t="cf_taxoffice">Tax Office:</strong> Hasan Tahsin<br>
+                        <strong data-t="cf_taxnum">Tax Number:</strong> 156714166
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- BLOG / INSIGHTS SECTION -->
     <section id="blogSection" style="background:#f8f5f0;padding:80px 40px;border-top:1px solid rgba(44,62,80,0.08);">
       <div style="max-width:960px;margin:0 auto;background:#fff;border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:56px 48px;box-shadow:0 4px 24px rgba(0,0,0,0.04);">
@@ -992,16 +1046,30 @@
         document.getElementById('authError').style.display = 'none';
     }
 
-    // ===================== CONTACT MODAL =====================
+    // ===================== CONTACT PAGE =====================
     function openContactModal(){
-        document.getElementById('contactOverlay').classList.add('visible');
+        // Hide all main sections
+        var ids=['heroSection','showcaseSection','carouselSection','pageTitleArea','searchResults','privateLabelSection','blogSection','logisticsSection'];
+        ids.forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});
+        document.getElementById('pGrid').style.display='none';
+        var heroImg=document.querySelector('.showcase-hero-img');if(heroImg)heroImg.style.display='none';
+        // Show contact page
+        var cp=document.getElementById('contactPage');
+        if(cp)cp.classList.add('visible');
+        // Reset form
         document.getElementById('contactError').style.display='none';
         document.getElementById('cfEmail').value='';
         document.getElementById('cfPhone').value='';
         document.getElementById('cfNote').value='';
+        window.scrollTo(0,0);
+        // Push state so back button works
+        if(!window.location.search.includes('page=contact')){
+            history.pushState({contact:true},'','?page=contact');
+        }
     }
-    function closeContactModal(){
-        document.getElementById('contactOverlay').classList.remove('visible');
+    function closeContactPage(){
+        var cp=document.getElementById('contactPage');
+        if(cp)cp.classList.remove('visible');
     }
     function submitContactForm(){
         var email=document.getElementById('cfEmail').value.trim();
@@ -1049,7 +1117,9 @@
         }catch(e){console.warn('Sheets error:',e);}
 
         // 4) Success feedback
-        closeContactModal();
+        document.getElementById('cfEmail').value='';
+        document.getElementById('cfPhone').value='';
+        document.getElementById('cfNote').value='';
         showToast('✅ ' + t('cf_success'), 3000);
     }
 
@@ -1455,9 +1525,17 @@
             nav_children:{en:'Children',it:'Bambini',fr:'Enfants',de:'Kinder',es:'Niños'},
             nav_discounted:{en:'Discounted',it:'Scontati',fr:'Soldés',de:'Reduziert',es:'Descuentos'},
             nav_contact:{en:'Contact',it:'Contatto',fr:'Contact',de:'Kontakt',es:'Contacto'},
-            // CONTACT FORM
-            cf_title:{en:'Contact Us',it:'Contattaci',fr:'Contactez-nous',de:'Kontaktieren Sie uns',es:'Contáctenos'},
-            cf_subtitle:{en:'We\'d love to hear from you',it:'Saremo lieti di sentirti',fr:'Nous serions ravis de vous entendre',de:'Wir freuen uns auf Ihre Nachricht',es:'Nos encantaría saber de usted'},
+            // CONTACT PAGE
+            cf_title:{en:'Get in Touch',it:'Contattaci',fr:'Contactez-nous',de:'Kontaktieren Sie uns',es:'Contáctenos'},
+            cf_subtitle:{en:'Select your preferred mode',it:'Seleziona la tua modalità preferita',fr:'Sélectionnez votre mode préféré',de:'Wählen Sie Ihre bevorzugte Kontaktart',es:'Seleccione su modo preferido'},
+            cf_wa_desc:{en:'Contact us via WhatsApp',it:'Contattaci via WhatsApp',fr:'Contactez-nous via WhatsApp',de:'Kontaktieren Sie uns über WhatsApp',es:'Contáctenos por WhatsApp'},
+            cf_wa_action:{en:'Start chat',it:'Inizia chat',fr:'Démarrer le chat',de:'Chat starten',es:'Iniciar chat'},
+            cf_callus:{en:'Call us',it:'Chiamaci',fr:'Appelez-nous',de:'Rufen Sie uns an',es:'Llámenos'},
+            cf_call_desc:{en:'Mon–Fri, 9 AM – 6 PM (GMT+3)',it:'Lun–Ven, 9:00 – 18:00 (GMT+3)',fr:'Lun–Ven, 9h – 18h (GMT+3)',de:'Mo–Fr, 9:00 – 18:00 (GMT+3)',es:'Lun–Vie, 9:00 – 18:00 (GMT+3)'},
+            cf_call_action:{en:'Call now',it:'Chiama ora',fr:'Appeler',de:'Jetzt anrufen',es:'Llamar ahora'},
+            cf_email_desc:{en:'Contact us via email or fill out the form below',it:'Contattaci via email o compila il modulo qui sotto',fr:'Contactez-nous par email ou remplissez le formulaire ci-dessous',de:'Kontaktieren Sie uns per E-Mail oder füllen Sie das Formular aus',es:'Contáctenos por email o complete el formulario abajo'},
+            cf_email_action:{en:'Contact us',it:'Contattaci',fr:'Contactez-nous',de:'Kontakt',es:'Contáctenos'},
+            cf_form_title:{en:'Send us a message',it:'Inviaci un messaggio',fr:'Envoyez-nous un message',de:'Senden Sie uns eine Nachricht',es:'Envíenos un mensaje'},
             cf_email:{en:'Email',it:'Email',fr:'Email',de:'E-Mail',es:'Email'},
             cf_phone:{en:'Phone',it:'Telefono',fr:'Téléphone',de:'Telefon',es:'Teléfono'},
             cf_note:{en:'Your Message',it:'Il tuo Messaggio',fr:'Votre Message',de:'Ihre Nachricht',es:'Su Mensaje'},
@@ -1465,9 +1543,9 @@
             cf_required:{en:'Please enter email or phone',it:'Inserisci email o telefono',fr:'Veuillez saisir un email ou téléphone',de:'Bitte E-Mail oder Telefon eingeben',es:'Ingrese email o teléfono'},
             cf_send:{en:'SEND MESSAGE',it:'INVIA MESSAGGIO',fr:'ENVOYER LE MESSAGE',de:'NACHRICHT SENDEN',es:'ENVIAR MENSAJE'},
             cf_success:{en:'Message sent! We\'ll get back to you soon.',it:'Messaggio inviato! Ti risponderemo presto.',fr:'Message envoyé ! Nous reviendrons vers vous bientôt.',de:'Nachricht gesendet! Wir melden uns bald.',es:'¡Mensaje enviado! Nos pondremos en contacto pronto.'},
-            cf_info:{en:'Our Information',it:'Le Nostre Informazioni',fr:'Nos Informations',de:'Unsere Informationen',es:'Nuestra Información'},
-            cf_address:{en:'Address',it:'Indirizzo',fr:'Adresse',de:'Adresse',es:'Dirección'},
-            cf_taxid:{en:'Tax ID',it:'Partita IVA',fr:'N° fiscal',de:'Steuernummer',es:'NIF'},
+            cf_contact_title:{en:'Contact',it:'Contatto',fr:'Contact',de:'Kontakt',es:'Contacto'},
+            cf_taxoffice:{en:'Tax Office',it:'Ufficio Fiscale',fr:'Bureau fiscal',de:'Finanzamt',es:'Oficina fiscal'},
+            cf_taxnum:{en:'Tax Number',it:'Numero Fiscale',fr:'Numéro fiscal',de:'Steuernummer',es:'Número fiscal'},
             login:{en:'LOGIN',it:'ACCEDI',fr:'CONNEXION',de:'ANMELDEN',es:'INICIAR SESIÓN'},
             logout_btn:{en:'Logout',it:'Esci',fr:'Déconnexion',de:'Abmelden',es:'Cerrar Sesión'},
             // SEARCH
@@ -2000,7 +2078,22 @@
                 document.querySelectorAll('.fab').forEach(function(b){b.style.display='none';});
             }
 
-            if(urlParams.get('search')||urlParams.get('adv_cats')||urlParams.get('adv_subs')){
+            if(urlParams.get('page')==='contact'){
+                if(hero)hero.style.display='none';
+                if(showcase)showcase.style.display='none';
+                if(carousel)carousel.style.display='none';
+                if(pta)pta.style.display='none';
+                if(sr)sr.style.display='none';
+                document.getElementById('pGrid').style.display='none';
+                if(privLabel)privLabel.style.display='none';
+                var heroImg=document.querySelector('.showcase-hero-img');if(heroImg)heroImg.style.display='none';
+                document.getElementById('blogSection').style.display='none';
+                document.getElementById('logisticsSection').style.display='none';
+                var cp=document.getElementById('contactPage');if(cp)cp.classList.add('visible');
+            }else if(urlParams.get('search')||urlParams.get('adv_cats')||urlParams.get('adv_subs')){
+                closeContactPage();
+                document.getElementById('blogSection').style.display='';
+                document.getElementById('logisticsSection').style.display='';
                 if(hero)hero.style.display='none';
                 if(showcase)showcase.style.display='none';
                 if(carousel)carousel.style.display='none';
@@ -2010,6 +2103,9 @@
                 if(privLabel)privLabel.style.display='none';
                 doSearchDisplay(urlParams.get('search')||'');
             }else if(urlParams.get('category')||urlParams.get('subcategory')){
+                closeContactPage();
+                document.getElementById('blogSection').style.display='';
+                document.getElementById('logisticsSection').style.display='';
                 if(hero)hero.style.display='none';
                 if(showcase)showcase.style.display='none';
                 if(carousel)carousel.style.display='none';
@@ -2024,6 +2120,9 @@
                 if(pta)pta.style.display='none';
                 if(sr)sr.style.display='none';
                 document.getElementById('pGrid').style.display='none';
+                closeContactPage();
+                document.getElementById('blogSection').style.display='';
+                document.getElementById('logisticsSection').style.display='';
             }
         }
 
