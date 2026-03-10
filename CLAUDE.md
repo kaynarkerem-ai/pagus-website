@@ -271,6 +271,10 @@ function escapeHTML(s){ ... }
 /vercel.json         → Vercel konfigürasyonu
 /CLAUDE.md           → Bu dosya (Claude Code hafızası)
 ```
+## YASAK: Otomatik İyileştirme
+Claude Code KENDİ İNİSİYATİFİYLE hiçbir "iyileştirme" veya "tutarlılık düzeltmesi" YAPMAZ.
+Sadece ve sadece açıkça istenen değişikliği yapar.
+"Bu da düzeltilmeli" diye düşünüyorsan, YAPMA — önce sor.
 
 ---
 
