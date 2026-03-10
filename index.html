@@ -258,6 +258,14 @@
         /* FIX #11: Styled toast notification */
         .toast-notification { position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px); background: var(--color-noble); color: #fff; padding: 12px 28px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; z-index: 9999; opacity: 0; transition: opacity 0.3s, transform 0.3s; pointer-events: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .toast-notification.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+        /* Holiday Banner */
+        .holiday-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 13px 50px 13px 20px; font-family: 'Montserrat', sans-serif; font-size: 0.92rem; font-weight: 600; color: #fff; background: linear-gradient(135deg, var(--color-noble) 0%, #1a252f 100%); box-shadow: 0 2px 12px rgba(0,0,0,0.18); transform: translateY(-100%); opacity: 0; transition: transform 0.5s cubic-bezier(.4,0,.2,1), opacity 0.4s; pointer-events: none; }
+        .holiday-banner.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .holiday-banner .hb-emoji { font-size: 1.5rem; line-height: 1; }
+        .holiday-banner .hb-text { line-height: 1.4; }
+        .holiday-banner .hb-close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.3rem; cursor: pointer; padding: 4px 8px; transition: color 0.2s; }
+        .holiday-banner .hb-close:hover { color: #fff; }
+        @media(max-width:600px){ .holiday-banner { font-size: 0.82rem; padding: 11px 40px 11px 14px; gap: 10px; } .holiday-banner .hb-emoji { font-size: 1.2rem; } }
         /* FIX #1: Carousel styles */
         .carousel-section { width: 100%; background: #000; position: relative; overflow: hidden; max-height: 500px; }
         .ss-slide { display: none; position: relative; cursor: pointer; }
@@ -589,6 +597,13 @@
     </div>
     <!-- FIX #11: Toast notification element -->
     <div id="toastNotification" class="toast-notification" role="alert" aria-live="polite"></div>
+
+    <!-- HOLIDAY BANNER -->
+    <div id="holidayBanner" class="holiday-banner" role="status" aria-live="polite">
+        <span class="hb-emoji" id="hbEmoji"></span>
+        <span class="hb-text" id="hbText"></span>
+        <button class="hb-close" onclick="closeHolidayBanner()" aria-label="Close">&times;</button>
+    </div>
 
     <!-- AUTH MODAL -->
     <div class="auth-overlay" id="authOverlay" onclick="if(event.target===this)closeAuthModal()">
@@ -1444,6 +1459,455 @@
     }
 
     initPromo();
+
+    // ===================== HOLIDAY BANNER =====================
+
+    function closeHolidayBanner(){
+        var b=document.getElementById('holidayBanner');
+        if(b) b.classList.remove('visible');
+        try { sessionStorage.setItem('pagus_holiday_closed','1'); } catch(e){}
+    }
+
+    function computeEaster(year){
+        // Anonymous Gregorian algorithm
+        var a=year%19, b=Math.floor(year/100), c=year%100;
+        var d=Math.floor(b/4), e=b%4, f=Math.floor((b+8)/25);
+        var g=Math.floor((b-f+1)/3), h=(19*a+b-d-g+15)%30;
+        var i=Math.floor(c/4), k=c%4, l=(32+2*e+2*i-h-k)%7;
+        var m=Math.floor((a+11*h+22*l)/451);
+        var month=Math.floor((h+l-7*m+114)/31);
+        var day=((h+l-7*m+114)%31)+1;
+        return {m:month, d:day};
+    }
+
+    function dateKey(m,d){ return m+'-'+d; }
+
+    function getHolidaysForCountry(cc, year){
+        var e=computeEaster(year);
+        var eDate=new Date(year, e.m-1, e.d);
+        function easterOffset(days){
+            var d=new Date(eDate.getTime()+days*86400000);
+            return {m:d.getMonth()+1, d:d.getDate()};
+        }
+        var gf=easterOffset(-2); // Good Friday
+        var em=easterOffset(1);  // Easter Monday
+        var ad=easterOffset(39); // Ascension
+        var wm=easterOffset(50); // Whit Monday
+
+        // Islamic holidays (approximate for 2025-2027, shifts ~11 days/year)
+        var islamic={};
+        if(year===2025){
+            islamic.ramadanStart={m:3,d:1}; islamic.eidFitr=[{m:3,d:30},{m:3,d:31}]; islamic.eidAdha=[{m:6,d:6},{m:6,d:7},{m:6,d:8}]; islamic.mawlid={m:9,d:5};
+        } else if(year===2026){
+            islamic.ramadanStart={m:2,d:18}; islamic.eidFitr=[{m:3,d:19},{m:3,d:20}]; islamic.eidAdha=[{m:5,d:27},{m:5,d:28},{m:5,d:29}]; islamic.mawlid={m:8,d:25};
+        } else if(year===2027){
+            islamic.ramadanStart={m:2,d:8}; islamic.eidFitr=[{m:3,d:9},{m:3,d:10}]; islamic.eidAdha=[{m:5,d:16},{m:5,d:17},{m:5,d:18}]; islamic.mawlid={m:8,d:14};
+        } else {
+            islamic.eidFitr=[]; islamic.eidAdha=[]; islamic.ramadanStart=null; islamic.mawlid=null;
+        }
+
+        // Build holiday map: key = "M-D", value = {emoji, msg}
+        var holidays={};
+        function add(m,d,emoji,msg){ holidays[dateKey(m,d)]={emoji:emoji,msg:msg}; }
+
+        // --- COMMON CHRISTIAN HOLIDAYS (used by many countries) ---
+        var xmas={emoji:'🎄',msg:'Merry Christmas!'};
+        var nye={emoji:'🎆',msg:'Happy New Year!'};
+        var easter={emoji:'🐣',msg:'Happy Easter!'};
+
+        switch(cc){
+            case 'TR': // Turkey
+                add(1,1,'🎆','Yeni Yılınız Kutlu Olsun! / Happy New Year!');
+                add(4,23,'🇹🇷','23 Nisan Ulusal Egemenlik ve Çocuk Bayramı Kutlu Olsun!');
+                add(5,1,'🌷','1 Mayıs İşçi Bayramı Kutlu Olsun!');
+                add(5,19,'🇹🇷','19 Mayıs Atatürk\'ü Anma, Gençlik ve Spor Bayramı Kutlu Olsun!');
+                add(7,15,'🇹🇷','15 Temmuz Demokrasi ve Millî Birlik Günü');
+                add(8,30,'🇹🇷','30 Ağustos Zafer Bayramı Kutlu Olsun!');
+                add(10,29,'🇹🇷','Cumhuriyet Bayramı Kutlu Olsun! / Happy Republic Day!');
+                // Ramazan Bayramı
+                if(islamic.eidFitr && islamic.eidFitr.length){
+                    for(var i=0;i<islamic.eidFitr.length;i++){
+                        add(islamic.eidFitr[i].m, islamic.eidFitr[i].d, '🌙', 'Ramazan Bayramınız Kutlu Olsun! / Happy Eid al-Fitr!');
+                    }
+                }
+                // Kurban Bayramı
+                if(islamic.eidAdha && islamic.eidAdha.length){
+                    for(var i=0;i<islamic.eidAdha.length;i++){
+                        add(islamic.eidAdha[i].m, islamic.eidAdha[i].d, '🌙', 'Kurban Bayramınız Kutlu Olsun! / Happy Eid al-Adha!');
+                    }
+                }
+                break;
+
+            case 'IT': // Italy
+                add(1,1,'🎆','Buon Anno! / Happy New Year!');
+                add(1,6,'⭐','Buona Epifania! / Happy Epiphany!');
+                add(e.m,e.d,'🐣','Buona Pasqua! / Happy Easter!');
+                add(em.m,em.d,'🐣','Buona Pasquetta! / Happy Easter Monday!');
+                add(4,25,'🇮🇹','Buon 25 Aprile! / Happy Liberation Day!');
+                add(5,1,'🌷','Buon Primo Maggio! / Happy Labour Day!');
+                add(6,2,'🇮🇹','Buona Festa della Repubblica! / Happy Republic Day!');
+                add(8,15,'🌞','Buon Ferragosto!');
+                add(11,1,'🕯️','Buon Ognissanti! / Happy All Saints Day!');
+                add(12,8,'⭐','Buona Festa dell\'Immacolata!');
+                add(12,25,'🎄','Buon Natale! / Merry Christmas!');
+                add(12,26,'🎄','Buon Santo Stefano!');
+                add(12,31,'🎆','Buon Capodanno! / Happy New Year\'s Eve!');
+                break;
+
+            case 'DE': // Germany
+                add(1,1,'🎆','Frohes Neues Jahr! / Happy New Year!');
+                add(gf.m,gf.d,'✝️','Frohen Karfreitag! / Happy Good Friday!');
+                add(e.m,e.d,'🐣','Frohe Ostern! / Happy Easter!');
+                add(em.m,em.d,'🐣','Frohen Ostermontag! / Happy Easter Monday!');
+                add(5,1,'🌷','Frohen Tag der Arbeit! / Happy Labour Day!');
+                add(ad.m,ad.d,'✝️','Frohen Christi Himmelfahrt! / Happy Ascension Day!');
+                add(wm.m,wm.d,'✝️','Frohen Pfingstmontag! / Happy Whit Monday!');
+                add(10,3,'🇩🇪','Frohen Tag der Deutschen Einheit! / Happy German Unity Day!');
+                add(12,25,'🎄','Frohe Weihnachten! / Merry Christmas!');
+                add(12,26,'🎄','Frohen Zweiten Weihnachtsfeiertag!');
+                add(12,31,'🎆','Guten Rutsch ins neue Jahr!');
+                break;
+
+            case 'FR': // France
+                add(1,1,'🎆','Bonne Année! / Happy New Year!');
+                add(e.m,e.d,'🐣','Joyeuses Pâques! / Happy Easter!');
+                add(em.m,em.d,'🐣','Joyeux Lundi de Pâques! / Happy Easter Monday!');
+                add(5,1,'🌷','Bonne Fête du Travail! / Happy Labour Day!');
+                add(5,8,'🇫🇷','Bonne Fête de la Victoire!');
+                add(ad.m,ad.d,'✝️','Joyeuse Ascension!');
+                add(wm.m,wm.d,'✝️','Joyeux Lundi de Pentecôte!');
+                add(7,14,'🇫🇷','Joyeux 14 Juillet! / Happy Bastille Day!');
+                add(8,15,'✝️','Joyeuse Assomption!');
+                add(11,1,'🕯️','Joyeuse Toussaint! / Happy All Saints Day!');
+                add(11,11,'🕊️','Jour de l\'Armistice');
+                add(12,25,'🎄','Joyeux Noël! / Merry Christmas!');
+                add(12,31,'🎆','Bon Réveillon! / Happy New Year\'s Eve!');
+                break;
+
+            case 'ES': // Spain
+                add(1,1,'🎆','¡Feliz Año Nuevo! / Happy New Year!');
+                add(1,6,'⭐','¡Feliz Día de Reyes! / Happy Epiphany!');
+                add(gf.m,gf.d,'✝️','¡Feliz Viernes Santo! / Happy Good Friday!');
+                add(e.m,e.d,'🐣','¡Felices Pascuas! / Happy Easter!');
+                add(5,1,'🌷','¡Feliz Día del Trabajo! / Happy Labour Day!');
+                add(8,15,'✝️','¡Feliz Asunción de la Virgen!');
+                add(10,12,'🇪🇸','¡Feliz Día de la Hispanidad! / Happy National Day!');
+                add(11,1,'🕯️','¡Feliz Día de Todos los Santos!');
+                add(12,6,'🇪🇸','¡Feliz Día de la Constitución!');
+                add(12,8,'⭐','¡Feliz Inmaculada Concepción!');
+                add(12,25,'🎄','¡Feliz Navidad! / Merry Christmas!');
+                add(12,31,'🎆','¡Feliz Nochevieja! / Happy New Year\'s Eve!');
+                break;
+
+            case 'GB': // United Kingdom
+                add(1,1,'🎆','Happy New Year!');
+                add(gf.m,gf.d,'✝️','Happy Good Friday!');
+                add(em.m,em.d,'🐣','Happy Easter Monday!');
+                // Early May bank holiday (first Monday of May) — approx
+                add(5,1,'🌷','Happy May Day!');
+                add(12,25,'🎄','Merry Christmas!');
+                add(12,26,'🎁','Happy Boxing Day!');
+                add(12,31,'🎆','Happy New Year\'s Eve!');
+                break;
+
+            case 'NL': // Netherlands
+                add(1,1,'🎆','Gelukkig Nieuwjaar! / Happy New Year!');
+                add(e.m,e.d,'🐣','Vrolijk Pasen! / Happy Easter!');
+                add(em.m,em.d,'🐣','Vrolijk Pasen! / Happy Easter Monday!');
+                add(4,27,'🇳🇱','Fijne Koningsdag! / Happy King\'s Day!');
+                add(5,5,'🇳🇱','Fijne Bevrijdingsdag! / Happy Liberation Day!');
+                add(ad.m,ad.d,'✝️','Fijne Hemelvaartsdag!');
+                add(wm.m,wm.d,'✝️','Fijne Pinkstermaandag!');
+                add(12,5,'🎁','Fijne Sinterklaasavond!');
+                add(12,25,'🎄','Vrolijk Kerstfeest! / Merry Christmas!');
+                add(12,26,'🎄','Fijne Tweede Kerstdag!');
+                add(12,31,'🎆','Gelukkig Nieuwjaar!');
+                break;
+
+            case 'BE': // Belgium
+                add(1,1,'🎆','Gelukkig Nieuwjaar! / Bonne Année!');
+                add(e.m,e.d,'🐣','Vrolijk Pasen! / Joyeuses Pâques!');
+                add(em.m,em.d,'🐣','Happy Easter Monday!');
+                add(5,1,'🌷','Happy Labour Day!');
+                add(ad.m,ad.d,'✝️','Happy Ascension Day!');
+                add(wm.m,wm.d,'✝️','Happy Whit Monday!');
+                add(7,21,'🇧🇪','Fijne Nationale Feestdag! / Joyeuse Fête Nationale!');
+                add(8,15,'✝️','Happy Assumption Day!');
+                add(11,1,'🕯️','Happy All Saints Day!');
+                add(11,11,'🕊️','Armistice Day');
+                add(12,25,'🎄','Vrolijk Kerstfeest! / Joyeux Noël!');
+                add(12,31,'🎆','Happy New Year\'s Eve!');
+                break;
+
+            case 'AT': // Austria
+                add(1,1,'🎆','Frohes Neues Jahr! / Happy New Year!');
+                add(1,6,'⭐','Frohe Heilige Drei Könige!');
+                add(e.m,e.d,'🐣','Frohe Ostern! / Happy Easter!');
+                add(em.m,em.d,'🐣','Frohen Ostermontag!');
+                add(5,1,'🌷','Frohen Tag der Arbeit!');
+                add(ad.m,ad.d,'✝️','Frohen Christi Himmelfahrt!');
+                add(wm.m,wm.d,'✝️','Frohen Pfingstmontag!');
+                add(10,26,'🇦🇹','Frohen Nationalfeiertag! / Happy National Day!');
+                add(12,25,'🎄','Frohe Weihnachten! / Merry Christmas!');
+                add(12,26,'🎄','Frohen Stephanstag!');
+                add(12,31,'🎆','Guten Rutsch!');
+                break;
+
+            case 'CH': // Switzerland
+                add(1,1,'🎆','Frohes Neues Jahr! / Bonne Année!');
+                add(gf.m,gf.d,'✝️','Happy Good Friday!');
+                add(e.m,e.d,'🐣','Frohe Ostern! / Joyeuses Pâques!');
+                add(em.m,em.d,'🐣','Happy Easter Monday!');
+                add(ad.m,ad.d,'✝️','Happy Ascension Day!');
+                add(wm.m,wm.d,'✝️','Happy Whit Monday!');
+                add(8,1,'🇨🇭','Fröhlichen Bundesfeiertag! / Bonne Fête Nationale!');
+                add(12,25,'🎄','Frohe Weihnachten! / Joyeux Noël!');
+                add(12,26,'🎄','Frohen Stephanstag!');
+                add(12,31,'🎆','Guten Rutsch!');
+                break;
+
+            case 'GR': // Greece
+                add(1,1,'🎆','Καλή Χρονιά! / Happy New Year!');
+                add(1,6,'⭐','Καλά Θεοφάνεια! / Happy Epiphany!');
+                add(3,25,'🇬🇷','Χρόνια Πολλά! / Happy Independence Day!');
+                add(e.m,e.d,'🐣','Καλό Πάσχα! / Happy Easter!');
+                add(em.m,em.d,'🐣','Καλή Δευτέρα του Πάσχα!');
+                add(5,1,'🌷','Happy Labour Day!');
+                add(8,15,'✝️','Καλή Παναγία! / Happy Assumption!');
+                add(10,28,'🇬🇷','Χρόνια Πολλά! / Happy Ohi Day!');
+                add(12,25,'🎄','Καλά Χριστούγεννα! / Merry Christmas!');
+                add(12,26,'🎄','Happy Second Day of Christmas!');
+                add(12,31,'🎆','Καλή Χρονιά!');
+                break;
+
+            case 'PT': // Portugal
+                add(1,1,'🎆','Feliz Ano Novo! / Happy New Year!');
+                add(gf.m,gf.d,'✝️','Sexta-feira Santa!');
+                add(e.m,e.d,'🐣','Feliz Páscoa! / Happy Easter!');
+                add(4,25,'🇵🇹','Feliz Dia da Liberdade! / Happy Freedom Day!');
+                add(5,1,'🌷','Feliz Dia do Trabalhador!');
+                add(6,10,'🇵🇹','Feliz Dia de Portugal! / Happy Portugal Day!');
+                add(8,15,'✝️','Feliz Assunção!');
+                add(10,5,'🇵🇹','Feliz Dia da República!');
+                add(12,1,'🇵🇹','Feliz Dia da Restauração!');
+                add(12,25,'🎄','Feliz Natal! / Merry Christmas!');
+                add(12,31,'🎆','Feliz Ano Novo!');
+                break;
+
+            case 'PL': // Poland
+                add(1,1,'🎆','Szczęśliwego Nowego Roku! / Happy New Year!');
+                add(1,6,'⭐','Szczęśliwego Święta Trzech Króli!');
+                add(e.m,e.d,'🐣','Wesołych Świąt Wielkanocnych! / Happy Easter!');
+                add(em.m,em.d,'🐣','Wesołego Poniedziałku Wielkanocnego!');
+                add(5,1,'🌷','Happy Labour Day!');
+                add(5,3,'🇵🇱','Szczęśliwego Święta Konstytucji! / Happy Constitution Day!');
+                add(8,15,'✝️','Szczęśliwego Święta Wniebowzięcia!');
+                add(11,1,'🕯️','Happy All Saints Day!');
+                add(11,11,'🇵🇱','Szczęśliwego Święta Niepodległości! / Happy Independence Day!');
+                add(12,25,'🎄','Wesołych Świąt! / Merry Christmas!');
+                add(12,26,'🎄','Wesołego Drugiego Dnia Świąt!');
+                add(12,31,'🎆','Szczęśliwego Nowego Roku!');
+                break;
+
+            case 'SE': // Sweden
+                add(1,1,'🎆','Gott Nytt År! / Happy New Year!');
+                add(gf.m,gf.d,'✝️','Glad Långfredag!');
+                add(e.m,e.d,'🐣','Glad Påsk! / Happy Easter!');
+                add(em.m,em.d,'🐣','Glad Annandag Påsk!');
+                add(5,1,'🌷','Glad Första Maj!');
+                add(6,6,'🇸🇪','Glad Nationaldag! / Happy National Day!');
+                add(12,25,'🎄','God Jul! / Merry Christmas!');
+                add(12,26,'🎄','Glad Annandag Jul!');
+                add(12,31,'🎆','Gott Nytt År!');
+                break;
+
+            case 'NO': // Norway
+                add(1,1,'🎆','Godt Nytt År! / Happy New Year!');
+                add(e.m,e.d,'🐣','God Påske! / Happy Easter!');
+                add(em.m,em.d,'🐣','God Påske!');
+                add(5,1,'🌷','Gratulerer med Arbeidernes Dag!');
+                add(5,17,'🇳🇴','Gratulerer med Dagen! / Happy Constitution Day!');
+                add(ad.m,ad.d,'✝️','God Kristi Himmelfartsdag!');
+                add(12,25,'🎄','God Jul! / Merry Christmas!');
+                add(12,26,'🎄','God Jul!');
+                add(12,31,'🎆','Godt Nytt År!');
+                break;
+
+            case 'DK': // Denmark
+                add(1,1,'🎆','Godt Nytår! / Happy New Year!');
+                add(e.m,e.d,'🐣','God Påske! / Happy Easter!');
+                add(em.m,em.d,'🐣','God Påske!');
+                add(ad.m,ad.d,'✝️','God Kristi Himmelfartsdag!');
+                add(6,5,'🇩🇰','God Grundlovsdag! / Happy Constitution Day!');
+                add(12,25,'🎄','Glædelig Jul! / Merry Christmas!');
+                add(12,26,'🎄','Glædelig Anden Juledag!');
+                add(12,31,'🎆','Godt Nytår!');
+                break;
+
+            case 'FI': // Finland
+                add(1,1,'🎆','Hyvää Uutta Vuotta! / Happy New Year!');
+                add(gf.m,gf.d,'✝️','Hyvää Pitkäperjantaita!');
+                add(e.m,e.d,'🐣','Hyvää Pääsiäistä! / Happy Easter!');
+                add(em.m,em.d,'🐣','Hyvää Pääsiäismaanantaita!');
+                add(5,1,'🌷','Hyvää Vappua!');
+                add(12,6,'🇫🇮','Hyvää Itsenäisyyspäivää! / Happy Independence Day!');
+                add(12,25,'🎄','Hyvää Joulua! / Merry Christmas!');
+                add(12,26,'🎄','Hyvää Tapaninpäivää!');
+                add(12,31,'🎆','Hyvää Uutta Vuotta!');
+                break;
+
+            case 'RO': // Romania
+                add(1,1,'🎆','La mulți ani! / Happy New Year!');
+                add(1,24,'🇷🇴','La mulți ani! / Happy Unification Day!');
+                add(e.m,e.d,'🐣','Paște Fericit! / Happy Easter!');
+                add(em.m,em.d,'🐣','Paște Fericit!');
+                add(5,1,'🌷','Happy Labour Day!');
+                add(12,1,'🇷🇴','La mulți ani! / Happy National Day!');
+                add(12,25,'🎄','Crăciun Fericit! / Merry Christmas!');
+                add(12,26,'🎄','Crăciun Fericit!');
+                add(12,31,'🎆','La mulți ani!');
+                break;
+
+            case 'BG': // Bulgaria
+                add(1,1,'🎆','Честита Нова Година! / Happy New Year!');
+                add(3,3,'🇧🇬','Честит Трети Март! / Happy Liberation Day!');
+                add(e.m,e.d,'🐣','Честит Великден! / Happy Easter!');
+                add(5,1,'🌷','Happy Labour Day!');
+                add(5,6,'🇧🇬','Честит Гергьовден! / Happy St. George\'s Day!');
+                add(5,24,'🇧🇬','Честит 24 Май! / Happy Culture Day!');
+                add(9,6,'🇧🇬','Честит Ден на Съединението!');
+                add(12,25,'🎄','Весела Коледа! / Merry Christmas!');
+                add(12,31,'🎆','Честита Нова Година!');
+                break;
+
+            case 'HU': // Hungary
+                add(1,1,'🎆','Boldog Új Évet! / Happy New Year!');
+                add(3,15,'🇭🇺','Boldog Március 15-ét! / Happy Revolution Day!');
+                add(gf.m,gf.d,'✝️','Áldott Nagypénteket!');
+                add(e.m,e.d,'🐣','Kellemes Húsvétot! / Happy Easter!');
+                add(em.m,em.d,'🐣','Kellemes Húsvéthétfőt!');
+                add(5,1,'🌷','Happy Labour Day!');
+                add(8,20,'🇭🇺','Boldog Szent István Napot! / Happy St. Stephen\'s Day!');
+                add(10,23,'🇭🇺','Boldog Október 23-át! / Happy Republic Day!');
+                add(12,25,'🎄','Boldog Karácsonyt! / Merry Christmas!');
+                add(12,26,'🎄','Boldog Karácsonyt!');
+                add(12,31,'🎆','Boldog Új Évet!');
+                break;
+
+            case 'CZ': // Czech Republic
+                add(1,1,'🎆','Šťastný Nový Rok! / Happy New Year!');
+                add(gf.m,gf.d,'✝️','Happy Good Friday!');
+                add(e.m,e.d,'🐣','Veselé Velikonoce! / Happy Easter!');
+                add(em.m,em.d,'🐣','Veselé Velikonoce!');
+                add(5,1,'🌷','Happy Labour Day!');
+                add(5,8,'🕊️','Happy Liberation Day!');
+                add(7,5,'🇨🇿','Happy Saints Cyril and Methodius Day!');
+                add(7,6,'🇨🇿','Happy Jan Hus Day!');
+                add(9,28,'🇨🇿','Happy Czech Statehood Day!');
+                add(10,28,'🇨🇿','Šťastný Den Vzniku / Happy Independence Day!');
+                add(12,25,'🎄','Veselé Vánoce! / Merry Christmas!');
+                add(12,26,'🎄','Veselé Vánoce!');
+                add(12,31,'🎆','Šťastný Nový Rok!');
+                break;
+
+            case 'HR': // Croatia
+                add(1,1,'🎆','Sretna Nova Godina! / Happy New Year!');
+                add(1,6,'⭐','Happy Epiphany!');
+                add(e.m,e.d,'🐣','Sretan Uskrs! / Happy Easter!');
+                add(em.m,em.d,'🐣','Sretan Uskrs!');
+                add(5,1,'🌷','Happy Labour Day!');
+                add(6,22,'🇭🇷','Happy Anti-Fascist Day!');
+                add(6,25,'🇭🇷','Sretan Dan Državnosti! / Happy Statehood Day!');
+                add(8,5,'🇭🇷','Happy Victory Day!');
+                add(8,15,'✝️','Happy Assumption Day!');
+                add(10,8,'🇭🇷','Happy Independence Day!');
+                add(12,25,'🎄','Sretan Božić! / Merry Christmas!');
+                add(12,26,'🎄','Sretan Sveti Stjepan!');
+                add(12,31,'🎆','Sretna Nova Godina!');
+                break;
+
+            case 'RS': // Serbia
+                add(1,1,'🎆','Срећна Нова Година! / Happy New Year!');
+                add(1,2,'🎆','Срећна Нова Година!');
+                add(2,15,'🇷🇸','Срећан Дан Државности! / Happy Statehood Day!');
+                add(5,1,'🌷','Happy Labour Day!');
+                add(5,2,'🌷','Happy Labour Day!');
+                add(11,11,'🕊️','Happy Armistice Day!');
+                add(12,25,'🎄','Merry Christmas!');
+                add(12,31,'🎆','Срећна Нова Година!');
+                break;
+
+            // Islamic-majority countries with European trade
+            case 'SA': case 'AE': case 'KW': case 'QA': case 'BH': case 'OM':
+                add(1,1,'🎆','Happy New Year!');
+                if(islamic.eidFitr && islamic.eidFitr.length){
+                    for(var i=0;i<islamic.eidFitr.length;i++){
+                        add(islamic.eidFitr[i].m, islamic.eidFitr[i].d, '🌙', 'Eid Mubarak! / Happy Eid al-Fitr!');
+                    }
+                }
+                if(islamic.eidAdha && islamic.eidAdha.length){
+                    for(var i=0;i<islamic.eidAdha.length;i++){
+                        add(islamic.eidAdha[i].m, islamic.eidAdha[i].d, '🌙', 'Eid Mubarak! / Happy Eid al-Adha!');
+                    }
+                }
+                break;
+
+            case 'US': // United States
+                add(1,1,'🎆','Happy New Year!');
+                add(7,4,'🇺🇸','Happy Independence Day!');
+                add(12,25,'🎄','Merry Christmas!');
+                add(12,31,'🎆','Happy New Year\'s Eve!');
+                break;
+
+            default:
+                // Universal holidays for any other country
+                add(1,1,'🎆','Happy New Year!');
+                add(12,25,'🎄','Merry Christmas!');
+                add(12,31,'🎆','Happy New Year\'s Eve!');
+                break;
+        }
+        return holidays;
+    }
+
+    function initHolidayBanner(){
+        try {
+            if(sessionStorage.getItem('pagus_holiday_closed')) return;
+        } catch(e){}
+
+        var xhr=new XMLHttpRequest();
+        xhr.open('GET','https://ipapi.co/json/',true);
+        xhr.timeout=5000;
+        xhr.onload=function(){
+            try {
+                var data=JSON.parse(xhr.responseText);
+                var cc=data.country_code;
+                if(!cc) return;
+                var now=new Date();
+                var year=now.getFullYear();
+                var key=dateKey(now.getMonth()+1, now.getDate());
+                var holidays=getHolidaysForCountry(cc, year);
+                var holiday=holidays[key];
+                if(!holiday) return;
+                var banner=document.getElementById('holidayBanner');
+                var emojiEl=document.getElementById('hbEmoji');
+                var textEl=document.getElementById('hbText');
+                if(!banner||!emojiEl||!textEl) return;
+                emojiEl.textContent=holiday.emoji;
+                textEl.textContent=holiday.msg;
+                setTimeout(function(){ banner.classList.add('visible'); },1500);
+                // Auto-close after 12 seconds
+                setTimeout(function(){
+                    try { if(!sessionStorage.getItem('pagus_holiday_closed')) banner.classList.remove('visible'); } catch(e){ banner.classList.remove('visible'); }
+                },13500);
+            } catch(e){}
+        };
+        xhr.onerror=function(){};
+        xhr.ontimeout=function(){};
+        xhr.send();
+    }
+
+    initHolidayBanner();
+
     </script>
     <script>
         // ============================================================
