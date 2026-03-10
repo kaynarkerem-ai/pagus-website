@@ -13,6 +13,20 @@ Proje kökünde (`/CLAUDE.md`) tutulmalıdır.
 - Başka hiçbir satıra dokunma.
 - Değişiklik öncesi ilgili bölümü oku, değişiklik sonrası doğrula.
 
+
+## YASAK: Otomatik İyileştirme
+
+Claude Code KENDİ İNİSİYATİFİYLE hiçbir değişiklik YAPMAZ.
+- İstenmeden "tutarlılık düzeltmesi" yapma
+- İstenmeden data-t attribute silme/ekleme
+- İstenmeden nav, footer veya başka bölümlere dokunma
+- İstenmeden dosya formatı değiştirme
+- "Bu da düzeltilmeli" diye düşünüyorsan YAPMA, önce sor
+- Sadece ve sadece açıkça istenen değişikliği yap
+- Şüphen varsa değişiklik yapma, kullanıcıya sor
+
+Başka hiçbir şeye dokunma.
+
 ---
 
 ## Proje Bilgileri
