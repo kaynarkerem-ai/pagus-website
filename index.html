@@ -2486,10 +2486,11 @@
         function sendCartEmail(){
             if(PAGUS.state.cart.length===0)return;
             var note=document.getElementById('cartNoteText')?document.getElementById('cartNoteText').value.trim():'';
-            var list=PAGUS.state.cart.map(function(c){return '- '+c;}).join('%0A');
+            var list=PAGUS.state.cart.map(function(c){return '- '+c;}).join('\n');
             var subject='PAGUS Menswear — Product Inquiry';
-            var body='Hello PAGUS Menswear,%0A%0AI would like to inquire about the following models:%0A%0A'+list+(note?'%0A%0ANote: '+encodeURIComponent(note):'')+' %0A%0APlease send me more information. Thank you.';
-            window.location.href='mailto:sales@pagusmenswear.com?subject='+encodeURIComponent(subject)+'&body='+body;
+            var body='Hello PAGUS Menswear,\n\nI would like to inquire about the following models:\n\n'+list+(note?'\n\nNote: '+note:'')+'\n\nPlease send me more information. Thank you.';
+            var mailUrl='mailto:sales@pagusmenswear.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+            var a=document.createElement('a');a.href=mailUrl;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();document.body.removeChild(a);
         }
 
 
