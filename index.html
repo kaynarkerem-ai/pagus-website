@@ -513,12 +513,12 @@
             </div>
         </div>
         <nav><ul class="nav-list">
-                <li><a href="?category=Wedding Suits">Wedding Suits</a></li>
-                <li><a href="?category=Formal Suits">Formal Suits</a></li>
-                <li><a href="?category=Shirts">Shirts</a></li>
-                <li><a href="?category=Children">Children</a></li>
-                <li><a href="?category=Jackets">Jackets</a></li>
-                <li><a href="?category=Discounted Products">Discounted Products</a></li>
+                <li><a href="?category=Wedding Suits" data-t="nav_wedding">Ceremonial Wear</a></li>
+                <li><a href="?category=Formal Suits" data-t="nav_formal">Formal Suits</a></li>
+                <li><a href="?category=Shirts" data-t="nav_shirts">Shirts</a></li>
+                <li><a href="?category=Children" data-t="nav_children">Children</a></li>
+                <li><a href="?category=Jackets" data-t="nav_jackets">Jackets</a></li>
+                <li><a href="?category=Discounted Products" data-t="nav_discounted">Discounted</a></li>
         </ul></nav>
     </div></header>
 
@@ -564,7 +564,7 @@
     </div></section>
     <button id="floatCart" class="float-cart" onclick="openCartPanel()">
         <svg style="width:20px;height:20px;fill:white;" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6" stroke="white" stroke-width="2"/><path d="M16 10a4 4 0 01-8 0" stroke="white" stroke-width="2" fill="none"/></svg>
-        <span data-t="send_text">My Selection</span> (<span id="cartCount">0</span>)
+        <span data-t="cart_title">My Selection</span> (<span id="cartCount">0</span>)
     </button>
 
     <!-- CART PANEL -->
@@ -572,26 +572,26 @@
     <div class="cart-panel" id="cartPanel">
         <div class="cart-panel-header">
             <div>
-                <h2>My Selection</h2>
+                <h2 data-t="cart_title">My Selection</h2>
                 <div class="cart-panel-header-sub" id="cartPanelSub">0 models selected</div>
             </div>
             <button class="cart-panel-close" onclick="closeCartPanel()">×</button>
         </div>
         <div class="cart-panel-items" id="cartPanelItems"></div>
         <div class="cart-panel-note" id="cartPanelNote" style="display:none;">
-            <label>Note (Optional)</label>
-            <textarea id="cartNoteText" placeholder="e.g. sizes, delivery date, custom requests..."></textarea>
+            <label data-t="cart_note_label">Note (Optional)</label>
+            <textarea id="cartNoteText" placeholder="e.g. sizes, delivery date, custom requests..." data-tp="cart_note_ph"></textarea>
         </div>
         <div class="cart-panel-actions" id="cartPanelActions" style="display:none;">
             <button class="cart-btn-wa" onclick="sendCartWhatsApp()">
                 <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Send via WhatsApp
+                <span data-t="cart_send_wa">Send via WhatsApp</span>
             </button>
             <button class="cart-btn-email" onclick="sendCartEmail()">
                 <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Send via Email
+                <span data-t="cart_send_email">Send via Email</span>
             </button>
-            <button class="cart-btn-clear" onclick="clearCartPanel()">Clear Selection</button>
+            <button class="cart-btn-clear" onclick="clearCartPanel()" data-t="cart_clear">Clear Selection</button>
         </div>
     </div>
     <!-- FIX #11: Toast notification element -->
@@ -731,7 +731,7 @@
         <button onclick="event.stopPropagation();moveFullscreen(1)" aria-label="Next image" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:3;">&#8250;</button>
         <button onclick="closeFullscreen()" aria-label="Close fullscreen" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer;z-index:3;">&times;</button>
         <div id="fullscreenCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#888;font-size:0.9rem;z-index:3;">1/4</div>
-        <div id="fsZoomHint" style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:0.75rem;z-index:3;pointer-events:none;transition:opacity 0.5s;text-align:center;">🔍 Scroll to zoom · Double-click to reset</div>
+        <div id="fsZoomHint" style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:0.75rem;z-index:3;pointer-events:none;transition:opacity 0.5s;text-align:center;"></div>
     </div>
 
     <!-- CONTACT PAGE -->
@@ -774,7 +774,7 @@
                     </div>
                     <div class="contact-field">
                         <label data-t="cf_phone">Phone</label>
-                        <input type="tel" id="cfPhone" placeholder="+39 333 123 4567">
+                        <input type="tel" id="cfPhone" placeholder="+39 333 123 4567" data-tp="phone_ph">
                         <div class="field-hint" data-t="cf_required">Please enter email or phone</div>
                     </div>
                     <div class="contact-field">
@@ -791,7 +791,7 @@
             <!-- RIGHT SIDE: Legal Notice -->
             <div class="contact-right">
                 <div class="legal-block">
-                    <h4>Legal Notice</h4>
+                    <h4 data-t="legal_notice">Legal Notice</h4>
                     <p>
                         Engin KAYNAR<br>
                         <strong>PAGUS MENSWEAR</strong><br>
@@ -808,7 +808,7 @@
                     </p>
                 </div>
                 <div class="legal-block">
-                    <h4>Financial ID</h4>
+                    <h4 data-t="financial_id">Financial ID</h4>
                     <p>
                         <strong data-t="cf_taxoffice">Tax Office:</strong> Hasan Tahsin<br>
                         <strong data-t="cf_taxnum">Tax Number:</strong> 156714166
@@ -821,49 +821,49 @@
     <!-- BLOG / INSIGHTS SECTION -->
     <section id="blogSection" style="background:#f8f5f0;padding:80px 40px;border-top:1px solid rgba(44,62,80,0.08);">
       <div style="max-width:960px;margin:0 auto;background:#fff;border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:56px 48px;box-shadow:0 4px 24px rgba(0,0,0,0.04);">
-        <p style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#c9a84c;margin-bottom:12px;">B2B Wholesale Guide</p>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#0a0a0a;margin-bottom:16px;line-height:1.2;">Wholesale Men's Suits from Turkey:<br>The Complete Guide for European Retailers</h2>
-        <p style="color:#555;font-size:0.95rem;max-width:680px;margin-bottom:48px;line-height:1.8;">For European boutiques and fashion brands looking to source high-quality wholesale men's suits, Turkey has become the undisputed destination. Here is everything you need to know.</p>
+        <p style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#c9a84c;margin-bottom:12px;" data-t="blog_guide_label">B2B Wholesale Guide</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#0a0a0a;margin-bottom:16px;line-height:1.2;" data-t="blog_title">Wholesale Men's Suits from Turkey:<br>The Complete Guide for European Retailers</h2>
+        <p style="color:#555;font-size:0.95rem;max-width:680px;margin-bottom:48px;line-height:1.8;" data-t="blog_desc">For European boutiques and fashion brands looking to source high-quality wholesale men's suits, Turkey has become the undisputed destination. Here is everything you need to know.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:48px;">
           <div style="background:#fff;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:24px;">
-            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:8px;">Delivery to EU</div>
-            <div style="font-size:1.3rem;font-weight:600;color:#0a0a0a;">3–11 days</div>
+            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:8px;" data-t="blog_delivery_label">Delivery to EU</div>
+            <div style="font-size:1.3rem;font-weight:600;color:#0a0a0a;" data-t="blog_delivery_value">3–11 days</div>
           </div>
           <div style="background:#fff;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:24px;">
-            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:8px;">Private Label</div>
-            <div style="font-size:1.3rem;font-weight:600;color:#0a0a0a;">Available</div>
+            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:8px;" data-t="blog_pl_label">Private Label</div>
+            <div style="font-size:1.3rem;font-weight:600;color:#0a0a0a;" data-t="blog_pl_value">Available</div>
           </div>
           <div style="background:#fff;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:24px;">
-            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:8px;">Markets Served</div>
+            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:8px;" data-t="blog_markets_label">Markets Served</div>
             <div style="font-size:1.3rem;font-weight:600;color:#0a0a0a;">IT · DE · FR · ES</div>
           </div>
         </div>
         <div class="blog-two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
           <div>
-            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#0a0a0a;margin-bottom:16px;">Why Source from Turkey?</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#0a0a0a;margin-bottom:16px;" data-t="blog_why_title">Why Source from Turkey?</h3>
             <ul style="list-style:none;padding:0;margin:0;">
-              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Geographic proximity to European markets</li>
-              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Premium wool, jacquard &amp; velvet fabrics</li>
-              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>EU customs union — reduced tariffs</li>
-              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Full private label manufacturing</li>
-              <li style="padding:10px 0 10px 20px;color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>30–45% cost savings vs domestic production</li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_why_1">Geographic proximity to European markets</span></li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_why_2">Premium wool, jacquard &amp; velvet fabrics</span></li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_why_3">EU customs union — reduced tariffs</span></li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_why_4">Full private label manufacturing</span></li>
+              <li style="padding:10px 0 10px 20px;color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_why_5">30–45% cost savings vs domestic production</span></li>
             </ul>
           </div>
           <div>
-            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#0a0a0a;margin-bottom:16px;">What We Manufacture</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#0a0a0a;margin-bottom:16px;" data-t="blog_what_title">What We Manufacture</h3>
             <ul style="list-style:none;padding:0;margin:0;">
-              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Wedding &amp; ceremony suits</li>
-              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Tuxedos &amp; black tie formalwear</li>
-              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Prom &amp; graduation jackets</li>
-              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Business suits &amp; corporate formalwear</li>
-              <li style="padding:10px 0 10px 20px;color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span>Private label with custom labels &amp; packaging</li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_what_1">Wedding &amp; ceremony suits</span></li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_what_2">Tuxedos &amp; black tie formalwear</span></li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_what_3">Prom &amp; graduation jackets</span></li>
+              <li style="padding:10px 0 10px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_what_4">Business suits &amp; corporate formalwear</span></li>
+              <li style="padding:10px 0 10px 20px;color:#444;font-size:0.9rem;position:relative;"><span style="position:absolute;left:0;color:#c9a84c;">—</span><span data-t="blog_what_5">Private label with custom labels &amp; packaging</span></li>
             </ul>
           </div>
         </div>
         <div class="blog-cta-box" style="background:#0a0a0a;border:1px solid rgba(201,168,76,0.4);border-radius:8px;padding:48px;margin-top:48px;text-align:center;">
-          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#f8f5f0;margin-bottom:12px;">Ready to Start Wholesale Sourcing?</h3>
-          <p style="color:#888;margin-bottom:28px;font-size:0.9rem;">Contact our B2B team to request a catalogue, pricing sheet, or fabric samples.</p>
-          <a href="https://wa.me/905511748907" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a0a0a;padding:14px 40px;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:2px;">Contact B2B Team</a>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#f8f5f0;margin-bottom:12px;" data-t="blog_cta_title">Ready to Start Wholesale Sourcing?</h3>
+          <p style="color:#888;margin-bottom:28px;font-size:0.9rem;" data-t="blog_cta_desc">Contact our B2B team to request a catalogue, pricing sheet, or fabric samples.</p>
+          <a href="https://wa.me/905511748907" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a0a0a;padding:14px 40px;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:2px;" data-t="blog_cta_btn">Contact B2B Team</a>
         </div>
       </div>
     </section>
@@ -873,22 +873,22 @@
     <section id="logisticsSection" style="background:#f8f5f0;padding:0;border-top:1px solid rgba(44,62,80,0.08);">
       <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;min-height:160px;">
         <div style="background:#2c3e50;padding:32px 36px;display:flex;flex-direction:column;justify-content:center;">
-          <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#c9a962;margin-bottom:12px;">Logistics Partners</div>
-          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px;">Fast &amp; Reliable<br>Worldwide Shipping</div>
-          <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.6;">All wholesale orders shipped via certified express carriers with full tracking and export documentation.</div>
+          <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#c9a962;margin-bottom:12px;" data-t="logi_partners">Logistics Partners</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px;" data-t="logi_title">Fast &amp; Reliable<br>Worldwide Shipping</div>
+          <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.6;" data-t="logi_desc">All wholesale orders shipped via certified express carriers with full tracking and export documentation.</div>
         </div>
         <div class="logo-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;background:#f8f5f0;">
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;border-right:1px solid rgba(44,62,80,0.08);">
             <svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" style="width:120px;height:30px;"><rect width="200" height="50" rx="4" fill="#FFCC00"/><text x="100" y="34" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="28" fill="#D40511" letter-spacing="2">DHL</text></svg>
-            <span style="font-size:10px;letter-spacing:3px;color:#aaa;text-transform:uppercase;">Express</span>
+            <span style="font-size:10px;letter-spacing:3px;color:#aaa;text-transform:uppercase;" data-t="logi_express">Express</span>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;border-right:1px solid rgba(44,62,80,0.08);">
             <svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" style="width:120px;height:30px;"><rect width="200" height="50" rx="4" fill="#4D148C"/><text x="100" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="24" fill="#FF6600" letter-spacing="1">FedEx</text></svg>
-            <span style="font-size:10px;letter-spacing:3px;color:#aaa;text-transform:uppercase;">International</span>
+            <span style="font-size:10px;letter-spacing:3px;color:#aaa;text-transform:uppercase;" data-t="logi_international">International</span>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;">
             <svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" style="width:120px;height:30px;"><rect width="200" height="50" rx="4" fill="#351C15"/><text x="100" y="35" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="30" fill="#FFB500" letter-spacing="3">UPS</text></svg>
-            <span style="font-size:10px;letter-spacing:3px;color:#aaa;text-transform:uppercase;">Worldwide</span>
+            <span style="font-size:10px;letter-spacing:3px;color:#aaa;text-transform:uppercase;" data-t="logi_worldwide">Worldwide</span>
           </div>
         </div>
       </div>
@@ -2152,7 +2152,55 @@
             google_fail:{en:'Google login failed.',it:'Accesso Google fallito.',fr:'Échec connexion Google.',de:'Google-Anmeldung fehlgeschlagen.',es:'Error en el inicio de sesión con Google.'},
             firebase_error:{en:'Service not available.',it:'Servizio non disponibile.',fr:'Service non disponible.',de:'Dienst nicht verfügbar.',es:'Servicio no disponible.'},
             login_failed:{en:'Login failed.',it:'Accesso fallito.',fr:'Échec de connexion.',de:'Anmeldung fehlgeschlagen.',es:'Error de inicio de sesión.'},
-            error_inventory:{en:'Error: inventory.js not found.',it:'Errore: inventory.js non trovato.',fr:'Erreur : inventory.js introuvable.',de:'Fehler: inventory.js nicht gefunden.',es:'Error: inventory.js no encontrado.'}
+            error_inventory:{en:'Error: inventory.js not found.',it:'Errore: inventory.js non trovato.',fr:'Erreur : inventory.js introuvable.',de:'Fehler: inventory.js nicht gefunden.',es:'Error: inventory.js no encontrado.'},
+            // CART PANEL
+            cart_title:{en:'My Selection',it:'La Mia Selezione',fr:'Ma Sélection',de:'Meine Auswahl',es:'Mi Selección'},
+            cart_models_s:{en:'model selected',it:'modello selezionato',fr:'modèle sélectionné',de:'Modell ausgewählt',es:'modelo seleccionado'},
+            cart_models_p:{en:'models selected',it:'modelli selezionati',fr:'modèles sélectionnés',de:'Modelle ausgewählt',es:'modelos seleccionados'},
+            cart_note_label:{en:'Note (Optional)',it:'Nota (Facoltativo)',fr:'Note (Facultatif)',de:'Notiz (Optional)',es:'Nota (Opcional)'},
+            cart_note_ph:{en:'e.g. sizes, delivery date, custom requests...',it:'es. taglie, data di consegna, richieste personalizzate...',fr:'ex. tailles, date de livraison, demandes personnalisées...',de:'z.B. Größen, Lieferdatum, Sonderwünsche...',es:'ej. tallas, fecha de entrega, solicitudes personalizadas...'},
+            cart_send_wa:{en:'Send via WhatsApp',it:'Invia via WhatsApp',fr:'Envoyer via WhatsApp',de:'Über WhatsApp senden',es:'Enviar por WhatsApp'},
+            cart_send_email:{en:'Send via Email',it:'Invia via Email',fr:'Envoyer par Email',de:'Per E-Mail senden',es:'Enviar por Email'},
+            cart_clear:{en:'Clear Selection',it:'Cancella Selezione',fr:'Effacer la Sélection',de:'Auswahl löschen',es:'Borrar Selección'},
+            cart_empty_title:{en:'No items selected',it:'Nessun articolo selezionato',fr:'Aucun article sélectionné',de:'Keine Artikel ausgewählt',es:'Ningún artículo seleccionado'},
+            cart_empty_desc:{en:'Browse catalogue to add models',it:'Sfoglia il catalogo per aggiungere modelli',fr:'Parcourez le catalogue pour ajouter des modèles',de:'Katalog durchsuchen, um Modelle hinzuzufügen',es:'Explore el catálogo para añadir modelos'},
+            // CONTACT PAGE
+            legal_notice:{en:'Legal Notice',it:'Informazioni Legali',fr:'Mentions Légales',de:'Impressum',es:'Aviso Legal'},
+            financial_id:{en:'Financial ID',it:'Dati Fiscali',fr:'Identifiant Fiscal',de:'Steuerdaten',es:'Datos Fiscales'},
+            // BLOG SECTION
+            blog_guide_label:{en:'B2B Wholesale Guide',it:'Guida B2B all\'Ingrosso',fr:'Guide B2B en Gros',de:'B2B Großhandel-Leitfaden',es:'Guía B2B al por Mayor'},
+            blog_title:{en:'Wholesale Men\'s Suits from Turkey:<br>The Complete Guide for European Retailers',it:'Abiti da Uomo all\'Ingrosso dalla Turchia:<br>La Guida Completa per i Rivenditori Europei',fr:'Costumes Homme en Gros depuis la Turquie :<br>Le Guide Complet pour les Détaillants Européens',de:'Herrenanzüge im Großhandel aus der Türkei:<br>Der vollständige Leitfaden für europäische Einzelhändler',es:'Trajes de Hombre al por Mayor desde Turquía:<br>La Guía Completa para Minoristas Europeos'},
+            blog_desc:{en:'For European boutiques and fashion brands looking to source high-quality wholesale men\'s suits, Turkey has become the undisputed destination. Here is everything you need to know.',it:'Per le boutique europee e i marchi di moda che cercano abiti da uomo all\'ingrosso di alta qualità, la Turchia è diventata la destinazione indiscussa. Ecco tutto ciò che dovete sapere.',fr:'Pour les boutiques européennes et les marques de mode à la recherche de costumes pour hommes en gros de haute qualité, la Turquie est devenue la destination incontestée. Voici tout ce que vous devez savoir.',de:'Für europäische Boutiquen und Modemarken, die hochwertige Herrenanzüge im Großhandel suchen, ist die Türkei zum unbestrittenen Ziel geworden. Hier ist alles, was Sie wissen müssen.',es:'Para boutiques europeas y marcas de moda que buscan trajes de hombre al por mayor de alta calidad, Turquía se ha convertido en el destino indiscutible. Aquí tiene todo lo que necesita saber.'},
+            blog_delivery_label:{en:'Delivery to EU',it:'Consegna in UE',fr:'Livraison en UE',de:'Lieferung in die EU',es:'Entrega en la UE'},
+            blog_delivery_value:{en:'3–11 days',it:'3–11 giorni',fr:'3–11 jours',de:'3–11 Tage',es:'3–11 días'},
+            blog_pl_label:{en:'Private Label',it:'Private Label',fr:'Marque Privée',de:'Eigenmarke',es:'Marca Privada'},
+            blog_pl_value:{en:'Available',it:'Disponibile',fr:'Disponible',de:'Verfügbar',es:'Disponible'},
+            blog_markets_label:{en:'Markets Served',it:'Mercati Serviti',fr:'Marchés Desservis',de:'Bediente Märkte',es:'Mercados Atendidos'},
+            blog_why_title:{en:'Why Source from Turkey?',it:'Perché Acquistare dalla Turchia?',fr:'Pourquoi S\'approvisionner en Turquie ?',de:'Warum aus der Türkei beziehen?',es:'¿Por Qué Comprar desde Turquía?'},
+            blog_why_1:{en:'Geographic proximity to European markets',it:'Vicinanza geografica ai mercati europei',fr:'Proximité géographique des marchés européens',de:'Geografische Nähe zu europäischen Märkten',es:'Proximidad geográfica a los mercados europeos'},
+            blog_why_2:{en:'Premium wool, jacquard & velvet fabrics',it:'Tessuti premium in lana, jacquard e velluto',fr:'Tissus premium en laine, jacquard et velours',de:'Premium Wolle, Jacquard- & Samtstoffe',es:'Tejidos premium de lana, jacquard y terciopelo'},
+            blog_why_3:{en:'EU customs union — reduced tariffs',it:'Unione doganale UE — tariffe ridotte',fr:'Union douanière UE — droits réduits',de:'EU-Zollunion — reduzierte Zölle',es:'Unión aduanera UE — aranceles reducidos'},
+            blog_why_4:{en:'Full private label manufacturing',it:'Produzione private label completa',fr:'Fabrication marque privée complète',de:'Vollständige Eigenmarken-Fertigung',es:'Fabricación completa de marca privada'},
+            blog_why_5:{en:'30–45% cost savings vs domestic production',it:'Risparmio del 30–45% rispetto alla produzione nazionale',fr:'Économies de 30–45% vs production locale',de:'30–45% Kostenersparnis vs. Inlandsproduktion',es:'Ahorro del 30–45% vs producción nacional'},
+            blog_what_title:{en:'What We Manufacture',it:'Cosa Produciamo',fr:'Ce Que Nous Fabriquons',de:'Was Wir Herstellen',es:'Lo Que Fabricamos'},
+            blog_what_1:{en:'Wedding & ceremony suits',it:'Abiti da matrimonio e cerimonia',fr:'Costumes de mariage et cérémonie',de:'Hochzeits- & Festanzüge',es:'Trajes de boda y ceremonia'},
+            blog_what_2:{en:'Tuxedos & black tie formalwear',it:'Smoking e abbigliamento da black tie',fr:'Smokings et tenues de soirée',de:'Smokings & Black-Tie-Kleidung',es:'Esmóquines y ropa de etiqueta'},
+            blog_what_3:{en:'Prom & graduation jackets',it:'Giacche per balli e lauree',fr:'Vestes de bal et de remise de diplômes',de:'Abschlussball- & Abschlussjacken',es:'Chaquetas de graduación y gala'},
+            blog_what_4:{en:'Business suits & corporate formalwear',it:'Abiti business e abbigliamento aziendale',fr:'Costumes business et tenues d\'entreprise',de:'Business-Anzüge & Firmenkleidung',es:'Trajes de negocios y ropa corporativa'},
+            blog_what_5:{en:'Private label with custom labels & packaging',it:'Private label con etichette e packaging personalizzati',fr:'Marque privée avec étiquettes et emballages personnalisés',de:'Eigenmarke mit individuellen Etiketten & Verpackung',es:'Marca privada con etiquetas y empaque personalizados'},
+            blog_cta_title:{en:'Ready to Start Wholesale Sourcing?',it:'Pronti per Iniziare l\'Approvvigionamento all\'Ingrosso?',fr:'Prêt à Commencer l\'Approvisionnement en Gros ?',de:'Bereit für den Großhandels-Einkauf?',es:'¿Listo para Comenzar la Compra al por Mayor?'},
+            blog_cta_desc:{en:'Contact our B2B team to request a catalogue, pricing sheet, or fabric samples.',it:'Contattate il nostro team B2B per richiedere catalogo, listino prezzi o campioni di tessuto.',fr:'Contactez notre équipe B2B pour demander un catalogue, une grille tarifaire ou des échantillons de tissus.',de:'Kontaktieren Sie unser B2B-Team für Katalog, Preisliste oder Stoffmuster.',es:'Contacte a nuestro equipo B2B para solicitar catálogo, lista de precios o muestras de tela.'},
+            blog_cta_btn:{en:'Contact B2B Team',it:'Contatta il Team B2B',fr:'Contacter l\'Équipe B2B',de:'B2B-Team Kontaktieren',es:'Contactar Equipo B2B'},
+            // LOGISTICS SECTION
+            logi_partners:{en:'Logistics Partners',it:'Partner Logistici',fr:'Partenaires Logistiques',de:'Logistikpartner',es:'Socios Logísticos'},
+            logi_title:{en:'Fast & Reliable<br>Worldwide Shipping',it:'Spedizione Veloce e Affidabile<br>in Tutto il Mondo',fr:'Expédition Rapide et Fiable<br>dans le Monde Entier',de:'Schneller & Zuverlässiger<br>Weltweiter Versand',es:'Envío Rápido y Confiable<br>a Todo el Mundo'},
+            logi_desc:{en:'All wholesale orders shipped via certified express carriers with full tracking and export documentation.',it:'Tutti gli ordini all\'ingrosso spediti tramite corrieri espressi certificati con tracciamento completo e documentazione di esportazione.',fr:'Toutes les commandes en gros expédiées via des transporteurs express certifiés avec suivi complet et documentation d\'exportation.',de:'Alle Großhandelsbestellungen über zertifizierte Expresskuriere mit vollständiger Sendungsverfolgung und Exportdokumentation.',es:'Todos los pedidos al por mayor enviados a través de transportistas exprés certificados con seguimiento completo y documentación de exportación.'},
+            logi_express:{en:'Express',it:'Espresso',fr:'Express',de:'Express',es:'Exprés'},
+            logi_international:{en:'International',it:'Internazionale',fr:'International',de:'International',es:'Internacional'},
+            logi_worldwide:{en:'Worldwide',it:'Mondiale',fr:'Mondial',de:'Weltweit',es:'Mundial'},
+            // FULLSCREEN HINTS
+            fs_zoom_desktop:{en:'Scroll to zoom · Double-click to reset',it:'Scorri per ingrandire · Doppio clic per ripristinare',fr:'Défiler pour zoomer · Double-clic pour réinitialiser',de:'Scrollen zum Zoomen · Doppelklick zum Zurücksetzen',es:'Desplaza para hacer zoom · Doble clic para restablecer'},
+            fs_zoom_mobile:{en:'Pinch to zoom · Double-tap to reset',it:'Pizzica per ingrandire · Doppio tocco per ripristinare',fr:'Pincer pour zoomer · Double-tap pour réinitialiser',de:'Pinch zum Zoomen · Doppeltippen zum Zurücksetzen',es:'Pellizca para hacer zoom · Doble toque para restablecer'}
         };
 
         function t(key){return(I18N[key]&&I18N[key][LANG])||((I18N[key]&&I18N[key]['en'])||key);}
@@ -2284,7 +2332,7 @@
             document.querySelectorAll('[data-t]').forEach(function(el){
                 var key=el.getAttribute('data-t');
                 if(I18N[key]&&I18N[key][LANG]){
-                    if(key==='cookie_text'||key==='ft_why_text') el.innerHTML=I18N[key][LANG];
+                    if(key==='cookie_text'||key==='ft_why_text'||key==='blog_title'||key==='logi_title') el.innerHTML=I18N[key][LANG];
                     else el.textContent=I18N[key][LANG];
                 }
             });
@@ -2316,6 +2364,7 @@
             localStorage.setItem('pagusLang',lang);
             applyLanguage();
             // Refresh dynamic JS-rendered content
+            if(typeof renderCartPanel==='function') renderCartPanel();
             if(typeof refreshPriceDisplays==='function') refreshPriceDisplays();
             // Re-render current view if on a category/subcategory page
             var up=new URLSearchParams(window.location.search);
@@ -2901,9 +2950,9 @@
             var sub=document.getElementById('cartPanelSub');
             var note=document.getElementById('cartPanelNote');
             var actions=document.getElementById('cartPanelActions');
-            sub.innerText=PAGUS.state.cart.length+' model'+(PAGUS.state.cart.length!==1?'s':'')+' selected';
+            sub.innerText=PAGUS.state.cart.length+' '+(PAGUS.state.cart.length!==1?t('cart_models_p'):t('cart_models_s'));
             if(PAGUS.state.cart.length===0){
-                items.innerHTML='<div class="cart-panel-empty"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>No items selected</p><small>Browse catalogue to add models</small></div>';
+                items.innerHTML='<div class="cart-panel-empty"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>'+t('cart_empty_title')+'</p><small>'+t('cart_empty_desc')+'</small></div>';
                 note.style.display='none';
                 actions.style.display='none';
             } else {
@@ -3121,7 +3170,7 @@
             var hint=document.getElementById('fsZoomHint');
             if(hint){
                 var isMobile='ontouchstart' in window;
-                hint.textContent=isMobile?'👌 Pinch to zoom · Double-tap to reset':'🔍 Scroll to zoom · Double-click to reset';
+                hint.textContent=isMobile?'👌 '+t('fs_zoom_mobile'):'🔍 '+t('fs_zoom_desktop');
                 hint.style.opacity='1';
                 setTimeout(function(){hint.style.opacity='0';},2500);
             }
