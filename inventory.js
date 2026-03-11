@@ -1,141 +1,39 @@
 const productsDB = [
     {
-        "id": "10003-01",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10003-01",
-        "focal_y": 30
-    },
-    {
-        "id": "10003-05",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10003-05",
-        "focal_y": 25
-    },
-    {
-        "id": "10005-43",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10005-43",
-        "focal_y": 31
-    },
-    {
-        "id": "10019-01",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10019-01",
-        "focal_y": 23
-    },
-    {
-        "id": "10019-03",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10019-03",
-        "focal_y": 31
-    },
-    {
-        "id": "10019-14",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10019-14",
-        "focal_y": 29
-    },
-    {
-        "id": "10019-17",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10019-17",
-        "focal_y": 25
-    },
-    {
-        "id": "10019-24",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10019-24",
-        "focal_y": 32
-    },
-    {
-        "id": "10022-01",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10022-01",
-        "focal_y": 12
-    },
-    {
-        "id": "10022-03",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10022-03",
-        "focal_y": 16
-    },
-    {
-        "id": "10022-14",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10022-14",
-        "focal_y": 30
-    },
-    {
-        "id": "10022-24",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/10022-24",
-        "focal_y": 50
-    },
-    {
-        "id": "11070-03",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/11070-03",
-        "focal_y": 7
-    },
-    {
-        "id": "15148-05",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/15148-05",
-        "focal_y": 34
-    },
-    {
-        "id": "15148-06",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/15148-06",
-        "focal_y": 47
-    },
-    {
-        "id": "15148-14",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/15148-14",
-        "focal_y": 24
-    },
-    {
-        "id": "15148-17",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/15148-17",
-        "focal_y": 9
-    },
-    {
-        "id": "15148-42",
-        "category": "Formal Suits > Casual Wear",
-        "path": "images/Formal Suits/Casual Wear/15148-42",
-        "focal_y": 28
+        "id": "Casual Wear",
+        "category": "Formal Suits",
+        "path": "images/Formal Suits/Casual Wear",
+        "focal_y": 20
     },
     {
         "id": "15057-01",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15057-01",
-        "focal_y": 32
+        "focal_y": 38
     },
     {
         "id": "15057-02",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15057-02",
-        "focal_y": 27
+        "focal_y": 50
     },
     {
         "id": "15057-06",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15057-06",
-        "focal_y": 24
+        "focal_y": 41
     },
     {
         "id": "15057-10",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15057-10",
-        "focal_y": 17
+        "focal_y": 15
     },
     {
         "id": "15094-05",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15094-05",
-        "focal_y": 10
+        "focal_y": 39
     },
     {
         "id": "15094-06",
@@ -147,13 +45,13 @@ const productsDB = [
         "id": "15094-17",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15094-17",
-        "focal_y": 38
+        "focal_y": 50
     },
     {
         "id": "15094-24",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15094-24",
-        "focal_y": 20
+        "focal_y": 50
     },
     {
         "id": "15095-02",
@@ -165,7 +63,7 @@ const productsDB = [
         "id": "15095-03",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15095-03",
-        "focal_y": 27
+        "focal_y": 30
     },
     {
         "id": "15095-04",
@@ -177,73 +75,73 @@ const productsDB = [
         "id": "15095-05",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15095-05",
-        "focal_y": 50
+        "focal_y": 28
     },
     {
         "id": "15095-06",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15095-06",
-        "focal_y": 50
+        "focal_y": 28
     },
     {
         "id": "15095-17",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15095-17",
-        "focal_y": 29
+        "focal_y": 28
     },
     {
         "id": "15095-24",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15095-24",
-        "focal_y": 50
+        "focal_y": 29
     },
     {
         "id": "15095-42",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15095-42",
-        "focal_y": 47
+        "focal_y": 39
     },
     {
         "id": "15095-52",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15095-52",
-        "focal_y": 29
+        "focal_y": 28
     },
     {
         "id": "15097-01",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15097-01",
-        "focal_y": 40
+        "focal_y": 41
     },
     {
         "id": "15097-02",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15097-02",
-        "focal_y": 16
+        "focal_y": 28
     },
     {
         "id": "15097-06",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15097-06",
-        "focal_y": 50
+        "focal_y": 30
     },
     {
         "id": "15103-01",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15103-01",
-        "focal_y": 33
+        "focal_y": 17
     },
     {
         "id": "15103-02",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15103-02",
-        "focal_y": 31
+        "focal_y": 38
     },
     {
         "id": "15103-04",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15103-04",
-        "focal_y": 16
+        "focal_y": 27
     },
     {
         "id": "15104-03",
@@ -255,13 +153,13 @@ const productsDB = [
         "id": "15125-42",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15125-42",
-        "focal_y": 15
+        "focal_y": 30
     },
     {
         "id": "15127-02",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15127-02",
-        "focal_y": 31
+        "focal_y": 15
     },
     {
         "id": "15128-02",
@@ -279,19 +177,19 @@ const productsDB = [
         "id": "15128-24",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15128-24",
-        "focal_y": 50
+        "focal_y": 31
     },
     {
         "id": "15169-01",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15169-01",
-        "focal_y": 25
+        "focal_y": 18
     },
     {
         "id": "15169-02",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15169-02",
-        "focal_y": 30
+        "focal_y": 29
     },
     {
         "id": "15169-06",
@@ -303,25 +201,25 @@ const productsDB = [
         "id": "15169-17",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15169-17",
-        "focal_y": 26
+        "focal_y": 44
     },
     {
         "id": "15170-02",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15170-02",
-        "focal_y": 26
+        "focal_y": 15
     },
     {
         "id": "15170-04",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15170-04",
-        "focal_y": 9
+        "focal_y": 17
     },
     {
         "id": "15170-05",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15170-05",
-        "focal_y": 33
+        "focal_y": 32
     },
     {
         "id": "15170-17",
@@ -333,13 +231,13 @@ const productsDB = [
         "id": "15170-24",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15170-24",
-        "focal_y": 25
+        "focal_y": 30
     },
     {
         "id": "15173-04",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15173-04",
-        "focal_y": 28
+        "focal_y": 50
     },
     {
         "id": "15173-05",
@@ -369,61 +267,61 @@ const productsDB = [
         "id": "15119-02",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-02",
-        "focal_y": 29
+        "focal_y": 31
     },
     {
         "id": "15119-03",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-03",
-        "focal_y": 50
+        "focal_y": 5
     },
     {
         "id": "15119-04",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-04",
-        "focal_y": 16
+        "focal_y": 36
     },
     {
         "id": "15119-05",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-05",
-        "focal_y": 29
+        "focal_y": 31
     },
     {
         "id": "15119-14",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-14",
-        "focal_y": 16
+        "focal_y": 35
     },
     {
         "id": "15119-17",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-17",
-        "focal_y": 28
+        "focal_y": 16
     },
     {
         "id": "15119-24",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-24",
-        "focal_y": 35
+        "focal_y": 15
     },
     {
         "id": "15119-32",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-32",
-        "focal_y": 50
+        "focal_y": 35
     },
     {
         "id": "15119-43",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-43",
-        "focal_y": 16
+        "focal_y": 14
     },
     {
         "id": "15136-01",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15136-01",
-        "focal_y": 11
+        "focal_y": 17
     },
     {
         "id": "15136-14",
@@ -435,13 +333,13 @@ const productsDB = [
         "id": "15136-43",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15136-43",
-        "focal_y": 26
+        "focal_y": 50
     },
     {
         "id": "15136-46",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15136-46",
-        "focal_y": 24
+        "focal_y": 21
     },
     {
         "id": "15137-06",
@@ -453,13 +351,13 @@ const productsDB = [
         "id": "15138-05",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15138-05",
-        "focal_y": 50
+        "focal_y": 10
     },
     {
         "id": "15140-01",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15140-01",
-        "focal_y": 31
+        "focal_y": 16
     },
     {
         "id": "15140-02",
@@ -471,7 +369,7 @@ const productsDB = [
         "id": "15140-04",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15140-04",
-        "focal_y": 14
+        "focal_y": 7
     },
     {
         "id": "15141-02",
@@ -489,7 +387,7 @@ const productsDB = [
         "id": "15142-01",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15142-01",
-        "focal_y": 50
+        "focal_y": 31
     },
     {
         "id": "15142-02",
@@ -501,25 +399,25 @@ const productsDB = [
         "id": "15142-03",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15142-03",
-        "focal_y": 26
+        "focal_y": 43
     },
     {
         "id": "15143-02",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15143-02",
-        "focal_y": 23
+        "focal_y": 5
     },
     {
         "id": "15143-03",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15143-03",
-        "focal_y": 30
+        "focal_y": 44
     },
     {
         "id": "15143-04",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15143-04",
-        "focal_y": 34
+        "focal_y": 29
     },
     {
         "id": "15143-17",
@@ -531,31 +429,31 @@ const productsDB = [
         "id": "15144-03",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15144-03",
-        "focal_y": 15
+        "focal_y": 43
     },
     {
         "id": "15144-10",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15144-10",
-        "focal_y": 31
+        "focal_y": 50
     },
     {
         "id": "15147-03",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15147-03",
-        "focal_y": 30
+        "focal_y": 50
     },
     {
         "id": "15147-04",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15147-04",
-        "focal_y": 25
+        "focal_y": 23
     },
     {
         "id": "15147-05",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15147-05",
-        "focal_y": 5
+        "focal_y": 34
     },
     {
         "id": "15147-17",
@@ -573,37 +471,37 @@ const productsDB = [
         "id": "15149-03",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15149-03",
-        "focal_y": 28
+        "focal_y": 26
     },
     {
         "id": "15149-06",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15149-06",
-        "focal_y": 12
+        "focal_y": 16
     },
     {
         "id": "15151-03",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15151-03",
-        "focal_y": 36
+        "focal_y": 50
     },
     {
         "id": "15151-04",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15151-04",
-        "focal_y": 30
+        "focal_y": 29
     },
     {
         "id": "15151-14",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15151-14",
-        "focal_y": 35
+        "focal_y": 32
     },
     {
         "id": "15151-17",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15151-17",
-        "focal_y": 24
+        "focal_y": 25
     },
     {
         "id": "15151-24",
@@ -615,7 +513,7 @@ const productsDB = [
         "id": "15153-03",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15153-03",
-        "focal_y": 34
+        "focal_y": 17
     },
     {
         "id": "15153-14",
@@ -627,37 +525,37 @@ const productsDB = [
         "id": "15153-24",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15153-24",
-        "focal_y": 36
+        "focal_y": 21
     },
     {
         "id": "15154-02",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15154-02",
-        "focal_y": 26
+        "focal_y": 14
     },
     {
         "id": "15154-17",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15154-17",
-        "focal_y": 30
+        "focal_y": 5
     },
     {
         "id": "15158-02",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15158-02",
-        "focal_y": 18
+        "focal_y": 5
     },
     {
         "id": "15167-02",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15167-02",
-        "focal_y": 5
+        "focal_y": 50
     },
     {
         "id": "15167-03",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15167-03",
-        "focal_y": 36
+        "focal_y": 50
     },
     {
         "id": "15167-04",
@@ -669,7 +567,7 @@ const productsDB = [
         "id": "15167-17",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15167-17",
-        "focal_y": 12
+        "focal_y": 30
     },
     {
         "id": "15097-14",
@@ -687,13 +585,13 @@ const productsDB = [
         "id": "15097-24",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15097-24",
-        "focal_y": 36
+        "focal_y": 5
     },
     {
         "id": "15105-05",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15105-05",
-        "focal_y": 30
+        "focal_y": 50
     },
     {
         "id": "15105-17",
@@ -711,7 +609,7 @@ const productsDB = [
         "id": "15105-32",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15105-32",
-        "focal_y": 35
+        "focal_y": 14
     },
     {
         "id": "15117-03",
@@ -891,7 +789,7 @@ const productsDB = [
         "id": "15130-02",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15130-02",
-        "focal_y": 50
+        "focal_y": 23
     },
     {
         "id": "15130-03",
@@ -921,7 +819,7 @@ const productsDB = [
         "id": "15131-06",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15131-06",
-        "focal_y": 17
+        "focal_y": 50
     },
     {
         "id": "15131-43",
@@ -975,7 +873,7 @@ const productsDB = [
         "id": "15156-02",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15156-02",
-        "focal_y": 50
+        "focal_y": 14
     },
     {
         "id": "15156-17",
@@ -1011,7 +909,7 @@ const productsDB = [
         "id": "15165-02",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15165-02",
-        "focal_y": 50
+        "focal_y": 21
     },
     {
         "id": "15165-14",
@@ -1048,12 +946,6 @@ const productsDB = [
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15168-17",
         "focal_y": 11
-    },
-    {
-        "id": "20010-24",
-        "category": "Jackets",
-        "path": "images/Jackets/20010-24",
-        "focal_y": 44
     },
     {
         "id": "50056-02",
@@ -1155,7 +1047,7 @@ const productsDB = [
         "id": "50071-02",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50071-02",
-        "focal_y": 15
+        "focal_y": 32
     },
     {
         "id": "50071-08",
@@ -1194,28 +1086,10 @@ const productsDB = [
         "focal_y": 44
     },
     {
-        "id": "50200-14",
-        "category": "Wedding Suits > Mandarin Collar Suits",
-        "path": "images/Wedding Suits/Mandarin Collar Suits/50200-14",
-        "focal_y": 11
-    },
-    {
-        "id": "50200-42",
-        "category": "Wedding Suits > Mandarin Collar Suits",
-        "path": "images/Wedding Suits/Mandarin Collar Suits/50200-42",
-        "focal_y": 13
-    },
-    {
         "id": "50201-1 koyu siyah",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50201-1 koyu siyah",
-        "focal_y": 44
-    },
-    {
-        "id": "50201-24",
-        "category": "Wedding Suits > Mandarin Collar Suits",
-        "path": "images/Wedding Suits/Mandarin Collar Suits/50201-24",
-        "focal_y": 43
+        "focal_y": 50
     },
     {
         "id": "50206-01",
@@ -1257,13 +1131,7 @@ const productsDB = [
         "id": "AGM801L-09 (1)",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/AGM801L-09 (1)",
-        "focal_y": 50
-    },
-    {
-        "id": "50003-01",
-        "category": "Wedding Suits > Peak Lapel Smokings",
-        "path": "images/Wedding Suits/Peak Lapel Smokings/50003-01",
-        "focal_y": 5
+        "focal_y": 18
     },
     {
         "id": "50052-22",
@@ -1275,12 +1143,6 @@ const productsDB = [
         "id": "50072-03",
         "category": "Wedding Suits > Peak Lapel Smokings",
         "path": "images/Wedding Suits/Peak Lapel Smokings/50072-03",
-        "focal_y": 45
-    },
-    {
-        "id": "50073-06",
-        "category": "Wedding Suits > Peak Lapel Smokings",
-        "path": "images/Wedding Suits/Peak Lapel Smokings/50073-06",
         "focal_y": 45
     },
     {
@@ -1353,7 +1215,7 @@ const productsDB = [
         "id": "50113-6",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50113-6",
-        "focal_y": 10
+        "focal_y": 50
     },
     {
         "id": "50114-3",
@@ -1374,12 +1236,6 @@ const productsDB = [
         "focal_y": 29
     },
     {
-        "id": "50123-2",
-        "category": "Wedding Suits > Shawl Collar Smokings",
-        "path": "images/Wedding Suits/Shawl Collar Smokings/50123-2",
-        "focal_y": 50
-    },
-    {
         "id": "50125-2",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50125-2",
@@ -1389,7 +1245,7 @@ const productsDB = [
         "id": "50128-43",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50128-43",
-        "focal_y": 50
+        "focal_y": 46
     },
     {
         "id": "50130-02",
