@@ -51,7 +51,7 @@ const productsDB = [
         "id": "10022-01",
         "category": "Formal Suits > Casual Wear",
         "path": "images/Formal Suits/Casual Wear/10022-01",
-        "focal_y": 23
+        "focal_y": 12
     },
     {
         "id": "10022-03",
@@ -189,7 +189,7 @@ const productsDB = [
         "id": "15095-17",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15095-17",
-        "focal_y": 50
+        "focal_y": 29
     },
     {
         "id": "15095-24",
@@ -255,7 +255,7 @@ const productsDB = [
         "id": "15125-42",
         "category": "Formal Suits > Notch Lapel",
         "path": "images/Formal Suits/Notch Lapel/15125-42",
-        "focal_y": 38
+        "focal_y": 15
     },
     {
         "id": "15127-02",
@@ -381,7 +381,7 @@ const productsDB = [
         "id": "15119-04",
         "category": "Formal Suits > Peak Lapel One Button",
         "path": "images/Formal Suits/Peak Lapel One Button/15119-04",
-        "focal_y": 50
+        "focal_y": 16
     },
     {
         "id": "15119-05",
@@ -687,7 +687,7 @@ const productsDB = [
         "id": "15097-24",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15097-24",
-        "focal_y": 50
+        "focal_y": 36
     },
     {
         "id": "15105-05",
@@ -921,7 +921,7 @@ const productsDB = [
         "id": "15131-06",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15131-06",
-        "focal_y": 50
+        "focal_y": 17
     },
     {
         "id": "15131-43",
@@ -963,7 +963,7 @@ const productsDB = [
         "id": "15155-13",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15155-13",
-        "focal_y": 24
+        "focal_y": 50
     },
     {
         "id": "15156-01",
@@ -975,7 +975,7 @@ const productsDB = [
         "id": "15156-02",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15156-02",
-        "focal_y": 14
+        "focal_y": 50
     },
     {
         "id": "15156-17",
@@ -993,7 +993,7 @@ const productsDB = [
         "id": "15157-03",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15157-03",
-        "focal_y": 30
+        "focal_y": 50
     },
     {
         "id": "15157-05",
@@ -1005,7 +1005,7 @@ const productsDB = [
         "id": "15157-17",
         "category": "Formal Suits > Peak Lapel Two Buttons",
         "path": "images/Formal Suits/Peak Lapel Two Buttons/15157-17",
-        "focal_y": 19
+        "focal_y": 50
     },
     {
         "id": "15165-02",
@@ -1083,7 +1083,7 @@ const productsDB = [
         "id": "50056-10",
         "category": "Wedding Suits > Double Breasted Smokings",
         "path": "images/Wedding Suits/Double Breasted Smokings/50056-10",
-        "focal_y": 50
+        "focal_y": 42
     },
     {
         "id": "50120-06",
@@ -1197,7 +1197,7 @@ const productsDB = [
         "id": "50200-14",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50200-14",
-        "focal_y": 50
+        "focal_y": 11
     },
     {
         "id": "50200-42",
@@ -1209,7 +1209,7 @@ const productsDB = [
         "id": "50201-1 koyu siyah",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50201-1 koyu siyah",
-        "focal_y": 50
+        "focal_y": 44
     },
     {
         "id": "50201-24",
@@ -1227,7 +1227,7 @@ const productsDB = [
         "id": "50206-02",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/50206-02",
-        "focal_y": 50
+        "focal_y": 21
     },
     {
         "id": "AGM1142-02",
@@ -1251,7 +1251,7 @@ const productsDB = [
         "id": "AGM801L-09",
         "category": "Wedding Suits > Mandarin Collar Suits",
         "path": "images/Wedding Suits/Mandarin Collar Suits/AGM801L-09",
-        "focal_y": 33
+        "focal_y": 50
     },
     {
         "id": "AGM801L-09 (1)",
@@ -1317,7 +1317,7 @@ const productsDB = [
         "id": "50129-22",
         "category": "Wedding Suits > Peak Lapel Smokings",
         "path": "images/Wedding Suits/Peak Lapel Smokings/50129-22",
-        "focal_y": 50
+        "focal_y": 30
     },
     {
         "id": "50130-01",
@@ -1383,13 +1383,13 @@ const productsDB = [
         "id": "50125-2",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50125-2",
-        "focal_y": 13
+        "focal_y": 50
     },
     {
         "id": "50128-43",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/50128-43",
-        "focal_y": 46
+        "focal_y": 50
     },
     {
         "id": "50130-02",
@@ -1401,7 +1401,7 @@ const productsDB = [
         "id": "AGM 4043",
         "category": "Wedding Suits > Shawl Collar Smokings",
         "path": "images/Wedding Suits/Shawl Collar Smokings/AGM 4043",
-        "focal_y": 16
+        "focal_y": 50
     },
     {
         "id": "51005-03",
