@@ -593,7 +593,7 @@
         }
 
         var html = '<table class="users-table"><thead><tr>'
-            + '<th>Name</th><th>Email</th><th>Role</th><th>Registered</th><th>Action</th>'
+            + '<th>Name</th><th>Email</th><th>Role</th><th>Registered</th><th>Action</th><th>Email</th>'
             + '</tr></thead><tbody>';
 
         filtered.forEach(function(u){
@@ -610,6 +610,7 @@
                 + '<option value="vip"' + (role==='vip'?' selected':'') + '>VIP</option>'
                 + '<option value="admin"' + (role==='admin'?' selected':'') + '>Admin</option>'
                 + '</select></td>'
+                + '<td><button class="btn-gold" style="padding:6px 12px;font-size:0.7rem;" onclick="sendWelcomeToOne(\'' + escapeAttr(u.email) + '\',\'' + escapeAttr(u.displayName || '') + '\')">Send</button></td>'
                 + '</tr>';
         });
 
@@ -679,6 +680,21 @@
         }
 
         sendNext(0);
+    }
+
+    function sendWelcomeToOne(email, name){
+        if(!email){ adminToast('No email address.'); return; }
+        fetch('/api/send-welcome', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, name: name || email.split('@')[0] })
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+            if(data.success) adminToast('Welcome email sent to ' + email);
+            else adminToast('Failed: ' + (data.error || 'Unknown error'));
+        })
+        .catch(function(err){ adminToast('Error: ' + err.message); });
     }
 
     // ===================== STATS =====================
