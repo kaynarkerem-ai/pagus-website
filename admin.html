@@ -252,6 +252,7 @@
             <div class="panel" id="panelUsers">
                 <div class="pricing-controls" style="margin-bottom:20px;">
                     <input type="text" class="search-input" id="userSearch" placeholder="Search users..." oninput="renderUsersTable()">
+                    <button class="btn-gold" onclick="sendWelcomeToAll()" id="btnSendWelcome">Send Welcome Email to All</button>
                 </div>
                 <div id="usersTableContainer"></div>
             </div>
@@ -628,6 +629,56 @@
         }).catch(function(e){
             adminToast('Error: ' + e.message);
         });
+    }
+
+    // ===================== SEND WELCOME EMAIL =====================
+
+    function sendWelcomeToAll(){
+        if(!_allUsers || _allUsers.length === 0){
+            adminToast('No users loaded.');
+            return;
+        }
+
+        var usersWithEmail = _allUsers.filter(function(u){ return u.email; });
+        if(!confirm('Send welcome email to ' + usersWithEmail.length + ' users?\n\nThis will send WELCOME5 discount code to all registered users.')) return;
+
+        var btn = document.getElementById('btnSendWelcome');
+        btn.disabled = true;
+        var sent = 0;
+        var failed = 0;
+        var total = usersWithEmail.length;
+
+        function sendNext(i){
+            if(i >= total){
+                btn.disabled = false;
+                btn.textContent = 'Send Welcome Email to All';
+                adminToast('Done! Sent: ' + sent + ', Failed: ' + failed);
+                return;
+            }
+
+            var u = usersWithEmail[i];
+            btn.textContent = 'Sending ' + (i+1) + '/' + total + '...';
+
+            fetch('/api/send-welcome', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: u.email, name: u.displayName || u.email.split('@')[0] })
+            })
+            .then(function(r){ return r.json(); })
+            .then(function(data){
+                if(data.success) sent++;
+                else failed++;
+            })
+            .catch(function(){
+                failed++;
+            })
+            .finally(function(){
+                // Small delay to avoid rate limiting
+                setTimeout(function(){ sendNext(i+1); }, 500);
+            });
+        }
+
+        sendNext(0);
     }
 
     // ===================== STATS =====================
