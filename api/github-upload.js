@@ -57,7 +57,7 @@ module.exports = async function handler(req, res) {
         if (sha) body.sha = sha; // for updating existing file
 
         const result = await githubRequest(
-            '/repos/' + OWNER + '/' + REPO + '/contents/' + encodeURIComponent(path).replace(/%2F/g, '/'),
+            '/repos/' + OWNER + '/' + REPO + '/contents/' + path.split('/').map(function(s){ return encodeURIComponent(s); }).join('/'),
             'PUT',
             body
         );

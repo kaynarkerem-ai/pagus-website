@@ -50,7 +50,8 @@ module.exports = async function handler(req, res) {
     if (!filePath) return res.status(400).json({ error: 'path parameter required' });
 
     try {
-        const result = await githubRequest('/repos/' + OWNER + '/' + REPO + '/contents/' + encodeURIComponent(filePath).replace(/%2F/g, '/'));
+        const encodedPath = filePath.split('/').map(function(s){ return encodeURIComponent(s); }).join('/');
+        const result = await githubRequest('/repos/' + OWNER + '/' + REPO + '/contents/' + encodedPath);
 
         if (result.status !== 200) {
             return res.status(result.status).json({ error: 'GitHub API error', detail: result.data });
