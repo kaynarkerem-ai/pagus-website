@@ -4,7 +4,7 @@
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const FROM_EMAIL     = "PAGUS Menswear <sales@pagusmenswear.com>";
 const SITE_URL       = "https://www.pagusmenswear.com";
-const DISCOUNT_CODE  = "PAGUS-MAR5";
+const DISCOUNT_CODE  = "WELCOME5";
 
 export default async function handler(req, res) {
 
@@ -87,7 +87,7 @@ function buildEmailHTML(name) {
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
           <td style="font-family:'Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:9px;letter-spacing:6px;color:#2c1810;text-transform:uppercase;">Member Registration Confirmed</td>
-          <td align="right" style="font-family:'Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:9px;letter-spacing:6px;color:#2c1810;text-transform:uppercase;">March 2025</td>
+          <td align="right" style="font-family:'Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:9px;letter-spacing:6px;color:#2c1810;text-transform:uppercase;">${new Date().toLocaleDateString('en-US', {month:'long', year:'numeric'})}</td>
         </tr>
       </table>
     </td>
@@ -102,7 +102,7 @@ function buildEmailHTML(name) {
         Your registration with PAGUS Menswear has been confirmed. We handcraft premium suits, tuxedos and ceremony wear for Europe's finest retailers — and we are delighted to welcome you into our wholesale family.
       </p>
       <p style="font-family:Georgia,serif;font-size:16px;color:#5a3e2b;line-height:1.78;margin:16px 0 0;">
-        As a gesture of welcome, we have reserved a special discount for all accounts registered this March.
+        As a gesture of welcome, here is your one-time 5% discount on your first order.
       </p>
     </td>
   </tr>
