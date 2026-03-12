@@ -2850,7 +2850,7 @@
             document.getElementById('back').style.display="none";
             document.getElementById('infoGuide').style.display="none";
 
-            var ss=[...new Set(catProducts.map(function(p){return p.subCat;}))];
+            var ss=[...new Set(catProducts.map(function(p){return p.subCat;}))].filter(function(s){return s!=='General';});
 
             if(ss.length===0){
                 document.getElementById('pGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:#999;padding:50px;">'+t('collection_updating')+'</div>';
