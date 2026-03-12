@@ -54,6 +54,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap">
+    <link rel="preload" as="image" href="images/showcase_hero.webp" type="image/webp">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
     <style>
@@ -469,6 +470,30 @@
         .showcase-hero-img { width: calc(100% - 40px); display: block; max-height: 600px; object-fit: cover; object-position: center; border-radius: 6px; margin: 20px auto 0; max-width: var(--site-max-width); }
         @media (max-width: 768px) { .showcase-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; } .showcase-hero-img { width: calc(100% - 24px); margin: 12px auto 0; max-height: 300px; } .showcase-overlay span { font-size: 0.8rem; letter-spacing: 1px; } .showcase-overlay { padding: 15px 15px 30px; } }
     </style>
+    <!-- GA4 + Meta Pixel — 3s deferred load for page speed -->
+    <script>
+    setTimeout(function(){
+        // GA4
+        var gs=document.createElement('script');
+        gs.src='https://www.googletagmanager.com/gtag/js?id=G-LH226CNNXE';
+        gs.async=true;
+        document.head.appendChild(gs);
+        gs.onload=function(){
+            window.dataLayer=window.dataLayer||[];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js',new Date());
+            gtag('config','G-LH226CNNXE');
+        };
+        // Meta Pixel
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+        (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init','1678419456661968');
+        fbq('track','PageView');
+    },3000);
+    </script>
 </head>
 <body>
     <!-- SVG SPRITE — single source for social icons -->
@@ -519,6 +544,7 @@
                 <li><a href="?category=Children">Children</a></li>
                 <li><a href="?category=Jackets">Jackets</a></li>
                 <li><a href="?category=Discounted Products">Discounted Products</a></li>
+                <li><a href="?page=contact" class="nav-badge" onclick="event.preventDefault();openContactModal();" data-t="nav_contact">Contact</a></li>
         </ul></nav>
     </div></header>
 
@@ -532,7 +558,7 @@
 
     <!-- SHOWCASE -->
     <section class="showcase-section" id="showcaseSection">
-        <img src="images/showcase_hero.webp" alt="PAGUS Collection" class="showcase-hero-img">
+        <img src="images/showcase_hero.webp" alt="PAGUS Menswear — Wholesale Men's Suits Collection from Turkey" class="showcase-hero-img" width="1400" height="600" fetchpriority="high">
         <div class="showcase-grid" id="showcaseGrid"></div>
     </section>
     
@@ -552,7 +578,7 @@
     
     <section class="page-title-area" id="pageTitleArea" style="display:none;">
         <div id="back" class="back-btn" onclick="goBack()" style="display:none;">&#8592; <span data-t="back_btn">BACK</span></div>
-        <h1 class="cat-title" id="pTitle" data-t="collection">COLLECTION</h1>
+        <h1 class="cat-title" id="pTitle" data-t="collection">Wholesale Men's Suits & Formalwear Collection</h1>
         <div class="info-guide" id="infoGuide"><span>&#128161;</span><b id="guideText" data-t="guide_tap">Tap heart to create list.</b></div>
     </section>
     <div class="grid" id="pGrid"><div style="grid-column:1/-1; text-align:center; padding:50px; color:#999;" data-t="loading">Loading Collection...</div></div>
@@ -2030,7 +2056,7 @@
             stat_partners:{en:'Active Partners',it:'Partner Attivi',fr:'Partenaires Actifs',de:'Aktive Partner',es:'Socios Activos'},
             // PAGE
             back_btn:{en:'BACK',it:'INDIETRO',fr:'RETOUR',de:'ZURÜCK',es:'VOLVER'},
-            collection:{en:'COLLECTION',it:'COLLEZIONE',fr:'COLLECTION',de:'KOLLEKTION',es:'COLECCIÓN'},
+            collection:{en:'Wholesale Men\'s Suits & Formalwear Collection',it:'Collezione Abiti Uomo all\'Ingrosso',fr:'Collection Costumes Homme en Gros',de:'Herrenanzüge Großhandel Kollektion',es:'Colección Trajes Hombre al por Mayor'},
             guide_tap:{en:'Click + on any product to add to your wish list.',it:'Clicca + su un prodotto per aggiungerlo alla wish list.',fr:'Cliquez sur + pour ajouter un produit à votre wish list.',de:'Klicken Sie auf +, um ein Produkt zur Wunschliste hinzuzufügen.',es:'Haz clic en + para añadir un producto a tu lista de deseos.'},
             loading:{en:'Loading Collection...',it:'Caricamento Collezione...',fr:'Chargement de la Collection...',de:'Kollektion wird geladen...',es:'Cargando Colección...'},
             // PRIVATE LABEL
@@ -3581,8 +3607,17 @@
     })();
     </script>
 
-    <!-- Chatling AI Chatbot -->
-    <script>window.chtlConfig = { chatbotId: "1894737114" }</script>
-    <script async data-id="1894737114" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+    <!-- Chatling AI Chatbot — 5s deferred load -->
+    <script>
+    setTimeout(function(){
+        window.chtlConfig = { chatbotId: "1894737114" };
+        var cs=document.createElement('script');
+        cs.async=true;
+        cs.setAttribute('data-id','1894737114');
+        cs.id='chtl-script';
+        cs.src='https://chatling.ai/js/embed.js';
+        document.body.appendChild(cs);
+    },5000);
+    </script>
 </body>
 </html>
