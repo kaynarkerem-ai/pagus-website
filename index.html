@@ -2859,7 +2859,7 @@
             }
 
             document.getElementById('pGrid').innerHTML=ss.map(function(s){
-                var cv=(PAGUS.index.bySubCat[s]||[])[0];
+                var cv=(PAGUS.index.bySubCat[s]||[]).filter(function(p){return p.mainCat.toLowerCase()===catKey;})[0]||(PAGUS.index.bySubCat[s]||[])[0];
                 var ss2=escapeHTML(getCatDisplayName(s)||s);
                 var ip=escapeAttr(cv.folderPath)+'/1.webp';
                 var fy=safeFocalY(cv.focalY);
