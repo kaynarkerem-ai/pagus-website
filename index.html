@@ -143,9 +143,10 @@
         .img-box img.loaded { opacity: 1; }
         .card:hover img { transform: scale(1.05); }
         .info-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px; color: var(--color-noble); }
-        .size-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 6px; }
-        .size-badge { display: inline-block; min-width: 28px; padding: 2px 5px; font-size: 0.65rem; font-weight: 600; border-radius: 3px; text-align: center; font-family: var(--font-body); background: #e8e8e8; color: #bbb; }
-        .size-badge.in-stock { background: var(--color-noble); color: #fff; }
+        .modal-sizes-label { font-size: 0.8rem; font-weight: 700; color: var(--color-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-family: var(--font-body); }
+        .modal-sizes-row { display: flex; flex-wrap: wrap; gap: 6px; }
+        .modal-size-badge { display: inline-block; min-width: 32px; padding: 5px 8px; font-size: 0.8rem; font-weight: 600; border-radius: 4px; text-align: center; font-family: var(--font-body); border: 1.5px solid #ddd; color: #ccc; background: #fafafa; }
+        .modal-size-badge.in-stock { border-color: var(--color-noble); color: var(--color-noble); background: #fff; }
         .card-highlight { outline: 3px solid var(--color-gold); outline-offset: -3px; box-shadow: 0 0 20px rgba(201,169,98,0.4); animation: highlightPulse 2s ease-in-out; }
         @keyframes highlightPulse { 0%,100%{ box-shadow: 0 0 20px rgba(201,169,98,0.4); } 50%{ box-shadow: 0 0 35px rgba(201,169,98,0.7); } }
         .heart-btn { position: absolute; top: 10px; right: 10px; width: 35px; height: 35px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #2c3e50; cursor: pointer; z-index: 10; border: 1.5px solid rgba(44,62,80,0.15); transition: all 0.2s; }
@@ -743,6 +744,7 @@
             </div>
             <div class="side-info">
                 <h2 id="mCode" style="font-family:var(--font-display); font-size:2.5rem; margin:15px 0 10px;">CODE</h2>
+                <div id="modalSizes" style="margin-bottom:12px;"></div>
                 <div id="modalPriceArea" style="margin-bottom:15px;"></div>
                 <div class="badges"><div class="badge-item"><span class="badge-icon">🧵</span><span data-t="badge_fabric">Premium Fabric</span></div><div class="badge-item"><span class="badge-icon">🇹🇷</span><span data-t="badge_turkey">Made in Turkey</span></div><div class="badge-item"><span class="badge-icon">📦</span><span data-t="badge_wholesale">Wholesale Only</span></div></div>
                 <p style="color:#555; margin-bottom:40px; font-size:1rem;" data-t="modal_desc">Premium quality fabric available for bulk orders.</p>
@@ -1997,7 +1999,7 @@
             return null;
         }
 
-        function getSizeBadgesHTML(productCode){
+        function getModalSizesHTML(productCode){
             var sd=PAGUS.state.stockData;
             if(!sd) return '';
             var info=findStockEntry(productCode);
@@ -2005,14 +2007,13 @@
             var sizes=info.sizes;
             if(!sizes) return '';
             var keys=Object.keys(sizes);
-            // Filter out non-display keys for shirts
             var skipKeys={'Karışık':1,'3YAŞ':1,'5YAŞ':1,'7YAŞ':1,'9YAŞ':1,'11YAŞ':1};
-            var html='<div class="size-row">';
+            var html='<div class="modal-sizes-label">'+t('available_sizes')+'</div><div class="modal-sizes-row">';
             for(var k=0;k<keys.length;k++){
                 var sz=keys[k];
                 if(skipKeys[sz]) continue;
                 var qty=sizes[sz]||0;
-                html+='<span class="size-badge'+(qty>0?' in-stock':'')+'" title="'+(qty>0?qty+' '+t('in_stock'):t('out_of_stock'))+'">'+escapeHTML(sz)+'</span>';
+                html+='<span class="modal-size-badge'+(qty>0?' in-stock':'')+'">'+escapeHTML(sz)+'</span>';
             }
             html+='</div>';
             return html;
@@ -2209,8 +2210,7 @@
             view_collection:{en:'VIEW COLLECTION',it:'VEDI COLLEZIONE',fr:'VOIR LA COLLECTION',de:'KOLLEKTION ANSEHEN',es:'VER COLECCIÓN'},
             collection_updating:{en:'Collection is being updated...',it:'La collezione è in aggiornamento...',fr:'La collection est en cours de mise à jour...',de:'Kollektion wird aktualisiert...',es:'La colección se está actualizando...'},
             no_products:{en:'No products found.',it:'Nessun prodotto trovato.',fr:'Aucun produit trouvé.',de:'Keine Produkte gefunden.',es:'No se encontraron productos.'},
-            in_stock:{en:'in stock',it:'disponibile',fr:'en stock',de:'auf Lager',es:'en stock'},
-            out_of_stock:{en:'out of stock',it:'esaurito',fr:'rupture de stock',de:'nicht verfügbar',es:'agotado'},
+            available_sizes:{en:'Available Sizes',it:'Taglie Disponibili',fr:'Tailles Disponibles',de:'Verfügbare Größen',es:'Tallas Disponibles'},
             result_singular:{en:'result found',it:'risultato trovato',fr:'résultat trouvé',de:'Ergebnis gefunden',es:'resultado encontrado'},
             results_plural:{en:'results found',it:'risultati trovati',fr:'résultats trouvés',de:'Ergebnisse gefunden',es:'resultados encontrados'},
             results_for:{en:'for',it:'per',fr:'pour',de:'für',es:'para'},
@@ -2962,7 +2962,6 @@
                     +'<button class="heart-btn '+f+'" data-code="'+escapeAttr(p.realCode)+'" onclick="toggleCartSafe(event,this)" aria-label="'+ariaLabel+'">'+h+'</button>'
                     +'<div class="img-box"><img src="'+ip+'" style="object-position:center '+fy+'%;" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.parentElement.style.background=\'#ddd\';" alt="'+escapeAttr(p.realCode)+'"></div>'
                     +'<h3 class="info-title">'+escapeHTML(p.realCode)+'</h3>'
-                    +getSizeBadgesHTML(p.realCode)
                     +'<div data-price-id="'+escapeAttr(p.realCode)+'"></div></div>';
             }).join('');
             if(typeof refreshPriceDisplays==='function') refreshPriceDisplays();
@@ -3166,6 +3165,7 @@
             var m=document.getElementById('pModal');
             m.style.display="block";
             document.getElementById('mCode').textContent=r;
+            document.getElementById('modalSizes').innerHTML=getModalSizesHTML(r);
 
             var msg=t('wa_inquiry')+r;
             document.getElementById('wp').href='https://wa.me/'+PAGUS.config.whatsappNumber+'?text='+encodeURIComponent(msg);
