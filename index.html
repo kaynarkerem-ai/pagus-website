@@ -145,8 +145,7 @@
         .info-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 5px; color: var(--color-noble); }
         .modal-sizes-label { font-size: 0.8rem; font-weight: 700; color: var(--color-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-family: var(--font-body); }
         .modal-sizes-row { display: flex; flex-wrap: wrap; gap: 6px; }
-        .modal-size-badge { display: inline-block; min-width: 32px; padding: 5px 8px; font-size: 0.8rem; font-weight: 600; border-radius: 4px; text-align: center; font-family: var(--font-body); border: 1.5px solid #ddd; color: #ccc; background: #fafafa; }
-        .modal-size-badge.in-stock { border-color: var(--color-noble); color: var(--color-noble); background: #fff; }
+        .modal-size-badge { display: inline-block; padding: 5px 12px; font-size: 0.85rem; font-weight: 600; border-radius: 4px; text-align: center; font-family: var(--font-body); border: 1.5px solid var(--color-noble); color: var(--color-noble); background: #fff; }
         .card-highlight { outline: 3px solid var(--color-gold); outline-offset: -3px; box-shadow: 0 0 20px rgba(201,169,98,0.4); animation: highlightPulse 2s ease-in-out; }
         @keyframes highlightPulse { 0%,100%{ box-shadow: 0 0 20px rgba(201,169,98,0.4); } 50%{ box-shadow: 0 0 35px rgba(201,169,98,0.7); } }
         .heart-btn { position: absolute; top: 10px; right: 10px; width: 35px; height: 35px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #2c3e50; cursor: pointer; z-index: 10; border: 1.5px solid rgba(44,62,80,0.15); transition: all 0.2s; }
@@ -2006,17 +2005,17 @@
             if(!info) return '';
             var sizes=info.sizes;
             if(!sizes) return '';
-            var keys=Object.keys(sizes);
             var skipKeys={'Karışık':1,'3YAŞ':1,'5YAŞ':1,'7YAŞ':1,'9YAŞ':1,'11YAŞ':1};
-            var html='<div class="modal-sizes-label">'+t('available_sizes')+'</div><div class="modal-sizes-row">';
+            var inStock=[];
+            var keys=Object.keys(sizes);
             for(var k=0;k<keys.length;k++){
-                var sz=keys[k];
-                if(skipKeys[sz]) continue;
-                var qty=sizes[sz]||0;
-                html+='<span class="modal-size-badge'+(qty>0?' in-stock':'')+'">'+escapeHTML(sz)+'</span>';
+                if(skipKeys[keys[k]]) continue;
+                if(sizes[keys[k]]>0) inStock.push(keys[k]);
             }
-            html+='</div>';
-            return html;
+            if(inStock.length===0) return '';
+            var min=inStock[0], max=inStock[inStock.length-1];
+            var range=min===max?min:min+'-'+max;
+            return '<div class="modal-sizes-label">'+t('available_sizes')+'</div><div class="modal-sizes-row"><span class="modal-size-badge">'+range+'</span></div>';
         }
 
         var CAT_DISPLAY_NAMES_I18N={
