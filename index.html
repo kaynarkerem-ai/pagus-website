@@ -1980,10 +1980,28 @@
             });
         })();
 
+        function findStockEntry(code){
+            var sd=PAGUS.state.stockData;
+            if(!sd) return null;
+            if(sd[code]) return sd[code];
+            // Normalize: "50111-3" -> "50111-03" (pad color part with leading zero)
+            var dash=code.lastIndexOf('-');
+            if(dash>0){
+                var art=code.substring(0,dash);
+                var col=code.substring(dash+1);
+                // Try zero-padded
+                if(col.length===1) { var padded=art+'-0'+col; if(sd[padded]) return sd[padded]; }
+                // Try zero-stripped
+                if(col.length===2&&col[0]==='0') { var stripped=art+'-'+col[1]; if(sd[stripped]) return sd[stripped]; }
+            }
+            return null;
+        }
+
         function getSizeBadgesHTML(productCode){
             var sd=PAGUS.state.stockData;
-            if(!sd||!sd[productCode]) return '';
-            var info=sd[productCode];
+            if(!sd) return '';
+            var info=findStockEntry(productCode);
+            if(!info) return '';
             var sizes=info.sizes;
             if(!sizes) return '';
             var keys=Object.keys(sizes);
