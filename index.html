@@ -2006,16 +2006,28 @@
             var sizes=info.sizes;
             if(!sizes) return '';
             var skipKeys={'Karışık':1,'3YAŞ':1,'5YAŞ':1,'7YAŞ':1,'9YAŞ':1,'11YAŞ':1};
-            var inStock=[];
-            var keys=Object.keys(sizes);
-            for(var k=0;k<keys.length;k++){
-                if(skipKeys[keys[k]]) continue;
-                if(sizes[keys[k]]>0) inStock.push(keys[k]);
-            }
+            var allKeys=Object.keys(sizes).filter(function(k){return !skipKeys[k];});
+            var inStock=allKeys.filter(function(k){return sizes[k]>0;});
             if(inStock.length===0) return '';
-            var min=inStock[0], max=inStock[inStock.length-1];
-            var range=min===max?min:min+'-'+max;
-            return '<div class="modal-sizes-label">'+t('available_sizes')+'</div><div class="modal-sizes-row"><span class="modal-size-badge">'+range+'</span></div>';
+            // Group contiguous in-stock sizes into ranges
+            var ranges=[], start=inStock[0], prev=inStock[0];
+            for(var i=1;i<inStock.length;i++){
+                var prevIdx=allKeys.indexOf(prev);
+                var curIdx=allKeys.indexOf(inStock[i]);
+                if(curIdx===prevIdx+1){
+                    prev=inStock[i];
+                }else{
+                    ranges.push(start===prev?start:start+'-'+prev);
+                    start=inStock[i]; prev=inStock[i];
+                }
+            }
+            ranges.push(start===prev?start:start+'-'+prev);
+            var html='<div class="modal-sizes-label">'+t('available_sizes')+'</div><div class="modal-sizes-row">';
+            for(var r=0;r<ranges.length;r++){
+                html+='<span class="modal-size-badge">'+ranges[r]+'</span>';
+            }
+            html+='</div>';
+            return html;
         }
 
         var CAT_DISPLAY_NAMES_I18N={
